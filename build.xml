@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- iText, a JAVA - PDF library                                      -->
+<!-- $Id: release.xml 4115 2009-12-01 14:08:23Z blowagie $         -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<project name="iText.book" default="src.tar.gz">
+	<property name="src.types" value="**/*.java, **/*.jsp" />
+	
+	<target name="src.tar.gz" description="--> makes a tar.gz-file with the source code">
+		<tar compression="gzip" tarfile="source.tar.gz">
+			<tarfileset prefix="src" dir="src" includes="${src.types}" />
+		</tar>
+	</target>
+</project>
