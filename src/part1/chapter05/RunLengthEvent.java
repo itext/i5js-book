@@ -1,0 +1,158 @@
+/*
+ * This class is part of the book "iText in Action - 2nd Edition"
+ * written by Bruno Lowagie (ISBN: 9781935182610)
+ * For more info, go to: http://itextpdf.com/examples/
+ * This example only works with the AGPL version of iText.
+ */
+
+package part1.chapter05;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.lowagie.database.DatabaseConnection;
+import com.lowagie.database.HsqldbConnection;
+import com.lowagie.filmfestival.Movie;
+import com.lowagie.filmfestival.PojoFactory;
+import com.lowagie.filmfestival.Screening;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPCellEvent;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.RGBColor;
+
+public class RunLengthEvent {
+
+    class RunLength implements PdfPCellEvent {
+        
+        public int duration;
+        
+        public RunLength(int duration) {
+            this.duration = duration;
+        }
+        
+        /**
+         * @see com.lowagie.text.pdf.PdfPCellEvent#cellLayout(com.lowagie.text.pdf.PdfPCell,
+         *      com.lowagie.text.Rectangle,
+         *      com.lowagie.text.pdf.PdfContentByte[])
+         */
+        public void cellLayout(PdfPCell cell, Rectangle rect,
+                PdfContentByte[] canvas) {
+            PdfContentByte cb = canvas[PdfPTable.BACKGROUNDCANVAS];
+            cb.saveState();
+            if (duration < 90) {
+                cb.setRGBColorFill(0x00, 0xFF, 0x00);
+            }
+            else if (duration > 120) {
+                cb.setRGBColorFill(0xFF, 0x00, 0x00);
+            } 
+            else {
+                cb.setRGBColorFill(0xFF, 0xFF, 0x00);
+            }
+            cb.rectangle(rect.getLeft(), rect.getBottom(), rect.getWidth() * duration / 240, rect.getHeight());
+            cb.fill();
+            cb.restoreState();
+        }
+    }
+
+    class PressPreview implements PdfPCellEvent {
+        
+        public BaseFont bf;
+        
+        public PressPreview() throws DocumentException, IOException {
+            bf = BaseFont.createFont();
+        }
+        
+        /**
+         * @see com.lowagie.text.pdf.PdfPCellEvent#cellLayout(com.lowagie.text.pdf.PdfPCell,
+         *      com.lowagie.text.Rectangle,
+         *      com.lowagie.text.pdf.PdfContentByte[])
+         */
+        public void cellLayout(PdfPCell cell, Rectangle rect,
+                PdfContentByte[] canvas) {
+            PdfContentByte cb = canvas[PdfPTable.TEXTCANVAS];
+            cb.beginText();
+            cb.setFontAndSize(bf, 12);
+            cb.showTextAligned(Element.ALIGN_RIGHT, "PRESS PREVIEW", rect.getRight() - 3, rect.getBottom() + 4.5f, 0);
+            cb.endText();
+        }
+    }
+
+    
+    public static final String RESULT = "results/part1/chapter05/run_length.pdf";
+    
+    public PdfPCellEvent press;
+    
+    public static void main(String[] args) throws SQLException, DocumentException, IOException {
+        new RunLengthEvent().createPdf(RESULT);
+    }
+    
+    public void createPdf(String filename) throws SQLException, DocumentException, IOException {
+        press = new PressPreview();
+        DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        Document document = new Document(PageSize.A4.rotate());
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        document.open();
+        List<Date> days = PojoFactory.getDays(connection);
+        for (Date day : days) {
+            document.add(getTable(connection, day));
+            document.newPage();
+        }
+        document.close();
+        connection.close();
+    }
+    
+    public PdfPTable getTable(DatabaseConnection connection, Date day) throws SQLException, DocumentException, IOException {
+        PdfPTable table = new PdfPTable(new float[] { 2, 1, 2, 5, 1 });
+        table.setWidthPercentage(100f);
+        table.getDefaultCell().setPadding(3);
+        table.getDefaultCell().setUseAscender(true);
+        table.getDefaultCell().setUseDescender(true);
+        table.getDefaultCell().setColspan(5);
+        table.getDefaultCell().setBackgroundColor(RGBColor.RED);
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(day.toString());
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
+        table.getDefaultCell().setColspan(1);
+        table.getDefaultCell().setBackgroundColor(RGBColor.ORANGE);
+        for (int i = 0; i < 2; i++) {
+            table.addCell("Location");
+            table.addCell("Time");
+            table.addCell("Run Length");
+            table.addCell("Title");
+            table.addCell("Year");
+        }
+        table.getDefaultCell().setBackgroundColor(null);
+        table.setHeaderRows(3);
+        table.setFooterRows(1);
+        List<Screening> screenings = PojoFactory.getScreenings(connection, day);
+        Movie movie;
+        PdfPCell runLength;
+        for (Screening screening : screenings) {
+            movie = screening.getMovie();
+            table.addCell(screening.getLocation());
+            table.addCell(String.format("%1$tH:%1$tM", screening.getTime()));
+            runLength = new PdfPCell(table.getDefaultCell());
+            runLength.setPhrase(new Phrase(String.format("%d '", movie.getDuration())));
+            runLength.setCellEvent(new RunLength(movie.getDuration()));
+            if (screening.isPress()) {
+                runLength.setCellEvent(press);
+            }
+            table.addCell(runLength);
+            table.addCell(movie.getMovieTitle());
+            table.addCell(String.valueOf(movie.getYear()));
+        }
+        return table;
+    }
+}

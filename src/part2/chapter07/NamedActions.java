@@ -1,0 +1,64 @@
+/*
+ * This class is part of the book "iText in Action - 2nd Edition"
+ * written by Bruno Lowagie (ISBN: 9781935182610)
+ * For more info, go to: http://itextpdf.com/examples/
+ * This example only works with the AGPL version of iText.
+ */
+
+package part2.chapter07;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfAction;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
+
+import part1.chapter03.MovieTemplates;
+
+public class NamedActions {
+    /** The resulting PDF. */
+    public static final String RESULT = "results/part2/chapter07/named_actions.pdf";
+    
+    public static void main(String[] args) throws IOException, DocumentException {
+        MovieTemplates.main(args);
+        new NamedActions().manipulatePdf(MovieTemplates.RESULT, RESULT);
+    }
+    
+    public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
+        Font symbol = new Font(Font.SYMBOL, 20);
+        PdfPTable table = new PdfPTable(4);
+        table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+        Chunk first = new Chunk(String.valueOf((char)220), symbol);
+        first.setAction(new PdfAction(PdfAction.FIRSTPAGE));
+        table.addCell(new Phrase(first));
+        Chunk previous = new Chunk(String.valueOf((char)172), symbol);
+        previous.setAction(new PdfAction(PdfAction.PREVPAGE));
+        table.addCell(new Phrase(previous));
+        Chunk next = new Chunk(String.valueOf((char)174), symbol);
+        next.setAction(new PdfAction(PdfAction.NEXTPAGE));
+        table.addCell(new Phrase(next));
+        Chunk last = new Chunk(String.valueOf((char)222), symbol);
+        last.setAction(new PdfAction(PdfAction.LASTPAGE));
+        table.addCell(new Phrase(last));
+        table.setTotalWidth(120);
+        
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        PdfContentByte canvas;
+        for (int i = 0; i < reader.getNumberOfPages(); ) {
+            canvas = stamper.getOverContent(++i);
+            table.writeSelectedRows(0, -1, 696, 36, canvas);
+        }
+        stamper.close();
+    }
+}
