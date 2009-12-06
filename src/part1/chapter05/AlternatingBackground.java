@@ -27,7 +27,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfPTableEvent;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class AlternatingBackground implements PdfPTableEvent {
 
@@ -61,12 +61,12 @@ public class AlternatingBackground implements PdfPTableEvent {
         table.getDefaultCell().setUseAscender(true);
         table.getDefaultCell().setUseDescender(true);
         table.getDefaultCell().setColspan(5);
-        table.getDefaultCell().setBackgroundColor(RGBColor.RED);
+        table.getDefaultCell().setBackgroundColor(BaseColor.RED);
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(day.toString());
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
         table.getDefaultCell().setColspan(1);
-        table.getDefaultCell().setBackgroundColor(RGBColor.ORANGE);
+        table.getDefaultCell().setBackgroundColor(BaseColor.ORANGE);
         for (int i = 0; i < 2; i++) {
             table.addCell("Location");
             table.addCell("Time");
@@ -99,7 +99,7 @@ public class AlternatingBackground implements PdfPTableEvent {
             columns = widths[row].length - 1;
             rect = new Rectangle(widths[row][0], heights[row],
                         widths[row][columns], heights[row + 1]);
-            rect.setBackgroundColor(RGBColor.YELLOW);
+            rect.setBackgroundColor(BaseColor.YELLOW);
             rect.setBorder(Rectangle.NO_BORDER);
             canvases[PdfPTable.BASECANVAS].rectangle(rect);
         }

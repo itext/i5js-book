@@ -22,7 +22,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class MoviePosters1 {
     /** Path to the resulting PDF */
@@ -60,7 +60,7 @@ public class MoviePosters1 {
         // step 3
         document.open();
         Rectangle rect = new Rectangle(0, 806, 36, 842);
-        rect.setBackgroundColor(RGBColor.RED);
+        rect.setBackgroundColor(BaseColor.RED);
         document.add(rect);
         // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);

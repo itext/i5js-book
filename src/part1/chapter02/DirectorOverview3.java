@@ -27,7 +27,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
@@ -58,7 +58,7 @@ public class DirectorOverview3 {
             + "GROUP BY d.id, d.name, d.given_name ORDER BY c DESC");
         Director director;
 
-        Chunk CONNECT = new Chunk(new LineSeparator(0.5f, 95, RGBColor.BLUE, Element.ALIGN_CENTER, 3.5f));
+        Chunk CONNECT = new Chunk(new LineSeparator(0.5f, 95, BaseColor.BLUE, Element.ALIGN_CENTER, 3.5f));
         LineSeparator UNDERLINE = new LineSeparator(1, 100, null, Element.ALIGN_CENTER, -2);
         
         Chunk tab1 = new Chunk(new VerticalPositionMark(), 200, true);

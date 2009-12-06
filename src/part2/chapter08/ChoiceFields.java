@@ -26,7 +26,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.pdf.TextField;
 
 public class ChoiceFields implements PdfPCellEvent {
@@ -124,7 +124,7 @@ public class ChoiceFields implements PdfPCellEvent {
                 break;
             case 2:
                 text.setChoices(LANGUAGES);
-                text.setBorderColor(RGBColor.GREEN);
+                text.setBorderColor(BaseColor.GREEN);
                 text.setBorderStyle(PdfBorderDictionary.STYLE_DASHED);
                 text.setOptions(TextField.MULTISELECT);
                 ArrayList<Integer> selections = new ArrayList<Integer>();
@@ -135,8 +135,8 @@ public class ChoiceFields implements PdfPCellEvent {
                 writer.addAnnotation(field);
                 break;
             case 3:
-                text.setBorderColor(RGBColor.RED);
-                text.setBackgroundColor(RGBColor.GRAY);
+                text.setBorderColor(BaseColor.RED);
+                text.setBackgroundColor(BaseColor.GRAY);
                 text.setChoices(LANGUAGES);
                 text.setChoiceExports(EXPORTVALUES);
                 text.setChoiceSelection(4);

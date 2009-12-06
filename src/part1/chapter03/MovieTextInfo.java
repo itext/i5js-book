@@ -29,7 +29,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 /**
  * Draws a time table to the direct content using lines and simple shapes,
@@ -170,7 +170,7 @@ public class MovieTextInfo extends MovieTimeBlocks {
     public MovieTextInfo() throws DocumentException, IOException {
         bf = BaseFont.createFont();
         Font f = new Font(bf, HEIGHT_LOCATION / 2);
-        f.setColor(RGBColor.WHITE);
+        f.setColor(BaseColor.WHITE);
         press = new Phrase("P", f);
     }
     

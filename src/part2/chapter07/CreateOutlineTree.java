@@ -27,7 +27,7 @@ import com.itextpdf.text.pdf.PdfDestination;
 import com.itextpdf.text.pdf.PdfOutline;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.pdf.SimpleBookmark;
 
 public class CreateOutlineTree {
@@ -69,7 +69,7 @@ public class CreateOutlineTree {
             link = new PdfOutline(movieBookmark,
                     new PdfAction(String.format(RESOURCE, movie.getImdb())),
                     "link to IMDB");
-            link.setColor(RGBColor.BLUE);
+            link.setColor(BaseColor.BLUE);
             new PdfOutline(movieBookmark,
                     PdfAction.javaScript(String.format(INFO, movie.getYear(), movie.getDuration()), writer),
                     "instant info");

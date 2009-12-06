@@ -21,7 +21,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class FoobarFilmFestival {
 
@@ -134,7 +134,7 @@ public class FoobarFilmFestival {
         phrase = new Phrase(c);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, phrase, 400, 500, 0);
         c = new Chunk(foobar, times);
-        c.setTextRenderMode(PdfContentByte.TEXT_RENDER_MODE_STROKE, 0.1f, RGBColor.RED);
+        c.setTextRenderMode(PdfContentByte.TEXT_RENDER_MODE_STROKE, 0.1f, BaseColor.RED);
         phrase = new Phrase(c);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, phrase, 400, 464, 0);
         c = new Chunk(foobar, times);

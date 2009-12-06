@@ -30,7 +30,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
 public class PdfCalendar {
@@ -78,7 +78,7 @@ public class PdfCalendar {
             drawImageAndText(canvas, calendar);
             table = new PdfPTable(7);
             table.setTotalWidth(504);
-            table.getDefaultCell().setBackgroundColor(RGBColor.WHITE);
+            table.getDefaultCell().setBackgroundColor(BaseColor.WHITE);
             table.addCell(getMonthCell(calendar, locale));
             int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
             int day = 1;
@@ -120,7 +120,7 @@ public class PdfCalendar {
     public PdfPCell getMonthCell(Calendar calendar, Locale locale) {
         PdfPCell cell = new PdfPCell();
         cell.setColspan(7);
-        cell.setBackgroundColor(RGBColor.WHITE);
+        cell.setBackgroundColor(BaseColor.WHITE);
         cell.setUseDescender(true);
         Paragraph p = new Paragraph(String.format(locale, "%1$tB %1$tY", calendar), bold);
         p.setAlignment(Element.ALIGN_CENTER);
@@ -132,11 +132,11 @@ public class PdfCalendar {
         PdfPCell cell = new PdfPCell();
         cell.setPadding(3);
         if (isSunday(calendar))
-            cell.setBackgroundColor(RGBColor.GRAY);
+            cell.setBackgroundColor(BaseColor.GRAY);
         else if (isSpecialDay(calendar))
-            cell.setBackgroundColor(RGBColor.LIGHT_GRAY);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
         else
-            cell.setBackgroundColor(RGBColor.WHITE);
+            cell.setBackgroundColor(BaseColor.WHITE);
         Chunk chunk = new Chunk(String.format(locale, "%1$ta", calendar), small);
         chunk.setTextRise(8);
         Paragraph p = new Paragraph(chunk);

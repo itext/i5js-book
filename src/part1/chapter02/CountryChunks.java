@@ -20,7 +20,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 /**
  * Writes a list of countries to a PDF file.
@@ -55,9 +55,9 @@ public class CountryChunks {
         while (rs.next()) {
             document.add(new Chunk(rs.getString("country")));
             document.add(new Chunk(" "));
-            Font font = new Font(Font.HELVETICA, 6, Font.BOLD, RGBColor.WHITE);
+            Font font = new Font(Font.HELVETICA, 6, Font.BOLD, BaseColor.WHITE);
             Chunk id = new Chunk(rs.getString("id"), font);
-            id.setBackground(RGBColor.BLACK, 1f, 0.5f, 1f, 1.5f);
+            id.setBackground(BaseColor.BLACK, 1f, 0.5f, 1f, 1.5f);
             id.setTextRise(6);
             document.add(id);
             document.add(Chunk.NEWLINE);

@@ -7,7 +7,6 @@
 
 package part3.chapter09;
 
-import java.awt.Color;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.lowagie.filmfestival.Movie;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocListener;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -50,7 +50,7 @@ public class HtmlMovies2 extends HtmlMovies1 {
     public static class MyFontFactory implements FontProvider {
         public Font getFont(String fontname,
                 String encoding, boolean embedded, float size,
-                int style, Color color) {
+                int style, BaseColor color) {
             return new Font(Font.TIMES_ROMAN, size, style, color);
         }
 

@@ -28,7 +28,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class HeaderFooter1 {
 
@@ -59,13 +59,13 @@ public class HeaderFooter1 {
         table.getDefaultCell().setUseAscender(true);
         table.getDefaultCell().setUseDescender(true);
         Font f = new Font();
-        f.setColor(RGBColor.WHITE);
+        f.setColor(BaseColor.WHITE);
         PdfPCell cell = new PdfPCell(new Phrase(day.toString(), f));
-        cell.setBackgroundColor(RGBColor.BLACK);
+        cell.setBackgroundColor(BaseColor.BLACK);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setColspan(7);
         table.addCell(cell);
-        table.getDefaultCell().setBackgroundColor(RGBColor.LIGHT_GRAY);
+        table.getDefaultCell().setBackgroundColor(BaseColor.LIGHT_GRAY);
         for (int i = 0; i < 2; i++) {
             table.addCell("Location");
             table.addCell("Time");

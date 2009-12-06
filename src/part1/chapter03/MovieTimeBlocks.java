@@ -25,7 +25,7 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.html.WebColors;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 /**
  * Draws a time table to the direct content using lines and simple shapes,
@@ -78,7 +78,7 @@ public class MovieTimeBlocks extends MovieTimeTable {
      */
     protected void drawBlock(Screening screening, PdfContentByte under, PdfContentByte over) {
         under.saveState();
-        RGBColor color = WebColors.getRGBColor(
+        BaseColor color = WebColors.getRGBColor(
             "#" + screening.getMovie().getEntry().getCategory().getColor());
         under.setColorFill(color);
         Rectangle rect = getPosition(screening);

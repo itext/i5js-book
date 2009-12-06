@@ -21,7 +21,7 @@ import com.itextpdf.text.pdf.PdfFormField;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PushbuttonField;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class Advertisement {
     public static final String RESOURCE = "resources/pdfs/hero.pdf";
@@ -41,8 +41,8 @@ public class Advertisement {
         Rectangle rect = new Rectangle(400, 772, 545, 792);
         PushbuttonField button = new PushbuttonField(
                 stamper.getWriter(), rect, "click");
-        button.setBackgroundColor(RGBColor.RED);
-        button.setBorderColor(RGBColor.RED);
+        button.setBackgroundColor(BaseColor.RED);
+        button.setBorderColor(BaseColor.RED);
         button.setFontSize(10);
         button.setText("Close this advertisement");
         button.setImage(Image.getInstance(IMAGE));
@@ -57,8 +57,8 @@ public class Advertisement {
         rect = new Rectangle(400, 550, 545, 772);
         button = new PushbuttonField(
                 stamper.getWriter(), rect, "advertisement");
-        button.setBackgroundColor(RGBColor.WHITE);
-        button.setBorderColor(RGBColor.RED);
+        button.setBackgroundColor(BaseColor.WHITE);
+        button.setBorderColor(BaseColor.RED);
         button.setText("Buy the book iText in Action 2nd edition");
         button.setTemplate(stamper.getImportedPage(ad, 1));
         button.setLayout(PushbuttonField.LAYOUT_ICON_TOP_LABEL_BOTTOM);

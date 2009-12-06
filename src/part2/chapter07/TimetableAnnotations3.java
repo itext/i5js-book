@@ -25,7 +25,7 @@ import com.itextpdf.text.pdf.PdfBorderDictionary;
 import com.itextpdf.text.pdf.PdfDashPattern;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 import part1.chapter03.MovieTemplates;
 
@@ -58,7 +58,7 @@ public class TimetableAnnotations3 extends TimetableAnnotations1 {
                 if (screening.isPress()) {
                     annotation = PdfAnnotation.createStamp(stamper.getWriter(),
                             rect, "Press only", "NotForPublicRelease");
-                    annotation.setColor(RGBColor.BLACK);
+                    annotation.setColor(BaseColor.BLACK);
                     annotation.setFlags(PdfAnnotation.FLAGS_PRINT);
                 }
                 else if (isSoldOut(screening)) {
@@ -68,7 +68,7 @@ public class TimetableAnnotations3 extends TimetableAnnotations1 {
                             top - rect.getTop(), rect.getRight(),
                             top - rect.getBottom(), rect.getLeft());
                     annotation.setTitle(movie.getMovieTitle());
-                    annotation.setColor(RGBColor.WHITE);
+                    annotation.setColor(BaseColor.WHITE);
                     annotation.setFlags(PdfAnnotation.FLAGS_PRINT);
                     annotation.setBorderStyle(new PdfBorderDictionary(5, PdfBorderDictionary.STYLE_SOLID));
                 }
@@ -76,7 +76,7 @@ public class TimetableAnnotations3 extends TimetableAnnotations1 {
                     annotation = PdfAnnotation.createSquareCircle(
                             stamper.getWriter(), rect, "Tickets available", true);
                     annotation.setTitle(movie.getMovieTitle());
-                    annotation.setColor(RGBColor.BLUE);
+                    annotation.setColor(BaseColor.BLUE);
                     annotation.setFlags(PdfAnnotation.FLAGS_PRINT);
                     annotation.setBorder(new PdfBorderArray(0, 0, 2, new PdfDashPattern()));
                 }

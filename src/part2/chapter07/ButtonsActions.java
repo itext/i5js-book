@@ -19,7 +19,7 @@ import com.itextpdf.text.pdf.PdfAnnotation;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PushbuttonField;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class ButtonsActions {
 
@@ -37,9 +37,9 @@ public class ButtonsActions {
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         PushbuttonField saveAs = new PushbuttonField(stamper.getWriter(), new Rectangle(
                 636, 10, 716, 30), "Save");
-        saveAs.setBorderColor(RGBColor.BLACK);
+        saveAs.setBorderColor(BaseColor.BLACK);
         saveAs.setText("Save");
-        saveAs.setTextColor(RGBColor.RED);
+        saveAs.setTextColor(BaseColor.RED);
         saveAs.setLayout(PushbuttonField.LAYOUT_LABEL_ONLY);
         saveAs.setRotation(90);
         PdfAnnotation saveAsButton = saveAs.getField();
@@ -47,9 +47,9 @@ public class ButtonsActions {
                 stamper.getWriter()));
         PushbuttonField mail = new PushbuttonField(stamper.getWriter(), new Rectangle(
                 736, 10, 816, 30), "Mail");
-        mail.setBorderColor(RGBColor.BLACK);
+        mail.setBorderColor(BaseColor.BLACK);
         mail.setText("Mail");
-        mail.setTextColor(RGBColor.RED);
+        mail.setTextColor(BaseColor.RED);
         mail.setLayout(PushbuttonField.LAYOUT_LABEL_ONLY);
         mail.setRotation(90);
         PdfAnnotation mailButton = mail.getField();

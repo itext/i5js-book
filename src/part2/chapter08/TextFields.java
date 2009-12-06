@@ -27,7 +27,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.pdf.TextField;
 
 public class TextFields implements PdfPCellEvent {
@@ -54,7 +54,7 @@ public class TextFields implements PdfPCellEvent {
         System.out.println(form.getField("text_4"));
         form.setField("text_1", "Bruno Lowagie");
         form.setFieldProperty("text_2", "fflags", 0, null);
-        form.setFieldProperty("text_2", "bordercolor", RGBColor.RED, null);
+        form.setFieldProperty("text_2", "bordercolor", BaseColor.RED, null);
         form.setField("text_2", "bruno");
         form.setFieldProperty("text_3", "clrfflags", TextField.PASSWORD, null);
         form.setFieldProperty("text_3", "setflags", PdfAnnotation.FLAGS_PRINT, null);
@@ -118,7 +118,7 @@ public class TextFields implements PdfPCellEvent {
             text.setMaxCharacterLength(8);
             text.setOptions(TextField.COMB);
             text.setBorderStyle(PdfBorderDictionary.STYLE_SOLID);
-            text.setBorderColor(RGBColor.BLUE);
+            text.setBorderColor(BaseColor.BLUE);
             text.setBorderWidth(2);
             break;
         case 3:
@@ -128,7 +128,7 @@ public class TextFields implements PdfPCellEvent {
             break;
         case 4:
             text.setBorderStyle(PdfBorderDictionary.STYLE_DASHED);
-            text.setBorderColor(RGBColor.RED);
+            text.setBorderColor(BaseColor.RED);
             text.setBorderWidth(2);
             text.setFontSize(8);
             text.setText("Enter the reason why you want to win a free accreditation for the Foobar Film Festival");

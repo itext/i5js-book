@@ -17,6 +17,7 @@ import com.lowagie.database.HsqldbConnection;
 import com.lowagie.filmfestival.Director;
 import com.lowagie.filmfestival.Movie;
 import com.lowagie.filmfestival.PojoFactory;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -37,7 +38,6 @@ import com.itextpdf.text.pdf.PdfSmartCopy;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PushbuttonField;
-import com.itextpdf.text.pdf.RGBColor;
 import com.itextpdf.text.pdf.TextField;
 
 public class MovieAds {
@@ -99,7 +99,7 @@ public class MovieAds {
         PdfReader reader = new PdfReader(TEMPLATE);
         PdfStamper stamper = new PdfStamper(reader, baos);
         AcroFields form = stamper.getAcroFields();
-        RGBColor color = WebColors.getRGBColor("#" + movie.getEntry().getCategory().getColor());
+        BaseColor color = WebColors.getRGBColor("#" + movie.getEntry().getCategory().getColor());
         PushbuttonField bt = form.getNewPushbuttonFromField(POSTER);
         bt.setLayout(PushbuttonField.LAYOUT_ICON_ONLY);
         bt.setProportionalIcon(true);

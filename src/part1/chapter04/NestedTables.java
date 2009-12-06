@@ -32,7 +32,7 @@ import com.itextpdf.text.html.WebColors;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class NestedTables {
 
@@ -65,9 +65,9 @@ public class NestedTables {
         PdfPTable table = new PdfPTable(1);
         table.setWidthPercentage(100f);
         Font f = new Font();
-        f.setColor(RGBColor.WHITE);
+        f.setColor(BaseColor.WHITE);
         PdfPCell cell = new PdfPCell(new Phrase(day.toString(), f));
-        cell.setBackgroundColor(RGBColor.BLACK);
+        cell.setBackgroundColor(BaseColor.BLACK);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(cell);
         List<Screening> screenings = PojoFactory.getScreenings(connection, day);
@@ -86,7 +86,7 @@ public class NestedTables {
         cell.addElement(fullTitle(screening));
         cell.setColspan(4);
         cell.setBorder(PdfPCell.NO_BORDER);
-        RGBColor color = WebColors.getRGBColor("#" + movie.getEntry().getCategory().getColor());
+        BaseColor color = WebColors.getRGBColor("#" + movie.getEntry().getCategory().getColor());
         cell.setBackgroundColor(color);
         table.addCell(cell);
         
@@ -124,7 +124,7 @@ public class NestedTables {
         
         PdfPCell cell = new PdfPCell();
         cell.setBorder(PdfPCell.NO_BORDER);
-        cell.setBackgroundColor(RGBColor.WHITE);
+        cell.setBackgroundColor(BaseColor.WHITE);
         cell.setUseAscender(true);
         cell.setUseDescender(true);
         String s = String.format("%s \u2013 %2$tH:%2$tM", screening.getLocation(), screening.getTime().getTime());
@@ -147,7 +147,7 @@ public class NestedTables {
         
         cell = new PdfPCell();
         cell.setBorder(PdfPCell.NO_BORDER);
-        cell.setBackgroundColor(RGBColor.WHITE);
+        cell.setBackgroundColor(BaseColor.WHITE);
         cell.setUseAscender(true);
         cell.setUseDescender(true);
         p = new Paragraph(String.format("%d'", movie.getDuration()));

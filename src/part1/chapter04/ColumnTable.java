@@ -27,7 +27,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class ColumnTable {
 
@@ -76,8 +76,8 @@ public class ColumnTable {
     public float addHeaderTable(Document document, Date day, int page) throws DocumentException {
         PdfPTable header = new PdfPTable(3);
         header.setWidthPercentage(100);
-        header.getDefaultCell().setBackgroundColor(RGBColor.BLACK);
-        Font font = new Font(Font.HELVETICA, 12, Font.BOLD, RGBColor.WHITE);
+        header.getDefaultCell().setBackgroundColor(BaseColor.BLACK);
+        Font font = new Font(Font.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
         Phrase p = new Phrase("Foobar Film Festival", font);
         header.addCell(p);
         header.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -95,7 +95,7 @@ public class ColumnTable {
         table.setWidthPercentage(100f);
         table.getDefaultCell().setUseAscender(true);
         table.getDefaultCell().setUseDescender(true);
-        table.getDefaultCell().setBackgroundColor(RGBColor.LIGHT_GRAY);
+        table.getDefaultCell().setBackgroundColor(BaseColor.LIGHT_GRAY);
         for (int i = 0; i < 2; i++) {
             table.addCell("Location");
             table.addCell("Time");

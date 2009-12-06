@@ -23,7 +23,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfFormField;
 import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class Calculator {
     /** The resulting PDF. */
@@ -110,11 +110,11 @@ public class Calculator {
         pushbutton.setWidget(rect, PdfAnnotation.HIGHLIGHT_PUSH);
         PdfContentByte cb = writer.getDirectContent();
         pushbutton.setAppearance(PdfAnnotation.APPEARANCE_NORMAL,
-                createAppearance(cb, btn, RGBColor.GRAY, w, h));
+                createAppearance(cb, btn, BaseColor.GRAY, w, h));
         pushbutton.setAppearance(PdfAnnotation.APPEARANCE_ROLLOVER,
-                createAppearance(cb, btn, RGBColor.RED, w, h));
+                createAppearance(cb, btn, BaseColor.RED, w, h));
         pushbutton.setAppearance(PdfAnnotation.APPEARANCE_DOWN,
-                createAppearance(cb, btn, RGBColor.BLUE, w, h));
+                createAppearance(cb, btn, BaseColor.BLUE, w, h));
         pushbutton.setAdditionalActions(PdfName.U,
                 PdfAction.javaScript(script, writer));
         pushbutton.setAdditionalActions(PdfName.E, PdfAction.javaScript(
@@ -124,13 +124,13 @@ public class Calculator {
         writer.addAnnotation(pushbutton);
     }
 
-    public PdfAppearance createAppearance(PdfContentByte cb, String btn, RGBColor color, float w, float h) {
+    public PdfAppearance createAppearance(PdfContentByte cb, String btn, BaseColor color, float w, float h) {
         PdfAppearance app = cb.createAppearance(w, h);
         app.setColorFill(color);
         app.rectangle(2, 2, w - 4, h - 4);
         app.fill();
         app.beginText();
-        app.setColorFill(RGBColor.BLACK);
+        app.setColorFill(BaseColor.BLACK);
         app.setFontAndSize(bf, h / 2);
         app.showTextAligned(Element.ALIGN_CENTER, btn, w / 2, h / 4, 0);
         app.endText();

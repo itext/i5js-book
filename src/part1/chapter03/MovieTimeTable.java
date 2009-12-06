@@ -15,7 +15,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 /**
  * Draws a time table to the direct content using lines and simple shapes.
@@ -130,7 +130,7 @@ public class MovieTimeTable {
             directcontent.lineTo(x, OFFSET_BOTTOM + HEIGHT);
         }
         directcontent.setLineWidth(0.3f);
-        directcontent.setColorStroke(RGBColor.GRAY);
+        directcontent.setColorStroke(BaseColor.GRAY);
         directcontent.setLineDash(3, 1);
         directcontent.stroke();
         directcontent.restoreState();

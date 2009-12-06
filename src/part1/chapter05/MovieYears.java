@@ -29,7 +29,7 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.RGBColor;
+import com.itextpdf.text.BaseColor;
 
 public class MovieYears {
     
@@ -128,7 +128,7 @@ public class MovieYears {
         
         Font bold = new Font(Font.HELVETICA, 11, Font.BOLD);
         Font italic = new Font(Font.HELVETICA, 11, Font.ITALIC);
-        Font white = new Font(Font.HELVETICA, 12, Font.BOLD | Font.ITALIC, RGBColor.WHITE);
+        Font white = new Font(Font.HELVETICA, 12, Font.BOLD | Font.ITALIC, BaseColor.WHITE);
         Paragraph p;
         Chunk c;
         
