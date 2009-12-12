@@ -35,10 +35,12 @@ public class MovieTimeBlocks extends MovieTimeTable {
 
     /** The resulting PDF. */
     public static final String RESULT = "results/part1/chapter03/time_blocks.pdf";
-    
+
     /**
-     * Creates a PDF file containing a time table for our filmfestival.
-     * @param    filename    the name of the PDF file
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
      */
     public void createPdf(String filename)
         throws IOException, DocumentException {

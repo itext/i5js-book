@@ -38,37 +38,58 @@ public class MovieLinks1 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MovieLinks1().createPdf(RESULT);
     }
-    
-    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     * @throws    SQLException
+     */
+    public void createPdf(String filename)
+        throws IOException, DocumentException, SQLException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
+        // Create database connection and statement
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(
             "SELECT DISTINCT mc.country_id, c.country, count(*) AS c "
-            + "FROM film_country c, film_movie_country mc WHERE c.id = mc.country_id "
+            + "FROM film_country c, film_movie_country mc "
+            + "WHERE c.id = mc.country_id "
             + "GROUP BY mc.country_id, country ORDER BY c DESC");
         Anchor imdb;
+        // loop over the countries
         while (rs.next()) {
             Paragraph country = new Paragraph();
+            // the name of the country will be a destination
             Anchor dest = new Anchor(rs.getString("country"), FilmFonts.BOLD);
             dest.setName(rs.getString("country_id"));
             country.add(dest);
             country.add(String.format(": %d movies", rs.getInt("c")));
             document.add(country);
-            for(Movie movie : PojoFactory.getMovies(connection, rs.getString("country_id"))) {
+            // loop over the movies
+            for(Movie movie :
+                PojoFactory.getMovies(connection, rs.getString("country_id"))) {
+            	// the movie title will be an external link
                 imdb = new Anchor(movie.getMovieTitle());
-                imdb.setReference(String.format("http://www.imdb.com/title/tt%s/", movie.getImdb()));
+                imdb.setReference(
+                    String.format("http://www.imdb.com/title/tt%s/", movie.getImdb()));
                 document.add(imdb);
                 document.add(Chunk.NEWLINE);
             }
             document.newPage();
         }
+        // Create an internal link to the first page
         Anchor toUS = new Anchor("Go back to the first page.");
         toUS.setReference("#US");
         document.add(toUS);

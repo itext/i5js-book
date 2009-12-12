@@ -36,7 +36,14 @@ public class MovieAnnotations3 {
         MovieAnnotations3 example = new MovieAnnotations3();
         example.createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     * @throws    SQLException
+     */
     public void createPdf(String filename) throws IOException, DocumentException, SQLException {
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Document document = new Document();

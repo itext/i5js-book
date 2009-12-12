@@ -71,7 +71,13 @@ public class Calculator {
         result = createRectangle(1, 9, 5, 1);
         move = createRectangle(8, 3, 1, 1);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename) throws IOException, DocumentException {
         Document document = new Document(new Rectangle(360, 360));
         PdfWriter writer =

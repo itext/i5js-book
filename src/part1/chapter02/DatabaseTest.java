@@ -31,16 +31,26 @@ public class DatabaseTest {
      * @param    args    no arguments needed 
      * @throws FileNotFoundException 
      */
-    public static void main(String[] args) throws SQLException, UnsupportedEncodingException, FileNotFoundException {
+    public static void main(String[] args)
+        throws SQLException, UnsupportedEncodingException, FileNotFoundException {
+    	// no PDF, just a text file
         PrintStream out = new PrintStream(new FileOutputStream(RESULT));
+        // Make the connection to the database
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // create the statement
         Statement stm = connection.createStatement();
+        // execute the query
         ResultSet rs = stm.executeQuery("SELECT country FROM film_country ORDER BY country");
+        // loop over the results
         while (rs.next()) {
+        	// write a country to the text file
             out.println(rs.getString("country"));
         }
+        // close the statement
         stm.close();
+        // close the database connection
         connection.close();
+        // flush and close the print stream
         out.flush();
         out.close();
     }

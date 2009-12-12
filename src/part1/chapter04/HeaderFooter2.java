@@ -29,7 +29,14 @@ public class HeaderFooter2 extends HeaderFooter1 {
     public static void main(String[] args) throws SQLException, DocumentException, IOException {
         new HeaderFooter2().createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     * @throws    SQLException
+     */
     public void createPdf(String filename) throws SQLException, DocumentException, IOException {
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Document document = new Document(PageSize.A4.rotate());

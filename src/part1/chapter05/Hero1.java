@@ -27,7 +27,13 @@ public class Hero1 {
     public static void main(String[] args) throws IOException, DocumentException {
         new Hero1().createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename) throws IOException, DocumentException {
         Rectangle rect = new Rectangle(-1192, -1685, 1192, 1685);
         Document document = new Document(rect);

@@ -96,6 +96,15 @@ public class PdfCalendar extends part1.chapter04.PdfCalendar {
         whiteRectangle = new RoundRectangle(new int[]{ 0x00, 0x00, 0x00, 0x00 });
     }
 
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @param locale Locale in case you want to create
+     * a Calendar in another language
+     * @param year the year for which you want to make a calendar
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename, Locale locale, int year) throws IOException, DocumentException {
         
         Document document = new Document(PageSize.A4.rotate());

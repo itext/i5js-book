@@ -22,14 +22,17 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class HelloWorldNarrow {
 
     /** Path to the resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter01/hello_narrow.pdf";
+    public static final String RESULT
+        = "results/part1/chapter01/hello_narrow.pdf";
     
     /**
      * Creates a PDF file: hello_narrow.pdf
      * @param    args    no arguments needed
      */
-    public static void main(String[] args) throws DocumentException, IOException {
+    public static void main(String[] args)
+         throws DocumentException, IOException {
         // step 1
+    	// Using a custom page size
         Rectangle pagesize = new Rectangle(216f, 720f);
         Document document = new Document(pagesize, 36f, 72f, 108f, 180f);
         // step 2
@@ -38,7 +41,8 @@ public class HelloWorldNarrow {
         document.open();
         // step 4
         document.add(new Paragraph(
-                "Hello World! Hello People! Hello Sky! Hello Sun! Hello Moon! Hello Stars!"));
+            "Hello World! Hello People! " +
+            "Hello Sky! Hello Sun! Hello Moon! Hello Stars!"));
         // step 5
         document.close();
     }

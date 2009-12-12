@@ -65,7 +65,14 @@ public class Stationery extends PdfPageEventHelper {
                 297.5f, 421, 45);
         document.close();
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     * @throws    SQLException
+     */
     public void createPdf(String filename) throws SQLException, IOException, DocumentException {
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Document document = new Document(PageSize.A4, 36, 36, 72, 36);

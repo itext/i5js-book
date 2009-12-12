@@ -26,6 +26,13 @@ public class TextFieldActions {
     public static void main(String[] args) throws IOException, DocumentException {
         new TextFieldActions().createPdf(RESULT);
     }
+    
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename) throws IOException, DocumentException {
         Document document = new Document();
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));

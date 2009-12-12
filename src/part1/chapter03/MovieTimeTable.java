@@ -28,6 +28,7 @@ public class MovieTimeTable {
     /**
      * Creates a PDF file containing a time table for our filmfestival.
      * @param    filename    the name of the PDF file
+     * @throws DocumentException
      * @throws IOException 
      */
     public void createPdf(String filename)

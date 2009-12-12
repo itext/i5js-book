@@ -39,32 +39,42 @@ public class MovieLists2 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-    
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-
+        // step 4
+        // Create a database connection and statement
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(
             "SELECT DISTINCT mc.country_id, c.country, count(*) AS c "
             + "FROM film_country c, film_movie_country mc WHERE c.id = mc.country_id "
             + "GROUP BY mc.country_id, country ORDER BY c DESC");
+        // Create a list
         List list = new List();
         list.setAutoindent(false);
         list.setSymbolIndent(36);
+        // Loop over the countries
         while (rs.next()) {
-            ListItem item = new ListItem(String.format("%s: %d movies", rs.getString("country"), rs.getInt("c")));
+            // Create a list item for a country
+        	ListItem item = new ListItem(
+               String.format("%s: %d movies", rs.getString("country"), rs.getInt("c")));
             item.setListSymbol(new Chunk(rs.getString("country_id")));
+            // Create a list for the movies produced in the current country
             List movielist = new List(List.ORDERED, List.ALPHABETICAL);
             movielist.setAlignindent(false);
-            for(Movie movie : PojoFactory.getMovies(connection, rs.getString("country_id"))) {
+            for(Movie movie :
+                PojoFactory.getMovies(connection, rs.getString("country_id"))) {
                 ListItem movieitem = new ListItem(movie.getMovieTitle());
                 List directorlist = new List(List.ORDERED);
                 directorlist.setPreSymbol("Director ");
                 directorlist.setPostSymbol(": ");
                 for (Director director : movie.getDirectors()) {
-                    directorlist.add(String.format("%s, %s", director.getName(), director.getGivenName()));
+                    directorlist.add(
+                        String.format("%s, %s", director.getName(), director.getGivenName()));
                 }
                 movieitem.add(directorlist);
                 movielist.add(movieitem);
@@ -73,10 +83,10 @@ public class MovieLists2 {
             list.add(item);
         }
         document.add(list);
-        
+        // Close the statement and database connection
         stm.close();
         connection.close();
-        
+        // step 5
         document.close();
     }
     

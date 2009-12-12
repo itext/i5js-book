@@ -15,6 +15,10 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
+/**
+ * Subclass of VerticalPositionMark that draws an arrow in the left
+ * or right margin.
+ */
 public class PositionedArrow extends VerticalPositionMark {
 
     /** Indicates if the arrow needs to be drawn to the left. */
@@ -50,15 +54,19 @@ public class PositionedArrow extends VerticalPositionMark {
     
     /**
      * Draws a character representing an arrow at the current position.
+     * @see com.itextpdf.text.pdf.draw.VerticalPositionMark#draw(
+     *      com.itextpdf.text.pdf.PdfContentByte, float, float, float, float, float)
      */
     public void draw(PdfContentByte canvas, float llx, float lly, float urx, float ury, float y) {
         canvas.beginText();
         canvas.setFontAndSize(zapfdingbats, 12);
         if (left) {
-            canvas.showTextAligned(Element.ALIGN_CENTER, String.valueOf((char)220), llx - 10, y, 0);
+            canvas.showTextAligned(Element.ALIGN_CENTER,
+                String.valueOf((char)220), llx - 10, y, 0);
         }
         else {
-            canvas.showTextAligned(Element.ALIGN_CENTER, String.valueOf((char)220), urx + 10, y + 8, 180);
+            canvas.showTextAligned(Element.ALIGN_CENTER,
+                String.valueOf((char)220), urx + 10, y + 8, 180);
         }
         canvas.endText();
     }

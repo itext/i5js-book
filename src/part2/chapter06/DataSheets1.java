@@ -29,7 +29,14 @@ public class DataSheets1 extends FillDataSheet {
     public static void main(String[] args) throws IOException, SQLException, DocumentException {
         new DataSheets1().createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     * @throws    SQLException
+     */
     public void createPdf(String filename) throws IOException, DocumentException, SQLException {
         Document document = new Document();
         PdfCopy copy = new PdfCopy(document, new FileOutputStream(filename));

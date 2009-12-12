@@ -25,7 +25,13 @@ public class Hero3 extends Hero1 {
     public static void main(String[] args) throws IOException, DocumentException {
         new Hero3().createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename) throws IOException, DocumentException {
         Document document = new Document(PageSize.A4);
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));

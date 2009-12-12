@@ -63,7 +63,13 @@ public class TextFields implements PdfPCellEvent {
         form.regenerateField("text_4");
         stamper.close();
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException 
+     */
     public void createPdf(String filename) throws DocumentException, IOException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(filename));

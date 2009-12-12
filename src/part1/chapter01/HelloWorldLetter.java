@@ -19,7 +19,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class HelloWorldLetter {
     
     /** Path to the resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter01/hello_letter.pdf";
+    public static final String RESULT
+        = "results/part1/chapter01/hello_letter.pdf";
     
     /**
      * Creates a PDF file: hello_letter.pdf.
@@ -27,6 +28,7 @@ public class HelloWorldLetter {
      */
     public static void main(String[] args) throws DocumentException, IOException {
         // step 1
+    	// Spefifying the page size
         Document document = new Document(PageSize.LETTER);
         // step 2
         PdfWriter.getInstance(document, new FileOutputStream(RESULT));

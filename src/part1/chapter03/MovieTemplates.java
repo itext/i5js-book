@@ -33,10 +33,12 @@ public class MovieTemplates extends MovieCalendar {
 
     /** The resulting PDF. */
     public static final String RESULT = "results/part1/chapter03/movie_templates.pdf";
-    
+
     /**
-     * Creates a PDF file containing a time table for our film festival.
-     * @param    filename    the name of the PDF file
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
      */
     public void createPdf(String filename)
         throws IOException, DocumentException {

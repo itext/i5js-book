@@ -115,7 +115,13 @@ public class MovieYears {
     public static void main(String[] args) throws IOException, DocumentException, SQLException {
         new MovieYears().createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename) throws IOException, DocumentException, SQLException {
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         

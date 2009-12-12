@@ -48,7 +48,15 @@ public class TextFieldFonts {
         example.manipulatePdfFont1(RESULT3, RESULT7);
         example.manipulatePdfFont2(RESULT3, RESULT8);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @param appearacnes sets the need appearances flag if true
+     * @param font adds a substitution font if true
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename, boolean appearances, boolean font) throws IOException, DocumentException {
         Document document = new Document();
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));

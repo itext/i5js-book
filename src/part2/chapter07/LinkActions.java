@@ -52,7 +52,14 @@ public class LinkActions {
         actions.createPdf(RESULT2);
         actions.createXml(RESULT1, RESULT3);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     * @throws    SQLException
+     */
     protected void createPdf(String filename) throws IOException, DocumentException, SQLException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(filename));

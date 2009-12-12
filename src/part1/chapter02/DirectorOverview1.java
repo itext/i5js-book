@@ -32,7 +32,8 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 public class DirectorOverview1 {
     
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter02/director_overview_1.pdf";
+    public static final String RESULT
+        = "results/part1/chapter02/director_overview_1.pdf";
 
     /**
      * Creates a PDF with information about the movies
@@ -43,33 +44,47 @@ public class DirectorOverview1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(filename));
-        document.open();
-
+        // step 1
+    	Document document = new Document();
+        // step 2
+    	PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+    	document.open();
+        // step 4
+    	// database connection and statement
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(
             "SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
-            + "FROM film_director d, film_movie_director md WHERE d.id = md.director_id "
+            + "FROM film_director d, film_movie_director md "
+            + "WHERE d.id = md.director_id "
             + "GROUP BY d.id, d.name, d.given_name ORDER BY name");
         Director director;
-
-        LineSeparator line = new LineSeparator(1, 100, null, Element.ALIGN_CENTER, -2);
+        // creating separators
+        LineSeparator line
+            = new LineSeparator(1, 100, null, Element.ALIGN_CENTER, -2);
         Paragraph stars = new Paragraph(20);
         stars.add(new Chunk(StarSeparator.LINE));
         stars.setSpacingAfter(30);
-
+        // looping over the directors
         while (rs.next()) {
+        	// get the director object and use it in a Paragraph
             director = PojoFactory.getDirector(rs);
-            Paragraph p = new Paragraph(PojoToElementFactory.getDirectorPhrase(director));
+            Paragraph p = new Paragraph(
+                PojoToElementFactory.getDirectorPhrase(director));
+            // if there are more than 2 movies for this director
+            // an arrow is added to the left
             if (rs.getInt("c") > 2)
                 p.add(PositionedArrow.LEFT);
             p.add(line);
+            // add the paragraph with the arrow to the document
             document.add(p);
             
-            TreeSet<Movie> movies = new TreeSet<Movie>(new MovieComparator(MovieComparator.BY_YEAR));
+            // Get the movies of the directory, ordered by year
+            TreeSet<Movie> movies = new TreeSet<Movie>(
+                new MovieComparator(MovieComparator.BY_YEAR));
             movies.addAll(PojoFactory.getMovies(connection, rs.getInt("id")));
+            // loop over the movies
             for (Movie movie : movies) {
                 p = new Paragraph(movie.getMovieTitle());
                 p.add(": ");
@@ -78,9 +93,10 @@ public class DirectorOverview1 {
                     p.add(PositionedArrow.RIGHT);
                 document.add(p);
             }
+            // add a star separator after the director info is added
             document.add(stars);
         }
-        
+        // step 5
         document.close();
     }
     
@@ -92,7 +108,8 @@ public class DirectorOverview1 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new DirectorOverview1().createPdf(RESULT);
     }
 }

@@ -41,8 +41,11 @@ public class StarSeparator implements DrawInterface {
     
     /**
      * Draws three stars to separate two paragraphs.
+     * @see com.itextpdf.text.pdf.draw.DrawInterface#draw(
+     * com.itextpdf.text.pdf.PdfContentByte, float, float, float, float, float)
      */
-    public void draw(PdfContentByte canvas, float llx, float lly, float urx, float ury, float y) {
+    public void draw(PdfContentByte canvas,
+        float llx, float lly, float urx, float ury, float y) {
         float middle = (llx + urx) / 2;
         canvas.beginText();
         canvas.setFontAndSize(bf, 10);

@@ -21,13 +21,15 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class HelloWorld {
 
     /** Path to the resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter01/hello.pdf";
+    public static final String RESULT
+        = "results/part1/chapter01/hello.pdf";
     
     /**
      * Creates a PDF file: hello.pdf
      * @param    args    no arguments needed
      */
-    public static void main(String[] args) throws DocumentException, IOException {
+    public static void main(String[] args)
+    	throws DocumentException, IOException {
         // step 1
         Document document = new Document();
         // step 2

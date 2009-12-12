@@ -38,7 +38,8 @@ public class MovieParagraphs2 extends MovieParagraphs1 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MovieParagraphs2().createPdf(RESULT);
     }
     
@@ -51,48 +52,64 @@ public class MovieParagraphs2 extends MovieParagraphs1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         for (Movie movie : movies) {
-            Paragraph title = new Paragraph(PojoToElementFactory.getMovieTitlePhrase(movie));
+        	// Create a paragraph with the title
+            Paragraph title = new Paragraph(
+                PojoToElementFactory.getMovieTitlePhrase(movie));
             title.setAlignment(Element.ALIGN_LEFT);
             document.add(title);
+            // Add the original title next to it using a dirty hack
             if (movie.getOriginalTitle() != null) {
                 Paragraph dummy = new Paragraph("\u00a0", FilmFonts.NORMAL);
                 dummy.setLeading(-18);
                 document.add(dummy);
-                Paragraph originalTitle = new Paragraph(PojoToElementFactory.getOriginalTitlePhrase(movie));
+                Paragraph originalTitle = new Paragraph(
+                    PojoToElementFactory.getOriginalTitlePhrase(movie));
                 originalTitle.setAlignment(Element.ALIGN_RIGHT);
                 document.add(originalTitle);
             }
+            // Info about the director
             Paragraph director;
             float indent = 20;
+            // Loop over the directors
             for (Director pojo : movie.getDirectors()) {
-                director = new Paragraph(PojoToElementFactory.getDirectorPhrase(pojo));
+                director = new Paragraph(
+                    PojoToElementFactory.getDirectorPhrase(pojo));
                 director.setIndentationLeft(indent);
                 document.add(director);
                 indent += 20;
             }
+            // Info about the country
             Paragraph country;
             indent = 20;
+            // Loop over the countries
             for (Country pojo : movie.getCountries()) {
-                country = new Paragraph(PojoToElementFactory.getCountryPhrase(pojo));
+                country = new Paragraph(
+                    PojoToElementFactory.getCountryPhrase(pojo));
                 country.setAlignment(Element.ALIGN_RIGHT);
                 country.setIndentationRight(indent);
                 document.add(country);
                 indent += 20;
             }
+            // Extra info about the movie
             Paragraph info = createYearAndDuration(movie);
             info.setAlignment(Element.ALIGN_CENTER);
             info.setSpacingAfter(36);
             document.add(info);
         }
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
 }

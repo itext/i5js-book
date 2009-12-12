@@ -38,8 +38,8 @@ public class MovieTitles {
      * @throws SQLException
      */
     public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
-        
         // step 1
         Document document = new Document();
         // step 2
@@ -53,7 +53,7 @@ public class MovieTitles {
         }
         // step 5
         document.close();
-        
+        // Close the database connection
         connection.close();
     }
 }

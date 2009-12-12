@@ -21,7 +21,14 @@ public class DataSheets2 extends DataSheets1 {
     public static void main(String[] args) throws IOException, SQLException, DocumentException {
         new DataSheets2().createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     * @throws    SQLException
+     */
     public void createPdf(String filename) throws IOException, DocumentException, SQLException {
         Document document = new Document();
         PdfSmartCopy copy = new PdfSmartCopy(document, new FileOutputStream(filename));

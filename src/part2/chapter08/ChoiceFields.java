@@ -50,7 +50,7 @@ public class ChoiceFields implements PdfPCellEvent {
         fields.createPdf(RESULT1);
         fields.manipulatePdf(RESULT1, RESULT2);
     }
-
+    
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
@@ -75,7 +75,13 @@ public class ChoiceFields implements PdfPCellEvent {
         form.setField("choice_4", "Japanese");
         stamper.close();
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename) throws IOException, DocumentException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(filename));

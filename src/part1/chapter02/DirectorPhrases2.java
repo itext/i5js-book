@@ -35,8 +35,10 @@ public class DirectorPhrases2 extends DirectorPhrases1 {
         BaseFont timesbd = null;
         BaseFont times = null;
         try {
+        	// create a font that will be embedded
             timesbd = BaseFont.createFont(
                 "c:/windows/fonts/timesbd.ttf", BaseFont.WINANSI, BaseFont.EMBEDDED);
+            // create a font that will be embedded
             times = BaseFont.createFont(
                 "c:/windows/fonts/times.ttf", BaseFont.WINANSI, BaseFont.EMBEDDED);
         } catch (DocumentException e) {
@@ -54,7 +56,8 @@ public class DirectorPhrases2 extends DirectorPhrases1 {
      * Creates a Phrase with the name and given name of a director using different fonts.
      * @param    rs    the ResultSet containing director records.
      */
-    public Phrase createDirectorPhrase(ResultSet rs) throws UnsupportedEncodingException, SQLException {
+    public Phrase createDirectorPhrase(ResultSet rs)
+        throws UnsupportedEncodingException, SQLException {
         Phrase director = new Phrase();
         Chunk name = new Chunk(new String(rs.getBytes("name"), "UTF-8"), BOLD);
         name.setUnderline(0.2f, -2f);
@@ -75,7 +78,8 @@ public class DirectorPhrases2 extends DirectorPhrases1 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new DirectorPhrases2().createPdf(RESULT);
     }
 }

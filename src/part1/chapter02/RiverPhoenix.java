@@ -39,29 +39,40 @@ public class RiverPhoenix {
      * Creates a PDF with information about the movies
      * @param    filename the name of the PDF file that will be created.
      * @throws    DocumentException 
-     * @throws    IOException 
-     * @throws    SQLException
+     * @throws    IOException
      */
     public void createPdf(String filename)
         throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-
+        // step 4
         document.add(new Paragraph("Movies featuring River Phoenix", FilmFonts.BOLD));
         document.add(createParagraph(
-                "My favorite movie featuring River Phoenix was ", "0092005"));
+            "My favorite movie featuring River Phoenix was ", "0092005"));
         document.add(createParagraph(
-                "River Phoenix was nominated for an academy award for his role in ", "0096018"));
+            "River Phoenix was nominated for an academy award for his role in ", "0096018"));
         document.add(createParagraph(
-                "River Phoenix played the young Indiana Jones in ", "0097576"));
+            "River Phoenix played the young Indiana Jones in ", "0097576"));
         document.add(createParagraph(
-                "His best role was probably in ", "0102494"));
-        
+            "His best role was probably in ", "0102494"));
+        // step 5
         document.close();
     }
     
-    public Paragraph createParagraph(String text, String imdb) throws DocumentException, IOException {
+    /**
+     * Creates a paragraph with some text about a movie with River Phoenix,
+     * and a poster of the corresponding movie.
+     * @param text the text about the movie
+     * @param imdb the IMDB code referring to the poster
+     * @throws DocumentException
+     * @throws IOException
+     */
+    public Paragraph createParagraph(String text, String imdb)
+        throws DocumentException, IOException {
         Paragraph p = new Paragraph(text);
         Image img = Image.getInstance(
                 String.format("resources/posters/%s.jpg", imdb));

@@ -29,7 +29,8 @@ import com.itextpdf.text.BaseColor;
 
 public class MoviePosters3 {
     /** Path to the resulting PDF */
-    public static final String RESULT = "results/part1/chapter02/movie_posters_3.pdf";
+    public static final String RESULT
+        = "results/part1/chapter02/movie_posters_3.pdf";
     /** Path to the resources. */
     public static final String RESOURCE = "resources/posters/%s.jpg";
     
@@ -41,7 +42,8 @@ public class MoviePosters3 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MoviePosters3().createPdf(RESULT);
     }
     
@@ -54,12 +56,13 @@ public class MoviePosters3 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
-        
         // step 1
         Document document = new Document();
         // step 2
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        PdfWriter writer =
+            PdfWriter.getInstance(document, new FileOutputStream(filename));
         writer.setStrictImageSequence(true);
         writer.setInitialLeading(18);
         // step 3
@@ -70,6 +73,7 @@ public class MoviePosters3 {
         // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         for (Movie movie : movies) {
+        	// Create an image
             Image img = Image.getInstance(String.format(RESOURCE, movie.getImdb()));
             img.setAlignment(Image.LEFT | Image.TEXTWRAP);
             img.setBorder(Image.BOX);
@@ -77,17 +81,19 @@ public class MoviePosters3 {
             img.setBorderColor(BaseColor.WHITE);
             img.scaleToFit(1000, 72);
             document.add(img);
+            // Create text elements
             document.add(new Paragraph(movie.getMovieTitle(), FilmFonts.BOLD));
             document.add(PojoToElementFactory.getCountryList(movie));
             document.add(new Paragraph(String.format("Year: %d", movie.getYear())));
-            document.add(new Paragraph(String.format("Duration: %d minutes", movie.getDuration())));
+            document.add(new Paragraph(
+                String.format("Duration: %d minutes", movie.getDuration())));
             document.add(new Paragraph("Directors:"));
             document.add(PojoToElementFactory.getDirectorList(movie));
             document.add(Chunk.NEWLINE);
         }
         // step 5
         document.close();
-        
+        // Close the database connection
         connection.close();
     }
 }

@@ -34,7 +34,8 @@ public class MovieHistory {
     
     /** The different epochs. */
     public static final String[] EPOCH =
-        { "Forties", "Fifties", "Sixties", "Seventies", "Eighties", "Nineties", "Twenty-first Century" };
+        { "Forties", "Fifties", "Sixties", "Seventies", "Eighties",
+          "Nineties", "Twenty-first Century" };
     /** The fonts for the title. */
     public static final Font[] FONT = new Font[4];
     static {
@@ -52,13 +53,16 @@ public class MovieHistory {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
-        
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
-        
+        // step 4
         Set<Movie> movies = 
             new TreeSet<Movie>(new MovieComparator(MovieComparator.BY_YEAR));
         movies.addAll(PojoFactory.getMovies(connection));
@@ -68,7 +72,9 @@ public class MovieHistory {
         Chapter chapter = null;
         Section section = null;
         Section subsection = null;
+        // loop over the movies
         for (Movie movie : movies) {
+        	// add the chapter if we're in a new epoch
             if (epoch < (movie.getYear() - 1940) / 10) {
                 epoch = (movie.getYear() - 1940) / 10;
                 if (chapter != null) {
@@ -77,15 +83,18 @@ public class MovieHistory {
                 title = new Paragraph(EPOCH[epoch], FONT[0]);
                 chapter = new Chapter(title, epoch + 1);
             }
+            // switch to a new year
             if (currentYear < movie.getYear()) {
                 currentYear = movie.getYear();
-                title = new Paragraph(String.format("The year %d", movie.getYear()), FONT[1]);
+                title = new Paragraph(
+                    String.format("The year %d", movie.getYear()), FONT[1]);
                 section = chapter.addSection(title);
                 section.setBookmarkTitle(String.valueOf(movie.getYear()));
                 section.setIndentation(30);
                 section.setBookmarkOpen(false);
                 section.setNumberStyle(Section.NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT);
-                section.add(new Paragraph(String.format("Movies from the year %d:", movie.getYear())));
+                section.add(new Paragraph(
+                    String.format("Movies from the year %d:", movie.getYear())));
             }
             title = new Paragraph(movie.getMovieTitle(), FONT[2]);
             subsection = section.addSection(title);
@@ -98,7 +107,7 @@ public class MovieHistory {
             subsection.add(PojoToElementFactory.getCountryList(movie));
         }
         document.add(chapter);
-        
+        // step 5
         document.close();
         connection.close();
     }

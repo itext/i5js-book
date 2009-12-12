@@ -86,7 +86,13 @@ public class HtmlMovies2 extends HtmlMovies1 {
         movies.createHtmlAndPdf(HTML, PDF);
         movies.createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     @SuppressWarnings("unchecked")
     public void createPdf(String filename) throws IOException, DocumentException {
         Document document = new Document();

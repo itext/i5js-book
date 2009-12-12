@@ -36,28 +36,43 @@ public class MovieLinks2 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MovieLinks1().createPdf(MovieLinks1.RESULT);
         new MovieLinks2().createPdf(RESULT);
     }
-    
-    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     * @throws    SQLException
+     */
+    public void createPdf(String filename)
+        throws IOException, DocumentException, SQLException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
+        // Create a local destination at the top of the page
         Paragraph p = new Paragraph();
         Chunk top = new Chunk("Country List", FilmFonts.BOLD);
         top.setLocalDestination("top");
         p.add(top);
         document.add(p);
-        
+        // create an external link
         Chunk imdb = new Chunk("Internet Movie Database", FilmFonts.ITALIC);
         imdb.setAnchor(new URL("http://www.imdb.com/"));
-        p = new Paragraph("Click on a country, and you'll get a list of movies, containing links to the ");
+        p = new Paragraph("Click on a country, and you'll get a list of movies, "
+            + "containing links to the ");
         p.add(imdb);
         p.add(".");
         document.add(p);
+        // Create a remote goto
         p = new Paragraph("This list can be found in a ");
         Chunk page1 = new Chunk("separate document");
         page1.setRemoteGoto("movie_links_1.pdf", 1);
@@ -65,14 +80,17 @@ public class MovieLinks2 {
         p.add(".");
         document.add(p);
         document.add(Chunk.NEWLINE);
-        
+        // Create a database connection and statement
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(
             "SELECT DISTINCT mc.country_id, c.country, count(*) AS c "
-            + "FROM film_country c, film_movie_country mc WHERE c.id = mc.country_id "
+            + "FROM film_country c, film_movie_country mc "
+            + "WHERE c.id = mc.country_id "
             + "GROUP BY mc.country_id, country ORDER BY c DESC");
+        // loop over the results
         while (rs.next()) {
+        	// add country with remote goto
             Paragraph country = new Paragraph(rs.getString("country"));
             country.add(": ");
             Chunk link = new Chunk(String.format("%d movies", rs.getInt("c")));
@@ -81,14 +99,14 @@ public class MovieLinks2 {
             document.add(country);
         }
         document.add(Chunk.NEWLINE);
-        
+        // Create local goto to top
         p = new Paragraph("Go to ");
         top = new Chunk("top");
         top.setLocalGoto("top");
         p.add(top);
         p.add(".");
         document.add(p);
-        
+        // step 5
         document.close();
         connection.close();
     }

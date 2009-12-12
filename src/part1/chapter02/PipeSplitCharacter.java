@@ -10,8 +10,16 @@ package part1.chapter02;
 import com.itextpdf.text.SplitCharacter;
 import com.itextpdf.text.pdf.PdfChunk;
 
+/**
+ * Implementation of the SplitCharacter interface.
+ * Use an instance of this class with Chunk.setSplitCharacter();
+ */
 public class PipeSplitCharacter implements SplitCharacter {
-
+	
+    /**
+     * @see com.itextpdf.text.SplitCharacter#isSplitCharacter(int, int, int, char[],
+     *      com.itextpdf.text.pdf.PdfChunk[])
+     */
     public boolean isSplitCharacter(int start, int current, int end, char[] cc,
             PdfChunk[] ck) {
         char c;

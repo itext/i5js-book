@@ -24,7 +24,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class MoviePosters2 {
     /** Path to the resulting PDF */
-    public static final String RESULT = "results/part1/chapter02/movie_posters_2.pdf";
+    public static final String RESULT
+        = "results/part1/chapter02/movie_posters_2.pdf";
     /** Path to the resources. */
     public static final String RESOURCE = "resources/posters/%s.jpg";
     
@@ -36,7 +37,8 @@ public class MoviePosters2 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MoviePosters2().createPdf(RESULT);
     }
     
@@ -62,7 +64,9 @@ public class MoviePosters2 {
         List<Movie> movies = PojoFactory.getMovies(connection);
         for (Movie movie : movies) {
             document.add(new Paragraph(movie.getMovieTitle()));
-            document.add(Image.getInstance(String.format(RESOURCE, movie.getImdb())));
+            // Add an image
+            document.add(
+                Image.getInstance(String.format(RESOURCE, movie.getImdb())));
         }
         // step 5
         document.close();

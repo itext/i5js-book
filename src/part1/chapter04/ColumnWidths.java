@@ -30,8 +30,7 @@ public class ColumnWidths {
      * Creates a PDF with information about the movies
      * @param    filename the name of the PDF file that will be created.
      * @throws    DocumentException 
-     * @throws    IOException 
-     * @throws    SQLException
+     * @throws    IOException
      */
     public void createPdf(String filename)
         throws IOException, DocumentException {

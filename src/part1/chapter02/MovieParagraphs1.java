@@ -34,7 +34,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class MovieParagraphs1 {
 
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter02/movie_paragraphs_1.pdf";
+    public static final String RESULT
+        = "results/part1/chapter02/movie_paragraphs_1.pdf";
     
     /**
      * Creates a Paragraph containing information about a movie.
@@ -90,12 +91,15 @@ public class MovieParagraphs1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-
-        DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // Create a database connection
+        DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         for (Movie movie : movies) {
             Paragraph p = createMovieInformation(movie);
@@ -104,8 +108,9 @@ public class MovieParagraphs1 {
             p.setFirstLineIndent(-18);
             document.add(p);
         }
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
     
@@ -117,7 +122,8 @@ public class MovieParagraphs1 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MovieParagraphs1().createPdf(RESULT);
     }
 }

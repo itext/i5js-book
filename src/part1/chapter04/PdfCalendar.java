@@ -10,6 +10,7 @@ package part1.chapter04;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -63,7 +64,16 @@ public class PdfCalendar {
         specialDays.load(new FileInputStream(String.format(SPECIAL, YEAR)));
         content.load(new FileInputStream(CONTENT));
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @param locale Locale in case you want to create
+     * a Calendar in another language
+     * @param year the year for which you want to make a calendar
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
     public void createPdf(String filename, Locale locale, int year) throws IOException, DocumentException {
         
         Document document = new Document(PageSize.A4.rotate());

@@ -53,6 +53,15 @@ public class XmlMovies {
         out.print("</movies>");
     }
 
+    /**
+     * Creates a PDF document.
+     * @param xml the path to the original XML file
+     * @param pdf the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException 
+     * @throws    ParserConfigurationException
+     * @throws    SAXException
+     */
     public void createPdf(String xml, String pdf) throws IOException, DocumentException, ParserConfigurationException, SAXException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(pdf));

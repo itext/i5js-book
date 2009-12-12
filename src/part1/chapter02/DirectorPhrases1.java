@@ -42,7 +42,8 @@ public class DirectorPhrases1 {
      * Creates a Phrase with the name and given name of a director using different fonts.
      * @param    rs    the ResultSet containing director records.
      */
-    public Phrase createDirectorPhrase(ResultSet rs) throws UnsupportedEncodingException, SQLException {
+    public Phrase createDirectorPhrase(ResultSet rs)
+        throws UnsupportedEncodingException, SQLException {
         Phrase director = new Phrase();
         director.add(
             new Chunk(new String(rs.getBytes("name"), "UTF-8"), BOLD_UNDERLINED));
@@ -62,18 +63,27 @@ public class DirectorPhrases1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
+        // create the database connection and statement
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT name, given_name FROM film_director ORDER BY name, given_name");
+        ResultSet rs = stm.executeQuery(
+            "SELECT name, given_name FROM film_director ORDER BY name, given_name");
+        // loop over the results
         while (rs.next()) {
             document.add(createDirectorPhrase(rs));
             document.add(Chunk.NEWLINE);
         }
+        // close the statement and database connection
         stm.close();
         connection.close();
+        // step 5
         document.close();
     }
     
@@ -85,7 +95,8 @@ public class DirectorPhrases1 {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new DirectorPhrases1().createPdf(RESULT);
     }
 }

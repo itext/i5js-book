@@ -22,16 +22,19 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class HelloWorldMemory {
 
     /** Path to the resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter01/hello_memory.pdf";
+    public static final String RESULT
+        = "results/part1/chapter01/hello_memory.pdf";
     
     /**
      * Creates a PDF file: hello_memory.pdf
      * @param    args    no arguments needed
      */
-    public static void main(String[] args) throws DocumentException, IOException {
+    public static void main(String[] args)
+        throws DocumentException, IOException {
         // step 1
         Document document = new Document();
         // step 2
+        // we'll create the file in memory
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PdfWriter.getInstance(document, baos);
         // step 3

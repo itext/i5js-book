@@ -22,14 +22,17 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class HelloWorldLandscape1 {
 
     /** Path to the resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter01/hello_landscape1.pdf";
+    public static final String RESULT
+        = "results/part1/chapter01/hello_landscape1.pdf";
     
     /**
      * Creates a PDF file: hello_landscape1.pdf
      * @param    args    no arguments needed
      */
-    public static void main(String[] args) throws DocumentException, IOException {
+    public static void main(String[] args)
+        throws DocumentException, IOException {
         // step 1
+    	// landscape format using the rotate() method
         Document document = new Document(PageSize.LETTER.rotate());
         // step 2
         PdfWriter.getInstance(document, new FileOutputStream(RESULT));

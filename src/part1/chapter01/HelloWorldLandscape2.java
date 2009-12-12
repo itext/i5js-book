@@ -19,14 +19,17 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class HelloWorldLandscape2 {
 
     /** Path to the resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter01/hello_landscape2.pdf";
+    public static final String RESULT
+        = "results/part1/chapter01/hello_landscape2.pdf";
     
     /**
      * Creates a PDF file: hello_landscape2.pdf
      * @param    args    no arguments needed
      */
-    public static void main(String[] args) throws DocumentException, IOException {
+    public static void main(String[] args)
+        throws DocumentException, IOException {
         // step 1
+    	// landscape format because width > height
         Document document = new Document(new Rectangle(792, 612));
         // step 2
         PdfWriter.getInstance(document, new FileOutputStream(RESULT));
