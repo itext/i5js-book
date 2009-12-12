@@ -24,29 +24,43 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class FestivalOpening {
 
     /** The resulting PDF. */
-    public static final String RESULT = "results/part1/chapter03/festival_opening.pdf";
+    public static final String RESULT
+        = "results/part1/chapter03/festival_opening.pdf";
     /** The movie poster. */
     public static final String RESOURCE = "resources/img/loa.jpg";
-    
-    public static void main(String[] args) throws IOException, DocumentException {
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(PageSize.POSTCARD, 30, 30, 30, 30);
-        PdfWriter writer = PdfWriter.getInstance(document,
-                new FileOutputStream(RESULT));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
-        
-        Paragraph p = new Paragraph("Foobar Film Festival", new Font(Font.HELVETICA, 22));
+        // step 4
+        // Create and add a Paragraph
+        Paragraph p
+            = new Paragraph("Foobar Film Festival", new Font(Font.HELVETICA, 22));
         p.setAlignment(Element.ALIGN_CENTER);
         document.add(p);
-        
+        // Create and add an Image
         Image img = Image.getInstance(RESOURCE);
-        img.setAbsolutePosition((PageSize.POSTCARD.getWidth() - img.getScaledWidth()) / 2,
-                (PageSize.POSTCARD.getHeight() - img.getScaledHeight()) / 2);
+        img.setAbsolutePosition(
+            (PageSize.POSTCARD.getWidth() - img.getScaledWidth()) / 2,
+            (PageSize.POSTCARD.getHeight() - img.getScaledHeight()) / 2);
         document.add(img);
-        
+        // Now we go to the next page
         document.newPage();
         document.add(p);
         document.add(img);
-
+        // Add text on top of the image
         PdfContentByte over = writer.getDirectContent();
         over.saveState();
         float sinus = (float)Math.sin(Math.PI / 60);
@@ -62,14 +76,15 @@ public class FestivalOpening {
         over.showText("SOLD OUT");
         over.endText();
         over.restoreState();
-        
+        // Add a rectangle under the image
         PdfContentByte under = writer.getDirectContentUnder();
         under.saveState();
         under.setRGBColorFill(0xFF, 0xD7, 0x00);
-        under.rectangle(5, 5, PageSize.POSTCARD.getWidth() - 10, PageSize.POSTCARD.getHeight() - 10);
+        under.rectangle(5, 5,
+            PageSize.POSTCARD.getWidth() - 10, PageSize.POSTCARD.getHeight() - 10);
         under.fill();
         under.restoreState();
-        
+        // step 4
         document.close();
     }
 }

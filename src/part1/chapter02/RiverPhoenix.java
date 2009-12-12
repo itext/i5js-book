@@ -9,7 +9,6 @@ package part1.chapter02;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.SQLException;
 
 import com.lowagie.filmfestival.FilmFonts;
 import com.itextpdf.text.Chunk;
@@ -25,11 +24,9 @@ public class RiverPhoenix {
 
     /**
      * Main method.
-     * Reads information from a database and writes it to a PDF document
      * @param    args    no arguments needed
      * @throws DocumentException 
      * @throws IOException 
-     * @throws SQLException
      */
     public static void main(String[] args) throws IOException, DocumentException {
         new RiverPhoenix().createPdf(RESULT);

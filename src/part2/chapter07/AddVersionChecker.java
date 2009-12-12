@@ -23,7 +23,15 @@ public class AddVersionChecker {
     public static final String RESULT = "results/part2/chapter07/version_checker.pdf";
     /** Path to the resources. */
     public static final String RESOURCE = "resources/js/viewer_version.js";
-    
+
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
     public static void main(String[] args) throws IOException, DocumentException, SQLException {
         HelloWorld.main(args);
         PdfReader reader = new PdfReader(HelloWorld.RESULT);

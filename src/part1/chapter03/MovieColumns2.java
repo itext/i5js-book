@@ -25,7 +25,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class MovieColumns2 extends MovieColumns1 {
 
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter03/movie_columns2.pdf";
+    public static final String RESULT
+        = "results/part1/chapter03/movie_columns2.pdf";
     
     /**
      * Creates a PDF with information about the movies
@@ -36,12 +37,16 @@ public class MovieColumns2 extends MovieColumns1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-
+        // Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // step 1
         Document document = new Document();
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+             = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         ColumnText ct = new ColumnText(writer.getDirectContent());
         ct.setAlignment(Element.ALIGN_JUSTIFIED);
@@ -69,12 +74,22 @@ public class MovieColumns2 extends MovieColumns1 {
                 status = ct.go();
             }
         }
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MovieColumns2().createPdf(RESULT);
     }
 }

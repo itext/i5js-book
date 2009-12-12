@@ -22,17 +22,31 @@ public class ImageSkew {
     public static final String RESULT = "results/part1/chapter03/image_skew.pdf";
     /** The movie poster. */
     public static final String RESOURCE = "resources/img/loa.jpg";
-    
-    public static void main(String[] args) throws IOException, DocumentException {
+
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(PageSize.POSTCARD.rotate());
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document,
                 new FileOutputStream(RESULT));
         writer.setCompressionLevel(0);
+        // step 3
         document.open();
-
+        // step 4
         Image img = Image.getInstance(RESOURCE);
-        writer.getDirectContent().addImage(img, img.getWidth(), 0, 0.35f * img.getHeight(), 0.65f * img.getHeight(), 30, 30);
-        
+        // Add the image to the upper layer
+        writer.getDirectContent().addImage(img,
+            img.getWidth(), 0, 0.35f * img.getHeight(),
+            0.65f * img.getHeight(), 30, 30);
+        // step 5
         document.close();
     }
 }

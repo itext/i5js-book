@@ -26,9 +26,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class MoviePosters {
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter03/movie_posters.pdf";
+    public static final String RESULT
+        = "results/part1/chapter03/movie_posters.pdf";
     /** Path to the resources. */
-    public static final String RESOURCE = "resources/posters/%s.jpg";
+    public static final String RESOURCE
+        = "resources/posters/%s.jpg";
     
     /**
      * Creates a PDF with information about the movies
@@ -39,14 +41,19 @@ public class MoviePosters {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
+    	// Creates a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // step 1
         Document document = new Document(PageSize.A4);
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
         writer.setCompressionLevel(0);
+        // step 3
         document.open();
-        
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
-        
+        // Create the XObject
         PdfTemplate celluloid = canvas.createTemplate(595, 84.2f);
         celluloid.rectangle(8, 8, 579, 68);
         for (float f = 8.25f; f < 581; f+= 6.5f) {
@@ -55,22 +62,24 @@ public class MoviePosters {
         }
         celluloid.setGrayFill(0.1f);
         celluloid.eoFill();
+        // Write the XObject to the OutputStream
         writer.releaseTemplate(celluloid);
-        
+        // Add the XObject 10 times
         for (int i = 0; i < 10; i++) {
             canvas.addTemplate(celluloid, 0, i * 84.2f);
         }
-        
+        // Go to the next page
         document.newPage();
-        
+        // Add the XObject 10 times
         for (int i = 0; i < 10; i++) {
             canvas.addTemplate(celluloid, 0, i * 84.2f);
         }
-        
+        // Get the movies from the database
         List<Movie> movies = PojoFactory.getMovies(connection);
         Image img;
         float x = 11.5f;
         float y = 769.7f;
+        // Loop over the movies and add images
         for (Movie movie : movies) {
             img = Image.getInstance(String.format(RESOURCE, movie.getImdb()));
             img.scaleToFit(1000, 60);
@@ -82,29 +91,39 @@ public class MoviePosters {
                 y -= 84.2f;
             }
         }
-        
+        // Go to the next page
         document.newPage();
-        
+        // Add the template using a different CTM
         canvas.addTemplate(celluloid, 0.8f, 0, 0.35f, 0.65f, 0, 600);
-        
+        // Wrap the XObject in an Image object
         Image tmpImage = Image.getInstance(celluloid);
         tmpImage.setAbsolutePosition(0, 480);
         document.add(tmpImage);
-        
+        // Perform transformations on the image
         tmpImage.setRotationDegrees(30);
         tmpImage.scalePercent(80);
         tmpImage.setAbsolutePosition(30, 500);
         document.add(tmpImage);
-        
+        // More transformations
         tmpImage.setRotation((float)Math.PI / 2);
         tmpImage.setAbsolutePosition(200, 300);
         document.add(tmpImage);
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
-    
-    public static void main(String[] args) throws IOException, SQLException, DocumentException {
+
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, SQLException, DocumentException {
         new MoviePosters().createPdf(RESULT);
     }
 }

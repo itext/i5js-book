@@ -45,12 +45,16 @@ public class MovieColumns4 extends MovieColumns1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-
+        // Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // step 1
         Document document = new Document();
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
         drawRectangles(canvas);
         List<Movie> movies = PojoFactory.getMovies(connection);
@@ -80,11 +84,16 @@ public class MovieColumns4 extends MovieColumns1 {
             ct.setText(p);
             status = ct.go();
         }
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
     
+    /**
+     * Draws three rectangles
+     * @param canvas
+     */
     public void drawRectangles(PdfContentByte canvas) {
         canvas.saveState();
         canvas.setGrayFill(0.9f);
@@ -94,8 +103,17 @@ public class MovieColumns4 extends MovieColumns1 {
         canvas.fillStroke();
         canvas.restoreState();
     }
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+       throws IOException, DocumentException, SQLException {
         new MovieColumns4().createPdf(RESULT);
     }
 }

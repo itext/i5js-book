@@ -30,9 +30,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class ColumnMovies1 {
 
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter03/column_movies1.pdf";
+    public static final String RESULT
+        = "results/part1/chapter03/column_movies1.pdf";
     /** Path to the resources. */
-    public static final String RESOURCE = "resources/posters/%s.jpg";
+    public static final String RESOURCE
+        = "resources/posters/%s.jpg";
     
     /** Definition of two columns */
     public static final float[][] COLUMNS = {
@@ -49,11 +51,15 @@ public class ColumnMovies1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-        DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+    	// Create a database connection
+        DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document(PageSize.A4.rotate());
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         ColumnText ct = new ColumnText(writer.getDirectContent());
         int column = 0;
@@ -83,11 +89,18 @@ public class ColumnMovies1 {
             addContent(ct, movie, img);
             status = ct.go();
         }
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
     
+    /**
+     * Add content to a ColumnText object.
+     * @param ct the ColumnText object
+     * @param movie a Movie object
+     * @param img the poster of the image
+     */
     public void addContent(ColumnText ct, Movie movie, Image img) {
         ct.addElement(img);
         ct.addElement(new Paragraph(movie.getTitle(), FilmFonts.BOLD));
@@ -100,7 +113,14 @@ public class ColumnMovies1 {
         ct.addElement(PojoToElementFactory.getCountryList(movie));
         ct.addElement(Chunk.NEWLINE);
     }
-    
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
     public static void main(String[] args) throws IOException, DocumentException, SQLException {
         new ColumnMovies1().createPdf(RESULT);
     }

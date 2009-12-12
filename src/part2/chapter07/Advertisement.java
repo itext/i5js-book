@@ -27,7 +27,15 @@ public class Advertisement {
     public static final String RESOURCE = "resources/pdfs/hero.pdf";
     public static final String IMAGE = "resources/img/close.png";
     public static final String RESULT = "results/part2/chapter07/advertisement.pdf";
-    
+
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException, DocumentException, IOException {
         NestedTables.main(args);
         new Advertisement().manipulatePdf(NestedTables.RESULT, RESOURCE, RESULT);

@@ -30,7 +30,8 @@ public class MovieCalendar extends MovieTextInfo {
      * Draws the info about the movie.
      * @throws DocumentException 
      */
-    protected void drawMovieInfo(Screening screening, PdfContentByte directcontent) throws DocumentException {
+    protected void drawMovieInfo(Screening screening, PdfContentByte directcontent)
+        throws DocumentException {
         super.drawMovieInfo(screening, directcontent);
         Rectangle rect = getPosition(screening);
         ColumnText column = new ColumnText(directcontent);
@@ -55,7 +56,8 @@ public class MovieCalendar extends MovieTextInfo {
      * @throws DocumentException 
      * @throws IOException 
      */
-    public static void main(String[] args) throws IOException, DocumentException {
+    public static void main(String[] args)
+        throws IOException, DocumentException {
         new MovieCalendar().createPdf(RESULT);
     }
 }

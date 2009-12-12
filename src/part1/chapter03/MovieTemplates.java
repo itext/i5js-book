@@ -32,7 +32,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class MovieTemplates extends MovieCalendar {
 
     /** The resulting PDF. */
-    public static final String RESULT = "results/part1/chapter03/movie_templates.pdf";
+    public static final String RESULT
+        = "results/part1/chapter03/movie_templates.pdf";
 
     /**
      * Creates a PDF document.
@@ -42,9 +43,14 @@ public class MovieTemplates extends MovieCalendar {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(PageSize.A4.rotate());
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte over = writer.getDirectContent();
         PdfContentByte under = writer.getDirectContentUnder();
         try {
@@ -77,9 +83,15 @@ public class MovieTemplates extends MovieCalendar {
             sqle.printStackTrace();
             document.add(new Paragraph("Database error: " + sqle.getMessage()));
         }
+        // step 5
         document.close();
     }
     
+    /**
+     * Constructs a MovieTemplates object.
+     * @throws DocumentException
+     * @throws IOException
+     */
     public MovieTemplates() throws DocumentException, IOException {
         super();
     }
@@ -90,7 +102,8 @@ public class MovieTemplates extends MovieCalendar {
      * @throws DocumentException 
      * @throws IOException 
      */
-    public static void main(String[] args) throws IOException, DocumentException {
+    public static void main(String[] args)
+        throws IOException, DocumentException {
         new MovieTemplates().createPdf(RESULT);
     }
 }

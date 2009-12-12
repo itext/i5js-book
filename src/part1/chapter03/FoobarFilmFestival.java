@@ -25,23 +25,36 @@ import com.itextpdf.text.BaseColor;
 
 public class FoobarFilmFestival {
 
-    public static final String RESULT = "results/part1/chapter03/foobar_film_festival.pdf";
+    public static final String RESULT
+        = "results/part1/chapter03/foobar_film_festival.pdf";
 
-    public static void main(String[] args) throws IOException, DocumentException {
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
-
+        // step 4
         Chunk c;
         String foobar = "Foobar Film Festival";
-        
+        // Measuring a String in Helvetica
         Font helvetica = new Font(Font.HELVETICA, 12);
         BaseFont bf_helv = helvetica.getCalculatedBaseFont(false);
         float width_helv = bf_helv.getWidthPoint(foobar, 12);
         c = new Chunk(foobar + ": " + width_helv, helvetica);
         document.add(new Paragraph(c));
         document.add(new Paragraph(String.format("Chunk width: %f", c.getWidthPoint())));
-        
+        // Measuring a String in Times
         BaseFont bf_times = BaseFont.createFont(
             "c:/windows/fonts/times.ttf", BaseFont.WINANSI, BaseFont.EMBEDDED);
         Font times = new Font(bf_times, 12);
@@ -49,9 +62,8 @@ public class FoobarFilmFestival {
         c = new Chunk(foobar + ": " + width_times, times);
         document.add(new Paragraph(c));
         document.add(new Paragraph(String.format("Chunk width: %f", c.getWidthPoint())));
-        
         document.add(Chunk.NEWLINE);
-
+        // Ascent and descent of the String
         document.add(new Paragraph("Ascent Helvetica: "
                 + bf_helv.getAscentPoint(foobar, 12)));
         document.add(new Paragraph("Ascent Times: "
@@ -60,12 +72,12 @@ public class FoobarFilmFestival {
                 + bf_helv.getDescentPoint(foobar, 12)));
         document.add(new Paragraph("Descent Times: "
                 + bf_times.getDescentPoint(foobar, 12)));
-        
         document.add(Chunk.NEWLINE);
+        // Kerned text
         width_helv = bf_helv.getWidthPointKerned(foobar, 12);
         c = new Chunk(foobar + ": " + width_helv, helvetica);
         document.add(new Paragraph(c));
-        
+        // Drawing lines to see where the text is added
         PdfContentByte canvas = writer.getDirectContent();
         canvas.saveState();
         canvas.setLineWidth(0.05f);
@@ -85,7 +97,7 @@ public class FoobarFilmFestival {
         canvas.lineTo(520, 644);
         canvas.stroke();
         canvas.restoreState();
-        
+        // Adding text with PdfContentByte.showTextAligned()
         canvas.beginText();
         canvas.setFontAndSize(bf_helv, 12);
         canvas.showTextAligned(Element.ALIGN_LEFT, foobar, 400, 788, 0);
@@ -94,7 +106,7 @@ public class FoobarFilmFestival {
         canvas.showTextAligned(Element.ALIGN_CENTER, foobar, 400, 680, 30);
         canvas.showTextAlignedKerned(Element.ALIGN_LEFT, foobar, 400, 644, 0);
         canvas.endText();
-
+        // More lines to see where the text is added
         canvas.saveState();
         canvas.setLineWidth(0.05f);
         canvas.moveTo(200, 590);
@@ -113,14 +125,14 @@ public class FoobarFilmFestival {
         canvas.lineTo(520, 428);
         canvas.stroke();
         canvas.restoreState();
-        
+        // Adding text with ColumnText.showTextAligned()
         Phrase phrase = new Phrase(foobar, times);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, phrase, 200, 572, 0);
         ColumnText.showTextAligned(canvas, Element.ALIGN_RIGHT, phrase, 200, 536, 0);
         ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase, 200, 500, 0);
         ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase, 200, 464, 30);
         ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase, 200, 428, -30);
-        
+        // Chunk attributes
         c = new Chunk(foobar, times);
         c.setHorizontalScaling(0.5f);
         phrase = new Phrase(c);
@@ -141,6 +153,7 @@ public class FoobarFilmFestival {
         c.setTextRenderMode(PdfContentByte.TEXT_RENDER_MODE_FILL_STROKE, 1, null);
         phrase = new Phrase(c);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, phrase, 400, 428, -0);
+        // step 5
         document.close();
     }
 }

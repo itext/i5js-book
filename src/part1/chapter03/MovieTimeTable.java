@@ -33,11 +33,17 @@ public class MovieTimeTable {
      */
     public void createPdf(String filename)
         throws DocumentException, IOException {
+    	// step 1
         Document document = new Document(PageSize.A4.rotate());
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         drawTimeTable(writer.getDirectContentUnder());
         drawTimeSlots(writer.getDirectContent());
+        // step 5
         document.close();
     }
 
@@ -67,7 +73,7 @@ public class MovieTimeTable {
     
     /**
      * Draws the time table for a day at the film festival.
-     * @param    directcontent    a canvas to which the time table has to be drawn.
+     * @param directcontent a canvas to which the time table has to be drawn.
      */
     protected void drawTimeTable(PdfContentByte directcontent) {        
         directcontent.saveState();
@@ -120,7 +126,7 @@ public class MovieTimeTable {
     
     /**
      * Draws the time slots for a day at the film festival.
-     * @param    directcontent    the canvas to which the time table has to be drawn.
+     * @param directcontent the canvas to which the time table has to be drawn.
      */
     protected void drawTimeSlots(PdfContentByte directcontent) {
         directcontent.saveState();
@@ -143,7 +149,8 @@ public class MovieTimeTable {
      * @throws IOException 
      * @throws DocumentException 
      */
-    public static void main(String[] args) throws DocumentException, IOException {
+    public static void main(String[] args)
+        throws DocumentException, IOException {
         new MovieTimeTable().createPdf(RESULT);
     }
 }

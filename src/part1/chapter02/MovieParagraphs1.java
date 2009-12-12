@@ -116,7 +116,7 @@ public class MovieParagraphs1 {
     
     /**
      * Main method.
-     * Reads information from a database and writes it to a PDF document
+     *
      * @param    args    no arguments needed
      * @throws DocumentException 
      * @throws IOException 

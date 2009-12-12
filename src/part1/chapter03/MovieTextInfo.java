@@ -48,9 +48,14 @@ public class MovieTextInfo extends MovieTimeBlocks {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(PageSize.A4.rotate());
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte over = writer.getDirectContent();
         PdfContentByte under = writer.getDirectContentUnder();
         try {
@@ -77,6 +82,7 @@ public class MovieTextInfo extends MovieTimeBlocks {
             sqle.printStackTrace();
             document.add(new Paragraph("Database error: " + sqle.getMessage()));
         }
+        // step 5
         document.close();
     }
     
@@ -182,7 +188,8 @@ public class MovieTextInfo extends MovieTimeBlocks {
      * @throws DocumentException 
      * @throws IOException 
      */
-    public static void main(String[] args) throws IOException, DocumentException {
+    public static void main(String[] args)
+        throws IOException, DocumentException {
         new MovieTextInfo().createPdf(RESULT);
     }
 }

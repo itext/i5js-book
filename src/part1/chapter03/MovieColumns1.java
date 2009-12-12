@@ -32,7 +32,8 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 public class MovieColumns1 {
 
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter03/movie_columns1.pdf";
+    public static final String RESULT
+        = "results/part1/chapter03/movie_columns1.pdf";
     
     /** Definition of two columns */
     public static final float[][] COLUMNS = {
@@ -48,19 +49,22 @@ public class MovieColumns1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-
+        // Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // step 1
         Document document = new Document();
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-
+        // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         ColumnText ct = new ColumnText(writer.getDirectContent());
         for (Movie movie : movies) {
             ct.addText(createMovieInformation(movie));
             ct.addText(Chunk.NEWLINE);
         }
-        
         ct.setAlignment(Element.ALIGN_JUSTIFIED);
         ct.setExtraParagraphSpace(6);
         ct.setLeading(0, 1.2f);
@@ -82,8 +86,9 @@ public class MovieColumns1 {
         
         ct.addText(new Phrase("Lines written: " + linesWritten));
         ct.go();
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
     
@@ -120,8 +125,17 @@ public class MovieColumns1 {
         p.add(new LineSeparator(0.3f, 100, null, Element.ALIGN_CENTER, -2));
         return p;
     }
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MovieColumns1().createPdf(RESULT);
     }
 }
