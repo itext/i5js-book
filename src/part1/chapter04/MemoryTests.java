@@ -32,9 +32,15 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class MemoryTests {
 
-    public static final String RESULT0 = "results/part1/chapter04/test_results.txt";
-    public static final String RESULT1 = "results/part1/chapter04/pdfptable_without_memory_management.pdf";
-    public static final String RESULT2 = "results/part1/chapter04/pdfptable_with_memory_management.pdf";
+    /** The resulting report. */
+    public static final String RESULT0
+       = "results/part1/chapter04/test_results.txt";
+    /** A resulting PDF file. */
+    public static final String RESULT1
+        = "results/part1/chapter04/pdfptable_without_memory_management.pdf";
+    /** A resulting PDF file. */
+    public static final String RESULT2
+        = "results/part1/chapter04/pdfptable_with_memory_management.pdf";
     
     private boolean test;
     private long memory_use;
@@ -56,21 +62,23 @@ public class MemoryTests {
         FONT[3] = new Font(Font.HELVETICA, 12, Font.BOLD);
     }
     
-    public static void main(String[] args) {
-        MemoryTests tests = new MemoryTests();
-        tests.createPdfs();
-    }
-    
+    /**
+     * Create two PDFs, one without memory management, one with.
+     * Write a report file to show the memory usage
+     */
     public void createPdfs() {
         try {
+        	// the report file
             PrintWriter writer = new PrintWriter(new FileOutputStream(RESULT0));
             resetMaximum(writer);
             test = false;
             println(writer, RESULT1);
+            // PDF without memory management
             createPdfWithPdfPTable(writer, RESULT1);
             resetMaximum(writer);
             test = true;
             println(writer, RESULT2);
+            // PDF with memory management
             createPdfWithPdfPTable(writer, RESULT2);
             resetMaximum(writer);
             writer.flush();
@@ -81,24 +89,41 @@ public class MemoryTests {
         }
     }
 
+    /**
+     * Creates a PDF with a table
+     * @param writer the writer to our report file
+     * @param filename the PDF that will be created
+     * @throws IOException
+     * @throws DocumentException
+     * @throws SQLException
+     */
     private void createPdfWithPdfPTable(Writer writer, String filename) throws IOException, DocumentException, SQLException {
-        DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // Create a connection to the database
+    	DatabaseConnection connection = new HsqldbConnection("filmfestival"); 
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-
+        // step 4
+        // Create a table with 2 columns
         PdfPTable table = new PdfPTable(new float[]{1, 7});
+        // Mark the table as not complete
         if (test) table.setComplete(false);
         table.setWidthPercentage(100);
         java.util.List<Movie> movies = PojoFactory.getMovies(connection);
         List list;
         PdfPCell cell;
         int count = 0;
+        // add information about a movie
         for (Movie movie : movies) {
             table.setSpacingBefore(5);
+            // add a movie poster
             cell = new PdfPCell(Image.getInstance(String.format(RESOURCE, movie.getImdb())), true);
             cell.setBorder(PdfPCell.NO_BORDER);
             table.addCell(cell);
+            // add movie information
             cell = new PdfPCell();
             Paragraph p = new Paragraph(movie.getTitle(), FilmFonts.BOLD);
             p.setAlignment(Element.ALIGN_CENTER);
@@ -126,25 +151,38 @@ public class MemoryTests {
             list.setIndentationLeft(40);
             cell.addElement(list);
             table.addCell(cell);
+            // insert a checkpoint every 10 movies
             if (count++ % 10 == 0) {
+            	// add the incomplete table to the document
                 if (test)
                     document.add(table);
                 checkpoint(writer);
             }
         }
+        // Mark the table as complete
         if (test) table.setComplete(true);
+        // add the table to the document
         document.add(table);
-        
+        // insert a last checkpoint
         checkpoint(writer);
+        // step 5
         document.close();
     }
     
+    /**
+     * Writes a checkpoint to the report file.
+     * @param writer the writer to our report file
+     */
     private void checkpoint(Writer writer) {
         memory_use = getMemoryUse();
         maximum_memory_use = Math.max(maximum_memory_use, memory_use);
         println(writer, "memory use: ", memory_use);
     }
     
+    /**
+     * Resets the maximum memory that is in use
+     * @param writer the writer to our report file
+     */
     private void resetMaximum(Writer writer) {
         println(writer, "maximum: ", maximum_memory_use);
         println(writer, "total used: ", maximum_memory_use - initial_memory_use);
@@ -152,7 +190,12 @@ public class MemoryTests {
         initial_memory_use = getMemoryUse();
         println(writer, "initial memory use: ", initial_memory_use);
     }
-    
+
+    /**
+     * Writes a line to our report file
+     * @param writer the writer to our report file
+     * @param message the message to write
+     */
     private void println(Writer writer, String message) {
         try {
             writer.write(message);
@@ -163,6 +206,12 @@ public class MemoryTests {
         }
     }
     
+    /**
+     * Writes a line to our report file
+     * @param writer the writer to our report file
+     * @param message the message to write
+     * @param l a memory value
+     */
     private void println(Writer writer, String message, long l) {
         try {
             writer.write(message + l);
@@ -204,5 +253,17 @@ public class MemoryTests {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args) {
+        MemoryTests tests = new MemoryTests();
+        tests.createPdfs();
     }
 }

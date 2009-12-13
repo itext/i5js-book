@@ -18,11 +18,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class TableHeight extends MyFirstTable {
 
+    /** The resulting PDF file. */
     public static final String RESULT = "results/part1/chapter04/table_height.pdf";
-    
-    public static void main(String[] args) throws IOException, DocumentException {
-        new TableHeight().createPdf(RESULT);
-    }
     
     /**
      * Creates a PDF with information about the movies
@@ -32,23 +29,53 @@ public class TableHeight extends MyFirstTable {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException {
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(filename));
-        document.open();
+        // step 1
+    	Document document = new Document();
+        // step 2
+    	PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+    	document.open();
+    	// step 4
         PdfPTable table = createFirstTable();
-        document.add(new Paragraph(String.format("Table height before document.add(): %f", table.getTotalHeight())));
-        document.add(new Paragraph(String.format("Height of the first row: %f", table.getRowHeight(0))));
+        document.add(new Paragraph(
+            String.format("Table height before document.add(): %f",
+                table.getTotalHeight())));
+        document.add(new Paragraph(
+            String.format("Height of the first row: %f",
+                table.getRowHeight(0))));
         document.add(table);
-        document.add(new Paragraph(String.format("Table height after document.add(): %f", table.getTotalHeight())));
-        document.add(new Paragraph(String.format("Height of the first row: %f", table.getRowHeight(0))));
+        document.add(new Paragraph(
+            String.format("Table height after document.add(): %f",
+                table.getTotalHeight())));
+        document.add(new Paragraph(
+            String.format("Height of the first row: %f",
+                table.getRowHeight(0))));
         table = createFirstTable();
-        document.add(new Paragraph(String.format("Table height before setTotalWidth(): %f", table.getTotalHeight())));
-        document.add(new Paragraph(String.format("Height of the first row: %f", table.getRowHeight(0))));
+        document.add(new Paragraph(
+            String.format("Table height before setTotalWidth(): %f",
+                table.getTotalHeight())));
+        document.add(
+            new Paragraph(String.format("Height of the first row: %f",
+                table.getRowHeight(0))));
         table.setTotalWidth(50);
         table.setLockedWidth(true);
-        document.add(new Paragraph(String.format("Table height after setTotalWidth(): %f", table.getTotalHeight())));
-        document.add(new Paragraph(String.format("Height of the first row: %f", table.getRowHeight(0))));
+        document.add(
+            new Paragraph(String.format("Table height after setTotalWidth(): %f",
+                table.getTotalHeight())));
+        document.add(new Paragraph(String.format("Height of the first row: %f",
+            table.getRowHeight(0))));
         document.add(table);
+        // step 5
         document.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */  
+    public static void main(String[] args) throws IOException, DocumentException {
+        new TableHeight().createPdf(RESULT);
     }
 }

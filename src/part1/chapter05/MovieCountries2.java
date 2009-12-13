@@ -37,8 +37,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class MovieCountries2 extends MovieCountries1 {
     
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter05/movie_countries2.pdf";
+    public static final String RESULT
+        = "results/part1/chapter05/movie_countries2.pdf";
 
+    /**
+     * Inner class to add a watermark to every page.
+     */
     class Watermark extends PdfPageEventHelper {
         
         Font FONT = new Font(Font.HELVETICA, 52, Font.BOLD, new GrayColor(0.75f));
@@ -49,19 +53,6 @@ public class MovieCountries2 extends MovieCountries1 {
                     297.5f, 421, writer.getPageNumber() % 2 == 1 ? 45 : -45);
         }
     }
-    
-    /**
-     * Main method.
-     *
-     * @param    args    no arguments needed
-     * @throws DocumentException 
-     * @throws IOException 
-     * @throws SQLException
-     */
-    public static void main(String[] args)
-        throws IOException, DocumentException, SQLException {
-        new MovieCountries2().createPdf(RESULT);
-    }
 
     /**
      * Creates a PDF document.
@@ -70,16 +61,20 @@ public class MovieCountries2 extends MovieCountries1 {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
-        DatabaseConnection connection = new HsqldbConnection("filmfestival");
-        
+    public void createPdf(String filename)
+        throws IOException, DocumentException, SQLException {
+        // Create a database connection
+    	DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document(PageSize.A4, 36, 36, 54, 36);
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
         TableHeader event = new TableHeader();
         writer.setPageEvent(event);
         writer.setPageEvent(new Watermark());
+        // step 3
         document.open();
-        
+        // step 4
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(
             "SELECT country, id FROM film_country ORDER BY country");
@@ -97,8 +92,22 @@ public class MovieCountries2 extends MovieCountries1 {
             }
             document.newPage();
         }
-
+        // step 5
         document.close();
+        // close the database connection
         connection.close();
+    }
+    
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        new MovieCountries2().createPdf(RESULT);
     }
 }

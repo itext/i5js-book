@@ -34,6 +34,11 @@ import com.itextpdf.text.BaseColor;
 
 public class RunLengthEvent {
 
+    /** The resulting PDF. */
+    public static final String RESULT
+        = "results/part1/chapter05/run_length.pdf";
+
+    /** Inner class to draw a bar inside a cell. */
     class RunLength implements PdfPCellEvent {
         
         public int duration;
@@ -43,8 +48,8 @@ public class RunLengthEvent {
         }
         
         /**
-         * @see com.lowagie.text.pdf.PdfPCellEvent#cellLayout(com.lowagie.text.pdf.PdfPCell,
-         *      com.lowagie.text.Rectangle,
+         * @see com.lowagie.text.pdf.PdfPCellEvent#cellLayout(
+         *      com.lowagie.text.pdf.PdfPCell, com.lowagie.text.Rectangle,
          *      com.lowagie.text.pdf.PdfContentByte[])
          */
         public void cellLayout(PdfPCell cell, Rectangle rect,
@@ -52,13 +57,13 @@ public class RunLengthEvent {
             PdfContentByte cb = canvas[PdfPTable.BACKGROUNDCANVAS];
             cb.saveState();
             if (duration < 90) {
-                cb.setRGBColorFill(0x00, 0xFF, 0x00);
+                cb.setRGBColorFill(0x7C, 0xFC, 0x00);
             }
             else if (duration > 120) {
-                cb.setRGBColorFill(0xFF, 0x00, 0x00);
+                cb.setRGBColorFill(0x8B, 0x00, 0x00);
             } 
             else {
-                cb.setRGBColorFill(0xFF, 0xFF, 0x00);
+                cb.setRGBColorFill(0xFF, 0xA5, 0x00);
             }
             cb.rectangle(rect.getLeft(), rect.getBottom(), rect.getWidth() * duration / 240, rect.getHeight());
             cb.fill();
@@ -66,6 +71,7 @@ public class RunLengthEvent {
         }
     }
 
+    /** Inner class to add the words PRESS PREVIEW to a cell. */
     class PressPreview implements PdfPCellEvent {
         
         public BaseFont bf;
@@ -84,19 +90,14 @@ public class RunLengthEvent {
             PdfContentByte cb = canvas[PdfPTable.TEXTCANVAS];
             cb.beginText();
             cb.setFontAndSize(bf, 12);
-            cb.showTextAligned(Element.ALIGN_RIGHT, "PRESS PREVIEW", rect.getRight() - 3, rect.getBottom() + 4.5f, 0);
+            cb.showTextAligned(Element.ALIGN_RIGHT, "PRESS PREVIEW",
+                rect.getRight() - 3, rect.getBottom() + 4.5f, 0);
             cb.endText();
         }
     }
-
     
-    public static final String RESULT = "results/part1/chapter05/run_length.pdf";
-    
+    /** The press cell event. */
     public PdfPCellEvent press;
-    
-    public static void main(String[] args) throws SQLException, DocumentException, IOException {
-        new RunLengthEvent().createPdf(RESULT);
-    }
 
     /**
      * Creates a PDF document.
@@ -105,22 +106,39 @@ public class RunLengthEvent {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws SQLException, DocumentException, IOException {
+    public void createPdf(String filename)
+        throws SQLException, DocumentException, IOException {
         press = new PressPreview();
+        // Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document(PageSize.A4.rotate());
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         List<Date> days = PojoFactory.getDays(connection);
         for (Date day : days) {
             document.add(getTable(connection, day));
             document.newPage();
         }
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
     
-    public PdfPTable getTable(DatabaseConnection connection, Date day) throws SQLException, DocumentException, IOException {
+    /**
+     * @param connection
+     * @param day
+     * @return
+     * @throws SQLException
+     * @throws DocumentException
+     * @throws IOException
+     */
+    public PdfPTable getTable(DatabaseConnection connection, Date day)
+        throws SQLException, DocumentException, IOException {
         PdfPTable table = new PdfPTable(new float[] { 2, 1, 2, 5, 1 });
         table.setWidthPercentage(100f);
         table.getDefaultCell().setPadding(3);
@@ -132,7 +150,7 @@ public class RunLengthEvent {
         table.addCell(day.toString());
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
         table.getDefaultCell().setColspan(1);
-        table.getDefaultCell().setBackgroundColor(BaseColor.ORANGE);
+        table.getDefaultCell().setBackgroundColor(BaseColor.YELLOW);
         for (int i = 0; i < 2; i++) {
             table.addCell("Location");
             table.addCell("Time");
@@ -161,5 +179,16 @@ public class RunLengthEvent {
             table.addCell(String.valueOf(movie.getYear()));
         }
         return table;
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args) throws SQLException, DocumentException, IOException {
+        new RunLengthEvent().createPdf(RESULT);
     }
 }

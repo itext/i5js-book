@@ -18,12 +18,24 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class NewPage {
     
     /** Path to the resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter05/new_page.pdf";
+    public static final String RESULT
+        = "results/part1/chapter05/new_page.pdf";
     
+    /**
+     * Main method creating the PDF.
+     * @param    args    no arguments needed
+     * @throws IOException 
+     * @throws DocumentException 
+     */
     public static void main(String[] args) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
+        // step 4
         document.add(new Paragraph("This page will NOT be followed by a blank page!"));
         document.newPage();
         // we don't add anything to this page: newPage() will be ignored
@@ -33,6 +45,7 @@ public class NewPage {
         writer.setPageEmpty(false);
         document.newPage();
         document.add(new Paragraph("The previous page was a blank page!"));
+        // step 5
         document.close();
         
     }

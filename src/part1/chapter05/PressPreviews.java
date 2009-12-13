@@ -30,6 +30,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PressPreviews implements PdfPCellEvent, PdfPTableEvent {
 
+    /** The resulting PDF. */
+    public static final String RESULT = "results/part1/chapter05/press_previews.pdf";
+
+    /**
+     * @see com.itextpdf.text.pdf.PdfPTableEvent#tableLayout(com.itextpdf.text.pdf.PdfPTable,
+     *      float[][], float[], int, int, com.itextpdf.text.pdf.PdfContentByte[])
+     */
     public void tableLayout(PdfPTable table, float[][] width, float[] height,
             int headerRows, int rowStart, PdfContentByte[] canvas) {
         float widths[] = width[0];
@@ -58,12 +65,6 @@ public class PressPreviews implements PdfPCellEvent, PdfPTableEvent {
         canvas.stroke();
         canvas.resetRGBColorStroke();
     }
-    
-    public static final String RESULT = "results/part1/chapter05/press_previews.pdf";
-
-    public static void main(String[] args) throws SQLException, DocumentException, IOException {
-        new PressPreviews().createPdf(RESULT);
-    }
 
     /**
      * Creates a PDF document.
@@ -72,17 +73,34 @@ public class PressPreviews implements PdfPCellEvent, PdfPTableEvent {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws SQLException, DocumentException, IOException {
+    public void createPdf(String filename)
+        throws SQLException, DocumentException, IOException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document(PageSize.A4.rotate());
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         document.add(getTable(connection));
+        // step 5
         document.close();
+        // close the database connection
         connection.close();
     }
     
-    public PdfPTable getTable(DatabaseConnection connection) throws SQLException, DocumentException, IOException {
+    /**
+     * Creates a table that mimics cellspacing using table and cell events.
+     * @param connection
+     * @return a table
+     * @throws SQLException
+     * @throws DocumentException
+     * @throws IOException
+     */
+    public PdfPTable getTable(DatabaseConnection connection)
+        throws SQLException, DocumentException, IOException {
         PdfPTable table = new PdfPTable(new float[] { 1, 2, 2, 5, 1 });
         table.setTableEvent(new PressPreviews());
         table.setWidthPercentage(100f);
@@ -110,5 +128,16 @@ public class PressPreviews implements PdfPCellEvent, PdfPTableEvent {
             table.addCell(String.valueOf(movie.getYear()));
         }
         return table;
+    }
+    
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args) throws SQLException, DocumentException, IOException {
+        new PressPreviews().createPdf(RESULT);
     }
 }

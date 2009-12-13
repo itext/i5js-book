@@ -34,10 +34,15 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class MovieHistory1 {
     
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part1/chapter05/movie_history1.pdf";
+    public static final String RESULT
+        = "results/part1/chapter05/movie_history1.pdf";
 
+    /**
+     * Inner class to keep track of the TOC
+     * and to draw lines under ever chapter and section.
+     */
     class ChapterSectionTOC extends PdfPageEventHelper {
-        
+        /** List with the titles. */
         List<Paragraph> titles = new ArrayList<Paragraph>();
         
         public void onChapter(PdfWriter writer, Document document,
@@ -73,7 +78,8 @@ public class MovieHistory1 {
     
     /** The different epochs. */
     public static final String[] EPOCH =
-        { "Forties", "Fifties", "Sixties", "Seventies", "Eighties", "Nineties", "Twenty-first Century" };
+        { "Forties", "Fifties", "Sixties", "Seventies", "Eighties",
+    	  "Nineties", "Twenty-first Century" };
     /** The fonts for the title. */
     public static final Font[] FONT = new Font[5];
     static {
@@ -83,19 +89,6 @@ public class MovieHistory1 {
         FONT[3] = new Font(Font.HELVETICA, 12, Font.BOLD);
         FONT[4] = new Font(Font.HELVETICA, 10);
     }
-    
-    /**
-     * Main method.
-     *
-     * @param    args    no arguments needed
-     * @throws DocumentException 
-     * @throws IOException 
-     * @throws SQLException
-     */
-    public static void main(String[] args)
-        throws IOException, DocumentException, SQLException {
-        new MovieHistory1().createPdf(RESULT);
-    }
 
     /**
      * Creates a PDF document.
@@ -104,16 +97,23 @@ public class MovieHistory1 {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+    public void createPdf(String filename)
+        throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
-        
+        // step 1
         Document document = new Document();
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // IMPORTANT: set linear page mode!
         writer.setLinearPageMode();
         ChapterSectionTOC event = new ChapterSectionTOC();
         writer.setPageEvent(event);
+        // step 3
         document.open();
-        
+        // step 4
+        // add the chapters
         Set<Movie> movies = 
             new TreeSet<Movie>(new MovieComparator(MovieComparator.BY_YEAR));
         movies.addAll(PojoFactory.getMovies(connection));
@@ -134,13 +134,15 @@ public class MovieHistory1 {
             }
             if (currentYear < movie.getYear()) {
                 currentYear = movie.getYear();
-                title = new Paragraph(String.format("The year %d", movie.getYear()), FONT[1]);
+                title = new Paragraph(
+                    String.format("The year %d", movie.getYear()), FONT[1]);
                 section = chapter.addSection(title);
                 section.setBookmarkTitle(String.valueOf(movie.getYear()));
                 section.setIndentation(30);
                 section.setBookmarkOpen(false);
                 section.setNumberStyle(Section.NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT);
-                section.add(new Paragraph(String.format("Movies from the year %d:", movie.getYear())));
+                section.add(new Paragraph(
+                    String.format("Movies from the year %d:", movie.getYear())));
             }
             title = new Paragraph(movie.getMovieTitle(), FONT[2]);
             subsection = section.addSection(title);
@@ -153,23 +155,41 @@ public class MovieHistory1 {
             subsection.add(PojoToElementFactory.getCountryList(movie));
         }
         document.add(chapter);
-        
+        // add the TOC starting on the next page
         document.newPage();
         int toc = writer.getPageNumber();
         for (Paragraph p : event.titles) {
             document.add(p);
         }
+        // always go to a new page before reordering pages.
         document.newPage();
+        // get the total number of pages that needs to be reordered
         int total = writer.reorderPages(null);
+        // change the order
         int[] order = new int[total];
         for (int i = 0; i < total; i++) {
             order[i] = i + toc;
             if (order[i] > total)
                 order[i] -= total;
         }
+        // apply the new order
         writer.reorderPages(order);
-
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
+    }
+    
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        new MovieHistory1().createPdf(RESULT);
     }
 }

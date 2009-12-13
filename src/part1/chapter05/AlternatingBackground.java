@@ -31,11 +31,9 @@ import com.itextpdf.text.BaseColor;
 
 public class AlternatingBackground implements PdfPTableEvent {
 
-    public static final String RESULT = "results/part1/chapter05/alternating.pdf";
-
-    public static void main(String[] args) throws SQLException, DocumentException, IOException {
-        new AlternatingBackground().createPdf(RESULT);
-    }
+	/** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part1/chapter05/alternating.pdf";
 
     /**
      * Creates a PDF document.
@@ -45,10 +43,15 @@ public class AlternatingBackground implements PdfPTableEvent {
      * @throws    SQLException
      */
     public void createPdf(String filename) throws SQLException, DocumentException, IOException {
+        // Create a database connection 
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document(PageSize.A4.rotate());
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         List<Date> days = PojoFactory.getDays(connection);
         PdfPTableEvent event = new AlternatingBackground();
         for (Date day : days) {
@@ -57,11 +60,23 @@ public class AlternatingBackground implements PdfPTableEvent {
             document.add(table);
             document.newPage();
         }
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
     
-    public PdfPTable getTable(DatabaseConnection connection, Date day) throws SQLException, DocumentException, IOException {
+    /**
+     * Creates a table with film festival screenings.
+     * @param connection a database connection
+     * @param day a film festival day
+     * @return a table with screenings.
+     * @throws SQLException
+     * @throws DocumentException
+     * @throws IOException
+     */
+    public PdfPTable getTable(DatabaseConnection connection, Date day)
+        throws SQLException, DocumentException, IOException {
         PdfPTable table = new PdfPTable(new float[] { 2, 1, 2, 5, 1 });
         table.setWidthPercentage(100f);
         table.getDefaultCell().setPadding(3);
@@ -97,7 +112,14 @@ public class AlternatingBackground implements PdfPTableEvent {
         return table;
     }
     
-    public void tableLayout(PdfPTable table, float[][] widths, float[] heights, int headerRows, int rowStart, PdfContentByte[] canvases) {
+    /**
+     * Draws a background for every other row.
+     * @see com.itextpdf.text.pdf.PdfPTableEvent#tableLayout(
+     *      com.itextpdf.text.pdf.PdfPTable, float[][], float[], int, int,
+     *      com.itextpdf.text.pdf.PdfContentByte[])
+     */
+    public void tableLayout(PdfPTable table, float[][] widths, float[] heights,
+        int headerRows, int rowStart, PdfContentByte[] canvases) {
         int columns;
         Rectangle rect;
         int footer = widths.length - table.getFooterRows();
@@ -112,4 +134,14 @@ public class AlternatingBackground implements PdfPTableEvent {
         }
     }
 
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args) throws SQLException, DocumentException, IOException {
+        new AlternatingBackground().createPdf(RESULT);
+    }
 }

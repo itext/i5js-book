@@ -29,9 +29,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class MovieCompositeMode {
 
-    public static final String RESULT = "results/part1/chapter04/movie_composite_mode.pdf";
+    /** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part1/chapter04/movie_composite_mode.pdf";
     /** Path to the resources. */
-    public static final String RESOURCE = "resources/posters/%s.jpg";
+    public static final String RESOURCE
+        = "resources/posters/%s.jpg";
     
     /**
      * Main method.
@@ -41,7 +44,8 @@ public class MovieCompositeMode {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new MovieCompositeMode().createPdf(RESULT);
     }
     
@@ -54,23 +58,31 @@ public class MovieCompositeMode {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-        DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+    	// Create a database connection
+        DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         document.add(new Paragraph("Movies:"));
         java.util.List<Movie> movies = PojoFactory.getMovies(connection);
         List list;
         PdfPCell cell;
         for (Movie movie : movies) {
+        	// a table with two columns
             PdfPTable table = new PdfPTable(new float[]{1, 7});
             table.setWidthPercentage(100);
             table.setSpacingBefore(5);
-            cell = new PdfPCell(Image.getInstance(String.format(RESOURCE, movie.getImdb())), true);
+            // a cell with an image
+            cell = new PdfPCell(
+                Image.getInstance(String.format(RESOURCE, movie.getImdb())), true);
             cell.setBorder(PdfPCell.NO_BORDER);
             table.addCell(cell);
             cell = new PdfPCell();
+            // a cell with paragraphs and lists
             Paragraph p = new Paragraph(movie.getTitle(), FilmFonts.BOLD);
             p.setAlignment(Element.ALIGN_CENTER);
             p.setSpacingBefore(5);
@@ -85,11 +97,13 @@ public class MovieCompositeMode {
             list = PojoToElementFactory.getDirectorList(movie);
             list.setIndentationLeft(30);
             cell.addElement(list);
-            p = new Paragraph(String.format("Year: %d", movie.getYear()), FilmFonts.NORMAL);
+            p = new Paragraph(
+                String.format("Year: %d", movie.getYear()), FilmFonts.NORMAL);
             p.setIndentationLeft(15);
             p.setLeading(24);
             cell.addElement(p);
-            p = new Paragraph(String.format("Run length: %d", movie.getDuration()), FilmFonts.NORMAL);
+            p = new Paragraph(
+                String.format("Run length: %d", movie.getDuration()), FilmFonts.NORMAL);
             p.setLeading(14);
             p.setIndentationLeft(30);
             cell.addElement(p);
@@ -97,10 +111,13 @@ public class MovieCompositeMode {
             list.setIndentationLeft(40);
             cell.addElement(list);
             table.addCell(cell);
+            // every movie corresponds with one table
             document.add(table);
+            // but the result looks like one big table
         }
-        
+        // step 4
         document.close();
+        // Close the database connection
         connection.close();
     }
 }

@@ -18,11 +18,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class TableAlignment extends MyFirstTable {
 
-    public static final String RESULT = "results/part1/chapter04/table_alignment.pdf";
-    
-    public static void main(String[] args) throws IOException, DocumentException {
-        new TableAlignment().createPdf(RESULT);
-    }
+    /** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part1/chapter04/table_alignment.pdf";
     
     /**
      * Creates a PDF with information about the movies
@@ -32,9 +30,13 @@ public class TableAlignment extends MyFirstTable {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException {
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfPTable table = createFirstTable();
         table.setWidthPercentage(50);
         table.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -43,6 +45,18 @@ public class TableAlignment extends MyFirstTable {
         document.add(table);
         table.setHorizontalAlignment(Element.ALIGN_RIGHT);
         document.add(table);
+        // step 5
         document.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+        new TableAlignment().createPdf(RESULT);
     }
 }

@@ -36,6 +36,9 @@ public class MovieYears {
     /** The resulting PDF file. */
     public static final String RESULT = "results/part1/chapter05/movie_years.pdf";
 
+    /**
+     * Inner class to add functionality to a Chunk in a generic way.
+     */
     class GenericTags extends PdfPageEventHelper {
          
         public void onGenericTag(PdfWriter writer, Document pdfDocument,
@@ -84,6 +87,9 @@ public class MovieYears {
         }
     }
     
+    /**
+     * Inner class to add lines when a paragraph begins and ends.
+     */
     class ParagraphPositions extends PdfPageEventHelper {
         public void onParagraph(PdfWriter writer, Document pdfDocument,
                 float paragraphPosition) {
@@ -103,18 +109,6 @@ public class MovieYears {
             cb.stroke();
         }
     }
-    
-    /**
-     * Main method.
-     *
-     * @param    args    no arguments needed
-     * @throws DocumentException 
-     * @throws IOException 
-     * @throws SQLException
-     */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        new MovieYears().createPdf(RESULT);
-    }
 
     /**
      * Creates a PDF document.
@@ -123,15 +117,18 @@ public class MovieYears {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
-        
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
         GenericTags event = new GenericTags();
         writer.setPageEvent(event);
         writer.setPageEvent(new ParagraphPositions());
+        // step 3
         document.open();
-        
+        // step 4
         Font bold = new Font(Font.HELVETICA, 11, Font.BOLD);
         Font italic = new Font(Font.HELVETICA, 11, Font.ITALIC);
         Font white = new Font(Font.HELVETICA, 12, Font.BOLD | Font.ITALIC, BaseColor.WHITE);
@@ -163,7 +160,21 @@ public class MovieYears {
             p = new Paragraph(String.format("%s: %d movie(s)", entry.getKey(), entry.getValue()));
             document.add(p);
         }
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
+    }
+    
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        new MovieYears().createPdf(RESULT);
     }
 }

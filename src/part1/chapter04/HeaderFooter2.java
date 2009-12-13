@@ -24,11 +24,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class HeaderFooter2 extends HeaderFooter1 {
 
-    public static final String RESULT = "results/part1/chapter04/header_footer_2.pdf";
-    
-    public static void main(String[] args) throws SQLException, DocumentException, IOException {
-        new HeaderFooter2().createPdf(RESULT);
-    }
+    /** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part1/chapter04/header_footer_2.pdf";
 
     /**
      * Creates a PDF document.
@@ -37,11 +35,17 @@ public class HeaderFooter2 extends HeaderFooter1 {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws SQLException, DocumentException, IOException {
+    public void createPdf(String filename)
+        throws SQLException, DocumentException, IOException {
+    	// create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document(PageSize.A4.rotate());
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         List<Date> days = PojoFactory.getDays(connection);
         for (Date day : days) {
             PdfPTable table = getTable(connection, day);
@@ -49,8 +53,21 @@ public class HeaderFooter2 extends HeaderFooter1 {
             document.add(table);
             document.newPage();
         }
+        // step 5
         document.close();
+        // close the database connection
         connection.close();
+    }
 
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws SQLException, DocumentException, IOException {
+        new HeaderFooter2().createPdf(RESULT);
     }
 }

@@ -19,17 +19,29 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class Spacing {
 
+    /** The resulting PDF file. */
     public static final String RESULT = "results/part1/chapter04/spacing.pdf";
 
-    public static void main(String[] args) throws DocumentException, IOException {
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws DocumentException, IOException {
+        // step 1
         Document document = new Document();
-
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
+        // step 4
         PdfPTable table = new PdfPTable(2);
         table.setWidthPercentage(100);
         Phrase p = new Phrase(
-            "Dr. iText or: How I Learned to Stop Worrying and Love the Portable Document Format.");
+            "Dr. iText or: How I Learned to Stop Worrying " +
+            "and Love the Portable Document Format.");
         PdfPCell cell = new PdfPCell(p);
         table.addCell("default leading / spacing");
         table.addCell(cell);
@@ -81,6 +93,7 @@ public class Spacing {
         cell.setUseDescender(true);
         table.addCell(p);
         document.add(table);
+        // step 5
         document.close();
     }
 }

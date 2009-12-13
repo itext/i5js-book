@@ -32,6 +32,10 @@ public class MovieSlideShow {
     /** Path to the resources. */
     public static final String RESOURCE = "resources/posters/%s.jpg";
     
+    
+    /**
+     * Page event to set the transition and duration for every page.
+     */
     class TransitionDuration extends PdfPageEventHelper {
 
         public void onStartPage(PdfWriter writer, Document document) {
@@ -50,14 +54,18 @@ public class MovieSlideShow {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // step 1
         Document document = new Document(PageSize.A5.rotate());
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
         writer.setPdfVersion(PdfWriter.VERSION_1_5);
         writer.setViewerPreferences(PdfWriter.PageModeFullScreen);
         writer.setPageEvent(new TransitionDuration());
+        // step 3
         document.open();
-        
+        // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         Image img;
         PdfPCell cell;
@@ -69,12 +77,21 @@ public class MovieSlideShow {
             table.addCell(cell);
         }
         document.add(table);
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
     
-    public static void main(String[] args) throws IOException, SQLException, DocumentException {
+    /**
+     * Main method creating the PDF.
+     * @param    args    no arguments needed
+     * @throws IOException 
+     * @throws DocumentException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, SQLException, DocumentException {
         new MovieSlideShow().createPdf(RESULT);
     }
 }

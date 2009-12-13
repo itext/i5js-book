@@ -18,12 +18,25 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class NestedTable {
 
-    public static final String RESULT = "results/part1/chapter04/nested_table.pdf";
+    /** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part1/chapter04/nested_table.pdf";
 
-    public static void main(String[] args) throws DocumentException, IOException {
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws DocumentException, IOException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
+        // step 4
         PdfPTable table = new PdfPTable(4);
         PdfPTable nested1 = new PdfPTable(2);
         nested1.addCell("1.1");
@@ -41,7 +54,7 @@ public class NestedTable {
             }
         }
         document.add(table);
-
+        // step 5
         document.close();
     }
 }

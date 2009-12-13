@@ -31,19 +31,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class MovieTextMode {
 
-    public static final String RESULT = "results/part1/chapter04/movie_text_mode.pdf";
-    
-    /**
-     * Main method.
-     *
-     * @param    args    no arguments needed
-     * @throws DocumentException 
-     * @throws IOException 
-     * @throws SQLException
-     */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        new MovieTextMode().createPdf(RESULT);
-    }
+    /** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part1/chapter04/movie_text_mode.pdf";
     
     /**
      * Creates a PDF with information about the movies
@@ -54,11 +44,15 @@ public class MovieTextMode {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         document.add(new Paragraph("Movies:"));
         List<Movie> movies = PojoFactory.getMovies(connection);
         for (Movie movie : movies) {
@@ -102,8 +96,22 @@ public class MovieTextMode {
             }
             document.add(table);
         }
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
+    }
+    
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        new MovieTextMode().createPdf(RESULT);
     }
 }

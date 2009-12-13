@@ -20,11 +20,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class Hero2 extends Hero1 {
 
+    /** The resulting PDF file. */
     public static final String RESULT = "results/part1/chapter05/hero2.pdf";
-    
-    public static void main(String[] args) throws IOException, DocumentException {
-        new Hero2().createPdf(RESULT);
-    }
 
     /**
      * Creates a PDF document.
@@ -37,14 +34,16 @@ public class Hero2 extends Hero1 {
         float h = PageSize.A4.getHeight();
         Rectangle rect = new Rectangle(-2*w, -2*h, 2*w, 2*h);
         Rectangle crop = new Rectangle(-2 * w, h, -w, 2 * h);
+        // step 1
         Document document = new Document(rect);
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
         writer.setCropBoxSize(crop);
+        // step 3
         document.open();
-        
+        // step 4
         PdfContentByte content = writer.getDirectContent();
         PdfTemplate template = createTemplate(content, rect, 4);
-        
         float adjust;
         while(true) {
             content.addTemplate(template, -2*w, -2*h);
@@ -61,6 +60,18 @@ public class Hero2 extends Hero1 {
             writer.setCropBoxSize(crop);
             document.newPage();
         }
+        // step 5
         document.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+        new Hero2().createPdf(RESULT);
     }
 }

@@ -32,10 +32,6 @@ import com.itextpdf.text.BaseColor;
 public class ColumnTable {
 
     public static final String RESULT = "results/part1/chapter04/column_table.pdf";
-    
-    public static void main(String[] args) throws SQLException, DocumentException, IOException {
-        new ColumnTable().createPdf(RESULT);
-    }
 
     /**
      * Creates a PDF document.
@@ -44,30 +40,46 @@ public class ColumnTable {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws SQLException, DocumentException, IOException {
+    public void createPdf(String filename)
+        throws SQLException, DocumentException, IOException {
+    	// Create the database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document(PageSize.A4.rotate());
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         ColumnText column = new ColumnText(writer.getDirectContent());
         List<Date> days = PojoFactory.getDays(connection);
+        // COlumn definition
         float[][] x = {
                 { document.left(), document.left() + 380 },
                 { document.right() - 380, document.right() }
             };
+        // Loop over the festival days
         for (Date day : days) {
+        	// add content to the column
             column.addElement(getTable(connection, day));
             int count = 0;
             float height = 0;
             int status = ColumnText.START_COLUMN;
+            // render the column as long as it has content
             while (ColumnText.hasMoreText(status)) {
+            	// add the top-level header to each new page
                 if (count == 0) {
-                    height = addHeaderTable(document, day, writer.getPageNumber());
+                    height = addHeaderTable(
+                        document, day, writer.getPageNumber());
                 }
+                // set the dimensions of the current column
                 column.setSimpleColumn(
                     x[count][0], document.bottom(),
                     x[count][1], document.top() - height - 10);
+                // render as much content as possible
                 status = column.go();
+                // go to a new page if you've reached the last column
                 if (++count > 1) {
                     count = 0;
                     document.newPage();
@@ -75,12 +87,22 @@ public class ColumnTable {
             }
             document.newPage();
         }
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
-
     }
     
-    public float addHeaderTable(Document document, Date day, int page) throws DocumentException {
+    /**
+     * Add a header table to the document
+     * @param document The document to which you want to add a header table
+     * @param day The day that needs to be shown in the header table
+     * @param page The page number that has to be shown in the header
+     * @return the height of the resulting header table
+     * @throws DocumentException
+     */
+    public float addHeaderTable(Document document, Date day, int page)
+        throws DocumentException {
         PdfPTable header = new PdfPTable(3);
         header.setWidthPercentage(100);
         header.getDefaultCell().setBackgroundColor(BaseColor.BLACK);
@@ -97,7 +119,17 @@ public class ColumnTable {
         return header.getTotalHeight();
     }
 
-    public PdfPTable getTable(DatabaseConnection connection, Date day) throws SQLException, DocumentException, IOException {
+    /**
+     * Creates a table with movie screenings for a specific day
+     * @param connection a connection to the database
+     * @param day a day
+     * @return a table with screenings
+     * @throws SQLException
+     * @throws DocumentException
+     * @throws IOException
+     */
+    public PdfPTable getTable(DatabaseConnection connection, Date day)
+        throws SQLException, DocumentException, IOException {
         PdfPTable table = new PdfPTable(new float[] { 2, 1, 2, 5, 1 });
         table.setWidthPercentage(100f);
         table.getDefaultCell().setUseAscender(true);
@@ -124,5 +156,17 @@ public class ColumnTable {
             table.addCell(String.valueOf(movie.getYear()));
         }
         return table;
+    }
+
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws SQLException, DocumentException, IOException {
+        new ColumnTable().createPdf(RESULT);
     }
 }
