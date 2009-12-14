@@ -1,16 +1,30 @@
 <?xml version="1.0"?>
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<!-- iText, a JAVA - PDF library                                      -->
-<!-- $Id: release.xml 4115 2009-12-01 14:08:23Z blowagie $         -->
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
 <project name="iText.book" default="src.tar.gz">
 	<property name="src.types" value="**/*.java, **/*.jsp" />
+	
+	<path id="book.classpath">
+	    <pathelement path="lib/iText.jar"/>
+		<pathelement path="lib/iTextAsian.jar"/>
+	    <pathelement path="lib/itext-hyph-xml.jar"/>
+	    <pathelement path="lib/xerces_2_5_0.jar"/>
+		<pathelement path="lib/bcmail-jdk14-138.jar"/>
+	    <pathelement path="lib/bcprov-jdk14-138.jar"/>
+	    <pathelement path="lib/bctsp-jdk14-138.jar"/>
+	    <pathelement path="lib/hsqldb.jar"/>
+	    <pathelement path="lib/servlet.jar"/>
+	</path>
 	
 	<target name="src.tar.gz" description="--> makes a tar.gz-file with the source code">
 		<tar compression="gzip" tarfile="source.tar.gz">
 			<tarfileset prefix="src" dir="src" includes="${src.types}" />
 		</tar>
+	</target>
+
+	<target name="compile" description="--> compiles all the examples">
+		<mkdir dir="bin" />
+		<javac source="1.5" target="1.5" srcdir="src" destdir="bin">
+		    <classpath refid="book.classpath"/>
+		</javac>
 	</target>
 </project>
