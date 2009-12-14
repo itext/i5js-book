@@ -22,13 +22,24 @@ import part1.chapter01.HelloWorldLandscape1;
 import part1.chapter01.HelloWorldLandscape2;
 
 public class StampText {
-
-
-    public static final String RESULT1 = "results/part2/chapter06/hello1.pdf";
-    public static final String RESULT2 = "results/part2/chapter06/hello2.pdf";
-    public static final String RESULT3 = "results/part2/chapter06/hello3.pdf";
+	/** A resulting PDF file. */
+    public static final String RESULT1
+        = "results/part2/chapter06/hello1.pdf";
+	/** A resulting PDF file. */
+    public static final String RESULT2
+        = "results/part2/chapter06/hello2.pdf";
+	/** A resulting PDF file. */
+    public static final String RESULT3
+        = "results/part2/chapter06/hello3.pdf";
     
-    public static void main(String[] args) throws DocumentException, IOException {
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws DocumentException, IOException {
         HelloWorldLandscape1.main(args);
         HelloWorldLandscape2.main(args);
         stamp(HelloWorldLandscape1.RESULT, RESULT1);
@@ -36,8 +47,16 @@ public class StampText {
         stamp(HelloWorldLandscape2.RESULT, RESULT3);
         
     }
-    
-    public static void stamp(String src, String dest) throws IOException, DocumentException {
+
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void stamp(String src, String dest)
+        throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         PdfContentByte canvas = stamper.getOverContent(1);
@@ -45,8 +64,16 @@ public class StampText {
                 Element.ALIGN_LEFT, new Phrase("Hello people!"), 36, 540, 0);
         stamper.close();
     }
-    
-    public static void stampIgnoreRotation(String src, String dest) throws IOException, DocumentException {
+
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void stampIgnoreRotation(String src, String dest)
+        throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.setRotateContents(false);

@@ -20,10 +20,19 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 public class SelectPages {
 
+	/** The resulting text file with info about memory use. */
     public static final String RESULT = "results/part2/chapter06/memory_info2.txt";
+	/** A resulting PDF file. */
     public static final String RESULT1 = "results/part2/chapter06/timetable_stamper.pdf";
+	/** A resulting PDF file. */
     public static final String RESULT2 = "results/part2/chapter06/timetable_copy.pdf"; 
     
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException, DocumentException {
         new MovieTemplates().createPdf(MovieTemplates.RESULT);
         PdfReader reader = new PdfReader(MovieTemplates.RESULT);
@@ -32,12 +41,26 @@ public class SelectPages {
         manipulateWithCopy(reader);
     }
 
-    private static void manipulateWithStamper(PdfReader reader) throws IOException, DocumentException {
+    /**
+     * Creates a new PDF based on the one in the reader
+     * @param reader a reader with a PDF file
+     * @throws IOException
+     * @throws DocumentException
+     */
+    private static void manipulateWithStamper(PdfReader reader)
+        throws IOException, DocumentException {
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT1));
         stamper.close();
     }
 
-    private static void manipulateWithCopy(PdfReader reader) throws IOException, DocumentException {
+    /**
+     * Creates a new PDF based on the one in the reader
+     * @param reader a reader with a PDF file
+     * @throws IOException
+     * @throws DocumentException
+     */
+    private static void manipulateWithCopy(PdfReader reader)
+        throws IOException, DocumentException {
         int n = reader.getNumberOfPages();
         Document document = new Document();
         PdfCopy copy = new PdfCopy(document, new FileOutputStream(RESULT2));

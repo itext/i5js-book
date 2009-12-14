@@ -16,12 +16,29 @@ import com.itextpdf.text.pdf.PdfReader;
 
 public class ConcatenateForms1 {
 
-    public static final String DATASHEET = "resources/pdfs/datasheet.pdf";
-    public static final String RESULT = "results/part2/chapter06/concatenated_forms1.pdf";
-    public static void main(String[] args) throws IOException, DocumentException {
-        PdfCopyFields copy = new PdfCopyFields(new FileOutputStream(RESULT));
+	/** The original PDF file. */
+    public static final String DATASHEET
+        = "resources/pdfs/datasheet.pdf";
+	/** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part2/chapter06/concatenated_forms1.pdf";
+    
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+    	// Create a PdfCopyFields object
+        PdfCopyFields copy
+            = new PdfCopyFields(new FileOutputStream(RESULT));
+        // add a document
         copy.addDocument(new PdfReader(DATASHEET));
+        // add a document
         copy.addDocument(new PdfReader(DATASHEET));
+        // close the PdfCopyFields object
         copy.close();
     }
 }

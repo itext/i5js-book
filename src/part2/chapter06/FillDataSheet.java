@@ -25,15 +25,29 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 public class FillDataSheet {
 
-    public static final String DATASHEET = "resources/pdfs/datasheet.pdf";
-    public static final String RESULT = "results/part2/chapter06/imdb%s.pdf";
+	/** The original PDF file. */
+    public static final String DATASHEET
+        = "resources/pdfs/datasheet.pdf";
+	/** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part2/chapter06/imdb%s.pdf";
     
-    public static void main(String[] args) throws SQLException, IOException, DocumentException {
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws SQLException, IOException, DocumentException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
-
+        // Get the movies
         List<Movie> movies = PojoFactory.getMovies(connection);
         PdfReader reader;
         PdfStamper stamper;
+        // Fill out the data sheet form with data
         for (Movie movie : movies) {
             if (movie.getYear() < 2007)
                 continue;
@@ -45,10 +59,19 @@ public class FillDataSheet {
                 stamper.setFormFlattening(true);
             stamper.close();
         }
+        // Close the database connection
         connection.close();
     }
     
-    public static void fill(AcroFields form, Movie movie) throws IOException, DocumentException {
+    /**
+     * Fill out the fields using info from a Movie object.
+     * @param form The form object
+     * @param movie A movie POJO
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void fill(AcroFields form, Movie movie)
+        throws IOException, DocumentException {
         form.setField("title", movie.getMovieTitle());
         form.setField("director", getDirectors(movie));
         form.setField("year", String.valueOf(movie.getYear()));
@@ -59,6 +82,12 @@ public class FillDataSheet {
         }
     }
     
+    /**
+     * Gets the directors from a Movie object,
+     * and concatenates them in a String.
+     * @param movie a Movie object
+     * @return a String containing director names
+     */
     public static String getDirectors(Movie movie) {
         List<Director> directors = movie.getDirectors();
         StringBuffer buf = new StringBuffer();

@@ -16,9 +16,19 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfSmartCopy;
 
 public class DataSheets2 extends DataSheets1 {
-    public static final String RESULT = "results/part2/chapter06/datasheets2.pdf";
-
-    public static void main(String[] args) throws IOException, SQLException, DocumentException {
+	/** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part2/chapter06/datasheets2.pdf";
+    
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, SQLException, DocumentException {
         new DataSheets2().createPdf(RESULT);
     }
 
@@ -29,11 +39,18 @@ public class DataSheets2 extends DataSheets1 {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+    public void createPdf(String filename)
+        throws IOException, DocumentException, SQLException {
+    	// step 1
         Document document = new Document();
-        PdfSmartCopy copy = new PdfSmartCopy(document, new FileOutputStream(filename));
+        // step 2
+        PdfSmartCopy copy
+            = new PdfSmartCopy(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         addDataSheets(copy);
+        // step 5
         document.close();
     }
 }

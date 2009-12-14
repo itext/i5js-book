@@ -19,16 +19,39 @@ import com.itextpdf.text.pdf.RandomAccessFileOrArray;
 
 public class MemoryInfo {
 
-    public static final String RESULT = "results/part2/chapter06/memory_info.txt";
-
-    public static void main(String[] args) throws IOException, DocumentException {
+	/** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part2/chapter06/memory_info.txt";
+    
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+    	// Use a previous example to create a PDF
         MovieTemplates.main(args);
-        PrintWriter writer = new PrintWriter(new FileOutputStream(RESULT));
+        // Create a writer for a report file
+        PrintWriter writer
+            = new PrintWriter(new FileOutputStream(RESULT));
+        // Do a full read
         fullRead(writer, MovieTemplates.RESULT);
+        // Do a partial read
         partialRead(writer, MovieTemplates.RESULT);
+        // Close the text file writer
         writer.close();
     }
-    public static void fullRead(PrintWriter writer, String filename) throws IOException {
+    
+    /**
+     * Do a full read of a PDF file
+     * @param writer a writer to a report file
+     * @param filename the file to read
+     * @throws IOException
+     */
+    public static void fullRead(PrintWriter writer, String filename)
+        throws IOException {
         long before = getMemoryUse();
         PdfReader reader = new PdfReader(filename);
         reader.getNumberOfPages();
@@ -36,7 +59,15 @@ public class MemoryInfo {
                     getMemoryUse() - before));
         writer.flush();
     }
-    public static void partialRead(PrintWriter writer, String filename) throws IOException {
+    
+    /**
+     * Do a partial read of a PDF file
+     * @param writer a writer to a report file
+     * @param filename the file to read
+     * @throws IOException
+     */
+    public static void partialRead(PrintWriter writer, String filename)
+        throws IOException {
         long before = getMemoryUse();
         PdfReader reader = new PdfReader(
                 new RandomAccessFileOrArray(filename), null);

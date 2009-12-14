@@ -22,13 +22,24 @@ import part1.chapter05.Hero1;
 
 public class PageInformation {
 
-    public static final String RESULT = "results/part2/chapter06/page_info.txt";
-    public static void main(String[] args) throws DocumentException, IOException {
+	/** The resulting text file with info about a PDF. */
+    public static final String RESULT
+        = "results/part2/chapter06/page_info.txt";
+    
+    /**
+     * Main method.
+     * @param args no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws DocumentException, IOException {
+    	// Use old examples to create PDFs
         HelloWorldLandscape1.main(args);
         HelloWorldLandscape2.main(args);
         MovieTemplates.main(args);
         Hero1.main(args);
-        
+        // Inspecting PDFs
         PrintWriter writer = new PrintWriter(new FileOutputStream(RESULT));
         inspect(writer, HelloWorldLandscape1.RESULT);
         inspect(writer, HelloWorldLandscape2.RESULT);
@@ -37,7 +48,14 @@ public class PageInformation {
         writer.close();
     }
     
-    public static void inspect(PrintWriter writer, String filename) throws IOException {
+    /**
+     * Inspect a PDF file and write the info to a txt file
+     * @param writer Writer to a text file
+     * @param filename Path to the PDF file
+     * @throws IOException
+     */
+    public static void inspect(PrintWriter writer, String filename)
+        throws IOException {
         PdfReader reader = new PdfReader(filename);
         writer.println(filename);
         writer.print("Number of pages: ");

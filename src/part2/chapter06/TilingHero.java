@@ -20,22 +20,37 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class TilingHero {
 
-    public static final String RESOURCE = "resources/pdfs/hero.pdf";
+	/** The original PDF file. */
+    public static final String RESOURCE
+        = "resources/pdfs/hero.pdf";
 
-    public static final String RESULT = "results/part2/chapter06/superman.pdf";
+	/** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part2/chapter06/superman.pdf";
     
-    public static void main(String[] args) throws IOException, DocumentException {
-        new TilingHero().manipulatePdf(RESOURCE, RESULT);
-    }
-    
-    public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public void manipulatePdf(String src, String dest)
+        throws IOException, DocumentException {
+    	// Creating a reader
         PdfReader reader = new PdfReader(src);
         Rectangle pagesize = reader.getPageSizeWithRotation(1);
+        // step 1
         Document document = new Document(pagesize);
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(dest));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte content = writer.getDirectContent();
         PdfImportedPage page = writer.getImportedPage(reader, 1);
+        // adding the same page 16 times with a different offset
         float x, y;
         for (int i = 0; i < 16; i++) {
             x = -pagesize.getWidth() * (i % 4);
@@ -43,6 +58,18 @@ public class TilingHero {
             content.addTemplate(page, 4, 0, 0, 4, x, y);
             document.newPage();
         }
+        // step 4
         document.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+        new TilingHero().manipulatePdf(RESOURCE, RESULT);
     }
 }

@@ -21,25 +21,42 @@ import part1.chapter02.MovieLinks1;
 
 public class Concatenate {
 
-    public static String RESULT = "results/part2/chapter06/concatenated.pdf";
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        MovieLinks1.main(args);
+	/** The resulting PDF file. */
+    public static String RESULT
+        = "results/part2/chapter06/concatenated.pdf";
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        // using previous examples to create PDFs
+    	MovieLinks1.main(args);
         MovieHistory.main(args);
         String[] files = { MovieLinks1.RESULT, MovieHistory.RESULT };
-        
+        // step 1
         Document document = new Document();
+        // step 2
         PdfCopy copy = new PdfCopy(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
+        // step 4
         PdfReader reader;
         int n;
+        // loop over the documents you want to concatenate
         for (int i = 0; i < files.length; i++) {
             reader = new PdfReader(files[i]);
+            // loop over the pages in that document
             n = reader.getNumberOfPages();
             for (int page = 0; page < n; ) {
                 copy.addPage(copy.getImportedPage(reader, ++page));
             }
-        } 
+        }
+        // step 5
         document.close();
     }
 }
