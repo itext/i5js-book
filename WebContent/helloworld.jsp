@@ -1,5 +1,5 @@
 <%@
-page import="java.io.*, com.lowagie.text.*, com.lowagie.text.pdf.*"
+page import="java.io.*, com.itextpdf.text.*, com.itextpdf.text.pdf.*"
 %><%
 response.setContentType( "application/pdf" );
 
