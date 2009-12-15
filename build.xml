@@ -27,4 +27,12 @@
 		    <classpath refid="book.classpath"/>
 		</javac>
 	</target>
+	
+	<target name="execute">
+	    <ant antfile="examples.xml" target="execute" />
+	</target>
+	
+	<target name="clean">
+	    <ant antfile="examples.xml" target="clean" />
+	</target>
 </project>
