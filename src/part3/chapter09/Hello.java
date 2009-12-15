@@ -1,3 +1,10 @@
+/*
+ * This class is part of the book "iText in Action - 2nd Edition"
+ * written by Bruno Lowagie (ISBN: 9781935182610)
+ * For more info, go to: http://itextpdf.com/examples/
+ * This example only works with the AGPL version of iText.
+ */
+
 package part3.chapter09;
 
 import java.io.IOException;
@@ -13,9 +20,6 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-/**
- * Servlet implementation class Hello
- */
 public class Hello extends HttpServlet {
 
     /**
@@ -38,8 +42,7 @@ public class Hello extends HttpServlet {
     		// step 5
     		document.close();
 		} catch (DocumentException de) {
-			de.printStackTrace();
-			System.err.println("document: " + de.getMessage());
+			throw new IOException(de.getMessage());
 		}
 	}
     

@@ -1155,4 +1155,23 @@
             </classpath>
         </java>
     </target>
+    <target name="webapp">
+        <mkdir dir="WebContent/WEB-INF/classes" />
+        <javac srcdir="src" destdir="WebContent/WEB-INF/classes">
+            <include name="part3/chapter09/Hello.java" />
+            <classpath>
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/servlet.jar" />
+            </classpath>
+        </javac>
+        <tar compression="gzip" tarfile="webapps.tar.gz">
+            <tarfileset prefix="book" dir="WebContent">
+                <include name="index.html" />
+                <include name="META-INF/*.*" />
+                <include name="WEB-INF/web.xml" />
+                <include name="WEB-INF/lib/*.*" />
+                <include name="WEB-INF/classes/part3/chapter09/Hello.class" />
+            </tarfileset>
+        </tar>
+    </target>
 </project>
