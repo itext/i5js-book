@@ -20,6 +20,12 @@
 			<tarfileset prefix="src" dir="src" includes="${src.types}" />
 		</tar>
 	</target>
+	
+	<target name="results.tar.gz" description="--> makes a tar.gz-file with the results">
+		<tar compression="gzip" tarfile="results.tar.gz">
+			<tarfileset prefix="results" dir="results" />
+		</tar>
+	</target>
 
 	<target name="compile" description="--> compiles all the examples">
 		<mkdir dir="bin" />
