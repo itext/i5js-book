@@ -11,7 +11,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Hello</servlet-name>
-		<url-pattern>/Hello</url-pattern>
+		<url-pattern>/hello.pdf</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
