@@ -1167,6 +1167,7 @@
         <tar compression="gzip" tarfile="webapps.tar.gz">
             <tarfileset prefix="book" dir="WebContent">
                 <include name="index.html" />
+                <include name="helloworld.jsp" />
                 <include name="META-INF/*.*" />
                 <include name="WEB-INF/web.xml" />
                 <include name="WEB-INF/lib/*.*" />
