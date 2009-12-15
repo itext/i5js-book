@@ -51,7 +51,6 @@ public class TextFields implements PdfPCellEvent {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         AcroFields form = stamper.getAcroFields();
-        System.out.println(form.getField("text_4"));
         form.setField("text_1", "Bruno Lowagie");
         form.setFieldProperty("text_2", "fflags", 0, null);
         form.setFieldProperty("text_2", "bordercolor", BaseColor.RED, null);

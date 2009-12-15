@@ -1,0 +1,1158 @@
+<project name="iText.examples" default="execute">
+    <target name="compile">
+        <ant antfile="build.xml" target="compile" />
+    </target>
+    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09" />
+    <target name="clean">
+        <delete dir="results/part1/chapter01" includes="*.*" />
+        <delete dir="results/part1/chapter02" includes="*.*" />
+        <delete dir="results/part1/chapter03" includes="*.*" />
+        <delete dir="results/part1/chapter04" includes="*.*" />
+        <delete dir="results/part1/chapter05" includes="*.*" />
+        <delete dir="results/part2/chapter06" includes="*.*" />
+        <delete dir="results/part2/chapter07" includes="*.*" />
+        <delete dir="results/part2/chapter08" includes="*.*" />
+        <delete dir="results/part3/chapter09" includes="*.*" />
+    </target>
+    <target name="part1.chapter01">
+        <echo message="HelloWorld" />
+        <java fork="yes" classname="part1.chapter01.HelloWorld">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldNarrow" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldNarrow">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldMaximum" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldMaximum">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldLetter" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldLetter">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldLandscape1" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldLandscape1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldLandscape2" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldLandscape2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldMirroredMargins" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldMirroredMargins">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldMirroredMarginsTop" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldMirroredMarginsTop">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldMemory" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldMemory">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldVersion_1_7" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldVersion_1_7">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldDirect" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldDirect">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldColumn" />
+        <java fork="yes" classname="part1.chapter01.HelloWorldColumn">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloZip" />
+        <java fork="yes" classname="part1.chapter01.HelloZip">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part1.chapter02">
+        <echo message="DatabaseTest" />
+        <java fork="yes" classname="part1.chapter02.DatabaseTest">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="CountryChunks" />
+        <java fork="yes" classname="part1.chapter02.CountryChunks">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="DirectorPhrases1" />
+        <java fork="yes" classname="part1.chapter02.DirectorPhrases1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="DirectorPhrases2" />
+        <java fork="yes" classname="part1.chapter02.DirectorPhrases2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieTitles" />
+        <java fork="yes" classname="part1.chapter02.MovieTitles">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieParagraphs1" />
+        <java fork="yes" classname="part1.chapter02.MovieParagraphs1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieParagraphs2" />
+        <java fork="yes" classname="part1.chapter02.MovieParagraphs2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieChain" />
+        <java fork="yes" classname="part1.chapter02.MovieChain">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+                <pathelement location="lib/itext-hyph-xml.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieLists1" />
+        <java fork="yes" classname="part1.chapter02.MovieLists1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieLists2" />
+        <java fork="yes" classname="part1.chapter02.MovieLists2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/hsqldb.jar" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieLists3" />
+        <java fork="yes" classname="part1.chapter02.MovieLists3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieLists4" />
+        <java fork="yes" classname="part1.chapter02.MovieLists4">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="DirectorOverview1" />
+        <java fork="yes" classname="part1.chapter02.DirectorOverview1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/hsqldb.jar" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="DirectorOverview2" />
+        <java fork="yes" classname="part1.chapter02.DirectorOverview2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="DirectorOverview3" />
+        <java fork="yes" classname="part1.chapter02.DirectorOverview3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieLinks1" />
+        <java fork="yes" classname="part1.chapter02.MovieLinks1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieLinks2" />
+        <java fork="yes" classname="part1.chapter02.MovieLinks2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieHistory" />
+        <java fork="yes" classname="part1.chapter02.MovieHistory">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MoviePosters1" />
+        <java fork="yes" classname="part1.chapter02.MoviePosters1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MoviePosters2" />
+        <java fork="yes" classname="part1.chapter02.MoviePosters2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MoviePosters3" />
+        <java fork="yes" classname="part1.chapter02.MoviePosters3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="RiverPhoenix" />
+        <java fork="yes" classname="part1.chapter02.RiverPhoenix">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part1.chapter03">
+        <echo message="FestivalOpening" />
+        <java fork="yes" classname="part1.chapter03.FestivalOpening">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="GraphicsStateStack" />
+        <java fork="yes" classname="part1.chapter03.GraphicsStateStack">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieTimeTable" />
+        <java fork="yes" classname="part1.chapter03.MovieTimeTable">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieTimeBlocks" />
+        <java fork="yes" classname="part1.chapter03.MovieTimeBlocks">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="FoobarFilmFestival" />
+        <java fork="yes" classname="part1.chapter03.FoobarFilmFestival">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieTextInfo" />
+        <java fork="yes" classname="part1.chapter03.MovieTextInfo">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieCalendar" />
+        <java fork="yes" classname="part1.chapter03.MovieCalendar">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieColumns1" />
+        <java fork="yes" classname="part1.chapter03.MovieColumns1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieColumns2" />
+        <java fork="yes" classname="part1.chapter03.MovieColumns2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieColumns3" />
+        <java fork="yes" classname="part1.chapter03.MovieColumns3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieColumns4" />
+        <java fork="yes" classname="part1.chapter03.MovieColumns4">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ColumnMovies1" />
+        <java fork="yes" classname="part1.chapter03.ColumnMovies1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ColumnMovies2" />
+        <java fork="yes" classname="part1.chapter03.ColumnMovies2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ImageDirect" />
+        <java fork="yes" classname="part1.chapter03.ImageDirect">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ImageSkew" />
+        <java fork="yes" classname="part1.chapter03.ImageSkew">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ImageInline" />
+        <java fork="yes" classname="part1.chapter03.ImageInline">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MoviePosters" />
+        <java fork="yes" classname="part1.chapter03.MoviePosters">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieTemplates" />
+        <java fork="yes" classname="part1.chapter03.MovieTemplates">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part1.chapter04">
+        <echo message="MyFirstTable" />
+        <java fork="yes" classname="part1.chapter04.MyFirstTable">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ColumnWidths" />
+        <java fork="yes" classname="part1.chapter04.ColumnWidths">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TableAlignment" />
+        <java fork="yes" classname="part1.chapter04.TableAlignment">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieTextMode" />
+        <java fork="yes" classname="part1.chapter04.MovieTextMode">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="Spacing" />
+        <java fork="yes" classname="part1.chapter04.Spacing">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TableHeight" />
+        <java fork="yes" classname="part1.chapter04.TableHeight">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="CellHeights" />
+        <java fork="yes" classname="part1.chapter04.CellHeights">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="RotationAndColors" />
+        <java fork="yes" classname="part1.chapter04.RotationAndColors">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieCompositeMode" />
+        <java fork="yes" classname="part1.chapter04.MovieCompositeMode">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="XMen" />
+        <java fork="yes" classname="part1.chapter04.XMen">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="NestedTable" />
+        <java fork="yes" classname="part1.chapter04.NestedTable">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="NestedTables" />
+        <java fork="yes" classname="part1.chapter04.NestedTables">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="HeaderFooter1" />
+        <java fork="yes" classname="part1.chapter04.HeaderFooter1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="HeaderFooter2" />
+        <java fork="yes" classname="part1.chapter04.HeaderFooter2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MemoryTests" />
+        <java fork="yes" classname="part1.chapter04.MemoryTests">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="PdfCalendar" />
+        <java fork="yes" classname="part1.chapter04.PdfCalendar">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Zhang" />
+        <java fork="yes" classname="part1.chapter04.Zhang">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ColumnTable" />
+        <java fork="yes" classname="part1.chapter04.ColumnTable">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part1.chapter05">
+        <echo message="AlternatingBackground" />
+        <java fork="yes" classname="part1.chapter05.AlternatingBackground">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="RunLengthEvent" />
+        <java fork="yes" classname="part1.chapter05.RunLengthEvent">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="PressPreviews" />
+        <java fork="yes" classname="part1.chapter05.PressPreviews">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="PdfCalendar" />
+        <java fork="yes" classname="part1.chapter05.PdfCalendar">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieYears" />
+        <java fork="yes" classname="part1.chapter05.MovieYears">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieHistory1" />
+        <java fork="yes" classname="part1.chapter05.MovieHistory1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="NewPage" />
+        <java fork="yes" classname="part1.chapter05.NewPage">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Hero1" />
+        <java fork="yes" classname="part1.chapter05.Hero1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Hero2" />
+        <java fork="yes" classname="part1.chapter05.Hero2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Hero3" />
+        <java fork="yes" classname="part1.chapter05.Hero3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieHistory2" />
+        <java fork="yes" classname="part1.chapter05.MovieHistory2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieCountries1" />
+        <java fork="yes" classname="part1.chapter05.MovieCountries1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieCountries2" />
+        <java fork="yes" classname="part1.chapter05.MovieCountries2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieSlideShow" />
+        <java fork="yes" classname="part1.chapter05.MovieSlideShow">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part2.chapter06">
+        <echo message="PageInformation" />
+        <java fork="yes" classname="part2.chapter06.PageInformation">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MemoryInfo" />
+        <java fork="yes" classname="part2.chapter06.MemoryInfo">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="SelectPages" />
+        <java fork="yes" classname="part2.chapter06.SelectPages">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ImportingPages1" />
+        <java fork="yes" classname="part2.chapter06.ImportingPages1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ImportingPages2" />
+        <java fork="yes" classname="part2.chapter06.ImportingPages2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="Layers" />
+        <java fork="yes" classname="part2.chapter06.Layers">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Superimposing" />
+        <java fork="yes" classname="part2.chapter06.Superimposing">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Stationery" />
+        <java fork="yes" classname="part2.chapter06.Stationery">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="NUpTool" />
+        <java fork="yes" classname="part2.chapter06.NUpTool">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="TilingHero" />
+        <java fork="yes" classname="part2.chapter06.TilingHero">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="StampText" />
+        <java fork="yes" classname="part2.chapter06.StampText">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TwoPasses" />
+        <java fork="yes" classname="part2.chapter06.TwoPasses">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="StampStationery" />
+        <java fork="yes" classname="part2.chapter06.StampStationery">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="InsertPages" />
+        <java fork="yes" classname="part2.chapter06.InsertPages">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="FormInformation" />
+        <java fork="yes" classname="part2.chapter06.FormInformation">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="FillDataSheet" />
+        <java fork="yes" classname="part2.chapter06.FillDataSheet">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="Concatenate" />
+        <java fork="yes" classname="part2.chapter06.Concatenate">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ConcatenateStamp" />
+        <java fork="yes" classname="part2.chapter06.ConcatenateStamp">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="Burst" />
+        <java fork="yes" classname="part2.chapter06.Burst">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="DataSheets1" />
+        <java fork="yes" classname="part2.chapter06.DataSheets1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="DataSheets2" />
+        <java fork="yes" classname="part2.chapter06.DataSheets2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ConcatenateForms1" />
+        <java fork="yes" classname="part2.chapter06.ConcatenateForms1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ConcatenateForms2" />
+        <java fork="yes" classname="part2.chapter06.ConcatenateForms2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part2.chapter07">
+        <echo message="NamedActions" />
+        <java fork="yes" classname="part2.chapter07.NamedActions">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="LinkActions" />
+        <java fork="yes" classname="part2.chapter07.LinkActions">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ConcatenateNamedDestinations" />
+        <java fork="yes" classname="part2.chapter07.ConcatenateNamedDestinations">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="TimetableDestinations" />
+        <java fork="yes" classname="part2.chapter07.TimetableDestinations">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="AddVersionChecker" />
+        <java fork="yes" classname="part2.chapter07.AddVersionChecker">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="FindDirectors" />
+        <java fork="yes" classname="part2.chapter07.FindDirectors">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="LaunchAction" />
+        <java fork="yes" classname="part2.chapter07.LaunchAction">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="PrintTimeTable" />
+        <java fork="yes" classname="part2.chapter07.PrintTimeTable">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="EventsAndActions" />
+        <java fork="yes" classname="part2.chapter07.EventsAndActions">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="CreateOutlineTree" />
+        <java fork="yes" classname="part2.chapter07.CreateOutlineTree">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="BookmarkedTimeTable" />
+        <java fork="yes" classname="part2.chapter07.BookmarkedTimeTable">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ConcatenateBookmarks" />
+        <java fork="yes" classname="part2.chapter07.ConcatenateBookmarks">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieAnnotations1" />
+        <java fork="yes" classname="part2.chapter07.MovieAnnotations1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieAnnotations2" />
+        <java fork="yes" classname="part2.chapter07.MovieAnnotations2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="GenericAnnotations" />
+        <java fork="yes" classname="part2.chapter07.GenericAnnotations">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="TimetableAnnotations1" />
+        <java fork="yes" classname="part2.chapter07.TimetableAnnotations1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MoviePosters1" />
+        <java fork="yes" classname="part2.chapter07.MoviePosters1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="TimetableAnnotations2" />
+        <java fork="yes" classname="part2.chapter07.TimetableAnnotations2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieAnnotations3" />
+        <java fork="yes" classname="part2.chapter07.MovieAnnotations3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="TimetableAnnotations3" />
+        <java fork="yes" classname="part2.chapter07.TimetableAnnotations3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ButtonsActions" />
+        <java fork="yes" classname="part2.chapter07.ButtonsActions">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="Advertisement" />
+        <java fork="yes" classname="part2.chapter07.Advertisement">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MoviePosters2" />
+        <java fork="yes" classname="part2.chapter07.MoviePosters2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="Calculator" />
+        <java fork="yes" classname="part2.chapter07.Calculator">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part2.chapter08">
+        <echo message="Buttons" />
+        <java fork="yes" classname="part2.chapter08.Buttons">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="RadioButtons" />
+        <java fork="yes" classname="part2.chapter08.RadioButtons">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ReplaceIcon" />
+        <java fork="yes" classname="part2.chapter08.ReplaceIcon">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="TextFields" />
+        <java fork="yes" classname="part2.chapter08.TextFields">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TextFieldFonts" />
+        <java fork="yes" classname="part2.chapter08.TextFieldFonts">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iTextAsian.jar" />
+            </classpath>
+        </java>
+        <echo message="TextFieldActions" />
+        <java fork="yes" classname="part2.chapter08.TextFieldActions">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ChoiceFields" />
+        <java fork="yes" classname="part2.chapter08.ChoiceFields">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Subscribe" />
+        <java fork="yes" classname="part2.chapter08.Subscribe">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieAds" />
+        <java fork="yes" classname="part2.chapter08.MovieAds">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="XfaMovie" />
+        <java fork="yes" classname="part2.chapter08.XfaMovie">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="XfaMovies" />
+        <java fork="yes" classname="part2.chapter08.XfaMovies">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ReaderEnabledForm" />
+        <java fork="yes" classname="part2.chapter08.ReaderEnabledForm">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part3.chapter09">
+        <echo message="HtmlMovies1" />
+        <java fork="yes" classname="part3.chapter09.HtmlMovies1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/hsqldb.jar" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HtmlMovies2" />
+        <java fork="yes" classname="part3.chapter09.HtmlMovies2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/hsqldb.jar" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="XmlMovies" />
+        <java fork="yes" classname="part3.chapter09.XmlMovies">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+    </target>
+</project>
