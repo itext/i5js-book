@@ -60,8 +60,11 @@ public class XFDFServlet extends HttpServlet {
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
         response.setContentType("application/vnd.adobe.xfdf");
+        response.setHeader("Content-Disposition",
+		    "attachment; filename=\"subscribe.xfdf\"");
         OutputStream os = response.getOutputStream();
         InputStream is = request.getInputStream();
         byte[] b = new byte[256];  

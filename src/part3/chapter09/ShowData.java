@@ -46,7 +46,8 @@ public class ShowData extends HttpServlet {
      * Shows the stream passed to the server with POST as plain text.
      * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
         response.setContentType("text/plain");
         OutputStream os = response.getOutputStream();
         InputStream is = request.getInputStream();
