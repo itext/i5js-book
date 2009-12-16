@@ -103,12 +103,8 @@ public class FDFServlet extends HttpServlet {
             PdfStamper stamper = new PdfStamper(reader, baos);
             // We alter the fields of the existing PDF
             AcroFields fields = stamper.getAcroFields();
-            fields.removeField("personal.password");
-            fields.setField("personal.name", fdf.getFieldValue("personal.name"));
-            fields.setField("personal.loginname", fdf.getFieldValue("personal.loginname"));
-            fields.setField("personal.reason", fdf.getFieldValue("personal.reason"));
+            fields.setFields(fdf);
             stamper.setFormFlattening(true);
-            stamper.close();
             // Gets the image from the FDF file
         	try {
         		Image img = Image.getInstance(fdf.getAttachedFile("image"));
@@ -120,6 +116,8 @@ public class FDFServlet extends HttpServlet {
                 ColumnText.showTextAligned(stamper.getOverContent(1),
                         Element.ALIGN_LEFT, new Phrase("No image posted!"), 90, 660, 0);
         	}
+        	// close the stamper
+            stamper.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);

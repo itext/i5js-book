@@ -49,6 +49,22 @@
 		<servlet-class>
 		part3.chapter09.XFDFServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CreateFDF</display-name>
+		<servlet-name>CreateFDF</servlet-name>
+		<servlet-class>
+		part3.chapter09.CreateFDF</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PdfServlet</display-name>
+		<servlet-name>PdfServlet</servlet-name>
+		<servlet-class>
+		part3.chapter09.PdfServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Hello</servlet-name>
 		<url-pattern>/hello.pdf</url-pattern>
@@ -72,6 +88,14 @@
 	<servlet-mapping>
 		<servlet-name>XFDFServlet</servlet-name>
 		<url-pattern>/xfdf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreateFDF</servlet-name>
+		<url-pattern>/createFDF</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PdfServlet</servlet-name>
+		<url-pattern>/my.pdf</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
