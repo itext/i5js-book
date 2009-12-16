@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>Talk to HTML test</title>
+  <script language="javascript">
+    function createMessageHandler() {
+      var PDFObject = document.getElementById("myPdf");
+      PDFObject.messageHandler = {
+        onMessage: function(msg) {
+          document.personal.name.value = msg[0];
+          document.personal.loginname.value = msg[1];
+        },
+        onError: function(error, msg) { 
+          alert(error.message);
+        }
+      }
+    }
+    function sendToPdf() {
+      var PDFObject = document.getElementById("myPdf");
+      if(PDFObject!= null){
+        PDFObject.postMessage(
+          [document.personal.name.value,
+           document.personal.loginname.value]);
+      }
+    }
+  </script>
+</head>
+<body onLoad="createMessageHandler();">
+  <form name="personal">
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td><input type="Text" name="name"></td>
+        <td>Login:</td>
+        <td><input type="Text" name="loginname"></td>
+        <td><input type="Button" value="Send to PDF" onClick="return sendToPdf();"></td>
+      </tr>
+    </table>
+  </form>
+  <object id="myPdf" type="application/pdf" data="javascript.pdf"
+      height="100%" width="100%"></object>
+</body>
+</html>
