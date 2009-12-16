@@ -42,6 +42,10 @@ public class XmlHandler extends DefaultHandler {
     protected String duration = null;
     protected String imdb = null;
     
+    /**
+     * Creates a handler for an iText Document.
+     * @param document the document to which content needs to be added.
+     */
     public XmlHandler(Document document) {
         this.document = document;
     }
@@ -103,9 +107,11 @@ public class XmlHandler extends DefaultHandler {
             updateStack();
             if ("directors".equals(qName)) {
                 flushStack();
-                Paragraph p = new Paragraph(String.format("Year: %s; duration: %s; ", year, duration));
+                Paragraph p = new Paragraph(
+                    String.format("Year: %s; duration: %s; ", year, duration));
                 Anchor link = new Anchor("link to IMDB");
-                link.setReference(String.format("http://www.imdb.com/title/tt%s/", imdb));
+                link.setReference(
+                    String.format("http://www.imdb.com/title/tt%s/", imdb));
                 p.add(link);
                 stack.push(p);
             }

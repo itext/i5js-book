@@ -9,9 +9,45 @@
 		<servlet-class>
 		part3.chapter09.Hello</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ShowData</display-name>
+		<servlet-name>ShowData</servlet-name>
+		<servlet-class>
+		part3.chapter09.ShowData</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>FormServlet</display-name>
+		<servlet-name>FormServlet</servlet-name>
+		<servlet-class>
+		part3.chapter09.FormServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>MovieServlet</display-name>
+		<servlet-name>MovieServlet</servlet-name>
+		<servlet-class>
+		part3.chapter09.MovieServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Hello</servlet-name>
 		<url-pattern>/hello.pdf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ShowData</servlet-name>
+		<url-pattern>/request</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FormServlet</servlet-name>
+		<url-pattern>/form</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MovieServlet</servlet-name>
+		<url-pattern>/movies</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

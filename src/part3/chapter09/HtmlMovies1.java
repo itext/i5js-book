@@ -30,7 +30,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class HtmlMovies1 {
 
-    
     /** The resulting HTML file. */
     public static final String HTML = "results/part3/chapter09/movies_1.html";
     /** The resulting PDF file. */
@@ -40,44 +39,87 @@ public class HtmlMovies1 {
     protected StyleSheet styles = null;
     /** Extra properties. */
     protected HashMap<String,Object> providers = null;
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException 
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         new HtmlMovies1().createHtmlAndPdf(HTML, PDF);
     }
     
+    /**
+     * Creates a list with movies in HTML and PDF simultaneously.
+     * @param html a path to the resulting HTML file
+     * @param pdf a path to the resulting PDF file
+     * @throws SQLException
+     * @throws IOException
+     * @throws DocumentException
+     */
     @SuppressWarnings("unchecked")
-    public void createHtmlAndPdf(String html, String pdf) throws SQLException, IOException, DocumentException {
+    public void createHtmlAndPdf(String html, String pdf)
+        throws SQLException, IOException, DocumentException {
+        // Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
-
+        // Create a stream to produce HTML
         PrintStream out = new PrintStream(new FileOutputStream(html));
         out.println("<html>\n<body>");
-        
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(pdf));
+        // step 3
         document.open();
+        // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         String snippet;
         for (Movie movie : movies) {
+            // create the snippet
             snippet = createHtmlSnippet(movie);
+            // use the snippet for the HTML page
             out.println(snippet);
-            List<Element> objects = HTMLWorker.parseToList(new StringReader(snippet), styles, providers);
+            // use the snippet for the PDF document
+            List<Element> objects
+                = HTMLWorker.parseToList(
+                    new StringReader(snippet), styles, providers);
             for (Element element : objects)
                 document.add(element);
         }
+        // step 5
         document.close();
-        
+        // flush and close the HTML stream
         out.print("</body>\n<html>");
+        out.flush();
+        out.close();
+        // close the database connection
         connection.close();
     }
     
+    /**
+     * Sets the styles for the HTML to PDF conversion
+     * @param styles a StyleSheet object
+     */
     public void setStyles(StyleSheet styles) {
         this.styles = styles;
     }
 
+    /**
+     * Set some extra properties.
+     * @param providers the properties map
+     */
     public void setProviders(HashMap<String, Object> providers) {
         this.providers = providers;
     }
 
+    /**
+     * Creates an HTML snippet with info about a movie.
+     * @param movie the movie for which we want to create HTML
+     * @return a String with HTML code
+     */
     public String createHtmlSnippet(Movie movie) {
         StringBuffer buf = new StringBuffer("\t<span class=\"title\">");
         buf.append(movie.getMovieTitle());

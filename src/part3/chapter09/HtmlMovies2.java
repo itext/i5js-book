@@ -31,12 +31,17 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class HtmlMovies2 extends HtmlMovies1 {
 
+	/**
+	 * Inner class implementing the ImageProvider class.
+	 * This is needed if you want to resolve the paths to images.
+	 */
     public static class MyImageFactory implements ImageProvider {
         @SuppressWarnings("unchecked")
         public Image getImage(String src, HashMap h,
                 ChainedProperties cprops, DocListener doc) {
             try {
-                return Image.getInstance(String.format("resources/posters/%s",
+                return Image.getInstance(
+                    String.format("resources/posters/%s",
                         src.substring(src.lastIndexOf("/") + 1)));
             } catch (DocumentException e) {
                 e.printStackTrace();
@@ -46,7 +51,11 @@ public class HtmlMovies2 extends HtmlMovies1 {
             return null;
         }    
     }
-    
+
+	/**
+	 * Inner class implementing the FontProvider class.
+	 * This is needed if you want to select the correct fonts.
+	 */
     public static class MyFontFactory implements FontProvider {
         public Font getFont(String fontname,
                 String encoding, boolean embedded, float size,
@@ -60,15 +69,27 @@ public class HtmlMovies2 extends HtmlMovies1 {
     }
 
     /** The resulting HTML file. */
-    public static final String HTML = "results/part3/chapter09/movies_2.html";
+    public static final String HTML
+        = "results/part3/chapter09/movies_2.html";
     /** The resulting PDF file. */
-    public static final String PDF = "results/part3/chapter09/html_movies_2.pdf";
+    public static final String RESULT1
+        = "results/part3/chapter09/html_movies_2.pdf";
     /** Another resulting PDF file. */
-    public static final String RESULT = "results/part3/chapter09/html_movies_3.pdf";
+    public static final String RESULT2
+        = "results/part3/chapter09/html_movies_3.pdf";
     
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    /**
+     * Main method.
+     * 
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         HtmlMovies2 movies = new HtmlMovies2();
-        
+        // create a StyleSheet
         StyleSheet styles = new StyleSheet();
         styles.loadTagStyle("ul", "indent", "10");
         styles.loadTagStyle("li", "leading", "14");
@@ -77,14 +98,15 @@ public class HtmlMovies2 extends HtmlMovies1 {
         styles.loadStyle("director", "b", "");
         styles.loadStyle("director", "color", "midnightblue");
         movies.setStyles(styles);
-        
+        // create extra properties
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("font_factory", new MyFontFactory());
         map.put("img_provider", new MyImageFactory());
         movies.setProviders(map);
-        
-        movies.createHtmlAndPdf(HTML, PDF);
-        movies.createPdf(RESULT);
+        // creates HTML and PDF (reusing a method from the super class)
+        movies.createHtmlAndPdf(HTML, RESULT1);
+        // creates another PDF file
+        movies.createPdf(RESULT2);
     }
 
     /**
@@ -94,17 +116,29 @@ public class HtmlMovies2 extends HtmlMovies1 {
      * @throws    IOException
      */
     @SuppressWarnings("unchecked")
-    public void createPdf(String filename) throws IOException, DocumentException {
+    public void createPdf(String filename)
+        throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(RESULT2));
+        // step 3
         document.open();
-        List<Element> objects = HTMLWorker.parseToList(new FileReader(HTML), null, providers);
+        // step 4
+        List<Element> objects
+            = HTMLWorker.parseToList(new FileReader(HTML), null, providers);
         for (Element element : objects) {
             document.add(element);
         }
+        // step 5
         document.close();
     }
-    
+
+    /**
+     * Creates an HTML snippet with info about a movie.
+     * @param movie the movie for which we want to create HTML
+     * @return a String with HTML code
+     */
     public String createHtmlSnippet(Movie movie) {
         StringBuffer buf = new StringBuffer("<table width=\"500\">\n<tr>\n");
         buf.append("\t<td><img src=\"../../../resources/posters/");
@@ -114,6 +148,5 @@ public class HtmlMovies2 extends HtmlMovies1 {
         buf.append("\t</ul>\n\t</td>\n</tr>\n</table>");
         return buf.toString();
     }
-    
-    
+
 }

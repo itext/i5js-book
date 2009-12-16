@@ -62,6 +62,13 @@ public class DataSheets1 extends FillDataSheet {
         document.close();
     }
     
+    /**
+     * Fills out a data sheet, flattens it, and adds it to a combined PDF.
+     * @param copy the PdfCopy instance (can also be PdfSmartCopy)
+     * @throws SQLException
+     * @throws IOException
+     * @throws DocumentException
+     */
     public void addDataSheets(PdfCopy copy)
         throws SQLException, IOException, DocumentException {
     	// Create a database connection
