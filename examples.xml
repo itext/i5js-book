@@ -1189,6 +1189,20 @@
                 <pathelement location="lib/servlet.jar" />
             </classpath>
         </javac>
+        <javac srcdir="src" destdir="WebContent/WEB-INF/classes">
+            <include name="part3/chapter09/FDFServlet.java" />
+            <classpath>
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/servlet.jar" />
+            </classpath>
+        </javac>
+        <javac srcdir="src" destdir="WebContent/WEB-INF/classes">
+            <include name="part3/chapter09/XFDFServlet.java" />
+            <classpath>
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/servlet.jar" />
+            </classpath>
+        </javac>
         <tar compression="gzip" tarfile="webapps.tar.gz">
             <tarfileset prefix="book" dir="WebContent">
                 <include name="index.html" />
@@ -1203,6 +1217,8 @@
                 <include name="WEB-INF/classes/part3/chapter09/Hello.class" />
                 <include name="WEB-INF/classes/part3/chapter09/ShowData.class" />
                 <include name="WEB-INF/classes/part3/chapter09/FormServlet.class" />
+                <include name="WEB-INF/classes/part3/chapter09/FDFServlet.class" />
+                <include name="WEB-INF/classes/part3/chapter09/XFDFServlet.class" />
             </tarfileset>
         </tar>
     </target>

@@ -33,6 +33,22 @@
 		<servlet-class>
 		part3.chapter09.MovieServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>FDFServlet</display-name>
+		<servlet-name>FDFServlet</servlet-name>
+		<servlet-class>
+		part3.chapter09.FDFServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>XFDFServlet</display-name>
+		<servlet-name>XFDFServlet</servlet-name>
+		<servlet-class>
+		part3.chapter09.XFDFServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Hello</servlet-name>
 		<url-pattern>/hello.pdf</url-pattern>
@@ -48,6 +64,14 @@
 	<servlet-mapping>
 		<servlet-name>MovieServlet</servlet-name>
 		<url-pattern>/movies</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FDFServlet</servlet-name>
+		<url-pattern>/fdf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>XFDFServlet</servlet-name>
+		<url-pattern>/xfdf</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
