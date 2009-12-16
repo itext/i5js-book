@@ -1137,6 +1137,12 @@
                 <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
+        <echo message="JSForm" />
+        <java fork="yes" classname="part3.chapter09.JSForm">
+            <classpath>
+                <pathelement path="bin/" />
+            </classpath>
+        </java>
         <echo message="HtmlMovies1" />
         <java fork="yes" classname="part3.chapter09.HtmlMovies1">
             <classpath>
@@ -1203,11 +1209,25 @@
                 <pathelement location="lib/servlet.jar" />
             </classpath>
         </javac>
+        <javac srcdir="src" destdir="WebContent/WEB-INF/classes">
+            <include name="part3/chapter09/PdfServlet.java" />
+            <classpath>
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/servlet.jar" />
+            </classpath>
+        </javac>
+        <javac srcdir="src" destdir="WebContent/WEB-INF/classes">
+            <include name="part3/chapter09/CreateFDF.java" />
+            <classpath>
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/servlet.jar" />
+            </classpath>
+        </javac>
         <tar compression="gzip" tarfile="webapps.tar.gz">
             <tarfileset prefix="book" dir="WebContent">
-                <include name="index.html" />
-                <include name="helloworld.jsp" />
-                <include name="submit_me.pdf" />
+                <include name="*.html" />
+                <include name="*.jsp" />
+                <include name="*.pdf" />
                 <include name="resources/*.*" />
                 <include name="META-INF/*.*" />
                 <include name="WEB-INF/web.xml" />
@@ -1219,6 +1239,8 @@
                 <include name="WEB-INF/classes/part3/chapter09/FormServlet.class" />
                 <include name="WEB-INF/classes/part3/chapter09/FDFServlet.class" />
                 <include name="WEB-INF/classes/part3/chapter09/XFDFServlet.class" />
+                <include name="WEB-INF/classes/part3/chapter09/PdfServlet.class" />
+                <include name="WEB-INF/classes/part3/chapter09/CreateFDF.class" />
             </tarfileset>
         </tar>
     </target>
