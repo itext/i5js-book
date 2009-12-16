@@ -45,7 +45,7 @@ public class XFDFServlet extends HttpServlet {
             button.setVisibility(PushbuttonField.VISIBLE_BUT_DOES_NOT_PRINT);
             PdfFormField submit = button.getField();
             submit.setAction(PdfAction.createSubmitForm(
-                "/book/form", null, PdfAction.SUBMIT_XFDF));
+                "/book/xfdf", null, PdfAction.SUBMIT_XFDF));
             stamper.addAnnotation(submit, 1);
             stamper.close();
             // We write the PDF bytes to the OutputStream
