@@ -17,13 +17,13 @@ public class CreateFDF extends HttpServlet {
         throws ServletException, IOException {
         response.setContentType("application/vnd.adobe.fdf");
         response.setHeader("Content-Disposition",
-		    "inline; filename=\"subscribe.fdf\"");
+		    "attachment; filename=\"subscribe.fdf\"");
         FdfWriter fdf = new FdfWriter();
         fdf.setFieldAsString("personal.name", request.getParameter("name"));
         fdf.setFieldAsString("personal.loginname", request.getParameter("loginname"));
         fdf.setFieldAsString("personal.password", request.getParameter("password"));
         fdf.setFieldAsString("personal.reason", request.getParameter("reason"));
-        fdf.setFile("http://itextpdf.com:8080/book/subscribe.pdf");
+        fdf.setFile("subscribe.pdf");
         fdf.writeTo(response.getOutputStream());
     }
 
