@@ -30,7 +30,7 @@ public class XFDFServlet extends HttpServlet {
         try {
             // We get a resource from our web app
             InputStream is
-                = getServletContext().getResourceAsStream("/resources/subscribe.pdf");
+                = getServletContext().getResourceAsStream("/subscribe.pdf");
             // We create a reader with the InputStream
             PdfReader reader = new PdfReader(is, null);
             // We create an OutputStream for the new PDF

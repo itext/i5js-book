@@ -23,7 +23,7 @@ public class CreateFDF extends HttpServlet {
         fdf.setFieldAsString("personal.loginname", request.getParameter("loginname"));
         fdf.setFieldAsString("personal.password", request.getParameter("password"));
         fdf.setFieldAsString("personal.reason", request.getParameter("reason"));
-        fdf.setFile("http://itextpdf.com:8080/book/resources/subscribe.pdf");
+        fdf.setFile("http://itextpdf.com:8080/book/subscribe.pdf");
         fdf.writeTo(response.getOutputStream());
     }
 

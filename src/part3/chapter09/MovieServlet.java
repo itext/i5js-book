@@ -43,7 +43,7 @@ public class MovieServlet extends HttpServlet {
             document.open();
             // step 4
             InputStream is
-            = getServletContext().getResourceAsStream("/resources/movies.xml");
+            = getServletContext().getResourceAsStream("/movies.xml");
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
             parser.parse(new InputSource(is), new XmlHandler(document));
             // step 5

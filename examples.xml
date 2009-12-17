@@ -1228,7 +1228,7 @@
                 <include name="*.html" />
                 <include name="*.jsp" />
                 <include name="*.pdf" />
-                <include name="resources/*.*" />
+                <include name="*.xml" />
                 <include name="META-INF/*.*" />
                 <include name="WEB-INF/web.xml" />
                 <include name="WEB-INF/lib/*.*" />
