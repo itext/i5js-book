@@ -34,18 +34,25 @@ public class TimetableAnnotations3 extends TimetableAnnotations1 {
     public static final String RESULT = "results/part2/chapter07/timetable_tickets.pdf";
     /** Path to IMDB. */
     public static final String IMDB = "http://imdb.com/title/tt%s/";
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        MovieTemplates.main(args);
-        new TimetableAnnotations3().manipulatePdf(MovieTemplates.RESULT, RESULT);
-    }
 
-    public void manipulatePdf(String src, String dest) throws SQLException, IOException, DocumentException {
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     * @throws SQLException
+     */
+    public void manipulatePdf(String src, String dest)
+        throws SQLException, IOException, DocumentException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         locations = PojoFactory.getLocations(connection);
-        
+        // Create a reader
         PdfReader reader = new PdfReader(src);
+        // Create a stamper
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        // Loop over the days and screenings
         int page = 1;
         Rectangle rect;
         float top;
@@ -55,26 +62,30 @@ public class TimetableAnnotations3 extends TimetableAnnotations1 {
             for (Screening screening : PojoFactory.getScreenings(connection, day)) {
                 rect = getPosition(screening);
                 movie = screening.getMovie();
+                // Annotation for press previews
                 if (screening.isPress()) {
                     annotation = PdfAnnotation.createStamp(stamper.getWriter(),
-                            rect, "Press only", "NotForPublicRelease");
+                        rect, "Press only", "NotForPublicRelease");
                     annotation.setColor(BaseColor.BLACK);
                     annotation.setFlags(PdfAnnotation.FLAGS_PRINT);
                 }
+                // Annotation for screenings that are sold out
                 else if (isSoldOut(screening)) {
                     top = reader.getPageSizeWithRotation(page).getTop();
                     annotation = PdfAnnotation.createLine(
-                            stamper.getWriter(), rect, "SOLD OUT",
-                            top - rect.getTop(), rect.getRight(),
-                            top - rect.getBottom(), rect.getLeft());
+                        stamper.getWriter(), rect, "SOLD OUT",
+                        top - rect.getTop(), rect.getRight(),
+                        top - rect.getBottom(), rect.getLeft());
                     annotation.setTitle(movie.getMovieTitle());
                     annotation.setColor(BaseColor.WHITE);
                     annotation.setFlags(PdfAnnotation.FLAGS_PRINT);
-                    annotation.setBorderStyle(new PdfBorderDictionary(5, PdfBorderDictionary.STYLE_SOLID));
+                    annotation.setBorderStyle(
+                        new PdfBorderDictionary(5, PdfBorderDictionary.STYLE_SOLID));
                 }
+                // Annotation for screenings with tickets available
                 else {
                     annotation = PdfAnnotation.createSquareCircle(
-                            stamper.getWriter(), rect, "Tickets available", true);
+                        stamper.getWriter(), rect, "Tickets available", true);
                     annotation.setTitle(movie.getMovieTitle());
                     annotation.setColor(BaseColor.BLUE);
                     annotation.setFlags(PdfAnnotation.FLAGS_PRINT);
@@ -84,13 +95,33 @@ public class TimetableAnnotations3 extends TimetableAnnotations1 {
             }
             page++;
         }
+        // Close the stamper
         stamper.close();
+        // Close the database connection
         connection.close();
     }
     
+    /**
+     * Checks if the screening has been sold out.
+     * @param screening a Screening POJO
+     * @return true if the screening has been sold out.
+     */
     public boolean isSoldOut(Screening screening) {
         if (screening.getMovie().getMovieTitle().startsWith("L"))
             return true;
         return false;
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args) 
+        throws IOException, DocumentException, SQLException {
+        MovieTemplates.main(args);
+        new TimetableAnnotations3().manipulatePdf(
+            MovieTemplates.RESULT, RESULT);
     }
 }

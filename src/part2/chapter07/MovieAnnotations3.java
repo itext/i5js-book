@@ -28,14 +28,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class MovieAnnotations3 {
 
     /** The resulting PDF. */
-    public static final String RESULT = "results/part2/chapter07/movie_annotations_3.pdf";
+    public static final String RESULT
+        = "results/part2/chapter07/movie_annotations_3.pdf";
     /** Path to the resources. */
-    public static final String RESOURCE = "resources/posters/%s.jpg";
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        MovieAnnotations3 example = new MovieAnnotations3();
-        example.createPdf(RESULT);
-    }
+    public static final String RESOURCE
+        = "resources/posters/%s.jpg";
 
     /**
      * Creates a PDF document.
@@ -44,12 +41,18 @@ public class MovieAnnotations3 {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+    public void createPdf(String filename)
+        throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document();
-        PdfWriter writer = PdfWriter.getInstance(document,
-                new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         Phrase phrase;
         Chunk chunk;
         PdfAnnotation annotation;
@@ -67,7 +70,22 @@ public class MovieAnnotations3 {
             document.add(PojoToElementFactory.getDirectorList(movie));
             document.add(PojoToElementFactory.getCountryList(movie));
         }
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        MovieAnnotations3 example = new MovieAnnotations3();
+        example.createPdf(RESULT);
     }
 }

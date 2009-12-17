@@ -29,20 +29,31 @@ import part1.chapter03.MovieTemplates;
 
 public class TimetableAnnotations1 {
 
-    public static final String RESULT = "results/part2/chapter07/timetable_help.pdf";
-    public static final String INFO = "Movie produced in %s; run length: %s";
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        MovieTemplates.main(args);
-        new TimetableAnnotations1().manipulatePdf(MovieTemplates.RESULT, RESULT);
-    }
+    /** The resulting PDF. */
+    public static final String RESULT
+        = "results/part2/chapter07/timetable_help.pdf";
+    /** A pattern for an info string. */
+    public static final String INFO
+        = "Movie produced in %s; run length: %s";
 
-    public void manipulatePdf(String src, String dest) throws SQLException, IOException, DocumentException {
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     * @throws SQLException
+     */
+    public void manipulatePdf(String src, String dest)
+        throws SQLException, IOException, DocumentException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         locations = PojoFactory.getLocations(connection);
-        
+        // Create a reader
         PdfReader reader = new PdfReader(src);
+        // Create a stamper
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        // Add the annotations
         int page = 1;
         Rectangle rect;
         PdfAnnotation annotation;
@@ -55,12 +66,15 @@ public class TimetableAnnotations1 {
                     stamper.getWriter(), rect, movie.getMovieTitle(),
                     String.format(INFO, movie.getYear(), movie.getDuration()),
                     false, "Help");
-                annotation.setColor(WebColors.getRGBColor("#" + movie.getEntry().getCategory().getColor()));
+                annotation.setColor(WebColors.getRGBColor(
+                    "#" + movie.getEntry().getCategory().getColor()));
                 stamper.addAnnotation(annotation, page);
             }
             page++;
         }
+        // Close the stamper
         stamper.close();
+        // Close the database connection
         connection.close();
     }
     
@@ -104,4 +118,18 @@ public class TimetableAnnotations1 {
     public static final float HEIGHT = 504;
     /** The height of a bar showing the movies at one specific location. */
     public static final float HEIGHT_LOCATION = HEIGHT / LOCATIONS;
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        MovieTemplates.main(args);
+        new TimetableAnnotations1().manipulatePdf(
+            MovieTemplates.RESULT, RESULT);
+    }
 }

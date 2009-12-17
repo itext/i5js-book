@@ -24,38 +24,65 @@ import com.itextpdf.text.pdf.SimpleBookmark;
 public class ConcatenateBookmarks {
 
     /** The resulting PDF. */
-    public static final String RESULT = "results/part2/chapter07/concatenated_bookmarks.pdf";
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        BookmarkedTimeTable.main(args);
-        MovieHistory.main(args);
-        
-        new ConcatenateBookmarks().manipulatePdf(
-                new String[]{BookmarkedTimeTable.RESULT, MovieHistory.RESULT}, RESULT);
-    }
-    
+    public static final String RESULT
+        = "results/part2/chapter07/concatenated_bookmarks.pdf";
+
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
     @SuppressWarnings("unchecked")
-    public void manipulatePdf(String[] src, String dest) throws IOException, DocumentException {
+    public void manipulatePdf(String[] src, String dest)
+        throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
-        PdfCopy copy = new PdfCopy(document, new FileOutputStream(dest));
+        // step 2
+        PdfCopy copy
+            = new PdfCopy(document, new FileOutputStream(dest));
+        // step 3
         document.open();
+        // step 4
         PdfReader reader;
         int page_offset = 0;
         int n;
+        // Create a list for the bookmarks
         ArrayList bookmarks = new ArrayList();
         List tmp;
         for (int i  = 0; i < src.length; i++) {
             reader = new PdfReader(src[i]);
+            // merge the bookmarks
             tmp = SimpleBookmark.getBookmark(reader);
             SimpleBookmark.shiftPageNumbers(tmp, page_offset, null);
             bookmarks.addAll(tmp);
+            // add the pages
             n = reader.getNumberOfPages();
             page_offset += n;
             for (int page = 0; page < n; ) {
                 copy.addPage(copy.getImportedPage(reader, ++page));
             }
         }
+        // Add the merged bookmarks
         copy.setOutlines(bookmarks);
+        // step 5
         document.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        BookmarkedTimeTable.main(args);
+        MovieHistory.main(args);
+        new ConcatenateBookmarks().manipulatePdf(
+            new String[]{BookmarkedTimeTable.RESULT, MovieHistory.RESULT},
+            RESULT);
     }
 }

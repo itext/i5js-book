@@ -27,17 +27,23 @@ import com.itextpdf.text.pdf.PdfStamper;
 public class BookmarkedTimeTable {
     
     /** The resulting PDF. */
-    public static final String RESULT = "results/part2/chapter07/time_table_bookmarks.pdf";
-    
+    public static final String RESULT
+        = "results/part2/chapter07/time_table_bookmarks.pdf";
+
     /**
-     * Creates a PDF file containing a time table for our film festival.
-     * @param    filename    the name of the PDF file
-     * @throws SQLException 
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     * @throws SQLException
      */
     @SuppressWarnings("unchecked")
     public void manipulatePdf(String src, String dest)
         throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // Create a list with bookmarks
         ArrayList outlines = new ArrayList();
         HashMap map = new HashMap();
         outlines.add(map);
@@ -53,11 +59,15 @@ public class BookmarkedTimeTable {
             kid.put("Action", "GoTo");
             kid.put("Page", String.format("%d Fit", page++));
         }
+        // Create a reader
         PdfReader reader = new PdfReader(src);
-        PdfStamper stamper = new PdfStamper(reader,
-                new FileOutputStream(dest));
+        // Create a stamper
+        PdfStamper stamper
+            = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.setOutlines(outlines);
+        // Close the stamper
         stamper.close();
+        // Close the database connection
         connection.close();
     }
     
@@ -68,8 +78,10 @@ public class BookmarkedTimeTable {
      * @throws IOException 
      * @throws SQLException 
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
         MovieTemplates.main(args);
-        new BookmarkedTimeTable().manipulatePdf(MovieTemplates.RESULT, RESULT);
+        new BookmarkedTimeTable().manipulatePdf(
+            MovieTemplates.RESULT, RESULT);
     }
 }

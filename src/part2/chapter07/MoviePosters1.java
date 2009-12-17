@@ -26,11 +26,14 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class MoviePosters1 {
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part2/chapter07/movie_posters_1.pdf";
+    public static final String RESULT
+        = "results/part2/chapter07/movie_posters_1.pdf";
     /** Path to the resources. */
-    public static final String RESOURCE = "resources/posters/%s.jpg";
+    public static final String RESOURCE
+        = "resources/posters/%s.jpg";
     /** Path to IMDB. */
-    public static final String IMDB = "http://imdb.com/title/tt%s/";
+    public static final String IMDB
+        = "http://imdb.com/title/tt%s/";
     
     /**
      * Creates a PDF with information about the movies
@@ -41,13 +44,18 @@ public class MoviePosters1 {
      */
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException {
-        DatabaseConnection connection = new HsqldbConnection("filmfestival");    
+        // Create a database connection
+    	DatabaseConnection connection = new HsqldbConnection("filmfestival");
+    	// step 1
         Document document = new Document(PageSize.A4);
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
-        
+        // Create a reusable XObject
         PdfTemplate celluloid = canvas.createTemplate(595, 84.2f);
         celluloid.rectangle(8, 8, 579, 68);
         for (float f = 8.25f; f < 581; f+= 6.5f) {
@@ -57,11 +65,11 @@ public class MoviePosters1 {
         celluloid.setGrayFill(0.1f);
         celluloid.eoFill();
         writer.releaseTemplate(celluloid);
-        
+        // Add the XObject ten times
         for (int i = 0; i < 10; i++) {
             canvas.addTemplate(celluloid, 0, i * 84.2f);
         }
-        
+        // Add the movie posters
         Image img;
         Annotation annotation;
         float x = 11.5f;
@@ -70,7 +78,8 @@ public class MoviePosters1 {
             img = Image.getInstance(String.format(RESOURCE, movie.getImdb()));
             img.scaleToFit(1000, 60);
             img.setAbsolutePosition(x + (45 - img.getScaledWidth()) / 2, y);
-            annotation = new Annotation(0, 0, 0, 0, String.format(IMDB, movie.getImdb()));
+            annotation = new Annotation(0, 0, 0, 0,
+                String.format(IMDB, movie.getImdb()));
             img.setAnnotation(annotation);
             canvas.addImage(img);
             x += 48;
@@ -79,12 +88,21 @@ public class MoviePosters1 {
                 y -= 84.2f;
             }
         }
-        
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
-    
-    public static void main(String[] args) throws IOException, SQLException, DocumentException {
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, SQLException, DocumentException {
         new MoviePosters1().createPdf(RESULT);
     }
 }

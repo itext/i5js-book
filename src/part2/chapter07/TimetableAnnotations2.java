@@ -27,21 +27,31 @@ import part1.chapter03.MovieTemplates;
 
 public class TimetableAnnotations2 extends TimetableAnnotations1 {
 
-    public static final String RESULT = "results/part2/chapter07/timetable_links.pdf";
+    /** The resulting PDF. */
+    public static final String RESULT
+        = "results/part2/chapter07/timetable_links.pdf";
     /** Path to IMDB. */
-    public static final String IMDB = "http://imdb.com/title/tt%s/";
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        MovieTemplates.main(args);
-        new TimetableAnnotations2().manipulatePdf(MovieTemplates.RESULT, RESULT);
-    }
+    public static final String IMDB
+        = "http://imdb.com/title/tt%s/";
 
-    public void manipulatePdf(String src, String dest) throws SQLException, IOException, DocumentException {
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     * @throws SQLException
+     */
+    public void manipulatePdf(String src, String dest)
+        throws SQLException, IOException, DocumentException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         locations = PojoFactory.getLocations(connection);
-        
+        // Create a reader
         PdfReader reader = new PdfReader(src);
+        // Create a stamper
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        // Add annotations for every screening
         int page = 1;
         Rectangle rect;
         PdfAnnotation annotation;
@@ -55,7 +65,22 @@ public class TimetableAnnotations2 extends TimetableAnnotations1 {
             }
             page++;
         }
+        // Close the stamper
         stamper.close();
+        // Close the database connection
         connection.close();
+    }
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        MovieTemplates.main(args);
+        new TimetableAnnotations2().manipulatePdf(
+            MovieTemplates.RESULT, RESULT);
     }
 }

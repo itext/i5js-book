@@ -28,28 +28,30 @@ import com.itextpdf.text.BaseColor;
 public class Calculator {
     /** The resulting PDF. */
     public static final String RESULT = "results/part2/chapter07/calculator.pdf";
-    /** Path to the resources. */
+    /** Path to the resource. */
     public static final String RESOURCE = "resources/js/calculator.js";
     
     /** The font that will be used in the appearances. */
     public BaseFont bf;
     /** Position of the digits */
     Rectangle[] digits = new Rectangle[10];
+    /** Position of the operators. */
     Rectangle plus, minus, mult, div, equals;
+    /** Position of the other annotations */
     Rectangle clearEntry, clear, result, move;
-
-    public static void main(String[] args) throws DocumentException, IOException {
-        Calculator calc = new Calculator();
-        calc.initializeFont();
-        calc.initializeRectangles();
-        calc.createPdf(RESULT);
-        
-    }
     
+    /**
+     * Initializes the font
+     * @throws DocumentException
+     * @throws IOException
+     */
     public void initializeFont() throws DocumentException, IOException {
         bf = BaseFont.createFont();
     }
     
+    /**
+     * Initializes the rectangles for the calculator keys.
+     */
     public void initializeRectangles() {
         digits[0] = createRectangle(3, 1, 1, 1);
         digits[1] = createRectangle(1, 3, 1, 1);
@@ -78,27 +80,43 @@ public class Calculator {
      * @throws    DocumentException 
      * @throws    IOException
      */
-    public void createPdf(String filename) throws IOException, DocumentException {
+    public void createPdf(String filename)
+        throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(new Rectangle(360, 360));
+        // step 2
         PdfWriter writer =
             PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
         writer.addJavaScript(Utilities.readFileToString(RESOURCE));
+        // step 4
+        // add the keys for the digits
         for (int i = 0; i < 10; i++) {
-            addPushButton(writer, digits[i], String.valueOf(i), "this.augment(" + i + ")");
+            addPushButton(writer, digits[i],
+                String.valueOf(i), "this.augment(" + i + ")");
         }
+        // add the keys for the operators
         addPushButton(writer, plus, "+", "this.register('+')");
         addPushButton(writer, minus, "-", "this.register('-')");
         addPushButton(writer, mult, "x", "this.register('*')");
         addPushButton(writer, div, ":", "this.register('/')");
         addPushButton(writer, equals, "=", "this.calculateResult()");
+        // add the other keys
         addPushButton(writer, clearEntry, "CE", "this.reset(false)");
         addPushButton(writer, clear, "C", "this.reset(true)");
         addTextField(writer, result, "result");
         addTextField(writer, move, "move");
+        // step 5
         document.close();
     }
 
+    /**
+     * Add a text field.
+     * @param writer the PdfWriter
+     * @param rect the position of the text field
+     * @param name the name of the text field
+     */
     public void addTextField(PdfWriter writer, Rectangle rect, String name) {
         PdfFormField field = PdfFormField.createTextField(writer, false, false, 0);
         field.setFieldName(name);
@@ -108,7 +126,15 @@ public class Calculator {
         writer.addAnnotation(field);
     }
 
-    public void addPushButton(PdfWriter writer, Rectangle rect, String btn, String script) {
+    /**
+     * Create a pushbutton for a key
+     * @param writer the PdfWriter
+     * @param rect the position of the key
+     * @param btn the label for the key
+     * @param script the script to be executed when the button is pushed
+     */
+    public void addPushButton(PdfWriter writer, Rectangle rect,
+        String btn, String script) {
         float w = rect.getWidth();
         float h = rect.getHeight();
         PdfFormField pushbutton = PdfFormField.createPushButton(writer);
@@ -130,7 +156,17 @@ public class Calculator {
         writer.addAnnotation(pushbutton);
     }
 
-    public PdfAppearance createAppearance(PdfContentByte cb, String btn, BaseColor color, float w, float h) {
+    /**
+     * Creates an appearance for a key
+     * @param cb the canvas
+     * @param btn the label for the key
+     * @param color the color of the key
+     * @param w the width
+     * @param h the height
+     * @return an appearance
+     */
+    public PdfAppearance createAppearance(
+        PdfContentByte cb, String btn, BaseColor color, float w, float h) {
         PdfAppearance app = cb.createAppearance(w, h);
         app.setColorFill(color);
         app.rectangle(2, 2, w - 4, h - 4);
@@ -143,11 +179,33 @@ public class Calculator {
         return app;
     }
 
+    /**
+     * Create a rectangle object for a key.
+     * @param column column of the key on the key pad
+     * @param row row of the key on the key pad
+     * @param width width of the key
+     * @param height height of the key
+     * @return a rectangle defining the position of a key.
+     */
     public Rectangle createRectangle(int column, int row, int width,
             int height) {
         column = column * 36 - 18;
         row = row * 36 - 18;
-        return new Rectangle(column, row, column + width * 36, row + height
-                * 36);
+        return new Rectangle(column, row,
+            column + width * 36, row + height * 36);
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws DocumentException, IOException {
+        Calculator calc = new Calculator();
+        calc.initializeFont();
+        calc.initializeRectangles();
+        calc.createPdf(RESULT);
     }
 }

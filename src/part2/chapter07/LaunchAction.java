@@ -19,18 +19,30 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class LaunchAction {
     /** The resulting PDF file. */
-    public static final String RESULT = "results/part2/chapter07/launch_action.pdf";
+    public static final String RESULT
+        = "results/part2/chapter07/launch_action.pdf";
 
-    public static void main(String[] args) throws IOException, DocumentException {
-
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
+        // step 4
         Paragraph p = new Paragraph(new Chunk(
             "Click to open test.txt in Notepad.")
             .setAction(new PdfAction("c:/windows/notepad.exe",
             "test.txt", "open", "C:\\itext-core\\book\\resources\\txt")));
         document.add(p);
+        // step 5
         document.close();
     }
 }

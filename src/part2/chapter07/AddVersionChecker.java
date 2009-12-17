@@ -19,10 +19,12 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
 public class AddVersionChecker {
-
-    public static final String RESULT = "results/part2/chapter07/version_checker.pdf";
-    /** Path to the resources. */
-    public static final String RESOURCE = "resources/js/viewer_version.js";
+	/** The resulting PDF file. */
+    public static final String RESULT
+        = "results/part2/chapter07/version_checker.pdf";
+    /** Path to a resource. */
+    public static final String RESOURCE
+        = "resources/js/viewer_version.js";
 
     /**
      * Main method.
@@ -32,11 +34,18 @@ public class AddVersionChecker {
      * @throws IOException 
      * @throws SQLException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+    	// Use a previous example to create a PDF
         HelloWorld.main(args);
+        // Create a reader
         PdfReader reader = new PdfReader(HelloWorld.RESULT);
-        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
+        // Create a stamper
+        PdfStamper stamper
+            = new PdfStamper(reader, new FileOutputStream(RESULT));
+        // Add some javascript
         stamper.addJavaScript(Utilities.readFileToString(RESOURCE));
+        // Close the stamper
         stamper.close();
     }
 }

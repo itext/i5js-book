@@ -25,13 +25,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class MovieAnnotations1 {
 
     /** The resulting PDF. */
-    public static final String RESULT = "results/part2/chapter07/movie_annotations_1.pdf";
-    public static final String INFO = "Movie produced in %s; run length: %s";
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        MovieAnnotations1 example = new MovieAnnotations1();
-        example.createPdf(RESULT);
-    }
+    public static final String RESULT
+        = "results/part2/chapter07/movie_annotations_1.pdf";
+    /** Pattern for an info String. */
+    public static final String INFO
+        = "Movie produced in %s; run length: %s";
 
     /**
      * Creates a PDF document.
@@ -40,19 +38,39 @@ public class MovieAnnotations1 {
      * @throws    IOException
      * @throws    SQLExcception
      */
-    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+    public void createPdf(String filename)
+        throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document();
-        PdfWriter.getInstance(document,
-                new FileOutputStream(filename));
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         for (Movie movie : PojoFactory.getMovies(connection)) {
             document.add(new Phrase(movie.getMovieTitle()));
-            document.add(new Annotation(movie.getTitle(), String.format(INFO, movie.getYear(), movie.getDuration())));
+            document.add(new Annotation(movie.getTitle(),
+                String.format(INFO, movie.getYear(), movie.getDuration())));
             document.add(PojoToElementFactory.getDirectorList(movie));
             document.add(PojoToElementFactory.getCountryList(movie));
         }
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException, SQLException {
+        MovieAnnotations1 example = new MovieAnnotations1();
+        example.createPdf(RESULT);
     }
 }

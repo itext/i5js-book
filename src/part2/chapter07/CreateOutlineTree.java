@@ -33,16 +33,17 @@ import com.itextpdf.text.pdf.SimpleBookmark;
 public class CreateOutlineTree {
 
     /** The resulting PDF. */
-    public static final String RESULT = "results/part2/chapter07/outline_tree.pdf";
-    public static final String RESULTXML = "results/part2/chapter07/outline_tree.xml";
-    public static final String RESOURCE = "http://imdb.com/title/tt%s/";
-    public static final String INFO = "app.alert('Movie produced in %s; run length: %s');";
-    
-    public static void main(String[] args) throws IOException, DocumentException, SQLException {
-        CreateOutlineTree example = new CreateOutlineTree();
-        example.createPdf(RESULT);
-        example.createXml(RESULT, RESULTXML);
-    }
+    public static final String RESULT
+        = "results/part2/chapter07/outline_tree.pdf";
+    /** An XML representing the outline tree */
+    public static final String RESULTXML
+        = "results/part2/chapter07/outline_tree.xml";
+    /** Pattern of the IMDB urls */
+    public static final String RESOURCE
+        = "http://imdb.com/title/tt%s/";
+    /** JavaScript snippet. */
+    public static final String INFO
+        = "app.alert('Movie produced in %s; run length: %s');";
 
     /**
      * Creates a PDF document.
@@ -51,13 +52,19 @@ public class CreateOutlineTree {
      * @throws    IOException
      * @throws    SQLException
      */
-    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+    public void createPdf(String filename)
+        throws IOException, DocumentException, SQLException {
+    	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document,
                 new FileOutputStream(filename));
         writer.setViewerPreferences(PdfWriter.PageModeUseOutlines);
+        // step 3
         document.open();
+        // step 4
         PdfOutline root = writer.getRootOutline();
         PdfOutline movieBookmark;
         PdfOutline link;
@@ -68,31 +75,52 @@ public class CreateOutlineTree {
             if ("3-Iron".equals(title))
                 title = "\ube48\uc9d1";
             movieBookmark = new PdfOutline(root, 
-                    new PdfDestination(PdfDestination.FITH, writer.getVerticalPosition(true)),
-                    title,
-                    true
-                    );
+                new PdfDestination(
+                    PdfDestination.FITH, writer.getVerticalPosition(true)),
+                title, true);
             movieBookmark.setStyle(Font.BOLD);
             link = new PdfOutline(movieBookmark,
-                    new PdfAction(String.format(RESOURCE, movie.getImdb())),
-                    "link to IMDB");
+                new PdfAction(String.format(RESOURCE, movie.getImdb())),
+                "link to IMDB");
             link.setColor(BaseColor.BLUE);
             new PdfOutline(movieBookmark,
-                    PdfAction.javaScript(String.format(INFO, movie.getYear(), movie.getDuration()), writer),
+                PdfAction.javaScript(
+                    String.format(INFO, movie.getYear(), movie.getDuration()), writer),
                     "instant info");
             document.add(new Paragraph(movie.getMovieTitle()));
             document.add(PojoToElementFactory.getDirectorList(movie));
             document.add(PojoToElementFactory.getCountryList(movie));
         }
+        // step 5
         document.close();
+        // Close the database connection
         connection.close();
     }
     
+    /**
+     * Creates an XML file with the bookmarks of a PDF file.
+     * @param src the path to the PDF file with the bookmarks
+     * @param dest the path to the XML file
+     * @throws IOException
+     */
     @SuppressWarnings("unchecked")
     public void createXml(String src, String dest) throws IOException {
         PdfReader reader = new PdfReader(src);
         List<Map> list = SimpleBookmark.getBookmark(reader);
         SimpleBookmark.exportToXML(list,
                 new FileOutputStream(dest), "ISO8859-1", true);
+    }
+    
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+        CreateOutlineTree example = new CreateOutlineTree();
+        example.createPdf(RESULT);
+        example.createXml(RESULT, RESULTXML);
     }
 }

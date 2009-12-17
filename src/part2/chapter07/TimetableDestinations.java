@@ -29,36 +29,50 @@ import part1.chapter03.MovieTemplates;
 
 public class TimetableDestinations {
     /** The resulting PDF. */
-    public static final String RESULT = "results/part2/chapter07/timetable_destinations.pdf";
-
+    public static final String RESULT
+        = "results/part2/chapter07/timetable_destinations.pdf";
+    /** The font that is used for the navigation links. */
     public static final Font SYMBOL = new Font(Font.SYMBOL, 20);
-    
+    /** A list to cache all the possible actions */
     public List<PdfAction> actions;
-    
-    public static void main(String[] args) throws IOException, DocumentException {
-        MovieTemplates.main(args);
-        new TimetableDestinations().manipulatePdf(MovieTemplates.RESULT, RESULT);
-    }
-    
-    public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
+
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public void manipulatePdf(String src, String dest)
+        throws IOException, DocumentException {
+    	// Create the reader
         PdfReader reader = new PdfReader(src);
         int n = reader.getNumberOfPages();
+        // Create the stamper
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        // Make a list with all the possible actions
         actions = new ArrayList<PdfAction>();
         PdfDestination d;
         for (int i = 0; i < n; ) {
             d = new PdfDestination(PdfDestination.FIT);
             actions.add(PdfAction.gotoLocalPage(++i, d, stamper.getWriter()));
         }
+        // Add a navigation table to every page
         PdfContentByte canvas;
         for (int i = 0; i < n; ) {
             canvas = stamper.getOverContent(++i);
-            createNavigationTable(i, n)
-                .writeSelectedRows(0, -1, 696, 36, canvas);
+            createNavigationTable(i, n).writeSelectedRows(0, -1, 696, 36, canvas);
         }
+        // Close the stamper
         stamper.close();
     }
     
+    /**
+     * Create a table that can be used as a footer
+     * @param pagenumber the page that will use the table as footer
+     * @param total the total number of pages
+     * @return a tabel
+     */
     public PdfPTable createNavigationTable(int pagenumber, int total) {
         PdfPTable table = new PdfPTable(4);
         table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
@@ -77,5 +91,18 @@ public class TimetableDestinations {
         table.addCell(new Phrase(last));
         table.setTotalWidth(120);
         return table;
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */   
+    public static void main(String[] args) 
+        throws IOException, DocumentException {
+        MovieTemplates.main(args);
+        new TimetableDestinations().manipulatePdf(
+            MovieTemplates.RESULT, RESULT);
     }
 }
