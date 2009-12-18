@@ -90,6 +90,8 @@ public class FDFServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition",
+		    "inline; filename=\"your.pdf\"");
         try {
         	FdfReader fdf = new FdfReader(request.getInputStream());
             // We get a resource from our web app
