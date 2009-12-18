@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.GrayColor;
 import com.itextpdf.text.pdf.PdfAction;
 import com.itextpdf.text.pdf.PdfFormField;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PushbuttonField;
+import com.itextpdf.text.pdf.XfdfReader;
 
 public class XFDFServlet extends HttpServlet {
 
@@ -62,15 +64,30 @@ public class XFDFServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        response.setContentType("application/vnd.adobe.xfdf");
-        response.setHeader("Content-Disposition",
-		    "attachment; filename=\"subscribe.xfdf\"");
-        OutputStream os = response.getOutputStream();
-        InputStream is = request.getInputStream();
-        byte[] b = new byte[256];  
-        int read;  
-        while ((read = is.read(b)) != -1) {  
-            os.write(b, 0, read);  
+        response.setContentType("application/pdf");
+        try {
+        	// Create a reader that interprets the request's input stream
+        	XfdfReader xfdf = new XfdfReader(request.getInputStream());
+            // We get a resource from our web app
+            InputStream is
+                = getServletContext().getResourceAsStream("/subscribe.pdf");
+            // We create a reader with the InputStream
+            PdfReader reader = new PdfReader(is, null);
+            // We create an OutputStream for the new PDF
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            // Now we create the PDF
+            PdfStamper stamper = new PdfStamper(reader, baos);
+            // We alter the fields of the existing PDF
+            AcroFields fields = stamper.getAcroFields();
+            fields.setFields(xfdf);
+        	// close the stamper
+            stamper.close();
+            // We write the PDF bytes to the OutputStream
+            OutputStream os = response.getOutputStream();
+            baos.writeTo(os);
+            os.flush();
+        } catch (DocumentException e) {
+            throw new IOException(e.getMessage());
         }
     }
 

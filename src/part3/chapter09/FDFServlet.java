@@ -93,6 +93,7 @@ public class FDFServlet extends HttpServlet {
         response.setHeader("Content-Disposition",
 		    "inline; filename=\"your.pdf\"");
         try {
+        	// Create a reader that interprets the request's input stream
         	FdfReader fdf = new FdfReader(request.getInputStream());
             // We get a resource from our web app
             InputStream is
