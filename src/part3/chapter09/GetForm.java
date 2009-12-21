@@ -41,9 +41,9 @@ public class GetForm extends HttpServlet {
             AcroFields fields = stamper.getAcroFields();
             fields.removeField("personal.password");
             Set<String> parameters = fields.getFields().keySet();
-            for (String parameter : parameters) {
-                fields.setField(parameter, request.getParameter(parameter));
-            }
+            fields.setField("personal.name", request.getParameter("name"));
+            fields.setField("personal.loginname", request.getParameter("name"));
+            fields.setField("personal.reason", request.getParameter("reason"));
             stamper.setFormFlattening(true);
             stamper.close();
             // We write the PDF bytes to the OutputStream

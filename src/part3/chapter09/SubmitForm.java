@@ -107,8 +107,8 @@ public class SubmitForm {
             new FileOutputStream(dest));
         // create a submit button that posts the form as an HTML query string
         PushbuttonField button = new PushbuttonField(
-            stamper.getWriter(), new Rectangle(90, 660, 140, 690), "submit");
-        button.setText("POST");
+            stamper.getWriter(), new Rectangle(90, 660, 140, 690), "get");
+        button.setText("Get");
         button.setBackgroundColor(new GrayColor(0.7f));
         button.setVisibility(PushbuttonField.VISIBLE_BUT_DOES_NOT_PRINT);
         PdfFormField submit = button.getField();
