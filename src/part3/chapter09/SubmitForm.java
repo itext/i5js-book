@@ -49,7 +49,8 @@ public class SubmitForm {
         button1.setVisibility(PushbuttonField.VISIBLE_BUT_DOES_NOT_PRINT);
         PdfFormField submit1 = button1.getField();
         submit1.setAction(PdfAction.createSubmitForm(
-            "/book/request", null, PdfAction.SUBMIT_HTML_FORMAT));
+            "/book/request", null,
+            PdfAction.SUBMIT_HTML_FORMAT | PdfAction.SUBMIT_COORDINATES));
         // add the button
         stamper.addAnnotation(submit1, 1);
         // create a submit button that posts the form as FDF
@@ -60,7 +61,7 @@ public class SubmitForm {
         button2.setVisibility(PushbuttonField.VISIBLE_BUT_DOES_NOT_PRINT);
         PdfFormField submit2 = button2.getField();
         submit2.setAction(PdfAction.createSubmitForm(
-            "/book/request", null, 0));
+            "/book/request", null, PdfAction.SUBMIT_EXCL_F_KEY));
         // add the button
         stamper.addAnnotation(submit2, 1);
         // create a submit button that posts the form as XFDF
