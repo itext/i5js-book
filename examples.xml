@@ -1227,6 +1227,7 @@
             <include name="part3/chapter09/GetForm.java" />
             <classpath>
                 <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/servlet.jar" />
             </classpath>
         </javac>
         <tar compression="gzip" tarfile="webapps.tar.gz">
