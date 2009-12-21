@@ -26,9 +26,6 @@ public class SubmitForm {
     /** The resulting PDF file. */
     public static String RESULT
         = "results/part3/chapter09/submit_me.pdf";
-    /** The resulting PDF file. */
-    public static String RESULT2
-        = "results/part3/chapter09/submit_get.pdf";
     
     /**
      * Manipulates a PDF file src with the file dest as result
@@ -92,36 +89,6 @@ public class SubmitForm {
     }
     
     /**
-     * Manipulates a PDF file src with the file dest as result
-     * @param src the original PDF
-     * @param dest the resulting PDF
-     * @throws IOException
-     * @throws DocumentException
-     */
-    public void manipulatePdf2(String src, String dest)
-        throws IOException, DocumentException {
-    	// create a reader
-        PdfReader reader = new PdfReader(src);
-        // create a stamper
-        PdfStamper stamper = new PdfStamper(reader,
-            new FileOutputStream(dest));
-        // create a submit button that posts the form as an HTML query string
-        PushbuttonField button = new PushbuttonField(
-            stamper.getWriter(), new Rectangle(90, 660, 140, 690), "get");
-        button.setText("Get");
-        button.setBackgroundColor(new GrayColor(0.7f));
-        button.setVisibility(PushbuttonField.VISIBLE_BUT_DOES_NOT_PRINT);
-        PdfFormField submit = button.getField();
-        submit.setAction(PdfAction.createSubmitForm(
-            "http://itextpdf.com:8080/book/get", null,
-            PdfAction.SUBMIT_HTML_FORMAT | PdfAction.SUBMIT_HTML_GET));
-        // add the button
-        stamper.addAnnotation(submit, 1);
-        // close the stamper
-        stamper.close();
-    }
-    
-    /**
      * Main method.
      *
      * @param    args    no arguments needed
@@ -131,8 +98,6 @@ public class SubmitForm {
     public static void main(String[] args)
         throws IOException, DocumentException {
         new Subscribe().createPdf(Subscribe.FORM);
-        SubmitForm form = new SubmitForm();
-        form.manipulatePdf(Subscribe.FORM, RESULT);
-        form.manipulatePdf2(Subscribe.FORM, RESULT2);
+        new SubmitForm().manipulatePdf(Subscribe.FORM, RESULT);
     }
 }
