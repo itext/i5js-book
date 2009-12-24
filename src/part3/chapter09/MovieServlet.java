@@ -35,7 +35,7 @@ public class MovieServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         try {
-        	// step 1
+            // step 1
             Document document = new Document();
             // step 2
             PdfWriter.getInstance(document, response.getOutputStream());

@@ -17,7 +17,7 @@ public class CreateFDF extends HttpServlet {
         throws ServletException, IOException {
         response.setContentType("application/vnd.adobe.fdf");
         response.setHeader("Content-Disposition",
-		    "attachment; filename=\"subscribe.fdf\"");
+            "attachment; filename=\"subscribe.fdf\"");
         FdfWriter fdf = new FdfWriter();
         fdf.setFieldAsString("personal.name", request.getParameter("name"));
         fdf.setFieldAsString("personal.loginname", request.getParameter("loginname"));

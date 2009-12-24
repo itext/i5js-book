@@ -66,8 +66,8 @@ public class XFDFServlet extends HttpServlet {
         throws ServletException, IOException {
         response.setContentType("application/pdf");
         try {
-        	// Create a reader that interprets the request's input stream
-        	XfdfReader xfdf = new XfdfReader(request.getInputStream());
+            // Create a reader that interprets the request's input stream
+            XfdfReader xfdf = new XfdfReader(request.getInputStream());
             // We get a resource from our web app
             InputStream is
                 = getServletContext().getResourceAsStream("/subscribe.pdf");
@@ -80,7 +80,7 @@ public class XFDFServlet extends HttpServlet {
             // We alter the fields of the existing PDF
             AcroFields fields = stamper.getAcroFields();
             fields.setFields(xfdf);
-        	// close the stamper
+            // close the stamper
             stamper.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();

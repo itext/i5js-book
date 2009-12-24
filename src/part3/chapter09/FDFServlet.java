@@ -69,7 +69,7 @@ public class FDFServlet extends HttpServlet {
             PdfFormField upload = file.getTextField();
             upload.setAdditionalActions(PdfName.U,
                 PdfAction.javaScript(
-        	        "this.getField('image').browseForFileToSubmit();"
+                    "this.getField('image').browseForFileToSubmit();"
                     + "this.getField('submit').setFocus();",
                     stamper.getWriter()));
             stamper.addAnnotation(upload, 1);
@@ -91,10 +91,10 @@ public class FDFServlet extends HttpServlet {
         throws ServletException, IOException {
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition",
-		    "inline; filename=\"your.pdf\"");
+            "inline; filename=\"your.pdf\"");
         try {
-        	// Create a reader that interprets the request's input stream
-        	FdfReader fdf = new FdfReader(request.getInputStream());
+            // Create a reader that interprets the request's input stream
+            FdfReader fdf = new FdfReader(request.getInputStream());
             // We get a resource from our web app
             InputStream is
                 = getServletContext().getResourceAsStream("/subscribe.pdf");
@@ -109,17 +109,17 @@ public class FDFServlet extends HttpServlet {
             fields.setFields(fdf);
             stamper.setFormFlattening(true);
             // Gets the image from the FDF file
-        	try {
-        		Image img = Image.getInstance(fdf.getAttachedFile("image"));
-        		img.scaleToFit(100, 100);
-        		img.setAbsolutePosition(90, 590);
-            	stamper.getOverContent(1).addImage(img);
+            try {
+                Image img = Image.getInstance(fdf.getAttachedFile("image"));
+                img.scaleToFit(100, 100);
+                img.setAbsolutePosition(90, 590);
+                stamper.getOverContent(1).addImage(img);
         	}
-        	catch(IOException ioe) {
+            catch(IOException ioe) {
                 ColumnText.showTextAligned(stamper.getOverContent(1),
                         Element.ALIGN_LEFT, new Phrase("No image posted!"), 90, 660, 0);
-        	}
-        	// close the stamper
+            }
+            // close the stamper
             stamper.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
