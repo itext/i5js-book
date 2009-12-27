@@ -1141,6 +1141,7 @@
         <java fork="yes" classname="part3.chapter09.JSForm">
             <classpath>
                 <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
         <echo message="HtmlMovies1" />
