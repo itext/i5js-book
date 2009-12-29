@@ -114,7 +114,7 @@ public class FDFServlet extends HttpServlet {
                 img.scaleToFit(100, 100);
                 img.setAbsolutePosition(90, 590);
                 stamper.getOverContent(1).addImage(img);
-        	}
+            }
             catch(IOException ioe) {
                 ColumnText.showTextAligned(stamper.getOverContent(1),
                         Element.ALIGN_LEFT, new Phrase("No image posted!"), 90, 660, 0);
@@ -130,9 +130,9 @@ public class FDFServlet extends HttpServlet {
         }
     }
 
-	/**
-	 * Serial Version UID.
-	 */
-	private static final long serialVersionUID = 2157128985625139848L;
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = 2157128985625139848L;
 
 }

@@ -31,36 +31,36 @@ public class ShadingPatternColor extends DeviceColor {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter writer
-		  = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		PdfContentByte canvas = writer.getDirectContent();
-		PdfShading axial = PdfShading.simpleAxial(writer, 36, 716, 396,
-				788, BaseColor.ORANGE, BaseColor.BLUE);
-		canvas.paintShading(axial);
-		document.newPage();
-		PdfShading radial = PdfShading.simpleRadial(writer,
-			200, 700, 50, 300, 700, 100,
-			new BaseColor(255, 247, 148),
-			new BaseColor(247, 138, 107),
-			false, false);
-		canvas.paintShading(radial);
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter writer
+          = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        PdfContentByte canvas = writer.getDirectContent();
+        PdfShading axial = PdfShading.simpleAxial(writer, 36, 716, 396,
+                788, BaseColor.ORANGE, BaseColor.BLUE);
+        canvas.paintShading(axial);
+        document.newPage();
+        PdfShading radial = PdfShading.simpleRadial(writer,
+            200, 700, 50, 300, 700, 100,
+            new BaseColor(255, 247, 148),
+            new BaseColor(247, 138, 107),
+            false, false);
+        canvas.paintShading(radial);
 
-		PdfShadingPattern shading = new PdfShadingPattern(axial);
-		colorRectangle(canvas, new ShadingColor(shading), 150, 420, 126, 126);
-		canvas.setShadingFill(shading);
-		canvas.rectangle(300, 420, 126, 126);
-		canvas.fillStroke();
-		// step 5
-		document.close();
-	}
-	
+        PdfShadingPattern shading = new PdfShadingPattern(axial);
+        colorRectangle(canvas, new ShadingColor(shading), 150, 420, 126, 126);
+        canvas.setShadingFill(shading);
+        canvas.rectangle(300, 420, 126, 126);
+        canvas.fillStroke();
+        // step 5
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -70,7 +70,7 @@ public class ShadingPatternColor extends DeviceColor {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new ShadingPatternColor().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new ShadingPatternColor().createPdf(RESULT);
+    }
 }

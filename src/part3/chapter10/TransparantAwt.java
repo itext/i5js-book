@@ -36,34 +36,34 @@ public class TransparantAwt {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Rectangle r = new Rectangle(PageSize.A4);
-		r.setBackgroundColor(new GrayColor(0.8f));
-		Document document = new Document(r);
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		java.awt.Image awtImage = Toolkit.getDefaultToolkit().createImage(RESOURCE);
-		document.add(new Paragraph("Hitchcock in Red."));
-		Image img1 = Image.getInstance(awtImage, null);
-		document.add(img1);
-		document.add(new Paragraph("Hitchcock in Black and White."));
-		Image img2 = Image.getInstance(awtImage, null, true);
-		document.add(img2);
-		document.newPage();
-		document.add(new Paragraph("Hitchcock in Red and Yellow."));
-		Image img3 = Image.getInstance(awtImage, new Color(0xFF, 0xFF, 0x00));
-		document.add(img3);
-		document.add(new Paragraph("Hitchcock in Black and White."));
-		Image img4 = Image.getInstance(awtImage, new Color(0xFF, 0xFF, 0x00), true);
-		document.add(img4);
-		// step 5
-		document.close();
-	}
-	
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Rectangle r = new Rectangle(PageSize.A4);
+        r.setBackgroundColor(new GrayColor(0.8f));
+        Document document = new Document(r);
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        java.awt.Image awtImage = Toolkit.getDefaultToolkit().createImage(RESOURCE);
+        document.add(new Paragraph("Hitchcock in Red."));
+        Image img1 = Image.getInstance(awtImage, null);
+        document.add(img1);
+        document.add(new Paragraph("Hitchcock in Black and White."));
+        Image img2 = Image.getInstance(awtImage, null, true);
+        document.add(img2);
+        document.newPage();
+        document.add(new Paragraph("Hitchcock in Red and Yellow."));
+        Image img3 = Image.getInstance(awtImage, new Color(0xFF, 0xFF, 0x00));
+        document.add(img3);
+        document.add(new Paragraph("Hitchcock in Black and White."));
+        Image img4 = Image.getInstance(awtImage, new Color(0xFF, 0xFF, 0x00), true);
+        document.add(img4);
+        // step 5
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -73,7 +73,7 @@ public class TransparantAwt {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new TransparantAwt().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new TransparantAwt().createPdf(RESULT);
+    }
 }

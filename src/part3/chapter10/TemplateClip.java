@@ -31,27 +31,27 @@ public class TemplateClip {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter writer
-		  = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		Image img = Image.getInstance(RESOURCE);
-		float w = img.getScaledWidth();
-		float h = img.getScaledHeight();
-		PdfTemplate t = writer.getDirectContent().createTemplate(850, 600);
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter writer
+          = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        Image img = Image.getInstance(RESOURCE);
+        float w = img.getScaledWidth();
+        float h = img.getScaledHeight();
+        PdfTemplate t = writer.getDirectContent().createTemplate(850, 600);
         t.addImage(img, w, 0, 0, h, 0, -600);
         Image clipped = Image.getInstance(t);
         clipped.scalePercent(50);
         document.add(clipped);
-		// step 5
-		document.close();
-	}
-	
+        // step 5
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -61,7 +61,7 @@ public class TemplateClip {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new TemplateClip().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new TemplateClip().createPdf(RESULT);
+    }
 }

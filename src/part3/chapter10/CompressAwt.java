@@ -38,22 +38,22 @@ public class CompressAwt {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename, float quality) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document(new Rectangle(200, 280));
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		java.awt.Image awtImage = Toolkit.getDefaultToolkit().createImage(RESOURCE);
-		Image img = Image.getInstance(writer, awtImage, quality);
-		img.setAbsolutePosition(15, 15);
-		document.add(img);
-		// step 5
-		document.close();
-	}
-	
+    public void createPdf(String filename, float quality) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document(new Rectangle(200, 280));
+        // step 2
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        java.awt.Image awtImage = Toolkit.getDefaultToolkit().createImage(RESOURCE);
+        Image img = Image.getInstance(writer, awtImage, quality);
+        img.setAbsolutePosition(15, 15);
+        document.add(img);
+        // step 5
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -63,9 +63,9 @@ public class CompressAwt {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new CompressAwt().createPdf(RESULT1, 1);
-		new CompressAwt().createPdf(RESULT2, 0.2f);
-		new CompressAwt().createPdf(RESULT3, 0.1f);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new CompressAwt().createPdf(RESULT1, 1);
+        new CompressAwt().createPdf(RESULT2, 0.2f);
+        new CompressAwt().createPdf(RESULT3, 0.1f);
+    }
 }

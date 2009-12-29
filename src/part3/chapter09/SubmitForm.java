@@ -36,7 +36,7 @@ public class SubmitForm {
      */
     public void manipulatePdf(String src, String dest)
         throws IOException, DocumentException {
-    	// create a reader
+        // create a reader
         PdfReader reader = new PdfReader(src);
         // create a stamper
         PdfStamper stamper = new PdfStamper(reader,

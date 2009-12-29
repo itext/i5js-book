@@ -31,10 +31,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class HtmlMovies2 extends HtmlMovies1 {
 
-	/**
-	 * Inner class implementing the ImageProvider class.
-	 * This is needed if you want to resolve the paths to images.
-	 */
+    /**
+     * Inner class implementing the ImageProvider class.
+     * This is needed if you want to resolve the paths to images.
+     */
     public static class MyImageFactory implements ImageProvider {
         @SuppressWarnings("unchecked")
         public Image getImage(String src, HashMap h,
@@ -52,10 +52,10 @@ public class HtmlMovies2 extends HtmlMovies1 {
         }    
     }
 
-	/**
-	 * Inner class implementing the FontProvider class.
-	 * This is needed if you want to select the correct fonts.
-	 */
+    /**
+     * Inner class implementing the FontProvider class.
+     * This is needed if you want to select the correct fonts.
+     */
     public static class MyFontFactory implements FontProvider {
         public Font getFont(String fontname,
                 String encoding, boolean embedded, float size,
@@ -118,7 +118,7 @@ public class HtmlMovies2 extends HtmlMovies1 {
     @SuppressWarnings("unchecked")
     public void createPdf(String filename)
         throws IOException, DocumentException {
-    	// step 1
+        // step 1
         Document document = new Document();
         // step 2
         PdfWriter.getInstance(document, new FileOutputStream(RESULT2));

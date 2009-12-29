@@ -33,21 +33,21 @@ public class CompressImage {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename, boolean compress) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		Image img = Image.getInstance(RESOURCE);
-		if (compress)
-			img.setCompressionLevel(9);
-		document.add(img);
-		// step 5
-		document.close();
-	}
+    public void createPdf(String filename, boolean compress) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        Image img = Image.getInstance(RESOURCE);
+        if (compress)
+            img.setCompressionLevel(9);
+        document.add(img);
+        // step 5
+        document.close();
+    }
 
     /**
      * Main method.
@@ -58,8 +58,8 @@ public class CompressImage {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new CompressImage().createPdf(RESULT1, false);
-		new CompressImage().createPdf(RESULT2, true);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new CompressImage().createPdf(RESULT1, false);
+        new CompressImage().createPdf(RESULT2, true);
+    }
 }

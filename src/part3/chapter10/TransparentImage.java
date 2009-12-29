@@ -37,30 +37,30 @@ public class TransparentImage {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		Image img1 = Image.getInstance(RESOURCE1);
-		// step 1
-		Document document = new Document(img1);
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		img1.setAbsolutePosition(0, 0);
-		document.add(img1);
-		Image img2 = Image.getInstance(RESOURCE2);
-		img2.setTransparency(new int[]{ 0x00, 0x10 });
-		img2.setAbsolutePosition(0, 0);
-		document.add(img2);
-		Image img3 = Image.getInstance(RESOURCE3);
-		img3.setTransparency(new int[]{ 0xF0, 0xFF });
-		img3.setAbsolutePosition(50, 50);
-		document.add(img3);
+    public void createPdf(String filename) throws IOException, DocumentException {
+        Image img1 = Image.getInstance(RESOURCE1);
+        // step 1
+        Document document = new Document(img1);
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        img1.setAbsolutePosition(0, 0);
+        document.add(img1);
+        Image img2 = Image.getInstance(RESOURCE2);
+        img2.setTransparency(new int[]{ 0x00, 0x10 });
+        img2.setAbsolutePosition(0, 0);
+        document.add(img2);
+        Image img3 = Image.getInstance(RESOURCE3);
+        img3.setTransparency(new int[]{ 0xF0, 0xFF });
+        img3.setAbsolutePosition(50, 50);
+        document.add(img3);
 
-		// step 5
-		document.close();
-	}
-	
+        // step 5
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -70,7 +70,7 @@ public class TransparentImage {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new TransparentImage().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new TransparentImage().createPdf(RESULT);
+    }
 }

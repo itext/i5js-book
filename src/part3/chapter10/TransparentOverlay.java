@@ -37,27 +37,27 @@ public class TransparentOverlay {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document(new Rectangle(850, 600));
-		// step 2
-		PdfWriter writer
-		  = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		PdfContentByte canvas = writer.getDirectContent();
-		
-		Image img = Image.getInstance(RESOURCE);
-		float w = img.getScaledWidth();
-		float h = img.getScaledHeight();
-		canvas.ellipse(1, 1, 848, 598);
-		canvas.clip();
-		canvas.newPath();
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document(new Rectangle(850, 600));
+        // step 2
+        PdfWriter writer
+          = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        PdfContentByte canvas = writer.getDirectContent();
+        
+        Image img = Image.getInstance(RESOURCE);
+        float w = img.getScaledWidth();
+        float h = img.getScaledHeight();
+        canvas.ellipse(1, 1, 848, 598);
+        canvas.clip();
+        canvas.newPath();
         canvas.addImage(img, w, 0, 0, h, 0, -600);
 
-		PdfTemplate t2 = writer.getDirectContent().createTemplate(850, 600);
-		PdfTransparencyGroup transGroup = new PdfTransparencyGroup();
+        PdfTemplate t2 = writer.getDirectContent().createTemplate(850, 600);
+        PdfTransparencyGroup transGroup = new PdfTransparencyGroup();
         transGroup.put( PdfName.CS, PdfName.DEVICEGRAY);
         transGroup.setIsolated(true);
         transGroup.setKnockout(false);
@@ -85,10 +85,10 @@ public class TransparentOverlay {
         
         canvas.addTemplate(t2, 0, 0);
 
-		// step 5
-		document.close();
-	}
-	
+        // step 5
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -98,7 +98,7 @@ public class TransparentOverlay {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new TransparentOverlay().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new TransparentOverlay().createPdf(RESULT);
+    }
 }

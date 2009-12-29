@@ -32,24 +32,24 @@ public class MovieAnnotation {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter writer
-		  = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		PdfFileSpecification fs = PdfFileSpecification.fileEmbedded(writer,
-				RESOURCE, "foxdog.mpg", null);
-		writer.addAnnotation(PdfAnnotation.createScreen(writer,
-				new Rectangle(200f, 700f, 400f, 800f), "Fox and Dog", fs,
-				"video/mpeg", true));
-		// step 5
-		document.close();
-	}
-	
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter writer
+          = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        PdfFileSpecification fs = PdfFileSpecification.fileEmbedded(writer,
+                RESOURCE, "foxdog.mpg", null);
+        writer.addAnnotation(PdfAnnotation.createScreen(writer,
+                new Rectangle(200f, 700f, 400f, 800f), "Fox and Dog", fs,
+                "video/mpeg", true));
+        // step 5
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -59,7 +59,7 @@ public class MovieAnnotation {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new MovieAnnotation().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new MovieAnnotation().createPdf(RESULT);
+    }
 }

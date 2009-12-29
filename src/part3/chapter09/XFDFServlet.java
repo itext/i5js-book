@@ -34,7 +34,7 @@ public class XFDFServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("application/pdf");
         try {
             // We get a resource from our web app
@@ -64,7 +64,7 @@ public class XFDFServlet extends HttpServlet {
         } catch (DocumentException e) {
             throw new IOException(e.getMessage());
         }
-	}
+    }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

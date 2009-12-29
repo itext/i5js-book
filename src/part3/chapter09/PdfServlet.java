@@ -23,13 +23,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PdfServlet extends HttpServlet {
 
-	/**
+    /**
      * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         try {
-        	// Get the text that will be added to the PDF
+            // Get the text that will be added to the PDF
             String text = request.getParameter("text");
             if (text == null || text.trim().length() == 0) {
                  text = "You didn't enter any text.";
@@ -60,9 +60,9 @@ public class PdfServlet extends HttpServlet {
             response.setContentLength(baos.size());
             // write ByteArrayOutputStream to the ServletOutputStream
             OutputStream os = response.getOutputStream();
-			baos.writeTo(os);
-			os.flush();
-			os.close();
+            baos.writeTo(os);
+            os.flush();
+            os.close();
         }
         catch(DocumentException e) {
             throw new IOException(e.getMessage());
