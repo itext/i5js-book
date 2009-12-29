@@ -2,7 +2,7 @@
     <target name="compile">
         <ant antfile="build.xml" target="compile" />
     </target>
-    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09" />
+    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10" />
     <target name="clean">
         <delete dir="results/part1/chapter01" includes="*.*" />
         <delete dir="results/part1/chapter02" includes="*.*" />
@@ -13,6 +13,7 @@
         <delete dir="results/part2/chapter07" includes="*.*" />
         <delete dir="results/part2/chapter08" includes="*.*" />
         <delete dir="results/part3/chapter09" includes="*.*" />
+        <delete dir="results/part3/chapter10" includes="*.*" />
     </target>
     <target name="part1.chapter01">
         <echo message="HelloWorld" />
@@ -1157,6 +1158,134 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/hsqldb.jar" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part3.chapter10">
+        <echo message="DeviceColor" />
+        <java fork="yes" classname="part3.chapter10.DeviceColor">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="SeparationColor" />
+        <java fork="yes" classname="part3.chapter10.SeparationColor">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TilingPatternColor" />
+        <java fork="yes" classname="part3.chapter10.TilingPatternColor">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ShadingPatternColor" />
+        <java fork="yes" classname="part3.chapter10.ShadingPatternColor">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Transparency1" />
+        <java fork="yes" classname="part3.chapter10.Transparency1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Transparency2" />
+        <java fork="yes" classname="part3.chapter10.Transparency2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ImageTypes" />
+        <java fork="yes" classname="part3.chapter10.ImageTypes">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="RawImage" />
+        <java fork="yes" classname="part3.chapter10.RawImage">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="PagedImages" />
+        <java fork="yes" classname="part3.chapter10.PagedImages">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieAnnotation" />
+        <java fork="yes" classname="part3.chapter10.MovieAnnotation">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="CompressImage" />
+        <java fork="yes" classname="part3.chapter10.CompressImage">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="CompressAwt" />
+        <java fork="yes" classname="part3.chapter10.CompressAwt">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ImageMask" />
+        <java fork="yes" classname="part3.chapter10.ImageMask">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TemplateClip" />
+        <java fork="yes" classname="part3.chapter10.TemplateClip">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ClippingPath" />
+        <java fork="yes" classname="part3.chapter10.ClippingPath">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TransparentOverlay" />
+        <java fork="yes" classname="part3.chapter10.TransparentOverlay">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TransparentImage" />
+        <java fork="yes" classname="part3.chapter10.TransparentImage">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TransparantAwt" />
+        <java fork="yes" classname="part3.chapter10.TransparantAwt">
+            <classpath>
+                <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
