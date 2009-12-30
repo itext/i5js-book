@@ -47,8 +47,8 @@ public class ShadingPatternColor extends DeviceColor {
         document.newPage();
         PdfShading radial = PdfShading.simpleRadial(writer,
             200, 700, 50, 300, 700, 100,
-            new BaseColor(255, 247, 148),
-            new BaseColor(247, 138, 107),
+            new BaseColor(0xFF, 0xF7, 0x94),
+            new BaseColor(0xF7, 0x8A, 0x6B),
             false, false);
         canvas.paintShading(radial);
 

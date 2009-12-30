@@ -88,7 +88,7 @@ public class TilingPatternColor extends DeviceColor {
         canvas.setPatternFill(line, BaseColor.RED);
         canvas.ellipse(180, 552, 306, 678);
         canvas.fillStroke();
-        canvas.setPatternFill(line, BaseColor.BLUE);
+        canvas.setPatternFill(circle, BaseColor.GREEN);
         canvas.ellipse(324, 552, 450, 678);
         canvas.fillStroke();
         

@@ -51,28 +51,28 @@ public class Transparency1 {
             pictureCircles(gap, 500, cb);
             cb.saveState();
             PdfGState gs1 = new PdfGState();
-            gs1.setFillOpacity(0.7f);
+            gs1.setFillOpacity(0.5f);
             cb.setGState(gs1);
             pictureCircles(200 + 2 * gap, 500, cb);
             cb.restoreState();
 
-            PdfTemplate tp = cb.createTemplate(200, 200);
             cb.saveState();
-            pictureCircles(0, 0, tp);
+            PdfTemplate tp = cb.createTemplate(200, 200);
             PdfTransparencyGroup group = new PdfTransparencyGroup();
             tp.setGroup(group);
+            pictureCircles(0, 0, tp);
             cb.setGState(gs1);
             cb.addTemplate(tp, gap, 500 - 200 - gap);
             cb.restoreState();
 
-            tp = cb.createTemplate(200, 200);
             cb.saveState();
+            tp = cb.createTemplate(200, 200);
+            tp.setGroup(group);
             PdfGState gs2 = new PdfGState();
-            gs2.setFillOpacity(0.7f);
+            gs2.setFillOpacity(0.5f);
             gs2.setBlendMode(PdfGState.BM_HARDLIGHT);
             tp.setGState(gs2);
             pictureCircles(0, 0, tp);
-            tp.setGroup(group);
             cb.addTemplate(tp, 200 + 2 * gap, 500 - 200 - gap);
             cb.restoreState();
 
@@ -83,19 +83,19 @@ public class Transparency1 {
                     Element.ALIGN_CENTER);
             ct.go();
 
-            ph = new Phrase("Ungrouped objects\nObject opacity = 0.7");
+            ph = new Phrase("Ungrouped objects\nObject opacity = 0.5");
             ct.setSimpleColumn(ph, 200 + 2 * gap, 0, 200 + 2 * gap + 200, 500,
                     18, Element.ALIGN_CENTER);
             ct.go();
 
             ph = new Phrase(
-                    "Transparency group\nObject opacity = 1.0\nGroup opacity = 0.7\nBlend mode = Normal");
+                    "Transparency group\nObject opacity = 1.0\nGroup opacity = 0.5\nBlend mode = Normal");
             ct.setSimpleColumn(ph, gap, 0, gap + 200, 500 - 200 - gap, 18,
                     Element.ALIGN_CENTER);
             ct.go();
 
             ph = new Phrase(
-                    "Transparency group\nObject opacity = 0.7\nGroup opacity = 1.0\nBlend mode = HardLight");
+                    "Transparency group\nObject opacity = 0.5\nGroup opacity = 1.0\nBlend mode = HardLight");
             ct.setSimpleColumn(ph, 200 + 2 * gap, 0, 200 + 2 * gap + 200,
                     500 - 200 - gap, 18, Element.ALIGN_CENTER);
             ct.go();
