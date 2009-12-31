@@ -85,7 +85,6 @@ public class PagedImages {
         for (int i = 1; i <= n; i++) {
             document.add(img.getImage(i));
         }
-
     }
     
     /**
