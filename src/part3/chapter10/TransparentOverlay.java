@@ -48,6 +48,7 @@ public class TransparentOverlay {
         // step 4
         PdfContentByte canvas = writer.getDirectContent();
         
+        // add the clipped image
         Image img = Image.getInstance(RESOURCE);
         float w = img.getScaledWidth();
         float h = img.getScaledHeight();
@@ -56,6 +57,7 @@ public class TransparentOverlay {
         canvas.newPath();
         canvas.addImage(img, w, 0, 0, h, 0, -600);
 
+        // Create a transparent PdfTemplate
         PdfTemplate t2 = writer.getDirectContent().createTemplate(850, 600);
         PdfTransparencyGroup transGroup = new PdfTransparencyGroup();
         transGroup.put( PdfName.CS, PdfName.DEVICEGRAY);
@@ -63,6 +65,7 @@ public class TransparentOverlay {
         transGroup.setKnockout(false);
         t2.setGroup(transGroup);
 
+        // Add transparent ellipses to the template
         int gradationStep = 30;
         float[] gradationRatioList = new float[gradationStep];
         for(int i = 0; i < gradationStep; i++) {
@@ -75,12 +78,13 @@ public class TransparentOverlay {
             t2.stroke();
         }
         
-        PdfGState gState = new PdfGState();
+        // Create an image mask for the direct content
         PdfDictionary maskDict = new PdfDictionary();
-        maskDict.put( PdfName.TYPE, PdfName.MASK );
-        maskDict.put( PdfName.S, new PdfName( "Luminosity" ) );
-        maskDict.put( new PdfName("G"), t2.getIndirectReference() );
-        gState.put( PdfName.SMASK, maskDict );
+        maskDict.put(PdfName.TYPE, PdfName.MASK );
+        maskDict.put(PdfName.S, new PdfName("Luminosity"));
+        maskDict.put(new PdfName("G"), t2.getIndirectReference());
+        PdfGState gState = new PdfGState();
+        gState.put(PdfName.SMASK, maskDict );
         canvas.setGState(gState);
         
         canvas.addTemplate(t2, 0, 0);

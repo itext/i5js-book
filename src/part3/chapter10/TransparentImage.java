@@ -25,10 +25,14 @@ public class TransparentImage {
         = "resources/img/bruno.jpg";
     /** One of the resources. */
     public static String RESOURCE2
-        = "resources/img/1t3xt.gif";
+        = "resources/img/info.png";
     /** One of the resources. */
     public static String RESOURCE3
+        = "resources/img/1t3xt.gif";
+    /** One of the resources. */
+    public static String RESOURCE4
         = "resources/img/logo.gif";
+    /** One of the resources. */
 
 
     /**
@@ -49,13 +53,16 @@ public class TransparentImage {
         img1.setAbsolutePosition(0, 0);
         document.add(img1);
         Image img2 = Image.getInstance(RESOURCE2);
-        img2.setTransparency(new int[]{ 0x00, 0x10 });
-        img2.setAbsolutePosition(0, 0);
+        img2.setAbsolutePosition(0, 260);
         document.add(img2);
         Image img3 = Image.getInstance(RESOURCE3);
-        img3.setTransparency(new int[]{ 0xF0, 0xFF });
-        img3.setAbsolutePosition(50, 50);
+        img3.setTransparency(new int[]{ 0x00, 0x10 });
+        img3.setAbsolutePosition(0, 0);
         document.add(img3);
+        Image img4 = Image.getInstance(RESOURCE4);
+        img4.setTransparency(new int[]{ 0xF0, 0xFF });
+        img4.setAbsolutePosition(50, 50);
+        document.add(img4);
 
         // step 5
         document.close();
