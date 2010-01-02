@@ -1219,6 +1219,20 @@
                 <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
+        <echo message="CompressImage" />
+        <java fork="yes" classname="part3.chapter10.CompressImage">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="CompressAwt" />
+        <java fork="yes" classname="part3.chapter10.CompressAwt">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
         <echo message="PagedImages" />
         <java fork="yes" classname="part3.chapter10.PagedImages">
             <classpath>
@@ -1233,15 +1247,15 @@
                 <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
-        <echo message="CompressImage" />
-        <java fork="yes" classname="part3.chapter10.CompressImage">
+        <echo message="TransparentImage" />
+        <java fork="yes" classname="part3.chapter10.TransparentImage">
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
-        <echo message="CompressAwt" />
-        <java fork="yes" classname="part3.chapter10.CompressAwt">
+        <echo message="TransparantAwt" />
+        <java fork="yes" classname="part3.chapter10.TransparantAwt">
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1270,20 +1284,6 @@
         </java>
         <echo message="TransparentOverlay" />
         <java fork="yes" classname="part3.chapter10.TransparentOverlay">
-            <classpath>
-                <pathelement path="bin/" />
-                <pathelement location="lib/iText.jar" />
-            </classpath>
-        </java>
-        <echo message="TransparentImage" />
-        <java fork="yes" classname="part3.chapter10.TransparentImage">
-            <classpath>
-                <pathelement path="bin/" />
-                <pathelement location="lib/iText.jar" />
-            </classpath>
-        </java>
-        <echo message="TransparantAwt" />
-        <java fork="yes" classname="part3.chapter10.TransparantAwt">
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
