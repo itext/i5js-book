@@ -23,7 +23,7 @@ import com.itextpdf.text.pdf.SpotColor;
 public class SeparationColor extends DeviceColor {
     
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/separation_color.pdf";
 
   /**

@@ -24,10 +24,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class TransparantAwt {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/transparant_hitchcock.pdf";
     /** One of the resources. */
-    public static String RESOURCE
+    public static final String RESOURCE
         = "resources/img/hitchcock.gif";
 
     /**

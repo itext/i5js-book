@@ -26,7 +26,7 @@ import part1.chapter02.MovieLinks1;
 public class ConcatenateStamp {
 
 	/** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part2/chapter06/concatenated_stamped.pdf";
     
     /**

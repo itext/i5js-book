@@ -22,7 +22,7 @@ import com.itextpdf.text.pdf.ShadingColor;
 public class ShadingPatternColor extends DeviceColor {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/shading_pattern.pdf";
 
     /**

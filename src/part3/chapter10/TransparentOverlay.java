@@ -25,10 +25,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class TransparentOverlay {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/transparent_overlay.pdf";
     /** One of the resources. */
-    public static String RESOURCE
+    public static final String RESOURCE
         = "resources/img/bruno_ingeborg.jpg";
     
     /**
@@ -97,8 +97,6 @@ public class TransparentOverlay {
      * Main method.
      *
      * @param    args    no arguments needed
-     * @throws DocumentException 
-     * @throws IOException 
      * @throws DocumentException 
      * @throws IOException
      */

@@ -25,7 +25,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class Transparency2 {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/transparency2.pdf";
     
     public static void main(String[] args) {

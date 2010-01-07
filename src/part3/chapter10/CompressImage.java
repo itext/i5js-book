@@ -18,13 +18,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class CompressImage {
 
     /** The resulting PDF file. */
-    public static String RESULT1
+    public static final String RESULT1
         = "results/part3/chapter10/uncompressed.pdf";
     /** The resulting PDF file. */
-    public static String RESULT2
+    public static final String RESULT2
         = "results/part3/chapter10/compressed.pdf";
     /** One of the resources. */
-    public static String RESOURCE
+    public static final String RESOURCE
         = "resources/img/butterfly.bmp";
 
     /**

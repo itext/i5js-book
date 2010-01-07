@@ -24,7 +24,7 @@ import com.itextpdf.text.pdf.PushbuttonField;
 public class SubmitForm {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter09/submit_me.pdf";
     
     /**

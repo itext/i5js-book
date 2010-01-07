@@ -20,16 +20,16 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class CompressAwt {
 
     /** The resulting PDF file. */
-    public static String RESULT1
+    public static final String RESULT1
         = "results/part3/chapter10/hitchcock100.pdf";
     /** The resulting PDF file. */
-    public static String RESULT2
+    public static final String RESULT2
         = "results/part3/chapter10/hitchcock20.pdf";
     /** The resulting PDF file. */
-    public static String RESULT3
+    public static final String RESULT3
         = "results/part3/chapter10/hitchcock10.pdf";
     /** One of the resources. */
-    public static String RESOURCE
+    public static final String RESOURCE
         = "resources/img/hitchcock.png";
 
     /**

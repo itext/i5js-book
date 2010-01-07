@@ -18,21 +18,20 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class TransparentImage {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/transparant_image.pdf";
     /** One of the resources. */
-    public static String RESOURCE1
+    public static final String RESOURCE1
         = "resources/img/bruno.jpg";
     /** One of the resources. */
-    public static String RESOURCE2
+    public static final String RESOURCE2
         = "resources/img/info.png";
     /** One of the resources. */
-    public static String RESOURCE3
+    public static final String RESOURCE3
         = "resources/img/1t3xt.gif";
     /** One of the resources. */
-    public static String RESOURCE4
+    public static final String RESOURCE4
         = "resources/img/logo.gif";
-    /** One of the resources. */
 
 
     /**

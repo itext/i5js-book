@@ -19,10 +19,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class ClippingPath {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/clipping_path.pdf";
     /** One of the resources. */
-    public static String RESOURCE
+    public static final String RESOURCE
         = "resources/img/bruno_ingeborg.jpg";
     
     /**

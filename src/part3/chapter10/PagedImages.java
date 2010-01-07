@@ -22,16 +22,16 @@ import com.itextpdf.text.pdf.codec.TiffImage;
 public class PagedImages {
     
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/tiff_jbig2_gif.pdf";
     /** One of the resources. */
-    public static String RESOURCE1
+    public static final String RESOURCE1
         = "resources/img/marbles.tif";
     /** One of the resources. */
-    public static String RESOURCE2
+    public static final String RESOURCE2
         = "resources/img/amb.jb2";
     /** One of the resources. */
-    public static String RESOURCE3
+    public static final String RESOURCE3
         = "resources/img/animated_fox_dog.gif";
 
     /**

@@ -23,10 +23,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class ImageTypes {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/image_types.pdf";
     /** Paths to images. */
-    public static String[] RESOURCES = {
+    public static final String[] RESOURCES = {
         "bruno_ingeborg.jpg",
         "map.jp2",
         "info.png",
@@ -38,7 +38,7 @@ public class ImageTypes {
         "amb.jb2"
     };
     /** Path to an image. */
-    public static String RESOURCE = "resources/img/hitchcock.png";
+    public static final String RESOURCE = "resources/img/hitchcock.png";
 
     /**
      * Creates a PDF document.

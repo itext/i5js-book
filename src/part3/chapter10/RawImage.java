@@ -18,7 +18,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class RawImage {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/gradient.pdf";
     
     /**

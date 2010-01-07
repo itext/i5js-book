@@ -26,7 +26,7 @@ import com.itextpdf.text.pdf.PushbuttonField;
 public class JSForm {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter09/javascript.pdf";
     /** Path to the resources. */
     public static final String JS1 = "resources/js/post_from_html.js";

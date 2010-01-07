@@ -22,11 +22,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class TilingPatternColor extends DeviceColor {
 
     /** The resulting PDF file. */
-    public static String RESULT
+    public static final String RESULT
         = "results/part3/chapter10/tiling_pattern.pdf";
 
     /** An image that will be used for a pattern color. */
-    public static String RESOURCE
+    public static final String RESOURCE
         = "resources/img/info.png";
 
     /**
