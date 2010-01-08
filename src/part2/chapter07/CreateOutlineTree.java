@@ -10,8 +10,8 @@ package part2.chapter07;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.lowagie.database.DatabaseConnection;
 import com.lowagie.database.HsqldbConnection;
@@ -103,10 +103,9 @@ public class CreateOutlineTree {
      * @param dest the path to the XML file
      * @throws IOException
      */
-    @SuppressWarnings("unchecked")
     public void createXml(String src, String dest) throws IOException {
         PdfReader reader = new PdfReader(src);
-        List<Map> list = SimpleBookmark.getBookmark(reader);
+        List<HashMap<String, Object>> list = SimpleBookmark.getBookmark(reader);
         SimpleBookmark.exportToXML(list,
                 new FileOutputStream(dest), "ISO8859-1", true);
     }
