@@ -102,12 +102,14 @@ public class SayPeace extends DefaultHandler {
 			Paragraph p = new Paragraph(bold);
 			p.setAlignment(Element.ALIGN_LEFT);
 			cell.addElement(p);
+			buf = new StringBuffer();
 		}
-		if ("message".equals(qName)) {
+		else if ("message".equals(qName)) {
 			Paragraph p = new Paragraph(strip(buf), f);
 			p.setAlignment(Element.ALIGN_LEFT);
 			cell.addElement(p);
-			table.addCell(cell);;
+			table.addCell(cell);
+			buf = new StringBuffer();
 		}
 		else if ("pace".equals(qName)) {
 			try {
@@ -116,7 +118,6 @@ public class SayPeace extends DefaultHandler {
 				throw new ExceptionConverter(e);
 			}
 		}
-		buf = new StringBuffer();
 	}
 
 	/**
