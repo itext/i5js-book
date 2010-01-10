@@ -25,13 +25,15 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.ExceptionConverter;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.GrayColor;
-import com.itextpdf.text.pdf.MultiColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 /**
@@ -59,9 +61,12 @@ public class SayPeace extends DefaultHandler {
 
 	/** The StringBuffer that holds the characters. */
 	protected StringBuffer buf = new StringBuffer();
-
-	/** The columns that contains the message. */
-	protected MultiColumnText column = null;
+	
+	/** The table that holds the text. */
+	protected PdfPTable table;
+	
+	/** The current cell. */
+	protected PdfPCell cell;
 
 	/**
 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String,
@@ -71,11 +76,15 @@ public class SayPeace extends DefaultHandler {
 			Attributes attributes) throws SAXException {
 		if ("message".equals(qName)) {
 			buf = new StringBuffer();
-			column = new MultiColumnText();
-			column.addSimpleColumn(36, PageSize.A4.getWidth() - 36);
+			cell = new PdfPCell();
+			cell.setBorder(PdfPCell.NO_BORDER);
 			if ("RTL".equals(attributes.getValue("direction"))) {
-				column.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
+				cell.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
 			}
+		}
+		else if ("pace".equals(qName)) {
+			table = new PdfPTable(1);
+			table.setWidthPercentage(100);
 		}
 	}
 
@@ -85,25 +94,27 @@ public class SayPeace extends DefaultHandler {
 	 */
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-		try {
-			if ("big".equals(qName)) {
-				Chunk bold = new Chunk(strip(buf), f);
-				bold.setTextRenderMode(
-						PdfContentByte.TEXT_RENDER_MODE_FILL_STROKE, 0.5f,
-						GrayColor.GRAYBLACK);
-				Paragraph p = new Paragraph(bold);
-				p.setAlignment(Element.ALIGN_LEFT);
-				column.addElement(p);
+		if ("big".equals(qName)) {
+			Chunk bold = new Chunk(strip(buf), f);
+			bold.setTextRenderMode(
+					PdfContentByte.TEXT_RENDER_MODE_FILL_STROKE, 0.5f,
+					GrayColor.GRAYBLACK);
+			Paragraph p = new Paragraph(bold);
+			p.setAlignment(Element.ALIGN_LEFT);
+			cell.addElement(p);
+		}
+		if ("message".equals(qName)) {
+			Paragraph p = new Paragraph(strip(buf), f);
+			p.setAlignment(Element.ALIGN_LEFT);
+			cell.addElement(p);
+			table.addCell(cell);;
+		}
+		else if ("pace".equals(qName)) {
+			try {
+				document.add(table);
+			} catch (DocumentException e) {
+				throw new ExceptionConverter(e);
 			}
-			if ("message".equals(qName)) {
-				Paragraph p = new Paragraph(strip(buf), f);
-				p.setAlignment(Element.ALIGN_LEFT);
-				column.addElement(p);
-				document.add(column);
-				column = null;
-			}
-		} catch (DocumentException e) {
-			e.printStackTrace();
 		}
 		buf = new StringBuffer();
 	}
