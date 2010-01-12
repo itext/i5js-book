@@ -10,6 +10,7 @@ package part3.chapter11;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -17,27 +18,14 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 
-/**
- * This example was written by Bruno Lowagie. It is part of the book 'iText in
- * Action' by Manning Publications. 
- * ISBN: 1932394796
- * http://www.1t3xt.com/docs/book.php 
- * http://www.manning.com/lowagie/
- */
-
-public class Diacritics2 {
+public class ExtraCharSpace {
 
     /** The resulting PDF file. */
     public static final String RESULT
-        = "results/part3/chapter11/diacritics2.pdf";
+        = "results/part3/chapter11/character_spacing.pdf";
     /** A movie title. */
     public static final String MOVIE
-        = "Tomten ¨ar far till alla barnen";
-    /** Fonts */
-    public static final String[] FONTS = {
-    	"c:/windows/fonts/arial.ttf",
-    	"c:/windows/fonts/cour.ttf"
-    };
+        = "Aanrijding in Moscou";
     
     /**
      * Creates a PDF document.
@@ -52,20 +40,18 @@ public class Diacritics2 {
 		Document document = new Document();
 		// step 2
 		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
+		// step 3: we open the document
 		document.open();
 		// step 4
-		document.add(new Paragraph("Movie title: In Bed With Santa (Sweden)"));
-		document.add(new Paragraph("directed by Kjell Sundvall"));
-		BaseFont bf = BaseFont.createFont(FONTS[0], BaseFont.CP1252, BaseFont.EMBEDDED);
-		Font font = new Font(bf, 12);
-		bf.setCharAdvance('¨', -100);
-		document.add(new Paragraph(MOVIE, font));
-		bf = BaseFont.createFont(FONTS[1], BaseFont.CP1252, BaseFont.EMBEDDED);
-		bf.setCharAdvance('¨', 0);
-		font = new Font(bf, 12);
-		document.add(new Paragraph(MOVIE, font));
-		// step 5
+		BaseFont bf1 = BaseFont.createFont("c:/windows/fonts/arial.ttf",
+		    BaseFont.CP1252, BaseFont.EMBEDDED);
+		Font font1 = new Font(bf1, 12);
+		document.add(new Paragraph("Movie title: Moscou, Belgium", font1));
+		document.add(new Paragraph("directed by Christophe Van Rompaey", font1));
+		Chunk chunk = new Chunk(MOVIE, font1);
+		chunk.setCharacterSpacing(10);
+		document.add(new Paragraph(chunk));
+		// step 5: we close the document
 		document.close();
 	}
 
@@ -77,6 +63,6 @@ public class Diacritics2 {
      * @throws IOException
      */
 	public static void main(String[] args) throws IOException, DocumentException {
-		new Diacritics2().createPdf(RESULT);
+		new ExtraCharSpace().createPdf(RESULT);
 	}
 }

@@ -42,21 +42,19 @@ public class Monospace {
 		// step 3: we open the document
 		document.open();
 		// step 4
-		BaseFont bf1, bf2, bf3;
-		Font font1, font2, font3;
-		bf1 = BaseFont.createFont("c:/windows/fonts/arial.ttf",
+		BaseFont bf1 = BaseFont.createFont("c:/windows/fonts/arial.ttf",
 		    BaseFont.CP1252, BaseFont.EMBEDDED);
-		font1 = new Font(bf1, 12);
+		Font font1 = new Font(bf1, 12);
 		document.add(new Paragraph("Movie title: Moscou, Belgium", font1));
 		document.add(new Paragraph("directed by Christophe Van Rompaey", font1));
 		document.add(new Paragraph(MOVIE, font1));
-		bf2 = BaseFont.createFont("c:/windows/fonts/cour.ttf",
+		BaseFont bf2 = BaseFont.createFont("c:/windows/fonts/cour.ttf",
 		    BaseFont.CP1252, BaseFont.EMBEDDED);
-		font2 = new Font(bf2, 12);
+		Font font2 = new Font(bf2, 12);
 		document.add(new Paragraph(MOVIE, font2));
-		bf3 = BaseFont.createFont("c:/windows/fonts/arialbd.ttf",
+		BaseFont bf3 = BaseFont.createFont("c:/windows/fonts/arialbd.ttf",
 		    BaseFont.CP1252, BaseFont.EMBEDDED);
-		font3 = new Font(bf3, 12);
+		Font font3 = new Font(bf3, 12);
 		int widths[] = bf3.getWidths();
 		for (int k = 0; k < widths.length; ++k) {
 			if (widths[k] != 0)
