@@ -2,7 +2,7 @@
     <target name="compile">
         <ant antfile="build.xml" target="compile" />
     </target>
-    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10" />
+    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10, part3.chapter11" />
     <target name="clean">
         <delete dir="results/part1/chapter01" includes="*.*" />
         <delete dir="results/part1/chapter02" includes="*.*" />
@@ -14,6 +14,7 @@
         <delete dir="results/part2/chapter08" includes="*.*" />
         <delete dir="results/part3/chapter09" includes="*.*" />
         <delete dir="results/part3/chapter10" includes="*.*" />
+        <delete dir="results/part3/chapter11" includes="*.*" />
     </target>
     <target name="part1.chapter01">
         <echo message="HelloWorld" />
@@ -1284,6 +1285,160 @@
         </java>
         <echo message="TransparentOverlay" />
         <java fork="yes" classname="part3.chapter10.TransparentOverlay">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part3.chapter11">
+        <echo message="FontTypes" />
+        <java fork="yes" classname="part3.chapter11.FontTypes">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iTextAsian.jar" />
+            </classpath>
+        </java>
+        <echo message="TTCExample" />
+        <java fork="yes" classname="part3.chapter11.TTCExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="EncodingNames" />
+        <java fork="yes" classname="part3.chapter11.EncodingNames">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="EncodingExample" />
+        <java fork="yes" classname="part3.chapter11.EncodingExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="UnicodeExample" />
+        <java fork="yes" classname="part3.chapter11.UnicodeExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="FontFileAndSizes" />
+        <java fork="yes" classname="part3.chapter11.FontFileAndSizes">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Type3Example" />
+        <java fork="yes" classname="part3.chapter11.Type3Example">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="CJKExample" />
+        <java fork="yes" classname="part3.chapter11.CJKExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iTextAsian.jar" />
+            </classpath>
+        </java>
+        <echo message="VerticalTextExample1" />
+        <java fork="yes" classname="part3.chapter11.VerticalTextExample1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iTextAsian.jar" />
+            </classpath>
+        </java>
+        <echo message="VerticalTextExample2" />
+        <java fork="yes" classname="part3.chapter11.VerticalTextExample2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iTextAsian.jar" />
+            </classpath>
+        </java>
+        <echo message="RightToLeftExample" />
+        <java fork="yes" classname="part3.chapter11.RightToLeftExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="SayPeace" />
+        <java fork="yes" classname="part3.chapter11.SayPeace">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Diacritics1" />
+        <java fork="yes" classname="part3.chapter11.Diacritics1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Diacritics2" />
+        <java fork="yes" classname="part3.chapter11.Diacritics2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Monospace" />
+        <java fork="yes" classname="part3.chapter11.Monospace">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ExtraCharSpace" />
+        <java fork="yes" classname="part3.chapter11.ExtraCharSpace">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Ligatures1" />
+        <java fork="yes" classname="part3.chapter11.Ligatures1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Ligatures2" />
+        <java fork="yes" classname="part3.chapter11.Ligatures2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="FontFactoryExample" />
+        <java fork="yes" classname="part3.chapter11.FontFactoryExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="FontSelectionExample" />
+        <java fork="yes" classname="part3.chapter11.FontSelectionExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iTextAsian.jar" />
+            </classpath>
+        </java>
+        <echo message="Peace" />
+        <java fork="yes" classname="part3.chapter11.Peace">
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
