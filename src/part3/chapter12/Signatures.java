@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 import java.security.PrivateKey;
@@ -11,6 +12,7 @@ import java.security.Security;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Properties;
 
@@ -32,6 +34,7 @@ public class Signatures {
 	public static String ORIGINAL = "results/part3/chapter12/hello.pdf";
 	public static String SIGNED1 = "results/part3/chapter12/signature_1.pdf";
 	public static String SIGNED2 = "results/part3/chapter12/signature_2.pdf";
+	public static String VERIFICATION = "results/part3/chapter12/verify.txt";
 	public static String REVISION = "results/part3/chapter12/revision_1.pdf";
 
 	public static String PATH = "c:/home/blowagie/key.properties";
@@ -115,29 +118,38 @@ public class Signatures {
 
 	}
 	
-	public void verifySecondSignature() throws GeneralSecurityException, IOException {
+	public void verifySignatures() throws GeneralSecurityException, IOException {
 		KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
 		ks.load(null, null);
 		CertificateFactory cf = CertificateFactory.getInstance("X509");
-		FileInputStream is = new FileInputStream("resources/encryption/foobar.cer");
-		X509Certificate cert = (X509Certificate) cf.generateCertificate(is);
-		ks.setCertificateEntry("foobar", cert);
+		FileInputStream is1 = new FileInputStream(properties.getProperty("ROOTCERT"));
+		X509Certificate cert1 = (X509Certificate) cf.generateCertificate(is1);
+		ks.setCertificateEntry("cacert", cert1);
+		FileInputStream is2 = new FileInputStream("resources/encryption/foobar.cer");
+		X509Certificate cert2 = (X509Certificate) cf.generateCertificate(is2);
+		ks.setCertificateEntry("foobar", cert2);
 		
+		PrintWriter out = new PrintWriter(new FileOutputStream(VERIFICATION));
 		PdfReader reader = new PdfReader(SIGNED2);
 		AcroFields af = reader.getAcroFields();
-		String name = "second";
-		System.out.println("Signature covers whole document: " + af.signatureCoversWholeDocument(name));
-		System.out.println("Document revision: " + af.getRevision(name) + " of " + af.getTotalRevisions());
-		PdfPKCS7 pk = af.verifySignature(name);
-		Calendar cal = pk.getSignDate();
-		Certificate pkc[] = pk.getCertificates();
-		System.out.println("Subject: " + PdfPKCS7.getSubjectFields(pk.getSigningCertificate()));
-		System.out.println("Document modified: " + !pk.verify());
-		Object fails[] = PdfPKCS7.verifyCertificates(pkc, ks, null, cal);
-		if (fails == null)
-			System.out.println("Certificates verified against the KeyStore");
-		else
-			System.out.println("Certificate failed: " + fails[1]);	
+		ArrayList<String> names = af.getSignatureNames();
+		for (String name : names) {
+			out.println("Signature name: " + name);
+			out.println("Signature covers whole document: " + af.signatureCoversWholeDocument(name));
+			out.println("Document revision: " + af.getRevision(name) + " of " + af.getTotalRevisions());
+			PdfPKCS7 pk = af.verifySignature(name);
+			Calendar cal = pk.getSignDate();
+			Certificate pkc[] = pk.getCertificates();
+			out.println("Subject: " + PdfPKCS7.getSubjectFields(pk.getSigningCertificate()));
+			out.println("Document modified: " + !pk.verify());
+			Object fails[] = PdfPKCS7.verifyCertificates(pkc, ks, null, cal);
+			if (fails == null)
+				out.println("Certificates verified against the KeyStore");
+			else
+				out.println("Certificate failed: " + fails[1]);	
+		}
+		out.flush();
+		out.close();
 	}
 	
 	public void extractFirstRevision() throws IOException {
@@ -169,7 +181,7 @@ public class Signatures {
 		signatures.createPdf(ORIGINAL);
 		signatures.signPdfFirstTime(ORIGINAL, SIGNED1);
 		signatures.signPdfSecondTime(SIGNED1, SIGNED2);
-		signatures.verifySecondSignature();
+		signatures.verifySignatures();
 		signatures.extractFirstRevision();
 	}
 }

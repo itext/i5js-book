@@ -46,6 +46,7 @@ public class EncryptionPdf {
 		// step 2
 		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
 		writer.setEncryption(USER, OWNER, PdfWriter.ALLOW_PRINTING, PdfWriter.STANDARD_ENCRYPTION_128);
+		writer.createXmpMetadata();
 		// step 3
 		document.open();
 		// step 4
@@ -77,7 +78,7 @@ public class EncryptionPdf {
 	public void encryptPdf(String src, String dest) throws IOException, DocumentException {
 		PdfReader reader = new PdfReader(src);
 		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-		stamper.setEncryption(USER, OWNER, PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128);
+		stamper.setEncryption(USER, OWNER, PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128 | PdfWriter.DO_NOT_ENCRYPT_METADATA);
 		stamper.close();
 	}
 	

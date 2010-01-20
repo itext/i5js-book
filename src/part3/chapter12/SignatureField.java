@@ -89,7 +89,7 @@ public class SignatureField {
 		String alias = (String)ks.aliases().nextElement();
 		PrivateKey pk = (PrivateKey)ks.getKey(alias, key_password.toCharArray());
 		Certificate[] chain = ks.getCertificateChain(alias);
-		
+
 		PdfReader reader = new PdfReader(ORIGINAL);
 		PdfStamper stamper = PdfStamper.createSignature(reader, new FileOutputStream(dest), '\0');
 		PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
