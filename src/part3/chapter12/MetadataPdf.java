@@ -40,10 +40,10 @@ public class MetadataPdf {
 		PdfWriter.getInstance(document, new FileOutputStream(filename));
 		// step 3
 		document.addTitle("Hello World example");
+		document.addAuthor("Bruno Lowagie");
 		document.addSubject("This example shows how to add metadata");
 		document.addKeywords("Metadata, iText, PDF");
 		document.addCreator("My program using iText");
-		document.addAuthor("Bruno Lowagie");
 		document.open();
 		// step 4
 		document.add(new Paragraph("Hello World"));
