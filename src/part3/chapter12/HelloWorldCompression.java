@@ -72,7 +72,6 @@ public class HelloWorldCompression {
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
         switch(compression) {
         case -1:
-        	writer.setPdfVersion('1');
         	Document.compress = false;
         	break;
         case 0:
@@ -162,7 +161,7 @@ public class HelloWorldCompression {
      */
 	public void decompressPdf(String src, String dest) throws IOException, DocumentException {
 		PdfReader reader = new PdfReader(src);
-		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest), PdfWriter.VERSION_1_5);
+		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
 		Document.compress = false;
 		int total = reader.getNumberOfPages() + 1;
 		for (int i = 1; i < total; i++) {
