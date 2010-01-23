@@ -93,6 +93,9 @@ public class SignatureField {
 		PdfReader reader = new PdfReader(ORIGINAL);
 		PdfStamper stamper = PdfStamper.createSignature(reader, new FileOutputStream(dest), '\0');
 		PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
+		appearance.setVisibleSignature("mySig");
+		appearance.setReason("It's personal.");
+		appearance.setLocation("Foobar");
 		appearance.setCrypto(pk, chain, null, PdfSignatureAppearance.SELF_SIGNED);
 		if (certified)
 			appearance.setCertificationLevel(PdfSignatureAppearance.CERTIFIED_NO_CHANGES_ALLOWED);
@@ -100,9 +103,6 @@ public class SignatureField {
 			appearance.setSignatureGraphic(Image.getInstance(RESOURCE));
 			appearance.setRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
 		}
-		appearance.setReason("It's personal.");
-		appearance.setLocation("Foobar");
-		appearance.setVisibleSignature("mySig");
 		stamper.close();
 	}
 	

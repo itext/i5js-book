@@ -5,12 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.Security;
-import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
@@ -60,11 +56,9 @@ public class EncryptWithCertificate {
 	
 	public PrivateKey getPrivateKey() throws GeneralSecurityException, IOException {
 		String path = "resources/encryption/.keystore";
-		String keystore_password = "f00b4r";
-		String key_password = "f1lmf3st";
 		KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-		ks.load(new FileInputStream(path), keystore_password.toCharArray());
-		PrivateKey pk = (PrivateKey)ks.getKey("foobar", key_password.toCharArray());
+		ks.load(new FileInputStream(path), "f00b4r".toCharArray());
+		PrivateKey pk = (PrivateKey)ks.getKey("foobar", "f1lmf3st".toCharArray());
 		return pk;
 	}
 	
