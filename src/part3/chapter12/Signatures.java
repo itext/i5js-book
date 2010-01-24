@@ -79,7 +79,7 @@ public class Signatures {
 		PdfSignatureAppearance appearance = stamper
 				.getSignatureAppearance();
 		appearance.setCrypto(key, chain, null,
-				PdfSignatureAppearance.SELF_SIGNED);
+				PdfSignatureAppearance.WINCER_SIGNED);
 		appearance.setImage(Image.getInstance(RESOURCE));
 		appearance.setReason("I've written this.");
 		appearance.setLocation("Foobar");
@@ -110,7 +110,7 @@ public class Signatures {
 		PdfSignatureAppearance appearance = stamper
 				.getSignatureAppearance();
 		appearance.setCrypto(key, chain, null,
-				PdfSignatureAppearance.SELF_SIGNED);
+				PdfSignatureAppearance.WINCER_SIGNED);
 		appearance.setReason("I'm approving this.");
 		appearance.setLocation("Foobar");
 		appearance.setVisibleSignature(new Rectangle(160, 732, 232, 780), 1, "second");

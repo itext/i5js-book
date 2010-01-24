@@ -96,10 +96,11 @@ public class SignatureField {
 		appearance.setVisibleSignature("mySig");
 		appearance.setReason("It's personal.");
 		appearance.setLocation("Foobar");
-		appearance.setCrypto(pk, chain, null, PdfSignatureAppearance.SELF_SIGNED);
+		appearance.setCrypto(pk, chain, null, PdfSignatureAppearance.WINCER_SIGNED);
 		if (certified)
 			appearance.setCertificationLevel(PdfSignatureAppearance.CERTIFIED_NO_CHANGES_ALLOWED);
 		if (graphic) {
+			appearance.setAcro6Layers(true);
 			appearance.setSignatureGraphic(Image.getInstance(RESOURCE));
 			appearance.setRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
 		}
