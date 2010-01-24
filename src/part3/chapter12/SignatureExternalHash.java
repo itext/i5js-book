@@ -43,6 +43,47 @@ public class SignatureExternalHash {
      * @throws DocumentException
      * @throws GeneralSecurityException 
      */
+	public void signPdfSelf(String src, String dest) throws IOException, DocumentException, GeneralSecurityException {
+		String path = properties.getProperty("PRIVATE");
+		String keystore_password = properties.getProperty("PASSWORD");
+		String key_password = properties.getProperty("PASSWORD");
+		KeyStore ks = KeyStore.getInstance("pkcs12", "BC");
+		ks.load(new FileInputStream(path), keystore_password.toCharArray());
+		String alias = (String)ks.aliases().nextElement();
+		PrivateKey key = (PrivateKey) ks.getKey(alias, key_password.toCharArray());
+		Certificate[] chain = ks.getCertificateChain(alias);
+		PdfReader reader = new PdfReader(src);
+		FileOutputStream os = new FileOutputStream(dest);
+		PdfStamper stamper = PdfStamper.createSignature(reader, os, '\0');
+		PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
+		appearance.setCrypto(null, chain, null, PdfSignatureAppearance.SELF_SIGNED);
+		appearance.setReason("External hash example");
+		appearance.setLocation("Foobar");
+		appearance.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1,	"sig");
+		appearance.setExternalDigest(new byte[128], null, "RSA");
+		appearance.preClose();
+		Signature signature = Signature.getInstance("SHA1withRSA");
+		signature.initSign(key);
+		byte buf[] = new byte[8192];
+		int n;
+		InputStream inp = appearance.getRangeStream();
+		while ((n = inp.read(buf)) > 0) {
+		    signature.update(buf, 0, n);
+		}
+		PdfPKCS7 sig = appearance.getSigStandard().getSigner();
+		sig.setExternalDigest(signature.sign(), null, "RSA");
+		PdfDictionary dic = new PdfDictionary();
+		dic.put(PdfName.CONTENTS, new PdfString(sig.getEncodedPKCS1()).setHexWriting(true));
+		appearance.close(dic);
+	}
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     * @throws GeneralSecurityException 
+     */
 	public void signPdfWinCer(String src, String dest, boolean sign) throws IOException, DocumentException, GeneralSecurityException {
 		String path = properties.getProperty("PRIVATE");
 		String keystore_password = properties.getProperty("PASSWORD");
@@ -89,47 +130,6 @@ public class SignatureExternalHash {
 		appearance.close(dic);
 	}
 	
-    /**
-     * Manipulates a PDF file src with the file dest as result
-     * @param src the original PDF
-     * @param dest the resulting PDF
-     * @throws IOException
-     * @throws DocumentException
-     * @throws GeneralSecurityException 
-     */
-	public void signPdfSelf(String src, String dest) throws IOException, DocumentException, GeneralSecurityException {
-		String path = properties.getProperty("PRIVATE");
-		String keystore_password = properties.getProperty("PASSWORD");
-		String key_password = properties.getProperty("PASSWORD");
-		KeyStore ks = KeyStore.getInstance("pkcs12", "BC");
-		ks.load(new FileInputStream(path), keystore_password.toCharArray());
-		String alias = (String)ks.aliases().nextElement();
-		PrivateKey key = (PrivateKey) ks.getKey(alias, key_password.toCharArray());
-		Certificate[] chain = ks.getCertificateChain(alias);
-		PdfReader reader = new PdfReader(src);
-		FileOutputStream os = new FileOutputStream(dest);
-		PdfStamper stamper = PdfStamper.createSignature(reader, os, '\0');
-		PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
-		appearance.setCrypto(key, chain, null, PdfSignatureAppearance.SELF_SIGNED);
-		appearance.setReason("External hash example");
-		appearance.setLocation("Foobar");
-		appearance.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1,	"sig");
-		appearance.setExternalDigest(new byte[128], null, "RSA");
-		appearance.preClose();
-		PdfPKCS7 sig = appearance.getSigStandard().getSigner();
-		Signature signature = Signature.getInstance("SHA1withRSA");
-		signature.initSign(key);
-		byte buf[] = new byte[8192];
-		int n;
-		InputStream inp = appearance.getRangeStream();
-		while ((n = inp.read(buf)) > 0) {
-		    signature.update(buf, 0, n);
-		}
-		sig.setExternalDigest(signature.sign(), null, "RSA");
-		PdfDictionary dic = new PdfDictionary();
-		dic.put(PdfName.CONTENTS, new PdfString(sig.getEncodedPKCS1()).setHexWriting(true));
-		appearance.close(dic);
-	}
     /**
      * Main method.
      *

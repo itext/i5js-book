@@ -139,7 +139,7 @@ public class Signatures {
 			out.println("Document revision: " + af.getRevision(name) + " of " + af.getTotalRevisions());
 			PdfPKCS7 pk = af.verifySignature(name);
 			Calendar cal = pk.getSignDate();
-			Certificate pkc[] = pk.getCertificates();
+			Certificate[] pkc = pk.getCertificates();
 			out.println("Subject: " + PdfPKCS7.getSubjectFields(pk.getSigningCertificate()));
 			out.println("Document modified: " + !pk.verify());
 			Object fails[] = PdfPKCS7.verifyCertificates(pkc, ks, null, cal);
@@ -155,10 +155,9 @@ public class Signatures {
 	public void extractFirstRevision() throws IOException {
 		PdfReader reader = new PdfReader(SIGNED2);
 		AcroFields af = reader.getAcroFields();
-		String name = "first";
 		FileOutputStream os = new FileOutputStream(REVISION);
-		byte bb[] = new byte[8192];
-		InputStream ip = af.extractRevision(name);
+		byte bb[] = new byte[1028];
+		InputStream ip = af.extractRevision("first");
 		int n = 0;
 		while ((n = ip.read(bb)) > 0)
 			os.write(bb, 0, n);

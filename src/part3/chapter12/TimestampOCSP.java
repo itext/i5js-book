@@ -52,12 +52,6 @@ public class TimestampOCSP {
      * @throws GeneralSecurityException 
      */
 	public void signPdf(String src, String dest, boolean withTS, boolean withOCSP) throws IOException, DocumentException, GeneralSecurityException {
-		
-		PdfReader reader = new PdfReader(src);
-		FileOutputStream fout = new FileOutputStream(dest);
-		PdfStamper stp = PdfStamper.createSignature(reader, fout, '\0');
-		PdfSignatureAppearance sap = stp.getSignatureAppearance();
-		
 		String keystore = properties.getProperty("PRIVATE");
 		String password = properties.getProperty("PASSWORD");
 		KeyStore ks = KeyStore.getInstance("PKCS12", "BC");
@@ -65,10 +59,13 @@ public class TimestampOCSP {
 		String alias = (String)ks.aliases().nextElement();
 		PrivateKey pk = (PrivateKey)ks.getKey(alias, password.toCharArray());
 		Certificate[] chain = ks.getCertificateChain(alias);
-		sap.setCrypto(null, chain, null, PdfSignatureAppearance.SELF_SIGNED);
-
+		
+		PdfReader reader = new PdfReader(src);
+		FileOutputStream fout = new FileOutputStream(dest);
+		PdfStamper stp = PdfStamper.createSignature(reader, fout, '\0');
+		PdfSignatureAppearance sap = stp.getSignatureAppearance();
 		sap.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1, "Signature");
-
+		sap.setCrypto(null, chain, null, PdfSignatureAppearance.SELF_SIGNED);
 		PdfSignature dic = new PdfSignature(PdfName.ADOBE_PPKLITE, new PdfName("adbe.pkcs7.detached"));
 		dic.setReason(sap.getReason());
 		dic.setLocation(sap.getLocation());
@@ -81,7 +78,6 @@ public class TimestampOCSP {
 		exc.put(PdfName.CONTENTS, new Integer(contentEstimated * 2 + 2));
 		sap.preClose(exc);
 
-		PdfPKCS7 sgn = new PdfPKCS7(pk, chain, null, "SHA1", null, false);
 		InputStream data = sap.getRangeStream();
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
 		byte buf[] = new byte[8192];
@@ -107,6 +103,7 @@ public class TimestampOCSP {
 			X509Certificate root = (X509Certificate) cf.generateCertificate(is);
 			ocsp = new OcspClientBouncyCastle((X509Certificate)chain[0], root, url).getEncoded();
 		}
+		PdfPKCS7 sgn = new PdfPKCS7(pk, chain, null, "SHA1", null, false);
 		byte sh[] = sgn.getAuthenticatedAttributeBytes(hash, cal, ocsp);
 		sgn.update(sh, 0, sh.length);
 		byte[] encodedSig = sgn.getEncodedPKCS7(hash, cal, tsc, ocsp);
