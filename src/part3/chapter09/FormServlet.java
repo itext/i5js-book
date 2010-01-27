@@ -70,7 +70,6 @@ public class FormServlet extends HttpServlet {
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         response.setContentType("application/pdf");

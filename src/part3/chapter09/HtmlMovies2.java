@@ -115,7 +115,6 @@ public class HtmlMovies2 extends HtmlMovies1 {
      * @throws    DocumentException 
      * @throws    IOException
      */
-    @SuppressWarnings("unchecked")
     public void createPdf(String filename)
         throws IOException, DocumentException {
         // step 1

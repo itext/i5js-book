@@ -60,7 +60,6 @@ public class HtmlMovies1 {
      * @throws IOException
      * @throws DocumentException
      */
-    @SuppressWarnings("unchecked")
     public void createHtmlAndPdf(String html, String pdf)
         throws SQLException, IOException, DocumentException {
         // Create a database connection

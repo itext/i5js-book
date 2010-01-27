@@ -33,7 +33,6 @@ public class FormInformation {
      * @throws IOException
      * @throws SQLException
      */
-    @SuppressWarnings("unchecked")
     public static void main(String[] args)
         throws DocumentException, IOException {
         // Create a writer for the report file

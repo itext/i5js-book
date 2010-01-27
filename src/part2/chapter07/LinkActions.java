@@ -115,7 +115,6 @@ public class LinkActions {
      * @param dest The path to the XML file
      * @throws IOException
      */
-    @SuppressWarnings("unchecked")
     public void createXml(String src, String dest) throws IOException {
         PdfReader reader = new PdfReader(src);
         HashMap<String,String> map = SimpleNamedDestination.getNamedDestination(reader, false);
