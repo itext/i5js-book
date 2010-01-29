@@ -1466,6 +1466,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
             </classpath>
         </java>
         <echo message="EncryptionPdf" />
