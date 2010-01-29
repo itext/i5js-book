@@ -2,7 +2,7 @@
     <target name="compile">
         <ant antfile="build.xml" target="compile" />
     </target>
-    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10, part3.chapter11" />
+    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10, part3.chapter11, part3.chapter12" />
     <target name="clean">
         <delete dir="results/part1/chapter01" includes="*.*" />
         <delete dir="results/part1/chapter02" includes="*.*" />
@@ -15,6 +15,7 @@
         <delete dir="results/part3/chapter09" includes="*.*" />
         <delete dir="results/part3/chapter10" includes="*.*" />
         <delete dir="results/part3/chapter11" includes="*.*" />
+        <delete dir="results/part3/chapter12" includes="*.*" />
     </target>
     <target name="part1.chapter01">
         <echo message="HelloWorld" />
@@ -1442,6 +1443,38 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part3.chapter12">
+        <echo message="MetadataPdf" />
+        <java fork="yes" classname="part3.chapter12.MetadataPdf">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="MetadataXmp" />
+        <java fork="yes" classname="part3.chapter12.MetadataXmp">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="HelloWorldCompression" />
+        <java fork="yes" classname="part3.chapter12.HelloWorldCompression">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="EncryptionPdf" />
+        <java fork="yes" classname="part3.chapter12.EncryptionPdf">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/bcmail-jdk14-138.jar" />
+                <pathelement location="lib/bcprov-jdk14-138.jar" />
             </classpath>
         </java>
     </target>

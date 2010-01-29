@@ -55,7 +55,7 @@ public class HelloWorldCompression {
     public static final String RESULT6
         = "results/part3/chapter12/compression_full_too.pdf";
     public static final String RESULT7
-    = "results/part3/chapter12/compression_removed.pdf";
+    	= "results/part3/chapter12/compression_removed.pdf";
     
     /**
      * Creates a PDF with information about the movies
