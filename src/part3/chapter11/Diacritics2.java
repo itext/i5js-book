@@ -59,10 +59,10 @@ public class Diacritics2 {
 		document.add(new Paragraph("directed by Kjell Sundvall"));
 		BaseFont bf = BaseFont.createFont(FONTS[0], BaseFont.CP1252, BaseFont.EMBEDDED);
 		Font font = new Font(bf, 12);
-		bf.setCharAdvance('¨', -100);
+		bf.setCharAdvance('\u00a8', -100);
 		document.add(new Paragraph(MOVIE, font));
 		bf = BaseFont.createFont(FONTS[1], BaseFont.CP1252, BaseFont.EMBEDDED);
-		bf.setCharAdvance('¨', 0);
+		bf.setCharAdvance('\u00a8', 0);
 		font = new Font(bf, 12);
 		document.add(new Paragraph(MOVIE, font));
 		// step 5

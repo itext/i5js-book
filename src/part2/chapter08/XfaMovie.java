@@ -60,7 +60,6 @@ public class XfaMovie {
         xfa.readFieldnames(RESULT3, RESULTTXT2);
     }
     
-    @SuppressWarnings("unchecked")
     public void readFieldnames(String src, String dest) throws IOException {
         PrintStream out = new PrintStream(new FileOutputStream(dest));
         PdfReader reader = new PdfReader(src);

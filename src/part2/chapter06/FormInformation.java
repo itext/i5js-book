@@ -10,7 +10,6 @@ package part2.chapter06;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.Set;
 
 import com.itextpdf.text.DocumentException;
@@ -31,7 +30,6 @@ public class FormInformation {
      * @param args no arguments needed
      * @throws DocumentException 
      * @throws IOException
-     * @throws SQLException
      */
     public static void main(String[] args)
         throws DocumentException, IOException {
