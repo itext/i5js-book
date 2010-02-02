@@ -17,6 +17,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfGState;
@@ -104,7 +105,7 @@ public class Layers {
         document.newPage();
         // Page 3: the words "Foobar Film Festival"
         drawRectangle(under, PageSize.POSTCARD.getWidth(), PageSize.POSTCARD.getHeight());;
-        Paragraph p = new Paragraph("Foobar Film Festival", new Font(Font.HELVETICA, 22));
+        Paragraph p = new Paragraph("Foobar Film Festival", new Font(FontFamily.HELVETICA, 22));
         p.setAlignment(Element.ALIGN_CENTER);
         document.add(p);
         document.newPage();

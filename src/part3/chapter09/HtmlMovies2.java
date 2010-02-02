@@ -23,6 +23,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontProvider;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.html.simpleparser.ChainedProperties;
 import com.itextpdf.text.html.simpleparser.HTMLWorker;
 import com.itextpdf.text.html.simpleparser.ImageProvider;
@@ -60,7 +61,7 @@ public class HtmlMovies2 extends HtmlMovies1 {
         public Font getFont(String fontname,
                 String encoding, boolean embedded, float size,
                 int style, BaseColor color) {
-            return new Font(Font.TIMES_ROMAN, size, style, color);
+            return new Font(FontFamily.TIMES_ROMAN, size, style, color);
         }
 
         public boolean isRegistered(String fontname) {

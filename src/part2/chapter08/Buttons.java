@@ -18,6 +18,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.Utilities;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.GrayColor;
@@ -62,7 +63,7 @@ public class Buttons {
         writer.addJavaScript(Utilities.readFileToString(RESOURCE));
         
         PdfContentByte canvas = writer.getDirectContent();
-        Font font = new Font(Font.HELVETICA, 18);
+        Font font = new Font(FontFamily.HELVETICA, 18);
         Rectangle rect;
         PdfFormField field;
         PdfFormField radiogroup = PdfFormField.createRadioButton(writer, true);

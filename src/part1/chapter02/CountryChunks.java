@@ -19,6 +19,7 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.BaseColor;
 
@@ -71,7 +72,7 @@ public class CountryChunks {
             document.add(new Chunk(rs.getString("country")));
             document.add(new Chunk(" "));
             // add the ID in another font
-            Font font = new Font(Font.HELVETICA, 6, Font.BOLD, BaseColor.WHITE);
+            Font font = new Font(FontFamily.HELVETICA, 6, Font.BOLD, BaseColor.WHITE);
             Chunk id = new Chunk(rs.getString("id"), font);
             // with a background color
             id.setBackground(BaseColor.BLACK, 1f, 0.5f, 1f, 1.5f);

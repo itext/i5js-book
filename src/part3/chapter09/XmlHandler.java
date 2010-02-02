@@ -23,6 +23,7 @@ import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.TextElementArray;
+import com.itextpdf.text.Font.FontFamily;
 
 public class XmlHandler extends DefaultHandler {
 
@@ -83,7 +84,7 @@ public class XmlHandler extends DefaultHandler {
             else if ("movie".equals(qName)) {
                 flushStack();
                 Paragraph p = new Paragraph();
-                p.setFont(new Font(Font.HELVETICA, 14, Font.BOLD));
+                p.setFont(new Font(FontFamily.HELVETICA, 14, Font.BOLD));
                 stack.push(p);
                 year = attributes.getValue("year");
                 duration = attributes.getValue("duration");

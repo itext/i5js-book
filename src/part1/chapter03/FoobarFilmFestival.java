@@ -17,6 +17,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
@@ -48,7 +49,7 @@ public class FoobarFilmFestival {
         Chunk c;
         String foobar = "Foobar Film Festival";
         // Measuring a String in Helvetica
-        Font helvetica = new Font(Font.HELVETICA, 12);
+        Font helvetica = new Font(FontFamily.HELVETICA, 12);
         BaseFont bf_helv = helvetica.getCalculatedBaseFont(false);
         float width_helv = bf_helv.getWidthPoint(foobar, 12);
         c = new Chunk(foobar + ": " + width_helv, helvetica);

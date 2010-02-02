@@ -21,6 +21,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfWriter;
 
 /**
@@ -33,10 +34,10 @@ public class DirectorPhrases1 {
 
     /** A font that will be used in our PDF. */
     public static final Font BOLD_UNDERLINED =
-        new Font(Font.TIMES_ROMAN, 12, Font.BOLD | Font.UNDERLINE);
+        new Font(FontFamily.TIMES_ROMAN, 12, Font.BOLD | Font.UNDERLINE);
     /** A font that will be used in our PDF. */
     public static final Font NORMAL =
-        new Font(Font.TIMES_ROMAN, 12);
+        new Font(FontFamily.TIMES_ROMAN, 12);
     
     /**
      * Creates a Phrase with the name and given name of a director using different fonts.

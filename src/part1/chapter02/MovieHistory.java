@@ -25,6 +25,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class MovieHistory {
@@ -39,10 +40,10 @@ public class MovieHistory {
     /** The fonts for the title. */
     public static final Font[] FONT = new Font[4];
     static {
-        FONT[0] = new Font(Font.HELVETICA, 24);
-        FONT[1] = new Font(Font.HELVETICA, 18);
-        FONT[2] = new Font(Font.HELVETICA, 14);
-        FONT[3] = new Font(Font.HELVETICA, 12, Font.BOLD);
+        FONT[0] = new Font(FontFamily.HELVETICA, 24);
+        FONT[1] = new Font(FontFamily.HELVETICA, 18);
+        FONT[2] = new Font(FontFamily.HELVETICA, 14);
+        FONT[3] = new Font(FontFamily.HELVETICA, 12, Font.BOLD);
     }
     
     /**

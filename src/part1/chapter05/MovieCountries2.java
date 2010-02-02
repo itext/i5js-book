@@ -29,6 +29,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.GrayColor;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
@@ -45,7 +46,7 @@ public class MovieCountries2 extends MovieCountries1 {
      */
     class Watermark extends PdfPageEventHelper {
         
-        Font FONT = new Font(Font.HELVETICA, 52, Font.BOLD, new GrayColor(0.75f));
+        Font FONT = new Font(FontFamily.HELVETICA, 52, Font.BOLD, new GrayColor(0.75f));
         
         public void onEndPage(PdfWriter writer, Document document) {
             ColumnText.showTextAligned(writer.getDirectContentUnder(),

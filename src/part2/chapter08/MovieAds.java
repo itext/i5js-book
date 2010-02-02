@@ -27,6 +27,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.Utilities;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.html.WebColors;
 import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.ColumnText;
@@ -134,9 +135,9 @@ public class MovieAds {
     }
     
     public Paragraph createMovieParagraph(Movie movie, float fontsize) {
-        Font normal = new Font(Font.HELVETICA, fontsize);
-        Font bold = new Font(Font.HELVETICA, fontsize, Font.BOLD);
-        Font italic = new Font(Font.HELVETICA, fontsize, Font.ITALIC);
+        Font normal = new Font(FontFamily.HELVETICA, fontsize);
+        Font bold = new Font(FontFamily.HELVETICA, fontsize, Font.BOLD);
+        Font italic = new Font(FontFamily.HELVETICA, fontsize, Font.ITALIC);
         Paragraph p = new Paragraph(fontsize * 1.2f);
         p.setFont(normal);
         p.setAlignment(Element.ALIGN_JUSTIFIED);

@@ -24,6 +24,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -106,7 +107,7 @@ public class ColumnTable {
         PdfPTable header = new PdfPTable(3);
         header.setWidthPercentage(100);
         header.getDefaultCell().setBackgroundColor(BaseColor.BLACK);
-        Font font = new Font(Font.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+        Font font = new Font(FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
         Phrase p = new Phrase("Foobar Film Festival", font);
         header.addCell(p);
         header.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);

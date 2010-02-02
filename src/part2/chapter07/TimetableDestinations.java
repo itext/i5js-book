@@ -18,6 +18,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfAction;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfDestination;
@@ -32,7 +33,7 @@ public class TimetableDestinations {
     public static final String RESULT
         = "results/part2/chapter07/timetable_destinations.pdf";
     /** The font that is used for the navigation links. */
-    public static final Font SYMBOL = new Font(Font.SYMBOL, 20);
+    public static final Font SYMBOL = new Font(FontFamily.SYMBOL, 20);
     /** A list to cache all the possible actions */
     public List<PdfAction> actions;
 

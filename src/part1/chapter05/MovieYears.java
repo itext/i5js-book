@@ -26,6 +26,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -129,9 +130,9 @@ public class MovieYears {
         // step 3
         document.open();
         // step 4
-        Font bold = new Font(Font.HELVETICA, 11, Font.BOLD);
-        Font italic = new Font(Font.HELVETICA, 11, Font.ITALIC);
-        Font white = new Font(Font.HELVETICA, 12, Font.BOLD | Font.ITALIC, BaseColor.WHITE);
+        Font bold = new Font(FontFamily.HELVETICA, 11, Font.BOLD);
+        Font italic = new Font(FontFamily.HELVETICA, 11, Font.ITALIC);
+        Font white = new Font(FontFamily.HELVETICA, 12, Font.BOLD | Font.ITALIC, BaseColor.WHITE);
         Paragraph p;
         Chunk c;
         

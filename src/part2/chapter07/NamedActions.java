@@ -16,6 +16,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfAction;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -39,7 +40,7 @@ public class NamedActions {
     public void manipulatePdf(String src, String dest)
         throws IOException, DocumentException {
     	// Create a table with named actions
-        Font symbol = new Font(Font.SYMBOL, 20);
+        Font symbol = new Font(FontFamily.SYMBOL, 20);
         PdfPTable table = new PdfPTable(4);
         table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);

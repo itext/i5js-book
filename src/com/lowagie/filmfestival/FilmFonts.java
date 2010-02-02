@@ -8,6 +8,7 @@
 package com.lowagie.filmfestival;
 
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 
 /**
  * Contains a series of static Font objects that are used throughout the book.
@@ -15,12 +16,12 @@ import com.itextpdf.text.Font;
 public class FilmFonts {
 
     /** A font used in our PDF file */
-    public static final Font NORMAL = new Font(Font.HELVETICA, 12, Font.NORMAL);
+    public static final Font NORMAL = new Font(FontFamily.HELVETICA, 12, Font.NORMAL);
     /** A font used in our PDF file */
-    public static final Font BOLD = new Font(Font.HELVETICA, 12, Font.BOLD);
+    public static final Font BOLD = new Font(FontFamily.HELVETICA, 12, Font.BOLD);
     /** A font used in our PDF file */
-    public static final Font ITALIC = new Font(Font.HELVETICA, 12, Font.ITALIC);
+    public static final Font ITALIC = new Font(FontFamily.HELVETICA, 12, Font.ITALIC);
     /** A font used in our PDF file */
-    public static final Font BOLDITALIC = new Font(Font.HELVETICA, 12, Font.BOLDITALIC);
+    public static final Font BOLDITALIC = new Font(FontFamily.HELVETICA, 12, Font.BOLDITALIC);
 
 }
