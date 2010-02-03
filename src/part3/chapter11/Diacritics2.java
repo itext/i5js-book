@@ -32,7 +32,7 @@ public class Diacritics2 {
         = "results/part3/chapter11/diacritics2.pdf";
     /** A movie title. */
     public static final String MOVIE
-        = "Tomten ¨ar far till alla barnen";
+        = "Tomten \u00a8ar far till alla barnen";
     /** Fonts */
     public static final String[] FONTS = {
     	"c:/windows/fonts/arial.ttf",
