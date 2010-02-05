@@ -118,7 +118,7 @@ public class LinkActions {
     public void createXml(String src, String dest) throws IOException {
         PdfReader reader = new PdfReader(src);
         HashMap<String,String> map = SimpleNamedDestination.getNamedDestination(reader, false);
-        SimpleNamedDestination.exportToXML(map, new FileOutputStream(RESULT3),
+        SimpleNamedDestination.exportToXML(map, new FileOutputStream(dest),
                 "ISO8859-1", true);
     }
 

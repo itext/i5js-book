@@ -2,12 +2,7 @@ package part4.chapter15;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.RandomAccessFile;
-import java.util.Set;
-import java.util.TreeSet;
-
-import part3.chapter11.FontTypes;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -16,7 +11,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfDictionary;
 import com.itextpdf.text.pdf.PdfIndirectObject;
-import com.itextpdf.text.pdf.PdfIndirectReference;
 import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfNumber;
 import com.itextpdf.text.pdf.PdfObject;
@@ -53,19 +47,23 @@ public class EmbedFontPostFacto {
      * @throws DocumentException 
      */
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
+    	// the name of the font in the file
+		PdfName fontname = new PdfName(FONTNAME);
+		// the font file
     	RandomAccessFile raf = new RandomAccessFile(FONT, "r");
 		byte fontfile[] = new byte[(int)raf.length()];
 		raf.readFully(fontfile);
 		raf.close();
-    	PdfReader reader = new PdfReader(RESULT1);
-    	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT2));
+		// create a new stream for the font file
 		PdfStream stream = new PdfStream(fontfile);
 		stream.flateCompress();
 		stream.put(PdfName.LENGTH1, new PdfNumber(fontfile.length));
+		// create a reader object
+    	PdfReader reader = new PdfReader(RESULT1);
 		int n = reader.getXrefSize();
 		PdfObject object;
 		PdfDictionary font;
-		PdfName fontname = new PdfName(FONTNAME);
+    	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT2));
 		for (int i = 0; i < n; i++) {
 			object = reader.getPdfObject(i);
 			if (object == null || !object.isDictionary())
