@@ -14,11 +14,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.CMYKColor;
 import com.itextpdf.text.pdf.ICC_Profile;
-import com.itextpdf.text.pdf.PdfArray;
-import com.itextpdf.text.pdf.PdfDictionary;
-import com.itextpdf.text.pdf.PdfICCBased;
-import com.itextpdf.text.pdf.PdfName;
-import com.itextpdf.text.pdf.PdfString;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class PdfXPdfA {
@@ -73,16 +68,8 @@ public class PdfXPdfA {
 		// step 3
 		document.open();
 		// step 4
-		PdfDictionary oi = new PdfDictionary(PdfName.OUTPUTINTENT);
-		oi.put(PdfName.OUTPUTCONDITIONIDENTIFIER, new PdfString("sRGB IEC61966-2.1"));
-		oi.put(PdfName.INFO, new PdfString("sRGB IEC61966-2.1"));
-		oi.put(PdfName.S, PdfName.GTS_PDFA1);
 		ICC_Profile icc = ICC_Profile.getInstance(new FileInputStream(PROFILE));
-		PdfICCBased icc_based = new PdfICCBased(icc);
-		icc_based.remove(PdfName.ALTERNATE);
-		oi.put(PdfName.DESTOUTPUTPROFILE, 
-		writer.addToBody(icc_based).getIndirectReference());
-		writer.getExtraCatalog().put(PdfName.OUTPUTINTENTS, new PdfArray(oi));
+		writer.setOutputIntents("Custom", "", "http://www.color.org", "sRGB IEC61966-2.1", icc);
 		Font font = FontFactory.getFont(FONT, BaseFont.CP1252, BaseFont.EMBEDDED);
 		document.add(new Paragraph("Hello World", font));
 		// step 5
