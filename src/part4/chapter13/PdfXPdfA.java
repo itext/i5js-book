@@ -68,10 +68,10 @@ public class PdfXPdfA {
 		// step 3
 		document.open();
 		// step 4
-		ICC_Profile icc = ICC_Profile.getInstance(new FileInputStream(PROFILE));
-		writer.setOutputIntents("Custom", "", "http://www.color.org", "sRGB IEC61966-2.1", icc);
 		Font font = FontFactory.getFont(FONT, BaseFont.CP1252, BaseFont.EMBEDDED);
 		document.add(new Paragraph("Hello World", font));
+		ICC_Profile icc = ICC_Profile.getInstance(new FileInputStream(PROFILE));
+		writer.setOutputIntents("Custom", "", "http://www.color.org", "sRGB IEC61966-2.1", icc);
 		// step 5
 		document.close();
 	}
