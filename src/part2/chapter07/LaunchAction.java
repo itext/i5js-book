@@ -23,17 +23,17 @@ public class LaunchAction {
         = "results/part2/chapter07/launch_action.pdf";
 
     /**
-     * Main method.
-     * @param    args    no arguments needed
-     * @throws DocumentException 
-     * @throws IOException
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
      */
-    public static void main(String[] args)
-        throws IOException, DocumentException {
+    public void createPdf(String filename)
+    throws IOException, DocumentException {
         // step 1
         Document document = new Document();
         // step 2
-        PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
         // step 3
         document.open();
         // step 4
@@ -44,5 +44,16 @@ public class LaunchAction {
         document.add(p);
         // step 5
         document.close();
+    }
+    
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+    	new LaunchAction().createPdf(RESULT);
     }
 }
