@@ -138,9 +138,9 @@ public class Bookmarks2NamedDestinations {
     	if (dests.size() == 0)
     		return;
     	PdfIndirectReference ref = reader.addPdfObject(dests);
-    	PdfDictionary names = new PdfDictionary();
     	PdfDictionary nametree = new PdfDictionary();
     	nametree.put(PdfName.NAMES, ref);
+    	PdfDictionary names = new PdfDictionary();
     	names.put(PdfName.DESTS, nametree);
     	root.put(PdfName.NAMES, names);
     	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));

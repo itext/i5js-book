@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import part1.chapter02.MovieHistory;
@@ -34,7 +35,6 @@ public class ConcatenateBookmarks {
      * @throws IOException
      * @throws DocumentException
      */
-    @SuppressWarnings("unchecked")
     public void manipulatePdf(String[] src, String dest)
         throws IOException, DocumentException {
     	// step 1
@@ -49,8 +49,8 @@ public class ConcatenateBookmarks {
         int page_offset = 0;
         int n;
         // Create a list for the bookmarks
-        ArrayList bookmarks = new ArrayList();
-        List tmp;
+        ArrayList<HashMap<String, Object>> bookmarks = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> tmp;
         for (int i  = 0; i < src.length; i++) {
             reader = new PdfReader(src[i]);
             // merge the bookmarks
