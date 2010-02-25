@@ -31,7 +31,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PushbuttonField;
 import com.itextpdf.text.pdf.RadioCheckField;
 import com.itextpdf.text.pdf.TextField;
-import com.itextpdf.text.pdf.AcroFields.Item;
 
 public class AddJavaScriptToForm {
     /** The resulting PDF file. */
@@ -39,7 +38,7 @@ public class AddJavaScriptToForm {
         = "results/part4/chapter13/form_without_js.pdf";
     /** The resulting PDF file. */
     public static final String RESULT
-        = "results/part4/chapter13/form_with_js..pdf";
+        = "results/part4/chapter13/form_with_js.pdf";
     /** Path to the resources. */
     public static final String RESOURCE
         = "resources/js/extra.js";
@@ -101,7 +100,7 @@ public class AddJavaScriptToForm {
     	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.getWriter().addJavaScript(Utilities.readFileToString(RESOURCE));
         AcroFields form = stamper.getAcroFields();
-        Item fd = form.getFieldItem("married");
+        AcroFields.Item fd = form.getFieldItem("married");
  
         PdfDictionary dictYes =
         	(PdfDictionary) PdfReader.getPdfObject(fd.getWidgetRef(0));

@@ -47,7 +47,7 @@ public class FixBrokenForm {
     	    page = reader.getPageN(i);
     	    annots = page.getAsArray(PdfName.ANNOTS);
     	    for (int j = 0; j < annots.size(); j++) {
-    	        fields.add(annots.getPdfObject(j));
+    	        fields.add(annots.getAsIndirectObject(j));
     	    }
     	}
     	PdfStamper stamper = new PdfStamper(reader,
