@@ -111,7 +111,7 @@ public class AddJavaScriptToForm {
         dictYes.put(PdfName.AA, yesAction);
  
         PdfDictionary dictNo =
-        	(PdfDictionary) PdfReader.getPdfObject((PdfObject) fd.getWidgetRef(1));
+        	(PdfDictionary) PdfReader.getPdfObject(fd.getWidgetRef(1));
         PdfDictionary noAction = dictNo.getAsDict(PdfName.AA);
         if (noAction == null) noAction = new PdfDictionary();
         noAction.put(new PdfName("Fo"),

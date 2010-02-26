@@ -4,7 +4,7 @@
  * For more info, go to: http://itextpdf.com/examples/
  * This example only works with the AGPL version of iText.
  */
-package part4.chapter15;
+package part4.chapter13;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import com.itextpdf.text.pdf.PdfString;
 public class RemoveLaunchActions {
     /** The resulting PDF. */
     public static final String RESULT
-        = "results/part4/chapter15/launch_removed.pdf";
+        = "results/part4/chapter13/launch_removed.pdf";
     
     /**
      * Manipulates a PDF file src with the file dest as result
