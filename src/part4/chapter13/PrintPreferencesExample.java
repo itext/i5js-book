@@ -2,7 +2,6 @@ package part4.chapter13;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.SQLException;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -22,11 +21,10 @@ public class PrintPreferencesExample {
      * @param filename the name of the PDF file that will be created.
      * @param pagelayout the value for the viewerpreferences
      * @throws    DocumentException 
-     * @throws    IOException 
-     * @throws    SQLException
+     * @throws    IOException
      */
     public void createPdf(String filename)
-        throws IOException, DocumentException, SQLException {
+        throws IOException, DocumentException {
         // step 1
         Document document = new Document();
         // step 2
@@ -47,11 +45,10 @@ public class PrintPreferencesExample {
      *
      * @param    args    no arguments needed
      * @throws DocumentException 
-     * @throws IOException 
-     * @throws SQLException
+     * @throws IOException
      */
     public static void main(String[] args)
-        throws IOException, DocumentException, SQLException {
+        throws IOException, DocumentException {
     	new PrintPreferencesExample().createPdf(RESULT);
     }
 }

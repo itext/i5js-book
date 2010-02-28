@@ -2,7 +2,7 @@
     <target name="compile">
         <ant antfile="build.xml" target="compile" />
     </target>
-    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10, part3.chapter11, part3.chapter12" />
+    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10, part3.chapter11, part3.chapter12, part4.chapter13" />
     <target name="clean">
         <delete dir="results/part1/chapter01" includes="*.*" />
         <delete dir="results/part1/chapter02" includes="*.*" />
@@ -16,6 +16,7 @@
         <delete dir="results/part3/chapter10" includes="*.*" />
         <delete dir="results/part3/chapter11" includes="*.*" />
         <delete dir="results/part3/chapter12" includes="*.*" />
+        <delete dir="results/part4/chapter13" includes="*.*" />
     </target>
     <target name="part1.chapter01">
         <echo message="HelloWorld" />
@@ -1476,6 +1477,112 @@
                 <pathelement location="lib/iText.jar" />
                 <pathelement location="lib/bcmail-jdk14-138.jar" />
                 <pathelement location="lib/bcprov-jdk14-138.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part4.chapter13">
+        <echo message="PdfXPdfA" />
+        <java fork="yes" classname="part4.chapter13.PdfXPdfA">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="AppendMode" />
+        <java fork="yes" classname="part4.chapter13.AppendMode">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="PageLayoutExample" />
+        <java fork="yes" classname="part4.chapter13.PageLayoutExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="ViewerPreferencesExample" />
+        <java fork="yes" classname="part4.chapter13.ViewerPreferencesExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="PrintPreferencesExample" />
+        <java fork="yes" classname="part4.chapter13.PrintPreferencesExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="CropPages" />
+        <java fork="yes" classname="part4.chapter13.CropPages">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="RotatePages" />
+        <java fork="yes" classname="part4.chapter13.RotatePages">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="RemoveLaunchActions" />
+        <java fork="yes" classname="part4.chapter13.RemoveLaunchActions">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="PageLabelExample" />
+        <java fork="yes" classname="part4.chapter13.PageLabelExample">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="Bookmarks2NamedDestinations" />
+        <java fork="yes" classname="part4.chapter13.Bookmarks2NamedDestinations">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="FixBrokenForm" />
+        <java fork="yes" classname="part4.chapter13.FixBrokenForm">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="InspectForm" />
+        <java fork="yes" classname="part4.chapter13.InspectForm">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="AddJavaScriptToForm" />
+        <java fork="yes" classname="part4.chapter13.AddJavaScriptToForm">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="ReplaceURL" />
+        <java fork="yes" classname="part4.chapter13.ReplaceURL">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
     </target>
