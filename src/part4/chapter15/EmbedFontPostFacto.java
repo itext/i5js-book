@@ -22,8 +22,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class EmbedFontPostFacto {
 	public static String RESULT1 = "results/part4/chapter15/without_font.pdf";
 	public static String RESULT2 = "results/part4/chapter15/with_font.pdf";
-	public static String FONT = "resources/fonts/cocacolaii.ttf";
-	public static String FONTNAME = "CocaColaii";
+	public static String FONT = "resources/fonts/wds011402.ttf";
+	public static String FONTNAME = "WaltDisneyScriptv4.1";
 	
 	public void createPdf(String filename) throws IOException, DocumentException {
 		// step 1
@@ -33,7 +33,7 @@ public class EmbedFontPostFacto {
 		// step 3
 		document.open();
 		// step 4:
-		Font font = new Font(BaseFont.createFont(FONT, "", BaseFont.NOT_EMBEDDED), 48);
+		Font font = new Font(BaseFont.createFont(FONT, "", BaseFont.NOT_EMBEDDED), 60);
 		document.add(new Paragraph("iText in Action", font));
 		// step 5
 		document.close();
