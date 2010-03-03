@@ -72,10 +72,14 @@ public class FillDataSheet {
      */
     public static void fill(AcroFields form, Movie movie)
         throws IOException, DocumentException {
-        form.setField("title", "The Misfortunates");
-        form.setField("director", "Felix Van Groeningen");
-        form.setField("year", "2009");
-        form.setField("duration", "108");
+    	form.setField("title", movie.getMovieTitle());
+        form.setField("director", getDirectors(movie));
+        form.setField("year", String.valueOf(movie.getYear()));
+        form.setField("duration", String.valueOf(movie.getDuration()));
+        form.setField("category", movie.getEntry().getCategory().getKeyword());
+        for (Screening screening : movie.getEntry().getScreenings()) {
+            form.setField(screening.getLocation().replace('.', '_'), "Yes");
+        }
     }
     
     /**
