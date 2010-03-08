@@ -5,7 +5,7 @@
  * This example only works with the AGPL version of iText.
  */
 
-package part4.chapter15;
+package part4.chapter16;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
