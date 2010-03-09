@@ -100,6 +100,7 @@ public class DirectorOverview2 {
         }
         // step 5
         document.close();
+        connection.close();
     }
     
     /**

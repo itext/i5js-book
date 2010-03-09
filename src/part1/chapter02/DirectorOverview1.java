@@ -98,6 +98,7 @@ public class DirectorOverview1 {
         }
         // step 5
         document.close();
+        connection.close();
     }
     
     /**

@@ -112,6 +112,7 @@ public class DirectorOverview3 {
         }
         // step 5
         document.close();
+        connection.close();
     }
     
     /**
