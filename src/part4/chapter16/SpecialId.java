@@ -13,7 +13,7 @@ import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class SpecialId {
-	public static String RESULT = "results/part4/chapter15/special_id.pdf";
+	public static String RESULT = "results/part4/chapter16/special_id.pdf";
 	public static String RESOURCE = "resources/img/bruno.jpg";
 
     /**

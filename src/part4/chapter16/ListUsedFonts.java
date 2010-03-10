@@ -24,7 +24,7 @@ public class ListUsedFonts {
 
     /** The resulting PDF file. */
     public static String RESULT
-        = "results/part4/chapter15/fonts.txt";
+        = "results/part4/chapter16/fonts.txt";
     
     /**
      * Extracts the font names from page or XObject resources.

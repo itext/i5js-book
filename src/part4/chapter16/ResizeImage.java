@@ -20,7 +20,7 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 public class ResizeImage {
 
-	public static String RESULT = "results/part4/chapter15/resized_image.pdf";
+	public static String RESULT = "results/part4/chapter16/resized_image.pdf";
 	public static float FACTOR = 0.5f;
 	
     /**

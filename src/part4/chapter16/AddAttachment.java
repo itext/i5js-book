@@ -15,7 +15,7 @@ import part3.chapter11.Peace;
 
 public class AddAttachment {
 
-	public static final String RESULT = "results/part4/chapter15/with_attachment.pdf";
+	public static final String RESULT = "results/part4/chapter16/with_attachment.pdf";
 	public static final String RESOURCE = "resources/xml/peace.xml";
 
     /**

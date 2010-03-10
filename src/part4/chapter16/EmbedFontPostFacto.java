@@ -20,8 +20,8 @@ import com.itextpdf.text.pdf.PdfStream;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class EmbedFontPostFacto {
-	public static String RESULT1 = "results/part4/chapter15/without_font.pdf";
-	public static String RESULT2 = "results/part4/chapter15/with_font.pdf";
+	public static String RESULT1 = "results/part4/chapter16/without_font.pdf";
+	public static String RESULT2 = "results/part4/chapter16/with_font.pdf";
 	public static String FONT = "resources/fonts/wds011402.ttf";
 	public static String FONTNAME = "WaltDisneyScriptv4.1";
 	
