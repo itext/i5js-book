@@ -36,7 +36,17 @@ public class DirectorCharts {
     /** The resulting PDF. */
     public static final String RESULT = "results/part4/chapter14/director_charts.pdf";
 
-
+    public static final String QUERY1 =
+    	"SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
+            + "FROM film_director d, film_movie_director md "
+            + "WHERE d.id = md.director_id "
+            + "GROUP BY d.id, d.name, d.given_name ORDER BY c DESC, name LIMIT 9";
+    public static final String QUERY2 =
+    	"SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
+            + "FROM film_director d, film_movie_director md "
+            + "WHERE d.id = md.director_id "
+            + "GROUP BY d.id, d.name, d.given_name ORDER BY c DESC, name LIMIT 17";
+    
     /**
      * Creates a PDF document.
      * @param filename the path to the new PDF document
@@ -89,11 +99,7 @@ public class DirectorCharts {
 		DefaultPieDataset dataset = new DefaultPieDataset();
 		DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery(
-            "SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
-            + "FROM film_director d, film_movie_director md "
-            + "WHERE d.id = md.director_id "
-            + "GROUP BY d.id, d.name, d.given_name ORDER BY c DESC, name LIMIT 9");
+        ResultSet rs = stm.executeQuery(QUERY1);
         Director director;
         while (rs.next()) {
         	director = PojoFactory.getDirector(rs);
@@ -117,11 +123,7 @@ public class DirectorCharts {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery(
-            "SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
-            + "FROM film_director d, film_movie_director md "
-            + "WHERE d.id = md.director_id "
-            + "GROUP BY d.id, d.name, d.given_name ORDER BY c DESC, name LIMIT 17");
+        ResultSet rs = stm.executeQuery(QUERY2);
         Director director;
         while (rs.next()) {
         	director = PojoFactory.getDirector(rs);

@@ -65,7 +65,7 @@ public class PearExample extends JPanel {
 		double ew = 75;
 		double eh = 75;
 
-		g2.setColor(Color.green);
+		g2.setColor(Color.GREEN);
 
 		// Creates the first leaf by filling the intersection of two Area
 		// objects created from an ellipse.
@@ -82,7 +82,7 @@ public class PearExample extends JPanel {
 		leaf2.intersect(leaf1);
 		g2.fill(leaf2);
 
-		g2.setColor(Color.black);
+		g2.setColor(Color.BLACK);
 
 		// Creates the stem by filling the Area resulting from the subtraction
 		// of two Area objects created from an ellipse.
@@ -93,7 +93,7 @@ public class PearExample extends JPanel {
 		st1.subtract(st2);
 		g2.fill(st1);
 
-		g2.setColor(Color.yellow);
+		g2.setColor(Color.YELLOW);
 
 		// Creates the pear itself by filling the Area resulting from the union
 		// of two Area objects created by two different ellipses.
@@ -107,7 +107,7 @@ public class PearExample extends JPanel {
 	
 	public static void main(String s[]) {
 		PearExample pear = new PearExample();
-		JFrame f = new JFrame("Pear example");
+		JFrame f = new JFrame("Pear");
 	    f.getContentPane().add( pear, "Center" );
 
         f.addWindowListener(new WindowAdapter() {
