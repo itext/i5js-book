@@ -1734,6 +1734,7 @@
                 <pathelement location="lib/batik-svg-dom.jar" />
                 <pathelement location="lib/batik-util.jar" />
                 <pathelement location="lib/batik-xml.jar" />
+                <pathelement location="lib/xerces_2_5_0.jar" />
             </classpath>
         </java>
     </target>
