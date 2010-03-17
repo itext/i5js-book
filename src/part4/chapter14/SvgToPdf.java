@@ -33,13 +33,13 @@ public class SvgToPdf {
     /** The resulting PDF. */
     public static final String RESULT = "results/part4/chapter14/foobar.pdf";
     /** The map. */
-    public static final String RESOURCE1 = "resources/xml/foobarcity.svg";
+    public static final String CITY = "resources/xml/foobarcity.svg";
     /** The map. */
-    public static final String RESOURCE2 = "resources/xml/foobarstreets.svg";
+    public static final String STREETS = "resources/xml/foobarstreets.svg";
     
     protected SAXSVGDocumentFactory factory;
-    BridgeContext ctx;
-    GVTBuilder builder;
+    protected BridgeContext ctx;
+    protected GVTBuilder builder;
     public SvgToPdf() {
 		String parser = XMLResourceDescriptor.getXMLParserClassName();
 		factory = new SAXSVGDocumentFactory(parser);
@@ -51,6 +51,15 @@ public class SvgToPdf {
 
 		builder = new GVTBuilder();
     }
+	
+	public void drawSvg(PdfTemplate map, String resource) throws IOException {
+		Graphics2D g2d = map.createGraphics(6000, 6000);
+		SVGDocument city = factory.createSVGDocument(new File(resource).toURL()
+				.toString());
+		GraphicsNode mapGraphics = builder.build(ctx, city);
+		mapGraphics.paint(g2d);
+		g2d.dispose();
+	}
     
     /**
      * Creates a PDF document.
@@ -65,21 +74,12 @@ public class SvgToPdf {
 		document.open();
 		PdfContentByte cb = writer.getDirectContent();
 		PdfTemplate map = cb.createTemplate(6000, 6000);
-		drawSvg(map, RESOURCE1);
+		drawSvg(map, CITY);
 		cb.addTemplate(map, 0, 0);
 		PdfTemplate streets = cb.createTemplate(6000, 6000);
-		drawSvg(streets, RESOURCE2);
+		drawSvg(streets, STREETS);
 		cb.addTemplate(streets, 0, 0);
 		document.close();
-	}
-	
-	public void drawSvg(PdfTemplate map, String resource) throws IOException {
-		Graphics2D g2d = map.createGraphics(6000, 6000);
-		SVGDocument city = factory.createSVGDocument(new File(resource).toURL()
-				.toString());
-		GraphicsNode mapGraphics = builder.build(ctx, city);
-		mapGraphics.paint(g2d);
-		g2d.dispose();
 	}
 	
     /**

@@ -27,9 +27,9 @@ public class SvgLayers extends SvgToPdf {
     /** The resulting PDF. */
     public static final String RESULT = "results/part4/chapter15/foobarcity.pdf";
     /** The map. */
-    public static final String RESOURCE3 = "resources/xml/foobarrues.svg";
+    public static final String RUES = "resources/xml/foobarrues.svg";
     /** The map. */
-    public static final String RESOURCE4 = "resources/xml/foobarstraten.svg";
+    public static final String STRATEN = "resources/xml/foobarstraten.svg";
 
     
     /**
@@ -71,18 +71,18 @@ public class SvgLayers extends SvgToPdf {
 		
 		PdfContentByte cb = writer.getDirectContent();
 		PdfTemplate map = cb.createTemplate(6000, 6000);
-		drawSvg(map, RESOURCE1);
+		drawSvg(map, CITY);
 		cb.addTemplate(map, 0, 0);
 		PdfTemplate streets = cb.createTemplate(6000, 6000);
-		drawSvg(streets, RESOURCE2);
+		drawSvg(streets, STREETS);
 		streets.setLayer(streetlayer_en);
 		cb.addTemplate(streets, 0, 0);
 		PdfTemplate rues = cb.createTemplate(6000, 6000);
-		drawSvg(rues, RESOURCE3);
+		drawSvg(rues, RUES);
 		rues.setLayer(streetlayer_fr);
 		cb.addTemplate(rues, 0, 0);
 		PdfTemplate straten = cb.createTemplate(6000, 6000);
-		drawSvg(straten, RESOURCE4);
+		drawSvg(straten, STRATEN);
 		straten.setLayer(streetlayer_nl);
 		cb.addTemplate(straten, 0, 0);
 		
