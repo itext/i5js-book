@@ -6,13 +6,20 @@
  */
 package part4.chapter14;
 
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Map.Entry;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.DefaultFontMapper;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.DefaultFontMapper.BaseFontParameters;
 
 public class Graphics2DFonts {
@@ -22,8 +29,19 @@ public class Graphics2DFonts {
     /** The resulting PDF. */
     public static final String RESULT2
         = "results/part4/chapter14/pdf_fonts.txt";
+    /** The resulting PDF. */
+    public static final String RESULT3
+        = "results/part4/chapter14/fonts.pdf";
+    
+    public static final Font[] FONTS = {
+    	new Font("Serif", Font.PLAIN, 12),
+    	new Font("Serif", Font.BOLD, 12),
+    	new Font("Serif", Font.ITALIC, 12),
+    	new Font("SansSerif", Font.PLAIN, 12),
+    	new Font("Monospaced", Font.PLAIN, 12)
+    };
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, DocumentException {
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		String[] fontFamily = ge.getAvailableFontFamilyNames();
         PrintStream out1 = new PrintStream(new FileOutputStream(RESULT1));
@@ -41,5 +59,19 @@ public class Graphics2DFonts {
 		}
 		out2.flush();
 		out2.close();
+		
+		float width = 150;
+		float height = 150;
+		Document document = new Document(new Rectangle(width, height));
+		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT3));
+		document.open();
+		PdfContentByte cb = writer.getDirectContent();
+		Graphics2D g2d = cb.createGraphics(width, height, mapper);
+		for (int i = 0; i < FONTS.length; ) {
+			g2d.setFont(FONTS[i++]);
+			g2d.drawString("Hello world", 5, 24 * i);
+		}
+		g2d.dispose();
+		document.close();
 	}
 }

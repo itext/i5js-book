@@ -23,7 +23,6 @@ import org.jfree.data.general.DefaultPieDataset;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.pdf.DefaultFontMapper;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -62,13 +61,13 @@ public class DirectorCharts {
 		float width = PageSize.A4.getWidth();
 		float height = PageSize.A4.getHeight() / 2;
 		PdfTemplate pie = cb.createTemplate(width, height);
-		Graphics2D g2d1 = pie.createGraphics(width, height, new DefaultFontMapper());
+		Graphics2D g2d1 = pie.createGraphics(width, height);
 		Rectangle2D r2d1 = new Rectangle2D.Double(0, 0, width, height);
 		getPieChart().draw(g2d1, r2d1);
 		g2d1.dispose();
 		cb.addTemplate(pie, 0, height);
 		PdfTemplate bar = cb.createTemplate(width, height);
-		Graphics2D g2d2 = bar.createGraphics(width, height, new DefaultFontMapper());
+		Graphics2D g2d2 = bar.createGraphics(width, height);
 		Rectangle2D r2d2 = new Rectangle2D.Double(0, 0, width, height);
 		getBarChart().draw(g2d2, r2d2);
 		g2d2.dispose();
@@ -96,10 +95,10 @@ public class DirectorCharts {
 	 * @throws IOException 
 	 */
 	public static JFreeChart getPieChart() throws SQLException, IOException {
-		DefaultPieDataset dataset = new DefaultPieDataset();
 		DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(QUERY1);
+		DefaultPieDataset dataset = new DefaultPieDataset();
         Director director;
         while (rs.next()) {
         	director = PojoFactory.getDirector(rs);

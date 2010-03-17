@@ -13,6 +13,7 @@ import java.io.IOException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.DefaultFontMapper;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -27,11 +28,13 @@ public class Text1ToPdf1 {
      * @throws IOException
      */
 	public void createPdf(String filename) throws IOException, DocumentException {
-		Document document = new Document(new Rectangle(600, 150));
+		Document document = new Document(new Rectangle(600, 60));
 		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
 		document.open();
 		PdfContentByte canvas = writer.getDirectContent();
-		Graphics2D g2 = canvas.createGraphics(600, 150);
+		DefaultFontMapper mapper = new DefaultFontMapper();
+		mapper.insertDirectory("c:/windows/fonts/");
+		Graphics2D g2 = canvas.createGraphics(600, 60, mapper);
 		TextExample1 text = new TextExample1();
 		text.paint(g2);
 		g2.dispose();

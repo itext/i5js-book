@@ -38,7 +38,7 @@ public class TextExample2 extends JPanel {
 
 	private static AttributedString akira;
 
-	private static final String AKIRA =
+	public static final String AKIRA =
 		"Akira Kurosawa (\u9ed2\u6fa4 \u660e or \u9ed2\u6ca2 \u660e, " +
 		"Kurosawa Akira, 23 March 1910 – 6 September 1998) was a " +
 		"Japanese film director, producer, screenwriter and editor. " +
