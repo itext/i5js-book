@@ -31,7 +31,7 @@ public class TextExample1 extends JPanel {
 	public TextExample1() {
 		akira = new AttributedString(
 			"Akira Kurosawa: \u9ed2\u6fa4 \u660e or \u9ed2\u6ca2 \u660e; " +
-			"23 March 1910 – 6 September 1998.");
+			"23 March 1910 - 6 September 1998.");
 		akira.addAttribute(TextAttribute.FONT, new Font("SansSerif", Font.PLAIN, 12));
 		akira.addAttribute(TextAttribute.FONT, new Font("SansSerif", Font.BOLD, 12), 0, 15);
 	    akira.addAttribute(TextAttribute.FONT, new Font("MS PGothic", Font.PLAIN, 12), 16, 20);

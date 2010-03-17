@@ -13,6 +13,19 @@
 	    <pathelement path="lib/bctsp-jdk14-138.jar"/>
 	    <pathelement path="lib/hsqldb.jar"/>
 	    <pathelement path="lib/servlet.jar"/>
+        <pathelement location="lib/jfreechart.jar" />
+        <pathelement location="lib/jcommon.jar" />
+        <pathelement location="lib/batik-awt-util.jar" />
+        <pathelement location="lib/batik-bridge.jar" />
+        <pathelement location="lib/batik-css.jar" />
+        <pathelement location="lib/batik-dom.jar" />
+        <pathelement location="lib/batik-ext.jar" />
+        <pathelement location="lib/batik-gvt.jar" />
+        <pathelement location="lib/batik-parser.jar" />
+        <pathelement location="lib/batik-script.jar" />
+        <pathelement location="lib/batik-svg-dom.jar" />
+        <pathelement location="lib/batik-util.jar" />
+        <pathelement location="lib/batik-xml.jar" />
 	</path>
 	
 	<target name="src.tar.gz" description="--> makes a tar.gz-file with the source code">

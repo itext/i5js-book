@@ -2,7 +2,7 @@
     <target name="compile">
         <ant antfile="build.xml" target="compile" />
     </target>
-    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10, part3.chapter11, part3.chapter12, part4.chapter13" />
+    <target name="execute" depends="compile, part1.chapter01, part1.chapter02, part1.chapter03, part1.chapter04, part1.chapter05, part2.chapter06, part2.chapter07, part2.chapter08, part3.chapter09, part3.chapter10, part3.chapter11, part3.chapter12, part4.chapter13, part4.chapter14" />
     <target name="clean">
         <delete dir="results/part1/chapter01" includes="*.*" />
         <delete dir="results/part1/chapter02" includes="*.*" />
@@ -17,6 +17,7 @@
         <delete dir="results/part3/chapter11" includes="*.*" />
         <delete dir="results/part3/chapter12" includes="*.*" />
         <delete dir="results/part4/chapter13" includes="*.*" />
+        <delete dir="results/part4/chapter14" includes="*.*" />
     </target>
     <target name="part1.chapter01">
         <echo message="HelloWorld" />
@@ -1583,6 +1584,156 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+    </target>
+    <target name="part4.chapter14">
+        <echo message="GetContentStream" />
+        <java fork="yes" classname="part4.chapter14.GetContentStream">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="PathConstructionAndPainting" />
+        <java fork="yes" classname="part4.chapter14.PathConstructionAndPainting">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="GraphicsStateOperators" />
+        <java fork="yes" classname="part4.chapter14.GraphicsStateOperators">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TransformationMatrix1" />
+        <java fork="yes" classname="part4.chapter14.TransformationMatrix1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TransformationMatrix2" />
+        <java fork="yes" classname="part4.chapter14.TransformationMatrix2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TransformationMatrix3" />
+        <java fork="yes" classname="part4.chapter14.TransformationMatrix3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TextStateOperators" />
+        <java fork="yes" classname="part4.chapter14.TextStateOperators">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="TextMethods" />
+        <java fork="yes" classname="part4.chapter14.TextMethods">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="PearToPdf" />
+        <java fork="yes" classname="part4.chapter14.PearToPdf">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="DirectorCharts" />
+        <java fork="yes" classname="part4.chapter14.DirectorCharts">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/jfreechart.jar" />
+                <pathelement location="lib/jcommon.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="Graphics2DFonts" />
+        <java fork="yes" classname="part4.chapter14.Graphics2DFonts">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Text1ToPdf1" />
+        <java fork="yes" classname="part4.chapter14.Text1ToPdf1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Text1ToPdf2" />
+        <java fork="yes" classname="part4.chapter14.Text1ToPdf2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Text2ToPdf1" />
+        <java fork="yes" classname="part4.chapter14.Text2ToPdf1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Text2ToPdf2" />
+        <java fork="yes" classname="part4.chapter14.Text2ToPdf2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iTextAsian.jar" />
+            </classpath>
+        </java>
+        <echo message="Text2ToPdf3" />
+        <java fork="yes" classname="part4.chapter14.Text2ToPdf3">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Text3ToPdf" />
+        <java fork="yes" classname="part4.chapter14.Text3ToPdf">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Text4ToPdf" />
+        <java fork="yes" classname="part4.chapter14.Text4ToPdf">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="SvgToPdf" />
+        <java fork="yes" classname="part4.chapter14.SvgToPdf">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/batik-awt-util.jar" />
+                <pathelement location="lib/batik-bridge.jar" />
+                <pathelement location="lib/batik-css.jar" />
+                <pathelement location="lib/batik-dom.jar" />
+                <pathelement location="lib/batik-ext.jar" />
+                <pathelement location="lib/batik-gvt.jar" />
+                <pathelement location="lib/batik-parser.jar" />
+                <pathelement location="lib/batik-script.jar" />
+                <pathelement location="lib/batik-svg-dom.jar" />
+                <pathelement location="lib/batik-util.jar" />
+                <pathelement location="lib/batik-xml.jar" />
             </classpath>
         </java>
     </target>
