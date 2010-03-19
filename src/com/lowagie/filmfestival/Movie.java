@@ -14,7 +14,7 @@ import java.util.List;
  * POJO for an object that corresponds with a record
  * in the table film_movietitle.
  */
-public class Movie {
+public class Movie implements Comparable<Movie> {
     
     /** The title of the movie. */
     protected String title;
@@ -147,5 +147,9 @@ public class Movie {
         if (entry.getMovie() == null)
             entry.setMovie(this);
     }
+
+	public int compareTo(Movie o) {
+		return title.compareTo(o.title);
+	}
     
 }

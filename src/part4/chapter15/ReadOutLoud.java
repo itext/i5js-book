@@ -42,6 +42,8 @@ public class ReadOutLoud {
 		PdfContentByte cb = writer.getDirectContent();
 		BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA,
 				BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+		BaseFont bf2 = BaseFont.createFont("c:/windows/fonts/msgothic.ttc,1",
+				BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
 		PdfStructureTreeRoot root = writer.getStructureTreeRoot();
 		PdfStructureElement div = new PdfStructureElement(root, new PdfName("Div"));
@@ -67,14 +69,27 @@ public class ReadOutLoud {
 		cb.endMarkedContentSequence();
 		cb.endText();
 		dict = new PdfDictionary();
-		dict.put(PdfName.LANGUAGE, new PdfString("en-us"));
+		dict.put(PdfName.LANG, new PdfString("en-us"));
 		dict.put(new PdfName("Alt"), new PdfString("2001: A Space Odyssey."));
 		cb.beginMarkedContentSequence(new PdfName("Span"), dict, true);
 		Image img = Image.getInstance(RESOURCE);
-		img.setAbsolutePosition(36, 734 - img.getScaledHeight());
+		img.scaleToFit(1000, 100);
+		img.setAbsolutePosition(36, 640);
 		cb.addImage(img);
 		cb.endMarkedContentSequence();
 
+		cb.beginText();
+		cb.moveText(36, 620);
+		cb.setFontAndSize(bf, 12);
+		cb.showText("This is a movie by Akira Kurosawa: ");
+		dict = new PdfDictionary();
+		dict.put(PdfName.ACTUALTEXT, new PdfString("Seven Samurai."));
+		cb.beginMarkedContentSequence(new PdfName("Span"), dict, true);
+		cb.setFontAndSize(bf2, 12);
+		cb.showText("\u4e03\u4eba\u306e\u4f8d");
+		cb.endMarkedContentSequence();
+		cb.endText();
+		
 		cb.endMarkedContentSequence();
 		document.close();
 	}
