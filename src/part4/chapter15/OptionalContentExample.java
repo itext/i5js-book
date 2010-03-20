@@ -22,9 +22,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class OptionalContentExample {
 	public static String RESULT = "results/part4/chapter15/layer_structure.pdf";
 
-	public void createPdf(String filename) throws DocumentException,
-			IOException {
-		// step 1t
+	public void createPdf(String filename)
+	    throws DocumentException, IOException {
+		// step 1
 		Document document = new Document();
 		// step 2
 		PdfWriter writer =

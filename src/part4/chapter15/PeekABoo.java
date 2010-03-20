@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfLayer;
@@ -45,12 +46,10 @@ public class PeekABoo {
 		BaseFont bf = BaseFont.createFont();
 		PdfContentByte cb = writer.getDirectContent();
 		cb.beginText();
-		cb.setTextMatrix(50, 790);
-		cb.setLeading(24);
 		cb.setFontAndSize(bf, 18);
-		cb.showText("Do you see me?");
+		cb.showTextAligned(Element.ALIGN_LEFT, "Do you see me?", 50, 790, 0);
 		cb.beginLayer(layer);
-		cb.newlineShowText("Peek-a-Boo!!!");
+		cb.showTextAligned(Element.ALIGN_LEFT, "Peek-a-Boo!!!", 50, 766, 0);
 		cb.endLayer();
 		cb.endText();
 		// step 5
