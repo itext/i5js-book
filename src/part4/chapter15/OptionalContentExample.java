@@ -34,11 +34,12 @@ public class OptionalContentExample {
 		document.open();
 		// step 4
 		PdfContentByte cb = writer.getDirectContent();
-		PdfLayer nested = new PdfLayer("Nested Layers", writer);
-		PdfLayer nested_1 = new PdfLayer("Nested Layer 1", writer);
-		PdfLayer nested_2 = new PdfLayer("Nested Layer 2", writer);
+		PdfLayer nested = new PdfLayer("Nested layers", writer);
+		PdfLayer nested_1 = new PdfLayer("Nested layer 1", writer);
+		PdfLayer nested_2 = new PdfLayer("Nested layer 2", writer);
 		nested.addChild(nested_1);
 		nested.addChild(nested_2);
+		writer.lockLayer(nested_2);
 		cb.beginLayer(nested);
 		ColumnText.showTextAligned(cb, Element.ALIGN_LEFT, new Phrase(
 				"nested layers"), 50, 775, 0);
@@ -66,7 +67,7 @@ public class OptionalContentExample {
 				"layer 2 in the group"), 50, 675, 0);
 		cb.endLayer();
 
-		PdfLayer radiogroup = PdfLayer.createTitle("Radio Group", writer);
+		PdfLayer radiogroup = PdfLayer.createTitle("Radio group", writer);
 		PdfLayer radio1 = new PdfLayer("Radiogroup: layer 1", writer);
 		radio1.setOn(true);
 		PdfLayer radio2 = new PdfLayer("Radiogroup: layer 2", writer);
