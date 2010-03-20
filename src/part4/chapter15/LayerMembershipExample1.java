@@ -19,8 +19,8 @@ import com.itextpdf.text.pdf.PdfLayer;
 import com.itextpdf.text.pdf.PdfLayerMembership;
 import com.itextpdf.text.pdf.PdfWriter;
 
-public class LayerMembershipExample {
-	public static String RESULT = "results/part4/chapter15/layer_membership.pdf";
+public class LayerMembershipExample1 {
+	public static String RESULT = "results/part4/chapter15/layer_membership1.pdf";
 
 	public void createPdf(String filename) throws DocumentException,
 			IOException {
@@ -80,6 +80,6 @@ public class LayerMembershipExample {
 	 */
 	public static void main(String[] args) throws DocumentException,
 			IOException {
-		new LayerMembershipExample().createPdf(RESULT);
+		new LayerMembershipExample1().createPdf(RESULT);
 	}
 }
