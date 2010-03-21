@@ -4,7 +4,7 @@
  * For more info, go to: http://itextpdf.com/examples/
  * This example only works with the AGPL version of iText.
  */
-package part4.chapter14;
+package part4.chapter15;
 
 import java.awt.Graphics2D;
 import java.io.File;

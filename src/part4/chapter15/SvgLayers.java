@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import part4.chapter14.SvgToPdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
