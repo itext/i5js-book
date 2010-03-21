@@ -63,7 +63,6 @@ public class OptionalContentActionExample {
 		cb.beginLayer(a2);
 		cb.showTextAligned(Element.ALIGN_LEFT,
 				"A2: David Lean", 50, 694, 0);
-		cb.newlineShowText("A2: David Lean");
 		cb.endLayer();
 		cb.beginLayer(a3);
 		cb.showTextAligned(Element.ALIGN_LEFT,
