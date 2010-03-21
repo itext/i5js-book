@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfAction;
@@ -44,28 +45,32 @@ public class OptionalContentActionExample {
 		BaseFont bf = BaseFont.createFont();
 		PdfContentByte cb = writer.getDirectContent();
 		cb.beginText();
-		cb.setTextMatrix(50, 790);
-		cb.setLeading(24);
 		cb.setFontAndSize(bf, 18);
-		cb.newlineShowText("Q1: Who is the director of the movie 'Paths of Glory'?");
+		cb.showTextAligned(Element.ALIGN_LEFT,
+			"Q1: Who is the director of the movie 'Paths of Glory'?", 50, 766, 0);
+		cb.showTextAligned(Element.ALIGN_LEFT,
+			"Q2: Who directed the movie 'Lawrence of Arabia'?", 50, 718, 0);
+		cb.showTextAligned(Element.ALIGN_LEFT,
+			"Q3: Who is the director of 'House of Flying Daggers'?", 50, 670, 0);
+		cb.endText();
+		cb.saveState();
+		cb.setRGBColorFill(0xFF, 0x00, 0x00);
+		cb.beginText();
 		cb.beginLayer(a1);
-		cb.setRGBColorFill(0xFF, 0x00, 0x00);
-		cb.newlineShowText("A1: Stanley Kubrick");
-		cb.resetRGBColorFill();
+		cb.showTextAligned(Element.ALIGN_LEFT,
+				"A1: Stanley Kubrick", 50, 742, 0);
 		cb.endLayer();
-		cb.newlineShowText("Q2: Who directed the movie 'Lawrence of Arabia'?");
 		cb.beginLayer(a2);
-		cb.setRGBColorFill(0xFF, 0x00, 0x00);
+		cb.showTextAligned(Element.ALIGN_LEFT,
+				"A2: David Lean", 50, 694, 0);
 		cb.newlineShowText("A2: David Lean");
-		cb.resetRGBColorFill();
 		cb.endLayer();
-		cb.newlineShowText("Q3: Who is the director of 'House of Flying Daggers'?");
 		cb.beginLayer(a3);
-		cb.setRGBColorFill(0xFF, 0x00, 0x00);
-		cb.newlineShowText("A3: Zhang Yimou");
-		cb.resetRGBColorFill();
+		cb.showTextAligned(Element.ALIGN_LEFT,
+				"A3: Zhang Yimou", 50, 646, 0);
 		cb.endLayer();
 		cb.endText();
+		cb.restoreState();
 
 		ArrayList<Object> stateOn = new ArrayList<Object>();
 		stateOn.add("ON");
