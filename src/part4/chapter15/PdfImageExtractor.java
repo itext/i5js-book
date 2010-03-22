@@ -1,103 +1,114 @@
-/*
- * $Id: PdfTextExtractor.java 4321 2010-02-10 05:26:05Z trumpetinc $
- *
- * This file is part of the iText project.
- * Copyright (c) 1998-2009 1T3XT BVBA
- * Authors: Kevin Day, Bruno Lowagie, Paulo Soares, et al.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License version 3
- * as published by the Free Software Foundation with the addition of the
- * following permission added to Section 15 as permitted in Section 7(a):
- * FOR ANY PART OF THE COVERED WORK IN WHICH THE COPYRIGHT IS OWNED BY 1T3XT,
- * 1T3XT DISCLAIMS THE WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU Affero General Public License for more details.
- * You should have received a copy of the GNU Affero General Public License
- * along with this program; if not, see http://www.gnu.org/licenses or write to
- * the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
- * Boston, MA, 02110-1301 USA, or download the license from the following URL:
- * http://itextpdf.com/terms-of-use/
- *
- * The interactive user interfaces in modified source and object code versions
- * of this program must display Appropriate Legal Notices, as required under
- * Section 5 of the GNU Affero General Public License.
- *
- * In accordance with Section 7(b) of the GNU Affero General Public License,
- * you must retain the producer line in every PDF that is created or manipulated
- * using iText.
- *
- * You can be released from the requirements of the license by purchasing
- * a commercial license. Buying such a license is mandatory as soon as you
- * develop commercial activities involving the iText software without
- * disclosing the source code of your own applications.
- * These activities include: offering paid services to customers as an ASP,
- * serving PDFs on the fly in a web application, shipping iText with a closed
- * source product.
- *
- * For more information, please contact iText Software Corp. at this
- * address: sales@itextpdf.com
- */
 package part4.chapter15;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferByte;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
+import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
-import part3.chapter10.ImageTypes;
+import javax.imageio.ImageIO;
 
-import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PRStream;
 import com.itextpdf.text.pdf.PdfDictionary;
 import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.ContentByteUtils;
-import com.itextpdf.text.pdf.parser.PdfContentStreamProcessor;
-import com.itextpdf.text.pdf.parser.RenderListener;
 
-/**
- * Extracts images from a PDF file.
- */
 public class PdfImageExtractor {
 
-	/** The PdfReader that holds the PDF file. */
-    private PdfReader reader;
-    
-    /** The RenderListener that will receive render notifications. */
-    private RenderListener renderListener = new ImageRenderListener();
-    
-    /**
-     * Creates a new Text Extractor object, using the most current algorithm for text
-     * extraction (currently {@link LocationTextExtractionStrategy}) as the render listener
-  
-     * @param reader	the reader with the PDF
-     */
-    public PdfImageExtractor(PdfReader reader) {
-        this.reader = reader;
-    }
-    
-    /**
-     * Gets the images from a page.
-     * @param page	the page number of the page
-     * @return	a String with the content as plain text (without PDF syntax)
-     * @throws IOException
-     */
-    public String getImagesFromPage(int page) throws IOException {
-        PdfDictionary pageDic = reader.getPageN(page);
-        PdfDictionary resourcesDic = pageDic.getAsDict(PdfName.RESOURCES);
-        
-        renderListener.reset();
-        PdfContentStreamProcessor processor = new PdfContentStreamProcessor(renderListener);
-        processor.processContent(ContentByteUtils.getContentBytesForPage(reader, page), resourcesDic);        
-        return "";
-    }
-    
-    public static void main(String[] args) throws IOException, DocumentException {
-    	//new ImageTypes().createPdf(ImageTypes.RESULT);
-    	PdfReader reader = new PdfReader(ImageTypes.RESULT);
-    	PdfImageExtractor extractor = new PdfImageExtractor(reader);
-    	for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-    		extractor.getImagesFromPage(i);
-    	}
-    }
+	protected PdfDictionary image_dict;
+	protected byte[] image_bytes;
+	
+	public PdfImageExtractor(PdfDictionary image_dict, PRStream stream) throws IOException {
+		this.image_dict = image_dict;
+		if (PdfName.FLATEDECODE.equals(image_dict.getAsName(PdfName.FILTER)))
+			this.image_bytes = PdfReader.getStreamBytes(stream);
+		else
+			this.image_bytes = PdfReader.getStreamBytesRaw(stream);
+	}
+	
+	public void extractImage(String filename) throws IOException {
+		PdfName filter = image_dict.getAsName(PdfName.FILTER);
+		if (PdfName.DCTDECODE.equals(filter)) {
+			extractJpg(new FileOutputStream(filename + ".jpg"));
+		}
+		else if (PdfName.FLATEDECODE.equals(filter)) {
+			extractPng(new FileOutputStream(filename + ".png"));
+		}
+		else {
+			//for (PdfName key : image_dict.getKeys()) {
+				//System.out.print(key);
+				//System.out.print(" ");
+				//System.out.println(image_dict.get(key));
+			//}
+		}
+	}
+	
+	public void extractImage(OutputStream os) throws IOException {
+		PdfName filter = image_dict.getAsName(PdfName.FILTER);
+		if (PdfName.DCTDECODE.equals(filter)) {
+			extractJpg(os);
+		}
+		else if (PdfName.FLATEDECODE.equals(filter)) {
+			extractPng(os);
+		}
+		else {
+			//for (PdfName key : image_dict.getKeys()) {
+				//System.out.print(key);
+				//System.out.print(" ");
+				//System.out.println(image_dict.get(key));
+			//}
+		}
+	}
+	
+	protected void extractJpg(OutputStream os) throws IOException {
+		BufferedImage bi = ImageIO.read(new ByteArrayInputStream(image_bytes));
+		ImageIO.write(bi, "JPG", os);
+	}
+	
+	protected void extractPng(OutputStream os) throws IOException {
+		for (PdfName key : image_dict.getKeys()) {
+			System.out.print(key);
+			System.out.print(" ");
+			System.out.println(image_dict.get(key));
+		}
+		BufferedImage bi = null;
+		DataBuffer db = new DataBufferByte(image_bytes, image_bytes.length);
+		int width = image_dict.getAsNumber(PdfName.WIDTH).intValue();
+		int height = image_dict.getAsNumber(PdfName.HEIGHT).intValue();
+		WritableRaster raster;
+		int bpc = image_dict.getAsNumber(PdfName.BITSPERCOMPONENT).intValue();
+		switch(bpc) {
+		case 1:
+			raster = Raster.createPackedRaster( db, width, height, 1, null );
+			bi = new BufferedImage( width, height, BufferedImage.TYPE_BYTE_BINARY );
+			bi.setData( raster );
+			break;
+		default:
+			if (PdfName.DEVICERGB.equals(image_dict.getAsName(PdfName.COLORSPACE))) {
+				if (width * height == image_bytes.length) {
+					bi = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_INDEXED );
+					raster = Raster.createPackedRaster(db, width, height, bpc, null);
+					bi.setData(raster);
+				}
+				else {
+					bi = new BufferedImage( width, height, BufferedImage.TYPE_INT_RGB );
+					raster = Raster.createInterleavedRaster(db, width, height,
+							width * 3, 3, new int[]{0, 1, 2}, null );
+					bi.setData(raster);
+				}
+			}
+		}
+		if (bi != null) {
+			ImageIO.write(bi, "png", os);
+		}
+		//WritableRaster raster = Raster.createInterleavedRaster(db, 16, 16, 48, 3, new int[]{0,1,2}, null);
+        //ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_sRGB);
+        //ColorModel cm = new ComponentColorModel(cs, false, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+        //BufferedImage bi = new BufferedImage(cm, raster, false, null);
+        //ImageIO.write(bi, "bmp", new File("hello.bmp"));
+	}
 }
