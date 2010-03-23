@@ -25,7 +25,7 @@ public class ExtractPageContentArea {
 
 	public void parsePdf(String pdf, String txt) throws IOException {
 		PdfReader reader = new PdfReader(pdf);
-		Rectangle rect = new Rectangle(70, 80, 485, 500);
+		Rectangle rect = new Rectangle(70, 80, 420, 500);
         FilteredTextRenderListener filterListener
           = new FilteredTextRenderListener(
             new LocationTextExtractionStrategy(),
