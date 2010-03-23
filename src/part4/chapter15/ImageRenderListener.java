@@ -12,6 +12,7 @@ import java.io.IOException;
 import com.itextpdf.text.pdf.PRStream;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.ImageRenderInfo;
+import com.itextpdf.text.pdf.parser.PdfImageObject;
 import com.itextpdf.text.pdf.parser.RenderListener;
 import com.itextpdf.text.pdf.parser.TextRenderInfo;
 
@@ -40,12 +41,10 @@ public class ImageRenderListener implements RenderListener {
 	}
 
 	public void renderImage(ImageRenderInfo renderInfo) {
-		PRStream stream = (PRStream)PdfReader.getPdfObject(renderInfo.getRef());
+		String filename = String.format(path, pagenumber, renderInfo.getRef().getNumber());
 		try {
-			PdfImageExtractor extractor
-			    = new PdfImageExtractor(stream, stream);
-			extractor.extractImage(String.format(path, pagenumber, renderInfo.getRef().getNumber()));
-		} catch (Exception e) {
+			renderInfo.getImage().extractImage(filename);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

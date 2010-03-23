@@ -98,7 +98,7 @@ public class ExtractImages {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, DocumentException {
-    	//new ImageTypes().createPdf(ImageTypes.RESULT);
+    	new ImageTypes().createPdf(ImageTypes.RESULT);
     	new ExtractImages().extractImages(ImageTypes.RESULT);
     }
 }
