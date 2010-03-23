@@ -18,15 +18,21 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PRTokeniser;
 import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfDictionary;
+import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.parser.ContentByteUtils;
+import com.itextpdf.text.pdf.parser.PdfContentStreamProcessor;
+import com.itextpdf.text.pdf.parser.RenderListener;
 
 public class ParsingHelloWorld {
 
 	public static final String PDF = "results/part4/chapter15/hello_reverse.pdf";
 	public static final String TEXT1 = "results/part4/chapter15/result1.txt";
 	public static final String TEXT2 = "results/part4/chapter15/result2.txt";
+	public static final String TEXT3 = "results/part4/chapter15/result3.txt";
 	
 	/**
 	 * Generates a PDF file with the text 'Hello World'
@@ -77,11 +83,24 @@ public class ParsingHelloWorld {
 		out.close();
 	}
 	
+	public void extractText(String src, String dest) throws IOException {
+		PrintWriter out = new PrintWriter(new FileOutputStream(dest));
+		RenderListener listener = new MyTextRenderListener(out);
+		PdfReader reader = new PdfReader(src);
+		PdfDictionary pageDic = reader.getPageN(1);
+        PdfDictionary resourcesDic = pageDic.getAsDict(PdfName.RESOURCES);
+		PdfContentStreamProcessor processor = new PdfContentStreamProcessor(listener);
+		processor.processContent(ContentByteUtils.getContentBytesForPage(reader, 1), resourcesDic);
+		out.flush();
+		out.close();
+	}
+	
 	public static void main(String[] args) throws DocumentException, IOException {
 		ParsingHelloWorld example = new ParsingHelloWorld();
 		HelloWorld.main(args);
 		example.createPdf(PDF);
 		example.parsePdf(HelloWorld.RESULT, TEXT1);
 		example.parsePdf(PDF, TEXT2);
+		example.extractText(PDF, TEXT3);
 	}
 }
