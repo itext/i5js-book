@@ -54,9 +54,13 @@ public class ContentParser extends DefaultHandler {
 	 */
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
-		buf.append(ch, start, length);
+		for (int i = start; i < start + length; i++) {
+			if (ch[i] == '\n')
+				buf.append(' ');
+			else
+				buf.append(ch[i]);
+		}
 	}
-	
 
 	/**
 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String,

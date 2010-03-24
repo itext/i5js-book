@@ -38,6 +38,11 @@ public class ObjectData {
     /** Path to the resources. */
     public static final String RESOURCE
         = "resources/posters/%s.jpg";
+    public static final String SELECTDIRECTORS =
+    	"SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
+        + "FROM film_director d, film_movie_director md "
+        + "WHERE d.id = md.director_id AND d.id < 8 "
+        + "GROUP BY d.id, d.name, d.given_name ORDER BY id";
 	
 	public static final String RESULT = "results/part4/chapter15/objectdata.pdf";
     
@@ -62,14 +67,10 @@ public class ObjectData {
 		
 		Map<Integer,PdfStructureElement> directors = new HashMap<Integer,PdfStructureElement>();
         Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery(
-            "SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
-            + "FROM film_director d, film_movie_director md "
-            + "WHERE d.id = md.director_id AND d.id < 8 "
-            + "GROUP BY d.id, d.name, d.given_name ORDER BY id");
+        ResultSet rs = stm.executeQuery(SELECTDIRECTORS);
+        int id;
         Director director;
         PdfStructureElement e;
-        int id;
         while (rs.next()) {
         	id = rs.getInt("id");
             director = PojoFactory.getDirector(rs);

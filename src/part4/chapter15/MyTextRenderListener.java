@@ -14,18 +14,20 @@ public class MyTextRenderListener implements RenderListener {
 	}
 	
 	public void beginTextBlock() {
-		out.println("BEGIN");
+		out.print("<");
 	}
 
 	public void endTextBlock() {
-		out.println("END");
+		out.println(">");
 	}
 
 	public void renderImage(ImageRenderInfo renderInfo) {
 	}
 
 	public void renderText(TextRenderInfo renderInfo) {
-		out.println(renderInfo.getText());
+		out.print("<");
+		out.print(renderInfo.getText());
+		out.print(">");
 	}
 
 	public void reset() {
