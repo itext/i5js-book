@@ -16,8 +16,8 @@ import com.itextpdf.text.pdf.parser.TextRenderInfo;
 public class ImageRenderListener implements RenderListener {
 
 	/** The new document to which we've added a border rectangle. */
-	protected String path;
-	protected int pagenumber;
+	protected String path = "";
+	protected int pagenumber = 0;
 	
 	public void setPath(String path) {
 		this.path = path;
