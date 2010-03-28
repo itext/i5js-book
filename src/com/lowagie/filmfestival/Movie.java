@@ -62,6 +62,27 @@ public class Movie implements Comparable<Movie> {
     }
     
     /**
+     * Returns the title in the correct form.
+     * @return a title
+     */
+    public String getMovieTitle(boolean prefix) {
+        if (title.endsWith(", A"))
+        	if (prefix)
+        		return "A ";
+        	else
+        		return title.substring(0, title.length() - 3);
+        if (title.endsWith(", The"))
+        	if (prefix)
+        		return "The ";
+        	else
+        		return title.substring(0, title.length() - 5);
+        if (prefix)
+        	return null;
+        else
+        	return title;
+    }
+    
+    /**
      * @return the title
      */
     public String getTitle() {
