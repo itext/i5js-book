@@ -14,8 +14,7 @@ import java.io.PrintWriter;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
+import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
 
 public class ExtractPageContentPositioned {
 
@@ -23,13 +22,10 @@ public class ExtractPageContentPositioned {
 	
 	public void parsePdf(String pdf, String txt) throws IOException {
 		PdfReader reader = new PdfReader(pdf);
-		TextExtractionStrategy strategy
-			= new LocationTextExtractionStrategy();
-		PdfTextExtractor extractor
-			= new PdfTextExtractor(reader, strategy);
+		PdfReaderContentParser parser = new PdfReaderContentParser(reader);
 		PrintWriter out = new PrintWriter(new FileOutputStream(txt));
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-			out.println(extractor.getTextFromPage(i));
+			out.println(parser.processContent(i, new LocationTextExtractionStrategy()).getResultantText());
 		}
 		out.flush();
 		out.close();

@@ -35,8 +35,9 @@ public class ShowTextMargins {
 	    throws IOException, DocumentException {
 		PdfReader reader = new PdfReader(src);
 		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
-		TextMarginFinder finder = new TextMarginFinder();
+		TextMarginFinder finder;
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+			finder = new TextMarginFinder();
 			parse(reader, i, finder);
 			PdfContentByte cb = stamper.getOverContent(i);
 			cb.rectangle(finder.getLlx(), finder.getLly(),
@@ -57,7 +58,6 @@ public class ShowTextMargins {
 	    throws IOException {
         PdfDictionary pageDic = reader.getPageN(page);
         PdfDictionary resourcesDic = pageDic.getAsDict(PdfName.RESOURCES);
-        listener.reset();
         PdfContentStreamProcessor processor = new PdfContentStreamProcessor(listener);
         processor.processContent(ContentByteUtils.getContentBytesForPage(reader, page), resourcesDic);
 	}

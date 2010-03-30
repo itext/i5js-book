@@ -30,12 +30,9 @@ public class ExtractPageContentArea {
           = new FilteredTextRenderListener(
             new LocationTextExtractionStrategy(),
             new RegionTextRenderFilter(rect) );
-        
-		PdfTextExtractor extractor
-			= new PdfTextExtractor(reader, filterListener);
 		PrintWriter out = new PrintWriter(new FileOutputStream(txt));
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-			out.println(extractor.getTextFromPage(i));
+			out.println(PdfTextExtractor.getTextFromPage(reader, i, filterListener));
 		}
 		out.flush();
 		out.close();

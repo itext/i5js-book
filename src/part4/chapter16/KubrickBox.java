@@ -20,7 +20,6 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfAction;
 import com.itextpdf.text.pdf.PdfDate;
 import com.itextpdf.text.pdf.PdfDestination;
@@ -86,6 +85,14 @@ public class KubrickBox {
 		PdfCollectionSort sort = new PdfCollectionSort(KEYS);
 		collection.setSort(sort);
 		writer.setCollection(collection);
+
+		PdfCollectionItem collectionitem = new PdfCollectionItem(schema);
+		PdfFileSpecification fs;
+		fs = PdfFileSpecification.fileEmbedded(writer, IMG_KUBRICK, "kubrick.jpg", null);
+		fs.addDescription("Stanley Kubrick", false);
+		collectionitem.addItem(TYPE_FIELD, "JPEG");
+		fs.addCollectionItem(collectionitem);
+		writer.addFileAttachment(fs);
 		
 		ByteArrayOutputStream txt = new ByteArrayOutputStream();
 		PrintStream out = new PrintStream(txt);
@@ -125,35 +132,21 @@ public class KubrickBox {
 		out.flush();
 		out.close();
 		document.add(list);
-
-		document.newPage();
-
-		PdfCollectionItem collectionitem = new PdfCollectionItem(schema);
-		
-		PdfFileSpecification fs;
-		fs = PdfFileSpecification.fileEmbedded(writer, IMG_KUBRICK, "kubrick.jpg", null);
-		fs.addDescription("Stanley Kubrick", false);
-		collectionitem.addItem(TYPE_FIELD, "JPEG");
-		fs.addCollectionItem(collectionitem);
-		writer.addFileAttachment(fs);
 		fs = PdfFileSpecification.fileEmbedded(writer, null, "kubrick.txt", txt.toByteArray());
 		fs.addDescription("Kubrick box: the movies", false);
 		collectionitem.addItem(TYPE_FIELD, "TXT");
 		fs.addCollectionItem(collectionitem);
 		writer.addFileAttachment(fs);
-		
-		byte[] pdf;
-		PdfReader reader;
-		Image page;
-		PdfPCell cell;
+
+		document.newPage();
 		
 		PdfPTable table = new PdfPTable(1);
 		
-		pdf = new KubrickMovies().createPdf();
-		reader = new PdfReader(pdf);
-		page = Image.getInstance(writer.getImportedPage(reader, 1));
+		byte[] pdf = new KubrickMovies().createPdf();
+		PdfReader reader = new PdfReader(pdf);
+		Image page = Image.getInstance(writer.getImportedPage(reader, 1));
 		page.scalePercent(30);
-		cell = new PdfPCell(page, false);
+		PdfPCell cell = new PdfPCell(page, false);
 		fs = PdfFileSpecification.fileEmbedded(writer, null, KubrickMovies.FILENAME, pdf);
 		collectionitem.addItem(TYPE_FIELD, "PDF");
 		fs.addCollectionItem(collectionitem);
