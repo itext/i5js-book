@@ -23,10 +23,6 @@ public class ImageRenderListener implements RenderListener {
 		this.path = path;
 	}
 	
-	public void setPagenumber(int pagenumber) {
-		this.pagenumber = pagenumber;
-	}
-	
 	public int getPagenumber() {
 		return pagenumber;
 	}
@@ -50,6 +46,10 @@ public class ImageRenderListener implements RenderListener {
 	}
 
 	public void reset() {
+	}
+
+	public void setPageNumber(int pagenumber) {
+		this.pagenumber = pagenumber;
 	}
 
 }

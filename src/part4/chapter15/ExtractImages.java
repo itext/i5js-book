@@ -73,7 +73,7 @@ public class ExtractImages {
     	ImageRenderListener listener = new ImageRenderListener();
     	listener.setPath(RESULT);
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-			listener.setPagenumber(i);
+			listener.setPageNumber(i);
 			getImagesFromPage(reader, listener);
 		}
 	}

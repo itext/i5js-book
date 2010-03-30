@@ -33,4 +33,7 @@ public class MyTextRenderListener implements RenderListener {
 	public void reset() {
 	}
 
+	public void setPageNumber(int pagenumber) {
+	}
+
 }
