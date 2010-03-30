@@ -15,9 +15,9 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
-public class ExtractPageContentPositioned {
+public class ExtractPageContentSorted2 {
 
-	public static final String RESULT = "results/part4/chapter15/preface_positioned.txt";
+	public static final String RESULT = "results/part4/chapter15/preface_sorted2.txt";
 	
 	public void parsePdf(String pdf, String txt) throws IOException {
 		PdfReader reader = new PdfReader(pdf);
@@ -30,6 +30,6 @@ public class ExtractPageContentPositioned {
 	}
 	
 	public static void main(String[] args) throws IOException, DocumentException {
-		new ExtractPageContentPositioned().parsePdf(ExtractPageContent.PREFACE, RESULT);
+		new ExtractPageContentSorted2().parsePdf(ExtractPageContent.PREFACE, RESULT);
 	}
 }

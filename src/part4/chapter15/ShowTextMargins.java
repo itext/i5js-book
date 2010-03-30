@@ -12,12 +12,9 @@ import java.io.IOException;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfDictionary;
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
-import com.itextpdf.text.pdf.parser.ContentByteUtils;
-import com.itextpdf.text.pdf.parser.PdfContentStreamProcessor;
+import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
 import com.itextpdf.text.pdf.parser.TextMarginFinder;
 
 public class ShowTextMargins {
@@ -34,32 +31,17 @@ public class ShowTextMargins {
 	public void addMarginRectangle(String src, String dest)
 	    throws IOException, DocumentException {
 		PdfReader reader = new PdfReader(src);
+		PdfReaderContentParser parser = new PdfReaderContentParser(reader);
 		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
 		TextMarginFinder finder;
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-			finder = new TextMarginFinder();
-			parse(reader, i, finder);
+			finder = parser.processContent(i, new TextMarginFinder());
 			PdfContentByte cb = stamper.getOverContent(i);
 			cb.rectangle(finder.getLlx(), finder.getLly(),
 				finder.getWidth(), finder.getHeight());
 			cb.stroke();
 		}
 		stamper.close();
-	}
-	
-	/**
-	 * Processes a page in the document, searching the margins for the MarginFinder.
-	 * @param reader The reader that has access to the page content.
-	 * @param page The number of the page for which we want to find the margins
-	 * @param listener The MarginFinder object
-	 * @throws IOException
-	 */
-	public void parse(PdfReader reader, int page, TextMarginFinder listener)
-	    throws IOException {
-        PdfDictionary pageDic = reader.getPageN(page);
-        PdfDictionary resourcesDic = pageDic.getAsDict(PdfName.RESOURCES);
-        PdfContentStreamProcessor processor = new PdfContentStreamProcessor(listener);
-        processor.processContent(ContentByteUtils.getContentBytesForPage(reader, page), resourcesDic);
 	}
 
     /**

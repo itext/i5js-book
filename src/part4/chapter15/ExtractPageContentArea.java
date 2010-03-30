@@ -16,8 +16,10 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.FilteredTextRenderListener;
 import com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy;
-import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import com.itextpdf.text.pdf.parser.RegionTextRenderFilter;
+import com.itextpdf.text.pdf.parser.RenderFilter;
+import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
 public class ExtractPageContentArea {
 
@@ -25,17 +27,14 @@ public class ExtractPageContentArea {
 
 	public void parsePdf(String pdf, String txt) throws IOException {
 		PdfReader reader = new PdfReader(pdf);
-		PdfReaderContentParser parser = new PdfReaderContentParser(reader);
-		Rectangle rect = new Rectangle(70, 80, 420, 500);
-        FilteredTextRenderListener filterListener
-          = new FilteredTextRenderListener(
-            new LocationTextExtractionStrategy(),
-            new RegionTextRenderFilter(rect) );
 		PrintWriter out = new PrintWriter(new FileOutputStream(txt));
+		Rectangle rect = new Rectangle(70, 80, 420, 500);
+		RenderFilter filter = new RegionTextRenderFilter(rect);
+		TextExtractionStrategy strategy;
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-			parser.processContent(i, filterListener);
+			strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
+			out.println(PdfTextExtractor.getTextFromPage(reader, i, strategy));
 		}
-		out.println(filterListener.getResultantText());
 		out.flush();
 		out.close();
 	}

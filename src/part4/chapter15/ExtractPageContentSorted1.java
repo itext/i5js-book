@@ -12,14 +12,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
-import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
-public class ExtractPageContent {
+public class ExtractPageContentSorted1 {
 
-	public static final String PREFACE = "resources/pdfs/preface.pdf";
-	public static final String RESULT = "results/part4/chapter15/preface.txt";
+	public static final String RESULT = "results/part4/chapter15/preface_sorted1.txt";
 	
 	public void parsePdf(String pdf, String txt) throws IOException {
 		PdfReader reader = new PdfReader(pdf);
@@ -27,7 +26,7 @@ public class ExtractPageContent {
 		PrintWriter out = new PrintWriter(new FileOutputStream(txt));
 		TextExtractionStrategy strategy;
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-			strategy = parser.processContent(i, new SimpleTextExtractionStrategy());
+			strategy = parser.processContent(i, new LocationTextExtractionStrategy());
 			out.println(strategy.getResultantText());
 		}
 		out.flush();
@@ -35,6 +34,6 @@ public class ExtractPageContent {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		new ExtractPageContent().parsePdf(PREFACE, RESULT);
+		new ExtractPageContentSorted1().parsePdf(ExtractPageContent.PREFACE, RESULT);
 	}
 }
