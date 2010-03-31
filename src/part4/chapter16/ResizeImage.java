@@ -51,6 +51,7 @@ public class ResizeImage {
 			if (value.equals(stream.get(key))) {
 				PdfImageObject image = new PdfImageObject(stream);
 				BufferedImage bi = image.getAwtImage();
+				if (bi == null) continue;
                 int width = (int)(bi.getWidth() * FACTOR);
                 int height = (int)(bi.getHeight() * FACTOR);
                 BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
