@@ -68,7 +68,7 @@ public class ExtractImages {
 	    throws IOException, DocumentException {
     	PdfReader reader = new PdfReader(filename);
 		PdfReaderContentParser parser = new PdfReaderContentParser(reader);
-    	ImageRenderListener listener = new ImageRenderListener(RESULT);
+    	MyImageRenderListener listener = new MyImageRenderListener(RESULT);
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
 			parser.processContent(i, listener);
 		}

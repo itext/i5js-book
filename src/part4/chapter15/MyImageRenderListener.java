@@ -19,12 +19,12 @@ import com.itextpdf.text.pdf.parser.PdfImageObject;
 import com.itextpdf.text.pdf.parser.RenderListener;
 import com.itextpdf.text.pdf.parser.TextRenderInfo;
 
-public class ImageRenderListener implements RenderListener {
+public class MyImageRenderListener implements RenderListener {
 
 	/** The new document to which we've added a border rectangle. */
 	protected String path = "";
 	
-	public ImageRenderListener(String path) {
+	public MyImageRenderListener(String path) {
 		this.path = path;
 	}
 	
