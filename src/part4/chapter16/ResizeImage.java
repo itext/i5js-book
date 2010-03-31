@@ -9,7 +9,6 @@ package part4.chapter16;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,6 +22,7 @@ import com.itextpdf.text.pdf.PdfNumber;
 import com.itextpdf.text.pdf.PdfObject;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
+import com.itextpdf.text.pdf.parser.PdfImageObject;
 
 public class ResizeImage {
 
@@ -42,26 +42,33 @@ public class ResizeImage {
     	PdfReader reader = new PdfReader(SpecialId.RESULT);
 		int n = reader.getXrefSize();
 		PdfObject object;
-		PRStream image;
+		PRStream stream;
 		for (int i = 0; i < n; i++) {
 			object = reader.getPdfObject(i);
 			if (object == null || !object.isStream())
 				continue;
-			image = (PRStream)object;
-			if (value.equals(image.get(key))) {
-				BufferedImage bi = ImageIO.read(new ByteArrayInputStream(PdfReader.getStreamBytesRaw(image)));
+			stream = (PRStream)object;
+			if (value.equals(stream.get(key))) {
+				PdfImageObject image = new PdfImageObject(stream);
+				BufferedImage bi = image.getAwtImage();
                 int width = (int)(bi.getWidth() * FACTOR);
                 int height = (int)(bi.getHeight() * FACTOR);
                 BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
                 AffineTransform at = AffineTransform.getScaleInstance(FACTOR, FACTOR);
                 Graphics2D g = img.createGraphics();
                 g.drawRenderedImage(bi, at);
-                ByteArrayOutputStream newImage = new ByteArrayOutputStream();
-                ImageIO.write(img, "JPG", newImage);
-                image.setData(newImage.toByteArray(), false, PRStream.NO_COMPRESSION);
-                image.put(PdfName.WIDTH, new PdfNumber(width));
-                image.put(PdfName.HEIGHT, new PdfNumber(height));
-                image.put(PdfName.FILTER, PdfName.DCTDECODE);
+                ByteArrayOutputStream imgBytes = new ByteArrayOutputStream();
+                ImageIO.write(img, "JPG", imgBytes);
+                stream.clear();
+                stream.setData(imgBytes.toByteArray(), false, PRStream.NO_COMPRESSION);
+                stream.put(PdfName.TYPE, PdfName.XOBJECT);
+                stream.put(PdfName.SUBTYPE, PdfName.IMAGE);
+                stream.put(key, value);
+                stream.put(PdfName.FILTER, PdfName.DCTDECODE);
+                stream.put(PdfName.WIDTH, new PdfNumber(width));
+                stream.put(PdfName.HEIGHT, new PdfNumber(height));
+                stream.put(PdfName.BITSPERCOMPONENT, new PdfNumber(8));
+                stream.put(PdfName.COLORSPACE, PdfName.DEVICERGB);
 			}
 		}
     	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
