@@ -7,9 +7,15 @@
 
 package part4.chapter15;
 
+import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
+import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.parser.ImageRenderInfo;
+import com.itextpdf.text.pdf.parser.PdfImageObject;
 import com.itextpdf.text.pdf.parser.RenderListener;
 import com.itextpdf.text.pdf.parser.TextRenderInfo;
 
@@ -17,14 +23,9 @@ public class ImageRenderListener implements RenderListener {
 
 	/** The new document to which we've added a border rectangle. */
 	protected String path = "";
-	protected int pagenumber = 0;
 	
-	public void setPath(String path) {
+	public ImageRenderListener(String path) {
 		this.path = path;
-	}
-	
-	public int getPagenumber() {
-		return pagenumber;
 	}
 	
 	public void beginTextBlock() {
@@ -34,9 +35,32 @@ public class ImageRenderListener implements RenderListener {
 	}
 
 	public void renderImage(ImageRenderInfo renderInfo) {
-		String filename = String.format(path, pagenumber, renderInfo.getRef().getNumber());
 		try {
-			renderInfo.getImage().extractImage(filename);
+			String filename;
+			FileOutputStream os;
+			PdfImageObject image = renderInfo.getImage();
+			PdfName filter = (PdfName)image.get(PdfName.FILTER);
+			if (PdfName.DCTDECODE.equals(filter)) {
+				filename = String.format(path, renderInfo.getRef().getNumber(), "jpg");
+				os = new FileOutputStream(filename);
+				os.write(image.getStreamBytes());
+				os.flush();
+				os.close();
+			}
+			else if (PdfName.JPXDECODE.equals(filter)) {
+				filename = String.format(path, renderInfo.getRef().getNumber(), "jp2");
+				os = new FileOutputStream(filename);
+				os.write(image.getStreamBytes());
+				os.flush();
+				os.close();
+			}
+			else {
+				BufferedImage awtimage = renderInfo.getImage().getAwtImage();
+				if (awtimage != null) {
+					filename = String.format(path, renderInfo.getRef().getNumber(), "png");
+					ImageIO.write(awtimage, "png", new FileOutputStream(filename));
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -47,9 +71,4 @@ public class ImageRenderListener implements RenderListener {
 
 	public void reset() {
 	}
-
-	public void setPageNumber(int pagenumber) {
-		this.pagenumber = pagenumber;
-	}
-
 }

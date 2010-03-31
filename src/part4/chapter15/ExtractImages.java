@@ -48,11 +48,8 @@ import java.io.IOException;
 import part3.chapter10.ImageTypes;
 
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfDictionary;
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.ContentByteUtils;
-import com.itextpdf.text.pdf.parser.PdfContentStreamProcessor;
+import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
 
 /**
  * Extracts images from a PDF file.
@@ -60,7 +57,7 @@ import com.itextpdf.text.pdf.parser.PdfContentStreamProcessor;
 public class ExtractImages {
 
 	/** The new document to which we've added a border rectangle. */
-	public static final String RESULT = "results/part4/chapter15/page_%s_Img%s";
+	public static final String RESULT = "results/part4/chapter15/Img%s.%s";
 	
 	/**
 	 * Parses a PDF and extracts all the images.
@@ -70,26 +67,12 @@ public class ExtractImages {
 	public void extractImages(String filename)
 	    throws IOException, DocumentException {
     	PdfReader reader = new PdfReader(filename);
-    	ImageRenderListener listener = new ImageRenderListener();
-    	listener.setPath(RESULT);
+		PdfReaderContentParser parser = new PdfReaderContentParser(reader);
+    	ImageRenderListener listener = new ImageRenderListener(RESULT);
 		for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-			listener.setPageNumber(i);
-			getImagesFromPage(reader, listener);
+			parser.processContent(i, listener);
 		}
 	}
-    
-    /**
-     * Gets the images from a page.
-     * @param page	the page number of the page
-     * @return	a String with the content as plain text (without PDF syntax)
-     * @throws IOException
-     */
-    public void getImagesFromPage(PdfReader reader, ImageRenderListener listener) throws IOException {
-        PdfDictionary pageDic = reader.getPageN(listener.getPagenumber());
-        PdfDictionary resourcesDic = pageDic.getAsDict(PdfName.RESOURCES);
-        PdfContentStreamProcessor processor = new PdfContentStreamProcessor(listener);
-        processor.processContent(ContentByteUtils.getContentBytesForPage(reader, listener.getPagenumber()), resourcesDic);
-    }
 
     /**
      * Main method.
