@@ -32,7 +32,7 @@ public class EmbedFontPostFacto {
 	public static String FONT = "resources/fonts/wds011402.ttf";
 	public static String FONTNAME = "WaltDisneyScriptv4.1";
 	
-	public void createPdf(String ) throws IOException, DocumentException {
+	public void createPdf(String filename) throws IOException, DocumentException {
 		// step 1
 		Document document = new Document();
 		// step 2
