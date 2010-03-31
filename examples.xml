@@ -1836,6 +1836,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
             </classpath>
         </java>
         <echo message="ExtractPageContent" />
@@ -1849,6 +1850,7 @@
         <java fork="yes" classname="part4.chapter15.ExtractPageContentSorted1">
             <classpath>
                 <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
         <echo message="ExtractPageContentSorted2" />
@@ -1900,6 +1902,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iTextAsian.jar" />
             </classpath>
         </java>
         <echo message="EmbedFontPostFacto" />
@@ -1931,12 +1934,6 @@
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
                 <pathelement location="lib/hsqldb.jar" />
-            </classpath>
-        </java>
-        <echo message="LocalDestinationEvent" />
-        <java fork="yes" classname="part4.chapter16.LocalDestinationEvent">
-            <classpath>
-                <pathelement path="bin/" />
             </classpath>
         </java>
         <echo message="KubrickBox" />
