@@ -32,7 +32,7 @@ public class EmbedFontPostFacto {
 	public static String FONT = "resources/fonts/wds011402.ttf";
 	public static String FONTNAME = "WaltDisneyScriptv4.1";
 	
-	public void createPdf(String filename) throws IOException, DocumentException {
+	public void createPdf(String ) throws IOException, DocumentException {
 		// step 1
 		Document document = new Document();
 		// step 2
@@ -54,9 +54,7 @@ public class EmbedFontPostFacto {
      * @throws DocumentException 
      */
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
-    	// the name of the font in the file
-		PdfName fontname = new PdfName(FONTNAME);
-		// the font file
+    	// the font file
     	RandomAccessFile raf = new RandomAccessFile(FONT, "r");
 		byte fontfile[] = new byte[(int)raf.length()];
 		raf.readFully(fontfile);
@@ -71,6 +69,7 @@ public class EmbedFontPostFacto {
 		PdfObject object;
 		PdfDictionary font;
     	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT2));
+		PdfName fontname = new PdfName(FONTNAME);
 		for (int i = 0; i < n; i++) {
 			object = reader.getPdfObject(i);
 			if (object == null || !object.isDictionary())
