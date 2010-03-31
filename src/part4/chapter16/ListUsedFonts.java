@@ -25,6 +25,22 @@ public class ListUsedFonts {
     /** The resulting PDF file. */
     public static String RESULT
         = "results/part4/chapter16/fonts.txt";
+
+    /**
+     * Creates a Set containing information about the fonts in the src PDF file.
+     * @param src the path to a PDF file
+     * @throws IOException
+     */
+    public Set<String> listFonts(String src) throws IOException {
+        Set<String> set = new TreeSet<String>();
+        PdfReader reader = new PdfReader(src);
+        PdfDictionary resources;
+        for (int k = 1; k <= reader.getNumberOfPages(); ++k) {
+            resources = reader.getPageN(k).getAsDict(PdfName.RESOURCES);
+            processResource(set, resources);
+        }
+        return set;
+    }
     
     /**
      * Extracts the font names from page or XObject resources.
@@ -64,22 +80,6 @@ public class ListUsedFonts {
             }
             set.add(name);
         }
-    }
-
-    /**
-     * Creates a Set containing information about the fonts in the src PDF file.
-     * @param src the path to a PDF file
-     * @throws IOException
-     */
-    public Set<String> listFonts(String src) throws IOException {
-        Set<String> set = new TreeSet<String>();
-        PdfReader reader = new PdfReader(src);
-        PdfDictionary resources;
-        for (int k = 1; k <= reader.getNumberOfPages(); ++k) {
-            resources = reader.getPageN(k).getAsDict(PdfName.RESOURCES);
-            processResource(set, resources);
-        }
-        return set;
     }
     
     /**
