@@ -104,10 +104,10 @@ public class Barcodes {
 		document.add(new Paragraph("Bookland"));
 		document.add(new Paragraph("ISBN 0-321-30474-8"));
 		codeEAN.setCodeType(Barcode.EAN13);
-		codeEAN.setCode("9780321304742");
+		codeEAN.setCode("9781935182610");
 		BarcodeEAN codeSUPP = new BarcodeEAN();
 		codeSUPP.setCodeType(Barcode.SUPP5);
-		codeSUPP.setCode("55499");
+		codeSUPP.setCode("55999");
 		codeSUPP.setBaseline(-2);
 		BarcodeEANSUPP eanSupp = new BarcodeEANSUPP(codeEAN, codeSUPP);
 		document.add(eanSupp.createImageWithBarcode(cb, null, BaseColor.BLUE));

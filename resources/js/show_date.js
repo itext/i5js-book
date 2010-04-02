@@ -1,3 +1,3 @@
 function showDate(txt) {
-  app.alert('The date shown in the Flash app is ' + txt);
+  this.getField("date").value = "This is the festival program for " + txt;
 }
