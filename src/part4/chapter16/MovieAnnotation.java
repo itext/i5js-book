@@ -21,7 +21,7 @@ public class MovieAnnotation {
 
     /** The resulting PDF file. */
     public static final String RESULT
-        = "results/part3/chapter10/movie.pdf";
+        = "results/part4/chapter16/movie.pdf";
     /** One of the resources. */
     public static final String RESOURCE
         = "resources/img/foxdog.mpg";

@@ -74,13 +74,6 @@ public class KubrickDocumentary {
 		  = PdfFileSpecification.fileEmbedded(writer,
 				  null, "kubrick.xml", txt.toByteArray());
 		writer.addFileAttachment(fs);
-
-/*
-		PdfTargetDictionary target = new PdfTargetDictionary(false);
-		Chunk chunk = new Chunk("Go to original document");
-		PdfAction action = PdfAction.gotoEmbedded(null, target, "documentary", false, false);
-		chunk.setAction(action);
-		document.add(chunk);*/
 		// step 5
 		document.close();
 		return baos.toByteArray();

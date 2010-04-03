@@ -154,6 +154,23 @@ public class KubrickCollection {
 		table.addCell(cell);
 		writer.addFileAttachment(fs);
 
+		cell = new PdfPCell(new Phrase("Kubrick DVDs"));
+		cell.setBorder(PdfPCell.NO_BORDER);
+		fs = PdfFileSpecification.fileEmbedded(writer, null, KubrickDvds.FILENAME, new KubrickDvds().createPdf());
+		collectionitem.addItem(TYPE_FIELD, "PDF");
+		fs.addCollectionItem(collectionitem);
+		cell.setCellEvent(new FileAttachmentEvent(writer, fs, "Kubrick DVDs"));
+		table.addCell(cell);
+		writer.addFileAttachment(fs);
+		
+		cell = new PdfPCell(new Phrase("Kubrick documentary"));
+		cell.setBorder(PdfPCell.NO_BORDER);
+		collectionitem.addItem(TYPE_FIELD, "PDF");
+		fs.addCollectionItem(collectionitem);
+		cell.setCellEvent(new FileAttachmentEvent(writer, fs, "Kubrick Documentary"));
+		table.addCell(cell);
+		writer.addFileAttachment(fs);
+
 		document.newPage();
 		document.add(table);
 		// step 5

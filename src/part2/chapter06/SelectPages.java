@@ -20,8 +20,6 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 public class SelectPages {
 
-	/** The resulting text file with info about memory use. */
-    public static final String RESULT = "results/part2/chapter06/memory_info2.txt";
 	/** A resulting PDF file. */
     public static final String RESULT1 = "results/part2/chapter06/timetable_stamper.pdf";
 	/** A resulting PDF file. */
