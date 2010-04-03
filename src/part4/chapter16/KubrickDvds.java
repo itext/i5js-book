@@ -36,7 +36,7 @@ import com.lowagie.filmfestival.PojoFactory;
  * JPGs of the movie posters are added as file attachment annotations.
  * The attachments can be extracted.
  */
-public class KubrickPosters {
+public class KubrickDvds {
 	
     /** Path to the resources. */
     public static final String RESOURCE
@@ -52,7 +52,7 @@ public class KubrickPosters {
 	 * @throws DocumentException 
 	 * @throws SQLException */
 	public static void main(String[] args) throws IOException, DocumentException, SQLException {
-		KubrickPosters kubrick = new KubrickPosters();
+		KubrickDvds kubrick = new KubrickDvds();
 		FileOutputStream os = new FileOutputStream(RESULT);
 		os.write(kubrick.createPdf());
 		os.flush();
