@@ -40,7 +40,7 @@ public class FileAttachmentEvent implements PdfPCellEvent {
 	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
 		try {
 			PdfAnnotation annotation = PdfAnnotation.createFileAttachment(
-				writer,	new Rectangle(position.getRight(), position.getTop() - 20, position.getRight() + 20, position.getTop()),
+				writer,	new Rectangle(position.getLeft() - 20, position.getTop() - 15, position.getLeft() - 5, position.getTop() - 5),
 				description, fs);
 			annotation.setName(description);
 			writer.addAnnotation(annotation);
