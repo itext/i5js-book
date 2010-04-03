@@ -90,7 +90,7 @@ public class KubrickDocumentary {
 		FileOutputStream fos;
 		PRStream stream;
 		for (int i = 0; i < filespecs.size(); ) {
-		  filespecs.getAsName(i++);
+		  filespecs.getAsString(i++);
 		  filespec = filespecs.getAsDict(i++);
 		  refs = filespec.getAsDict(PdfName.EF);
 		  for (PdfName key : refs.getKeys()) {

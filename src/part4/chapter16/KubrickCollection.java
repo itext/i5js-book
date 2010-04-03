@@ -165,6 +165,7 @@ public class KubrickCollection {
 		
 		cell = new PdfPCell(new Phrase("Kubrick documentary"));
 		cell.setBorder(PdfPCell.NO_BORDER);
+		fs = PdfFileSpecification.fileEmbedded(writer, null, KubrickDocumentary.FILENAME, new KubrickDocumentary().createPdf());
 		collectionitem.addItem(TYPE_FIELD, "PDF");
 		fs.addCollectionItem(collectionitem);
 		cell.setCellEvent(new FileAttachmentEvent(writer, fs, "Kubrick Documentary"));
