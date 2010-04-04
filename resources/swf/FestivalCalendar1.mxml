@@ -3,13 +3,12 @@
 	applicationComplete="stage.scaleMode = StageScaleMode.EXACT_FIT;initList(Application.application.parameters.day);">
 	<mx:Script>
 		<![CDATA[
-			import flash.external.*;
 			private function initList(day:Object):void {
 				days.selectedItem = day;
 				getDateInfo(days.selectedItem);
 			}
 			private function getDateInfo(day:Object):void {
-				screeningsService.url='http://examples.itextpdf.com/flex/day_' + day + '.xml';
+				screeningsService.url='http://flex.itextpdf.org/fff/day_' + day + '.xml';
 				screeningsService.send();
 				screeningsDataGrid.invalidateList();
 			}
@@ -22,7 +21,7 @@
 			<mx:GridItem>
 				<mx:ComboBox id="days" dataProvider="{[ '2011-10-12',
 				'2011-10-13', '2011-10-14', '2011-10-15', '2011-10-16',
-				'2011-10-17', '2011-10-18', '2011-10-19' ]}"></mx:ComboBox>
+				'2011-10-17', '2011-10-18', '2011-10-19' ]}" />
 			</mx:GridItem>
 			<mx:GridItem>
 				<mx:Button id="date" label="Select day" click="getDateInfo(days.selectedItem);" />

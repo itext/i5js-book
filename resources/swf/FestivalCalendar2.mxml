@@ -8,7 +8,7 @@
 				ExternalInterface.addCallback("getDateInfo", getDateInfo);
 			}
 			private function getDateInfo(day:Object):void {
-				screeningsService.url='http://examples.itextpdf.com/flex/day_' + day + '.xml';
+				screeningsService.url='http://flex.itextpdf.org/fff/day_' + day + '.xml';
 				screeningsService.send();
 				screeningsDataGrid.invalidateList();
 				ExternalInterface.call("showDate", day);

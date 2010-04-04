@@ -19,11 +19,10 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfAction;
-import com.itextpdf.text.pdf.PdfDestination;
 import com.itextpdf.text.pdf.PdfFileSpecification;
-import com.itextpdf.text.pdf.PdfNumber;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfString;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.collection.PdfCollection;
 import com.itextpdf.text.pdf.collection.PdfCollectionField;
@@ -48,27 +47,6 @@ public class KubrickMovies {
 	public static final String FILENAME = "kubrick_movies.pdf";
 	/** The filename of the PDF with the movies by Stanley Kubrick. */
 	public static final String RESULT = "results/part4/chapter16/" + FILENAME;
-
-	/** The name of a field in the collection schema. */
-	public static final String SIZE_FIELD		= "SIZE";
-	/** A caption of a field in the collection schema. */
-	public static final String SIZE_CAPTION		= "File size";
-	/** The name of a field in the collection schema. */
-	public static final String FILE_FIELD		= "FILE";
-	/** A caption of a field in the collection schema. */
-	public static final String FILE_CAPTION		= "File name";
-	/** The name of a field in the collection schema. */
-	public static final String TITLE_FIELD		= "TITLE";
-	/** A caption of a field in the collection schema. */
-	public static final String TITLE_CAPTION	= "Movie title";
-	/** The name of a field in the collection schema. */
-	public static final String DURATION_FIELD	= "DURATION";
-	/** A caption of a field in the collection schema. */
-	public static final String DURATION_CAPTION	= "Duration";
-	/** The name of a field in the collection schema. */
-	public static final String YEAR_FIELD		= "YEAR";
-	/** A caption of a field in the collection schema. */
-	public static final String YEAR_CAPTION		= "Year";
 	
 	/**
 	 * Creates a Collection schema that can be used to organize the movies of Stanley Kubrick
@@ -78,25 +56,25 @@ public class KubrickMovies {
 	private static PdfCollectionSchema getCollectionSchema() {
 		PdfCollectionSchema schema = new PdfCollectionSchema();
 		
-		PdfCollectionField description = new PdfCollectionField(SIZE_CAPTION, PdfCollectionField.SIZE);
+		PdfCollectionField description = new PdfCollectionField("File size", PdfCollectionField.SIZE);
 		description.setOrder(4);
-		schema.addField(SIZE_FIELD, description);
+		schema.addField("SIZE", description);
 		
-		PdfCollectionField filename = new PdfCollectionField(FILE_CAPTION, PdfCollectionField.FILENAME);
+		PdfCollectionField filename = new PdfCollectionField("File name", PdfCollectionField.FILENAME);
 		filename.setVisible(false);
-		schema.addField(FILE_FIELD, filename);
+		schema.addField("FILE", filename);
 		
-		PdfCollectionField title = new PdfCollectionField(TITLE_CAPTION, PdfCollectionField.TEXT);
+		PdfCollectionField title = new PdfCollectionField("Movie title", PdfCollectionField.TEXT);
 		title.setOrder(1);
-		schema.addField(TITLE_FIELD, title);
+		schema.addField("TITLE", title);
 		
-		PdfCollectionField duration = new PdfCollectionField(DURATION_CAPTION, PdfCollectionField.NUMBER);
+		PdfCollectionField duration = new PdfCollectionField("Duration", PdfCollectionField.NUMBER);
 		duration.setOrder(2);
-		schema.addField(DURATION_FIELD, duration);
+		schema.addField("DURATION", duration);
 		
-		PdfCollectionField year = new PdfCollectionField(YEAR_CAPTION, PdfCollectionField.NUMBER);
+		PdfCollectionField year = new PdfCollectionField("Year", PdfCollectionField.NUMBER);
 		year.setOrder(0);
-		schema.addField(YEAR_FIELD, year);
+		schema.addField("YEAR", year);
 		
 		return schema;
 	}
@@ -121,7 +99,7 @@ public class KubrickMovies {
 		collection.setInitialDocument("Eyes Wide Shut");
 		PdfCollectionSchema schema = getCollectionSchema(); 
 		collection.setSchema(schema);
-		PdfCollectionSort sort = new PdfCollectionSort(YEAR_FIELD);
+		PdfCollectionSort sort = new PdfCollectionSort("YEAR");
 		sort.setSortOrder(false);
 		collection.setSort(sort);
 		writer.setCollection(collection);
@@ -138,12 +116,12 @@ public class KubrickMovies {
 			fs.addDescription(movie.getTitle(), false);
 
 			item = new PdfCollectionItem(schema);
-			item.addItem(TITLE_FIELD, movie.getMovieTitle(false));
+			item.addItem("TITLE", movie.getMovieTitle(false));
 			if (movie.getMovieTitle(true) != null) {
-				item.setPrefix(TITLE_FIELD, movie.getMovieTitle(true));
+				item.setPrefix("TITLE", movie.getMovieTitle(true));
 			}
-			item.addItem(DURATION_FIELD, movie.getDuration());
-			item.addItem(YEAR_FIELD, movie.getYear());
+			item.addItem("DURATION", movie.getDuration());
+			item.addItem("YEAR", movie.getYear());
 			fs.addCollectionItem(item);
 			writer.addFileAttachment(fs);
 		}
@@ -176,12 +154,10 @@ public class KubrickMovies {
 		cell.addElement(new Paragraph("Duration: " + movie.getDuration()));
 		table.addCell(cell);
 		document.add(table);
-		PdfDestination dest = new PdfDestination(PdfDestination.FIT);
-		dest.addFirst(new PdfNumber(1));
 		PdfTargetDictionary target = new PdfTargetDictionary(false);
 		target.setAdditionalPath(new PdfTargetDictionary(false));
 		Chunk chunk = new Chunk("Go to original document");
-		PdfAction action = PdfAction.gotoEmbedded(null, target, dest, false);
+		PdfAction action = PdfAction.gotoEmbedded(null, target, new PdfString("movies"), false);
 		chunk.setAction(action);
 		document.add(chunk);
 		// step 5
