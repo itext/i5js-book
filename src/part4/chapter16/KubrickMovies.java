@@ -96,12 +96,12 @@ public class KubrickMovies {
 		document.add(new Paragraph("This document contains a collection of PDFs, one per Stanley Kubrick movie."));
 		
 		PdfCollection collection = new PdfCollection(PdfCollection.DETAILS);
-		collection.setInitialDocument("Eyes Wide Shut");
 		PdfCollectionSchema schema = getCollectionSchema(); 
 		collection.setSchema(schema);
 		PdfCollectionSort sort = new PdfCollectionSort("YEAR");
 		sort.setSortOrder(false);
 		collection.setSort(sort);
+		collection.setInitialDocument("Eyes Wide Shut");
 		writer.setCollection(collection);
 		
 		PdfFileSpecification fs;
