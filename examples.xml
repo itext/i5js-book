@@ -1225,6 +1225,13 @@
                 <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
+        <echo message="Barcodes" />
+        <java fork="yes" classname="part3.chapter10.Barcodes">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
         <echo message="CompressImage" />
         <java fork="yes" classname="part3.chapter10.CompressImage">
             <classpath>
@@ -1241,13 +1248,6 @@
         </java>
         <echo message="PagedImages" />
         <java fork="yes" classname="part3.chapter10.PagedImages">
-            <classpath>
-                <pathelement path="bin/" />
-                <pathelement location="lib/iText.jar" />
-            </classpath>
-        </java>
-        <echo message="MovieAnnotation" />
-        <java fork="yes" classname="part3.chapter10.MovieAnnotation">
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1912,8 +1912,8 @@
                 <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
-        <echo message="KubrickPosters" />
-        <java fork="yes" classname="part4.chapter16.KubrickPosters">
+        <echo message="KubrickDvds" />
+        <java fork="yes" classname="part4.chapter16.KubrickDvds">
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1928,6 +1928,14 @@
                 <pathelement location="lib/hsqldb.jar" />
             </classpath>
         </java>
+        <echo message="KubrickBox" />
+        <java fork="yes" classname="part4.chapter16.KubrickBox">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
         <echo message="KubrickMovies" />
         <java fork="yes" classname="part4.chapter16.KubrickMovies">
             <classpath>
@@ -1936,12 +1944,40 @@
                 <pathelement location="lib/hsqldb.jar" />
             </classpath>
         </java>
-        <echo message="KubrickBox" />
-        <java fork="yes" classname="part4.chapter16.KubrickBox">
+        <echo message="KubrickCollection" />
+        <java fork="yes" classname="part4.chapter16.KubrickCollection">
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
                 <pathelement location="lib/hsqldb.jar" />
+            </classpath>
+        </java>
+        <echo message="MovieAnnotation" />
+        <java fork="yes" classname="part4.chapter16.MovieAnnotation">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="Pdf3D" />
+        <java fork="yes" classname="part4.chapter16.Pdf3D">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="FestivalCalendar1" />
+        <java fork="yes" classname="part4.chapter16.FestivalCalendar1">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
+            </classpath>
+        </java>
+        <echo message="FestivalCalendar2" />
+        <java fork="yes" classname="part4.chapter16.FestivalCalendar2">
+            <classpath>
+                <pathelement path="bin/" />
+                <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
     </target>
