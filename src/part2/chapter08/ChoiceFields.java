@@ -69,7 +69,7 @@ public class ChoiceFields implements PdfPCellEvent {
         new_languages[n] = "Chinese";
         new_exportvalues[n] = "CN";
         new_languages[n + 1] = "Japanese";
-        new_exportvalues[n] = "JP";
+        new_exportvalues[n + 1] = "JP";
         form.setListOption("choice_3", new_exportvalues, new_languages);
         form.setField("choice_3", "CN");
         form.setField("choice_4", "Japanese");
