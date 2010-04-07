@@ -68,7 +68,4 @@ public class MyImageRenderListener implements RenderListener {
 
 	public void renderText(TextRenderInfo renderInfo) {
 	}
-
-	public void reset() {
-	}
 }

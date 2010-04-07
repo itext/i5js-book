@@ -29,11 +29,4 @@ public class MyTextRenderListener implements RenderListener {
 		out.print(renderInfo.getText());
 		out.print(">");
 	}
-
-	public void reset() {
-	}
-
-	public void setPageNumber(int pagenumber) {
-	}
-
 }
