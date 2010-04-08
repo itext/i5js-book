@@ -141,7 +141,7 @@ public class Signatures {
 			Calendar cal = pk.getSignDate();
 			Certificate[] pkc = pk.getCertificates();
 			out.println("Subject: " + PdfPKCS7.getSubjectFields(pk.getSigningCertificate()));
-			out.println("Document modified: " + !pk.verify());
+			out.println("Revision modified: " + !pk.verify());
 			Object fails[] = PdfPKCS7.verifyCertificates(pkc, ks, null, cal);
 			if (fails == null)
 				out.println("Certificates verified against the KeyStore");
