@@ -21,11 +21,11 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.GrayColor;
 import com.itextpdf.text.pdf.PdfWriter;
 
-public class TransparantAwt {
+public class TransparentAwt {
 
     /** The resulting PDF file. */
     public static final String RESULT
-        = "results/part3/chapter10/transparant_hitchcock.pdf";
+        = "results/part3/chapter10/transparent_hitchcock.pdf";
     /** One of the resources. */
     public static final String RESOURCE
         = "resources/img/hitchcock.gif";
@@ -74,6 +74,6 @@ public class TransparantAwt {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, DocumentException {
-        new TransparantAwt().createPdf(RESULT);
+        new TransparentAwt().createPdf(RESULT);
     }
 }

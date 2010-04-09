@@ -19,7 +19,7 @@ public class TransparentImage {
 
     /** The resulting PDF file. */
     public static final String RESULT
-        = "results/part3/chapter10/transparant_image.pdf";
+        = "results/part3/chapter10/transparent_image.pdf";
     /** One of the resources. */
     public static final String RESOURCE1
         = "resources/img/bruno.jpg";

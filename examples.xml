@@ -1260,8 +1260,8 @@
                 <pathelement location="lib/iText.jar" />
             </classpath>
         </java>
-        <echo message="TransparantAwt" />
-        <java fork="yes" classname="part3.chapter10.TransparantAwt">
+        <echo message="TransparentAwt" />
+        <java fork="yes" classname="part3.chapter10.TransparentAwt">
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
