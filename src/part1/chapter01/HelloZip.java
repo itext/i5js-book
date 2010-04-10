@@ -43,7 +43,8 @@ public class HelloZip {
             // step 1
             Document document = new Document();
             // step 2
-            PdfWriter.getInstance(document, zip).setCloseStream(false);
+            PdfWriter writer = PdfWriter.getInstance(document, zip);
+            writer.setCloseStream(false);
             // step 3
             document.open();
             // step 4

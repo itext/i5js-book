@@ -34,8 +34,8 @@ public class HelloWorldVersion_1_7 {
         Document document = new Document();
         // step 2
         // Creating a PDF 1.7 document
-        PdfWriter.getInstance(document, new FileOutputStream(RESULT))
-            .setPdfVersion(PdfWriter.VERSION_1_7);
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        writer.setPdfVersion(PdfWriter.VERSION_1_7);
         // step 3
         document.open();
         // step 4
