@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.lowagie.database.DatabaseConnection;
 import com.lowagie.database.HsqldbConnection;
@@ -40,6 +41,7 @@ import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PushbuttonField;
 import com.itextpdf.text.pdf.TextField;
+import com.itextpdf.text.pdf.AcroFields.FieldPosition;
 
 public class MovieAds {
 
@@ -110,12 +112,12 @@ public class MovieAds {
         
         PdfContentByte canvas = stamper.getOverContent(1);
         float size = 12;
-        float[] f = form.getFieldPositions(TEXT);
+        List<FieldPosition> f = form.getFieldPositions(TEXT);
         while (addParagraph(createMovieParagraph(movie, size),
-                canvas, f, true) && size > 6) {
+                canvas, f.get(0), true) && size > 6) {
             size -= 0.2;
         }
-        addParagraph(createMovieParagraph(movie, size), canvas, f, false);
+        addParagraph(createMovieParagraph(movie, size), canvas, f.get(0), false);
         
         
 
@@ -127,9 +129,9 @@ public class MovieAds {
         return baos.toByteArray();
     }
     
-    public boolean addParagraph(Paragraph p, PdfContentByte canvas, float[] f, boolean simulate) throws DocumentException {
+    public boolean addParagraph(Paragraph p, PdfContentByte canvas, FieldPosition f, boolean simulate) throws DocumentException {
         ColumnText ct = new ColumnText(canvas);
-        ct.setSimpleColumn(f[1] + 2, f[2] + 2, f[3] - 2, f[4]);
+        ct.setSimpleColumn(f.position.getLeft(2), f.position.getBottom(2), f.position.getRight(2), f.position.getTop());
         ct.addElement(p);
         return ColumnText.hasMoreText(ct.go(simulate));
     }
