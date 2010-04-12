@@ -48,11 +48,12 @@ public class TextExample2 extends JPanel {
 	
 	public TextExample2() {
 		akira = new AttributedString(AKIRA);
-		akira.addAttribute(TextAttribute.FONT, new Font("Arial Unicode MS", Font.PLAIN, 12), 0, AKIRA.length());
+		akira.addAttribute(TextAttribute.FONT, new Font("Arial Unicode MS", Font.PLAIN, 12));
 	}
 	
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
+		g2d.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
         if (lineMeasurer == null) {
             AttributedCharacterIterator paragraph = akira.getIterator();
             paragraphStart = paragraph.getBeginIndex();
