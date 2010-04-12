@@ -48,7 +48,7 @@ public class TextExample2 extends JPanel {
 	
 	public TextExample2() {
 		akira = new AttributedString(AKIRA);
-		akira.addAttribute(TextAttribute.FONT, new Font("Arial Unicode MS", Font.PLAIN, 12));
+		akira.addAttribute(TextAttribute.FONT, new Font("Arial Unicode MS", Font.PLAIN, 12), 0, AKIRA.length());
 	}
 	
 	public void paint(Graphics g) {
