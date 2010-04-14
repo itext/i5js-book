@@ -66,7 +66,7 @@ public class ImageTypes {
         }
         
         java.awt.Image awtImage = Toolkit.getDefaultToolkit().createImage(RESOURCE);
-        img = Image.getInstance(awtImage, null);
+        img = com.itextpdf.text.Image.getInstance(awtImage, null);
         document.add(new Paragraph(
                 String.format("%s is an image of type %s", "java.awt.Image", img.getClass().getName())));
         document.add(img);
