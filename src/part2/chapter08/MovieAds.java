@@ -11,7 +11,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import com.lowagie.database.DatabaseConnection;
 import com.lowagie.database.HsqldbConnection;
@@ -112,12 +111,12 @@ public class MovieAds {
         
         PdfContentByte canvas = stamper.getOverContent(1);
         float size = 12;
-        List<FieldPosition> f = form.getFieldPositions(TEXT);
+        FieldPosition f = form.getFieldPositions(TEXT).get(0);
         while (addParagraph(createMovieParagraph(movie, size),
-                canvas, f.get(0), true) && size > 6) {
+                canvas, f, true) && size > 6) {
             size -= 0.2;
         }
-        addParagraph(createMovieParagraph(movie, size), canvas, f.get(0), false);
+        addParagraph(createMovieParagraph(movie, size), canvas, f, false);
         
         
 
