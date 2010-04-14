@@ -38,22 +38,21 @@ public class BookmarkedTimeTable {
      * @throws DocumentException
      * @throws SQLException
      */
-    @SuppressWarnings("unchecked")
     public void manipulatePdf(String src, String dest)
         throws IOException, DocumentException, SQLException {
     	// Create a database connection
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         // Create a list with bookmarks
-        ArrayList outlines = new ArrayList();
-        HashMap map = new HashMap();
+        ArrayList<HashMap<String, Object>> outlines = new ArrayList<HashMap<String, Object>>();
+        HashMap<String, Object> map = new HashMap<String, Object>();
         outlines.add(map);
         map.put("Title", "Calendar");
-        ArrayList kids = new ArrayList();
+        ArrayList<HashMap<String, Object>> kids = new ArrayList<HashMap<String, Object>>();
         map.put("Kids", kids);
         int page = 1;
         List<Date> days = PojoFactory.getDays(connection);
         for (Date day : days) {
-            HashMap kid = new HashMap();
+            HashMap<String, Object> kid = new HashMap<String, Object>();
             kids.add(kid);
             kid.put("Title", day.toString());
             kid.put("Action", "GoTo");
