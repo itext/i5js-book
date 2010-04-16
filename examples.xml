@@ -1981,15 +1981,15 @@
             </classpath>
         </java>
     </target>
-    <target name="webapp" depends="compile">
+	<target name="webapp" depends="compile">
         <war destfile="book.war" webxml="WebContent/WEB-INF/web.xml">
             <fileset dir="WebContent" />
-        	<lib dir="lib">
+            <lib dir="lib">
                 <include name="iText.jar" />
-        	</lib>
-        	<classes dir="bin"
-        		includes="part3/chapter09/XmlHandler.class,part3/chapter09/MovieServlet.class,part3/chapter09/Hello.class,part3/chapter09/ShowData.class,part3/chapter09/FormServlet.class,part3/chapter09/FDFServlet.class,part3/chapter09/XFDFServlet.class,part3/chapter09/PdfServlet.class,part3/chapter09/CreateFDF.class"
-        		/>
+            </lib>
+            <classes dir="bin"
+                includes="part3/chapter09/XmlHandler.class,part3/chapter09/MovieServlet.class,part3/chapter09/Hello.class,part3/chapter09/ShowData.class,part3/chapter09/FormServlet.class,part3/chapter09/FDFServlet.class,part3/chapter09/XFDFServlet.class,part3/chapter09/PdfServlet.class,part3/chapter09/CreateFDF.class"
+                />
         </war>
     </target>
 </project>
