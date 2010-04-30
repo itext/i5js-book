@@ -55,7 +55,7 @@ public class MyImageRenderListener implements RenderListener {
 				os.close();
 			}
 			else {
-				BufferedImage awtimage = renderInfo.getImage().getAwtImage();
+				BufferedImage awtimage = renderInfo.getImage().getBufferedImage();
 				if (awtimage != null) {
 					filename = String.format(path, renderInfo.getRef().getNumber(), "png");
 					ImageIO.write(awtimage, "png", new FileOutputStream(filename));

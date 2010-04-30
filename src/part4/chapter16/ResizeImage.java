@@ -50,7 +50,7 @@ public class ResizeImage {
 			stream = (PRStream)object;
 			if (value.equals(stream.get(key))) {
 				PdfImageObject image = new PdfImageObject(stream);
-				BufferedImage bi = image.getAwtImage();
+				BufferedImage bi = image.getBufferedImage();
 				if (bi == null) continue;
                 int width = (int)(bi.getWidth() * FACTOR);
                 int height = (int)(bi.getHeight() * FACTOR);
