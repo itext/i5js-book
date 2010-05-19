@@ -91,7 +91,7 @@ public class HtmlMovies1 {
         // step 5
         document.close();
         // flush and close the HTML stream
-        out.print("</body>\n<html>");
+        out.print("</body>\n</html>");
         out.flush();
         out.close();
         // close the database connection

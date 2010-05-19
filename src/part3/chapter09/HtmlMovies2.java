@@ -145,7 +145,7 @@ public class HtmlMovies2 extends HtmlMovies1 {
         buf.append(movie.getImdb());
         buf.append(".jpg\" /></td>\t<td>\n");
         buf.append(super.createHtmlSnippet(movie));
-        buf.append("\t</ul>\n\t</td>\n</tr>\n</table>");
+        buf.append("\t</td>\n</tr>\n</table>");
         return buf.toString();
     }
 
