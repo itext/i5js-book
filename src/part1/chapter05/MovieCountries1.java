@@ -103,7 +103,7 @@ public class MovieCountries1 {
          */
         public void onCloseDocument(PdfWriter writer, Document document) {
             ColumnText.showTextAligned(total, Element.ALIGN_LEFT,
-                    new Phrase(String.valueOf(writer.getPageNumber())),
+                    new Phrase(String.valueOf(writer.getPageNumber() - 1)),
                     2, 2, 0);
         }
     }
