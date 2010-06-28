@@ -27,6 +27,7 @@ public class HsqldbConnection extends DatabaseConnection {
      */
     public HsqldbConnection(String db_file_name_prefix)
         throws SQLException {
+        System.setProperty( "sqlfile.charset", "UTF-8" );
         try {
             Class.forName("org.hsqldb.jdbcDriver");
         } catch (ClassNotFoundException e) {
