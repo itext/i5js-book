@@ -92,10 +92,10 @@ public class PojoFactory {
     public static Movie getMovie(ResultSet rs)
         throws SQLException, UnsupportedEncodingException {
         Movie movie = new Movie();
-        movie.setTitle(new String(rs.getBytes("title"), "UTF-8"));
+        movie.setTitle(new String(rs.getString("title").getBytes(), "UTF-8"));
         if (rs.getObject("original_title") != null)
             movie.setOriginalTitle(
-               new String(rs.getBytes("original_title"), "UTF-8"));
+               new String(rs.getString("original_title").getBytes(), "UTF-8"));
         movie.setImdb(rs.getString("imdb"));
         movie.setYear(rs.getInt("year"));
         movie.setDuration(rs.getInt("duration"));
@@ -110,8 +110,8 @@ public class PojoFactory {
     public static Director getDirector(ResultSet rs)
         throws SQLException, UnsupportedEncodingException {
         Director director = new Director();
-        director.setName(new String(rs.getBytes("name"), "UTF-8"));
-        director.setGivenName(new String(rs.getBytes("given_name"),"UTF-8"));
+        director.setName(new String(rs.getString("name").getBytes(), "UTF-8"));
+        director.setGivenName(new String(rs.getString("given_name").getBytes(),"UTF-8"));
         return director;
     }
     

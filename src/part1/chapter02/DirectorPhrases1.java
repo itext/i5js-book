@@ -47,11 +47,11 @@ public class DirectorPhrases1 {
         throws UnsupportedEncodingException, SQLException {
         Phrase director = new Phrase();
         director.add(
-            new Chunk(new String(rs.getBytes("name"), "UTF-8"), BOLD_UNDERLINED));
+            new Chunk(new String(rs.getString("name").getBytes(), "UTF-8"), BOLD_UNDERLINED));
         director.add(new Chunk(",", BOLD_UNDERLINED));
         director.add(new Chunk(" ", NORMAL));
         director.add(
-            new Chunk(new String(rs.getBytes("given_name"), "UTF-8"), NORMAL));
+            new Chunk(new String(rs.getString("given_name").getBytes(), "UTF-8"), NORMAL));
         return director;
     }
     
