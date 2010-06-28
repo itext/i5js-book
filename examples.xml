@@ -24,6 +24,7 @@
     <target name="part1.chapter01">
         <echo message="HelloWorld" />
         <java fork="yes" classname="part1.chapter01.HelloWorld">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -31,6 +32,7 @@
         </java>
         <echo message="HelloWorldNarrow" />
         <java fork="yes" classname="part1.chapter01.HelloWorldNarrow">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -38,6 +40,7 @@
         </java>
         <echo message="HelloWorldMaximum" />
         <java fork="yes" classname="part1.chapter01.HelloWorldMaximum">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -45,6 +48,7 @@
         </java>
         <echo message="HelloWorldLetter" />
         <java fork="yes" classname="part1.chapter01.HelloWorldLetter">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -52,6 +56,7 @@
         </java>
         <echo message="HelloWorldLandscape1" />
         <java fork="yes" classname="part1.chapter01.HelloWorldLandscape1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -59,6 +64,7 @@
         </java>
         <echo message="HelloWorldLandscape2" />
         <java fork="yes" classname="part1.chapter01.HelloWorldLandscape2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -66,6 +72,7 @@
         </java>
         <echo message="HelloWorldMirroredMargins" />
         <java fork="yes" classname="part1.chapter01.HelloWorldMirroredMargins">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -73,6 +80,7 @@
         </java>
         <echo message="HelloWorldMirroredMarginsTop" />
         <java fork="yes" classname="part1.chapter01.HelloWorldMirroredMarginsTop">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -80,6 +88,7 @@
         </java>
         <echo message="HelloWorldMemory" />
         <java fork="yes" classname="part1.chapter01.HelloWorldMemory">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -87,6 +96,7 @@
         </java>
         <echo message="HelloWorldVersion_1_7" />
         <java fork="yes" classname="part1.chapter01.HelloWorldVersion_1_7">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -94,6 +104,7 @@
         </java>
         <echo message="HelloWorldDirect" />
         <java fork="yes" classname="part1.chapter01.HelloWorldDirect">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -101,6 +112,7 @@
         </java>
         <echo message="HelloWorldColumn" />
         <java fork="yes" classname="part1.chapter01.HelloWorldColumn">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -108,6 +120,7 @@
         </java>
         <echo message="HelloZip" />
         <java fork="yes" classname="part1.chapter01.HelloZip">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -117,6 +130,7 @@
     <target name="part1.chapter02">
         <echo message="DatabaseTest" />
         <java fork="yes" classname="part1.chapter02.DatabaseTest">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/hsqldb.jar" />
@@ -124,6 +138,7 @@
         </java>
         <echo message="CountryChunks" />
         <java fork="yes" classname="part1.chapter02.CountryChunks">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -132,6 +147,7 @@
         </java>
         <echo message="DirectorPhrases1" />
         <java fork="yes" classname="part1.chapter02.DirectorPhrases1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -140,6 +156,7 @@
         </java>
         <echo message="DirectorPhrases2" />
         <java fork="yes" classname="part1.chapter02.DirectorPhrases2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -148,6 +165,7 @@
         </java>
         <echo message="MovieTitles" />
         <java fork="yes" classname="part1.chapter02.MovieTitles">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -156,6 +174,7 @@
         </java>
         <echo message="MovieParagraphs1" />
         <java fork="yes" classname="part1.chapter02.MovieParagraphs1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -164,6 +183,7 @@
         </java>
         <echo message="MovieParagraphs2" />
         <java fork="yes" classname="part1.chapter02.MovieParagraphs2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -172,6 +192,7 @@
         </java>
         <echo message="MovieChain" />
         <java fork="yes" classname="part1.chapter02.MovieChain">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -181,6 +202,7 @@
         </java>
         <echo message="MovieLists1" />
         <java fork="yes" classname="part1.chapter02.MovieLists1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -189,6 +211,7 @@
         </java>
         <echo message="MovieLists2" />
         <java fork="yes" classname="part1.chapter02.MovieLists2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/hsqldb.jar" />
@@ -197,6 +220,7 @@
         </java>
         <echo message="MovieLists3" />
         <java fork="yes" classname="part1.chapter02.MovieLists3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -205,6 +229,7 @@
         </java>
         <echo message="MovieLists4" />
         <java fork="yes" classname="part1.chapter02.MovieLists4">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -213,6 +238,7 @@
         </java>
         <echo message="DirectorOverview1" />
         <java fork="yes" classname="part1.chapter02.DirectorOverview1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/hsqldb.jar" />
@@ -221,6 +247,7 @@
         </java>
         <echo message="DirectorOverview2" />
         <java fork="yes" classname="part1.chapter02.DirectorOverview2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -229,6 +256,7 @@
         </java>
         <echo message="DirectorOverview3" />
         <java fork="yes" classname="part1.chapter02.DirectorOverview3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -237,6 +265,7 @@
         </java>
         <echo message="MovieLinks1" />
         <java fork="yes" classname="part1.chapter02.MovieLinks1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -245,6 +274,7 @@
         </java>
         <echo message="MovieLinks2" />
         <java fork="yes" classname="part1.chapter02.MovieLinks2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -253,6 +283,7 @@
         </java>
         <echo message="MovieHistory" />
         <java fork="yes" classname="part1.chapter02.MovieHistory">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -261,6 +292,7 @@
         </java>
         <echo message="MoviePosters1" />
         <java fork="yes" classname="part1.chapter02.MoviePosters1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -269,6 +301,7 @@
         </java>
         <echo message="MoviePosters2" />
         <java fork="yes" classname="part1.chapter02.MoviePosters2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -277,6 +310,7 @@
         </java>
         <echo message="MoviePosters3" />
         <java fork="yes" classname="part1.chapter02.MoviePosters3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -285,6 +319,7 @@
         </java>
         <echo message="RiverPhoenix" />
         <java fork="yes" classname="part1.chapter02.RiverPhoenix">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -294,6 +329,7 @@
     <target name="part1.chapter03">
         <echo message="FestivalOpening" />
         <java fork="yes" classname="part1.chapter03.FestivalOpening">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -301,6 +337,7 @@
         </java>
         <echo message="GraphicsStateStack" />
         <java fork="yes" classname="part1.chapter03.GraphicsStateStack">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -308,6 +345,7 @@
         </java>
         <echo message="MovieTimeTable" />
         <java fork="yes" classname="part1.chapter03.MovieTimeTable">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -315,6 +353,7 @@
         </java>
         <echo message="MovieTimeBlocks" />
         <java fork="yes" classname="part1.chapter03.MovieTimeBlocks">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -323,6 +362,7 @@
         </java>
         <echo message="FoobarFilmFestival" />
         <java fork="yes" classname="part1.chapter03.FoobarFilmFestival">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -330,6 +370,7 @@
         </java>
         <echo message="MovieTextInfo" />
         <java fork="yes" classname="part1.chapter03.MovieTextInfo">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -338,6 +379,7 @@
         </java>
         <echo message="MovieCalendar" />
         <java fork="yes" classname="part1.chapter03.MovieCalendar">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -346,6 +388,7 @@
         </java>
         <echo message="MovieColumns1" />
         <java fork="yes" classname="part1.chapter03.MovieColumns1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -354,6 +397,7 @@
         </java>
         <echo message="MovieColumns2" />
         <java fork="yes" classname="part1.chapter03.MovieColumns2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -362,6 +406,7 @@
         </java>
         <echo message="MovieColumns3" />
         <java fork="yes" classname="part1.chapter03.MovieColumns3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -370,6 +415,7 @@
         </java>
         <echo message="MovieColumns4" />
         <java fork="yes" classname="part1.chapter03.MovieColumns4">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -378,6 +424,7 @@
         </java>
         <echo message="ColumnMovies1" />
         <java fork="yes" classname="part1.chapter03.ColumnMovies1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -386,6 +433,7 @@
         </java>
         <echo message="ColumnMovies2" />
         <java fork="yes" classname="part1.chapter03.ColumnMovies2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -394,6 +442,7 @@
         </java>
         <echo message="ImageDirect" />
         <java fork="yes" classname="part1.chapter03.ImageDirect">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -401,6 +450,7 @@
         </java>
         <echo message="ImageSkew" />
         <java fork="yes" classname="part1.chapter03.ImageSkew">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -408,6 +458,7 @@
         </java>
         <echo message="ImageInline" />
         <java fork="yes" classname="part1.chapter03.ImageInline">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -415,6 +466,7 @@
         </java>
         <echo message="MoviePosters" />
         <java fork="yes" classname="part1.chapter03.MoviePosters">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -423,6 +475,7 @@
         </java>
         <echo message="MovieTemplates" />
         <java fork="yes" classname="part1.chapter03.MovieTemplates">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -433,6 +486,7 @@
     <target name="part1.chapter04">
         <echo message="MyFirstTable" />
         <java fork="yes" classname="part1.chapter04.MyFirstTable">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -440,6 +494,7 @@
         </java>
         <echo message="ColumnWidths" />
         <java fork="yes" classname="part1.chapter04.ColumnWidths">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -447,6 +502,7 @@
         </java>
         <echo message="TableAlignment" />
         <java fork="yes" classname="part1.chapter04.TableAlignment">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -454,6 +510,7 @@
         </java>
         <echo message="MovieTextMode" />
         <java fork="yes" classname="part1.chapter04.MovieTextMode">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -462,6 +519,7 @@
         </java>
         <echo message="Spacing" />
         <java fork="yes" classname="part1.chapter04.Spacing">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -469,6 +527,7 @@
         </java>
         <echo message="TableHeight" />
         <java fork="yes" classname="part1.chapter04.TableHeight">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -476,6 +535,7 @@
         </java>
         <echo message="CellHeights" />
         <java fork="yes" classname="part1.chapter04.CellHeights">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -483,6 +543,7 @@
         </java>
         <echo message="RotationAndColors" />
         <java fork="yes" classname="part1.chapter04.RotationAndColors">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -490,6 +551,7 @@
         </java>
         <echo message="MovieCompositeMode" />
         <java fork="yes" classname="part1.chapter04.MovieCompositeMode">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -498,6 +560,7 @@
         </java>
         <echo message="XMen" />
         <java fork="yes" classname="part1.chapter04.XMen">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -505,6 +568,7 @@
         </java>
         <echo message="NestedTable" />
         <java fork="yes" classname="part1.chapter04.NestedTable">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -512,6 +576,7 @@
         </java>
         <echo message="NestedTables" />
         <java fork="yes" classname="part1.chapter04.NestedTables">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -520,6 +585,7 @@
         </java>
         <echo message="HeaderFooter1" />
         <java fork="yes" classname="part1.chapter04.HeaderFooter1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -528,6 +594,7 @@
         </java>
         <echo message="HeaderFooter2" />
         <java fork="yes" classname="part1.chapter04.HeaderFooter2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -536,6 +603,7 @@
         </java>
         <echo message="MemoryTests" />
         <java fork="yes" classname="part1.chapter04.MemoryTests">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -544,6 +612,7 @@
         </java>
         <echo message="PdfCalendar" />
         <java fork="yes" classname="part1.chapter04.PdfCalendar">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -551,6 +620,7 @@
         </java>
         <echo message="Zhang" />
         <java fork="yes" classname="part1.chapter04.Zhang">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -559,6 +629,7 @@
         </java>
         <echo message="ColumnTable" />
         <java fork="yes" classname="part1.chapter04.ColumnTable">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -569,6 +640,7 @@
     <target name="part1.chapter05">
         <echo message="AlternatingBackground" />
         <java fork="yes" classname="part1.chapter05.AlternatingBackground">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -577,6 +649,7 @@
         </java>
         <echo message="RunLengthEvent" />
         <java fork="yes" classname="part1.chapter05.RunLengthEvent">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -585,6 +658,7 @@
         </java>
         <echo message="PressPreviews" />
         <java fork="yes" classname="part1.chapter05.PressPreviews">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -593,6 +667,7 @@
         </java>
         <echo message="PdfCalendar" />
         <java fork="yes" classname="part1.chapter05.PdfCalendar">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -600,6 +675,7 @@
         </java>
         <echo message="MovieYears" />
         <java fork="yes" classname="part1.chapter05.MovieYears">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -608,6 +684,7 @@
         </java>
         <echo message="MovieHistory1" />
         <java fork="yes" classname="part1.chapter05.MovieHistory1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -616,6 +693,7 @@
         </java>
         <echo message="NewPage" />
         <java fork="yes" classname="part1.chapter05.NewPage">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -623,6 +701,7 @@
         </java>
         <echo message="Hero1" />
         <java fork="yes" classname="part1.chapter05.Hero1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -630,6 +709,7 @@
         </java>
         <echo message="Hero2" />
         <java fork="yes" classname="part1.chapter05.Hero2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -637,6 +717,7 @@
         </java>
         <echo message="Hero3" />
         <java fork="yes" classname="part1.chapter05.Hero3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -644,6 +725,7 @@
         </java>
         <echo message="MovieHistory2" />
         <java fork="yes" classname="part1.chapter05.MovieHistory2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -652,6 +734,7 @@
         </java>
         <echo message="MovieCountries1" />
         <java fork="yes" classname="part1.chapter05.MovieCountries1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -660,6 +743,7 @@
         </java>
         <echo message="MovieCountries2" />
         <java fork="yes" classname="part1.chapter05.MovieCountries2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -668,6 +752,7 @@
         </java>
         <echo message="MovieSlideShow" />
         <java fork="yes" classname="part1.chapter05.MovieSlideShow">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -678,6 +763,7 @@
     <target name="part2.chapter06">
         <echo message="PageInformation" />
         <java fork="yes" classname="part2.chapter06.PageInformation">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -686,6 +772,7 @@
         </java>
         <echo message="MemoryInfo" />
         <java fork="yes" classname="part2.chapter06.MemoryInfo">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -694,6 +781,7 @@
         </java>
         <echo message="SelectPages" />
         <java fork="yes" classname="part2.chapter06.SelectPages">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -702,6 +790,7 @@
         </java>
         <echo message="ImportingPages1" />
         <java fork="yes" classname="part2.chapter06.ImportingPages1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -710,6 +799,7 @@
         </java>
         <echo message="ImportingPages2" />
         <java fork="yes" classname="part2.chapter06.ImportingPages2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -718,6 +808,7 @@
         </java>
         <echo message="Layers" />
         <java fork="yes" classname="part2.chapter06.Layers">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -725,6 +816,7 @@
         </java>
         <echo message="Superimposing" />
         <java fork="yes" classname="part2.chapter06.Superimposing">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -732,6 +824,7 @@
         </java>
         <echo message="Stationery" />
         <java fork="yes" classname="part2.chapter06.Stationery">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -740,6 +833,7 @@
         </java>
         <echo message="NUpTool" />
         <java fork="yes" classname="part2.chapter06.NUpTool">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -748,6 +842,7 @@
         </java>
         <echo message="TilingHero" />
         <java fork="yes" classname="part2.chapter06.TilingHero">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -755,6 +850,7 @@
         </java>
         <echo message="StampText" />
         <java fork="yes" classname="part2.chapter06.StampText">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -762,6 +858,7 @@
         </java>
         <echo message="TwoPasses" />
         <java fork="yes" classname="part2.chapter06.TwoPasses">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -770,6 +867,7 @@
         </java>
         <echo message="StampStationery" />
         <java fork="yes" classname="part2.chapter06.StampStationery">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -778,6 +876,7 @@
         </java>
         <echo message="InsertPages" />
         <java fork="yes" classname="part2.chapter06.InsertPages">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -786,6 +885,7 @@
         </java>
         <echo message="FormInformation" />
         <java fork="yes" classname="part2.chapter06.FormInformation">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -793,6 +893,7 @@
         </java>
         <echo message="FillDataSheet" />
         <java fork="yes" classname="part2.chapter06.FillDataSheet">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -801,6 +902,7 @@
         </java>
         <echo message="Concatenate" />
         <java fork="yes" classname="part2.chapter06.Concatenate">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -809,6 +911,7 @@
         </java>
         <echo message="ConcatenateStamp" />
         <java fork="yes" classname="part2.chapter06.ConcatenateStamp">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -817,6 +920,7 @@
         </java>
         <echo message="Burst" />
         <java fork="yes" classname="part2.chapter06.Burst">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -825,6 +929,7 @@
         </java>
         <echo message="DataSheets1" />
         <java fork="yes" classname="part2.chapter06.DataSheets1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -833,6 +938,7 @@
         </java>
         <echo message="DataSheets2" />
         <java fork="yes" classname="part2.chapter06.DataSheets2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -841,6 +947,7 @@
         </java>
         <echo message="ConcatenateForms1" />
         <java fork="yes" classname="part2.chapter06.ConcatenateForms1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -848,6 +955,7 @@
         </java>
         <echo message="ConcatenateForms2" />
         <java fork="yes" classname="part2.chapter06.ConcatenateForms2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -857,6 +965,7 @@
     <target name="part2.chapter07">
         <echo message="NamedActions" />
         <java fork="yes" classname="part2.chapter07.NamedActions">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -865,6 +974,7 @@
         </java>
         <echo message="LinkActions" />
         <java fork="yes" classname="part2.chapter07.LinkActions">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -873,6 +983,7 @@
         </java>
         <echo message="ConcatenateNamedDestinations" />
         <java fork="yes" classname="part2.chapter07.ConcatenateNamedDestinations">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -881,6 +992,7 @@
         </java>
         <echo message="TimetableDestinations" />
         <java fork="yes" classname="part2.chapter07.TimetableDestinations">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -889,6 +1001,7 @@
         </java>
         <echo message="AddVersionChecker" />
         <java fork="yes" classname="part2.chapter07.AddVersionChecker">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -897,6 +1010,7 @@
         </java>
         <echo message="FindDirectors" />
         <java fork="yes" classname="part2.chapter07.FindDirectors">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -905,6 +1019,7 @@
         </java>
         <echo message="LaunchAction" />
         <java fork="yes" classname="part2.chapter07.LaunchAction">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -912,6 +1027,7 @@
         </java>
         <echo message="PrintTimeTable" />
         <java fork="yes" classname="part2.chapter07.PrintTimeTable">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -920,6 +1036,7 @@
         </java>
         <echo message="EventsAndActions" />
         <java fork="yes" classname="part2.chapter07.EventsAndActions">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -928,6 +1045,7 @@
         </java>
         <echo message="CreateOutlineTree" />
         <java fork="yes" classname="part2.chapter07.CreateOutlineTree">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -936,6 +1054,7 @@
         </java>
         <echo message="BookmarkedTimeTable" />
         <java fork="yes" classname="part2.chapter07.BookmarkedTimeTable">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -944,6 +1063,7 @@
         </java>
         <echo message="ConcatenateBookmarks" />
         <java fork="yes" classname="part2.chapter07.ConcatenateBookmarks">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -952,6 +1072,7 @@
         </java>
         <echo message="MovieAnnotations1" />
         <java fork="yes" classname="part2.chapter07.MovieAnnotations1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -960,6 +1081,7 @@
         </java>
         <echo message="MovieAnnotations2" />
         <java fork="yes" classname="part2.chapter07.MovieAnnotations2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -968,6 +1090,7 @@
         </java>
         <echo message="GenericAnnotations" />
         <java fork="yes" classname="part2.chapter07.GenericAnnotations">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -976,6 +1099,7 @@
         </java>
         <echo message="TimetableAnnotations1" />
         <java fork="yes" classname="part2.chapter07.TimetableAnnotations1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -984,6 +1108,7 @@
         </java>
         <echo message="MoviePosters1" />
         <java fork="yes" classname="part2.chapter07.MoviePosters1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -992,6 +1117,7 @@
         </java>
         <echo message="TimetableAnnotations2" />
         <java fork="yes" classname="part2.chapter07.TimetableAnnotations2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1000,6 +1126,7 @@
         </java>
         <echo message="MovieAnnotations3" />
         <java fork="yes" classname="part2.chapter07.MovieAnnotations3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1008,6 +1135,7 @@
         </java>
         <echo message="TimetableAnnotations3" />
         <java fork="yes" classname="part2.chapter07.TimetableAnnotations3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1016,6 +1144,7 @@
         </java>
         <echo message="ButtonsActions" />
         <java fork="yes" classname="part2.chapter07.ButtonsActions">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1024,6 +1153,7 @@
         </java>
         <echo message="Advertisement" />
         <java fork="yes" classname="part2.chapter07.Advertisement">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1032,6 +1162,7 @@
         </java>
         <echo message="MoviePosters2" />
         <java fork="yes" classname="part2.chapter07.MoviePosters2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1040,6 +1171,7 @@
         </java>
         <echo message="Calculator" />
         <java fork="yes" classname="part2.chapter07.Calculator">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1049,6 +1181,7 @@
     <target name="part2.chapter08">
         <echo message="Buttons" />
         <java fork="yes" classname="part2.chapter08.Buttons">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1056,6 +1189,7 @@
         </java>
         <echo message="RadioButtons" />
         <java fork="yes" classname="part2.chapter08.RadioButtons">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1063,6 +1197,7 @@
         </java>
         <echo message="ReplaceIcon" />
         <java fork="yes" classname="part2.chapter08.ReplaceIcon">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1071,6 +1206,7 @@
         </java>
         <echo message="TextFields" />
         <java fork="yes" classname="part2.chapter08.TextFields">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1078,6 +1214,7 @@
         </java>
         <echo message="TextFieldFonts" />
         <java fork="yes" classname="part2.chapter08.TextFieldFonts">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1086,6 +1223,7 @@
         </java>
         <echo message="TextFieldActions" />
         <java fork="yes" classname="part2.chapter08.TextFieldActions">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1093,6 +1231,7 @@
         </java>
         <echo message="ChoiceFields" />
         <java fork="yes" classname="part2.chapter08.ChoiceFields">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1100,6 +1239,7 @@
         </java>
         <echo message="Subscribe" />
         <java fork="yes" classname="part2.chapter08.Subscribe">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1107,6 +1247,7 @@
         </java>
         <echo message="MovieAds" />
         <java fork="yes" classname="part2.chapter08.MovieAds">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1115,6 +1256,7 @@
         </java>
         <echo message="XfaMovie" />
         <java fork="yes" classname="part2.chapter08.XfaMovie">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1122,6 +1264,7 @@
         </java>
         <echo message="XfaMovies" />
         <java fork="yes" classname="part2.chapter08.XfaMovies">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1130,6 +1273,7 @@
         </java>
         <echo message="ReaderEnabledForm" />
         <java fork="yes" classname="part2.chapter08.ReaderEnabledForm">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1139,6 +1283,7 @@
     <target name="part3.chapter09">
         <echo message="SubmitForm" />
         <java fork="yes" classname="part3.chapter09.SubmitForm">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1146,6 +1291,7 @@
         </java>
         <echo message="JSForm" />
         <java fork="yes" classname="part3.chapter09.JSForm">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1153,6 +1299,7 @@
         </java>
         <echo message="HtmlMovies1" />
         <java fork="yes" classname="part3.chapter09.HtmlMovies1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/hsqldb.jar" />
@@ -1161,6 +1308,7 @@
         </java>
         <echo message="HtmlMovies2" />
         <java fork="yes" classname="part3.chapter09.HtmlMovies2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/hsqldb.jar" />
@@ -1171,6 +1319,7 @@
     <target name="part3.chapter10">
         <echo message="DeviceColor" />
         <java fork="yes" classname="part3.chapter10.DeviceColor">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1178,6 +1327,7 @@
         </java>
         <echo message="SeparationColor" />
         <java fork="yes" classname="part3.chapter10.SeparationColor">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1185,6 +1335,7 @@
         </java>
         <echo message="TilingPatternColor" />
         <java fork="yes" classname="part3.chapter10.TilingPatternColor">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1192,6 +1343,7 @@
         </java>
         <echo message="ShadingPatternColor" />
         <java fork="yes" classname="part3.chapter10.ShadingPatternColor">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1199,6 +1351,7 @@
         </java>
         <echo message="Transparency1" />
         <java fork="yes" classname="part3.chapter10.Transparency1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1206,6 +1359,7 @@
         </java>
         <echo message="Transparency2" />
         <java fork="yes" classname="part3.chapter10.Transparency2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1213,6 +1367,7 @@
         </java>
         <echo message="ImageTypes" />
         <java fork="yes" classname="part3.chapter10.ImageTypes">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1220,6 +1375,7 @@
         </java>
         <echo message="RawImage" />
         <java fork="yes" classname="part3.chapter10.RawImage">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1227,6 +1383,7 @@
         </java>
         <echo message="Barcodes" />
         <java fork="yes" classname="part3.chapter10.Barcodes">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1234,6 +1391,7 @@
         </java>
         <echo message="CompressImage" />
         <java fork="yes" classname="part3.chapter10.CompressImage">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1241,6 +1399,7 @@
         </java>
         <echo message="CompressAwt" />
         <java fork="yes" classname="part3.chapter10.CompressAwt">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1248,6 +1407,7 @@
         </java>
         <echo message="PagedImages" />
         <java fork="yes" classname="part3.chapter10.PagedImages">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1255,6 +1415,7 @@
         </java>
         <echo message="TransparentImage" />
         <java fork="yes" classname="part3.chapter10.TransparentImage">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1262,6 +1423,7 @@
         </java>
         <echo message="TransparentAwt" />
         <java fork="yes" classname="part3.chapter10.TransparentAwt">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1269,6 +1431,7 @@
         </java>
         <echo message="ImageMask" />
         <java fork="yes" classname="part3.chapter10.ImageMask">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1276,6 +1439,7 @@
         </java>
         <echo message="TemplateClip" />
         <java fork="yes" classname="part3.chapter10.TemplateClip">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1283,6 +1447,7 @@
         </java>
         <echo message="ClippingPath" />
         <java fork="yes" classname="part3.chapter10.ClippingPath">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1290,6 +1455,7 @@
         </java>
         <echo message="TransparentOverlay" />
         <java fork="yes" classname="part3.chapter10.TransparentOverlay">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1299,6 +1465,7 @@
     <target name="part3.chapter11">
         <echo message="FontTypes" />
         <java fork="yes" classname="part3.chapter11.FontTypes">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1307,6 +1474,7 @@
         </java>
         <echo message="TTCExample" />
         <java fork="yes" classname="part3.chapter11.TTCExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1314,6 +1482,7 @@
         </java>
         <echo message="EncodingNames" />
         <java fork="yes" classname="part3.chapter11.EncodingNames">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1321,6 +1490,7 @@
         </java>
         <echo message="EncodingExample" />
         <java fork="yes" classname="part3.chapter11.EncodingExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1328,6 +1498,7 @@
         </java>
         <echo message="UnicodeExample" />
         <java fork="yes" classname="part3.chapter11.UnicodeExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1335,6 +1506,7 @@
         </java>
         <echo message="FontFileAndSizes" />
         <java fork="yes" classname="part3.chapter11.FontFileAndSizes">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1342,6 +1514,7 @@
         </java>
         <echo message="Type3Example" />
         <java fork="yes" classname="part3.chapter11.Type3Example">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1349,6 +1522,7 @@
         </java>
         <echo message="CJKExample" />
         <java fork="yes" classname="part3.chapter11.CJKExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1357,6 +1531,7 @@
         </java>
         <echo message="VerticalTextExample1" />
         <java fork="yes" classname="part3.chapter11.VerticalTextExample1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1365,6 +1540,7 @@
         </java>
         <echo message="VerticalTextExample2" />
         <java fork="yes" classname="part3.chapter11.VerticalTextExample2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1373,6 +1549,7 @@
         </java>
         <echo message="RightToLeftExample" />
         <java fork="yes" classname="part3.chapter11.RightToLeftExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1380,6 +1557,7 @@
         </java>
         <echo message="SayPeace" />
         <java fork="yes" classname="part3.chapter11.SayPeace">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1387,6 +1565,7 @@
         </java>
         <echo message="Diacritics1" />
         <java fork="yes" classname="part3.chapter11.Diacritics1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1394,6 +1573,7 @@
         </java>
         <echo message="Diacritics2" />
         <java fork="yes" classname="part3.chapter11.Diacritics2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1401,6 +1581,7 @@
         </java>
         <echo message="Monospace" />
         <java fork="yes" classname="part3.chapter11.Monospace">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1408,6 +1589,7 @@
         </java>
         <echo message="ExtraCharSpace" />
         <java fork="yes" classname="part3.chapter11.ExtraCharSpace">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1415,6 +1597,7 @@
         </java>
         <echo message="Ligatures1" />
         <java fork="yes" classname="part3.chapter11.Ligatures1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1422,6 +1605,7 @@
         </java>
         <echo message="Ligatures2" />
         <java fork="yes" classname="part3.chapter11.Ligatures2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1429,6 +1613,7 @@
         </java>
         <echo message="FontFactoryExample" />
         <java fork="yes" classname="part3.chapter11.FontFactoryExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1436,6 +1621,7 @@
         </java>
         <echo message="FontSelectionExample" />
         <java fork="yes" classname="part3.chapter11.FontSelectionExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1444,6 +1630,7 @@
         </java>
         <echo message="Peace" />
         <java fork="yes" classname="part3.chapter11.Peace">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1453,6 +1640,7 @@
     <target name="part3.chapter12">
         <echo message="MetadataPdf" />
         <java fork="yes" classname="part3.chapter12.MetadataPdf">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1460,6 +1648,7 @@
         </java>
         <echo message="MetadataXmp" />
         <java fork="yes" classname="part3.chapter12.MetadataXmp">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1467,6 +1656,7 @@
         </java>
         <echo message="HelloWorldCompression" />
         <java fork="yes" classname="part3.chapter12.HelloWorldCompression">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1475,6 +1665,7 @@
         </java>
         <echo message="EncryptionPdf" />
         <java fork="yes" classname="part3.chapter12.EncryptionPdf">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1486,6 +1677,7 @@
     <target name="part4.chapter13">
         <echo message="PdfXPdfA" />
         <java fork="yes" classname="part4.chapter13.PdfXPdfA">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1493,6 +1685,7 @@
         </java>
         <echo message="AppendMode" />
         <java fork="yes" classname="part4.chapter13.AppendMode">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1500,6 +1693,7 @@
         </java>
         <echo message="PageLayoutExample" />
         <java fork="yes" classname="part4.chapter13.PageLayoutExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1508,6 +1702,7 @@
         </java>
         <echo message="ViewerPreferencesExample" />
         <java fork="yes" classname="part4.chapter13.ViewerPreferencesExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1516,6 +1711,7 @@
         </java>
         <echo message="PrintPreferencesExample" />
         <java fork="yes" classname="part4.chapter13.PrintPreferencesExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1523,6 +1719,7 @@
         </java>
         <echo message="CropPages" />
         <java fork="yes" classname="part4.chapter13.CropPages">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1531,6 +1728,7 @@
         </java>
         <echo message="RotatePages" />
         <java fork="yes" classname="part4.chapter13.RotatePages">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1539,6 +1737,7 @@
         </java>
         <echo message="RemoveLaunchActions" />
         <java fork="yes" classname="part4.chapter13.RemoveLaunchActions">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1546,6 +1745,7 @@
         </java>
         <echo message="PageLabelExample" />
         <java fork="yes" classname="part4.chapter13.PageLabelExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1554,6 +1754,7 @@
         </java>
         <echo message="Bookmarks2NamedDestinations" />
         <java fork="yes" classname="part4.chapter13.Bookmarks2NamedDestinations">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1562,6 +1763,7 @@
         </java>
         <echo message="FixBrokenForm" />
         <java fork="yes" classname="part4.chapter13.FixBrokenForm">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1569,6 +1771,7 @@
         </java>
         <echo message="InspectForm" />
         <java fork="yes" classname="part4.chapter13.InspectForm">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1576,6 +1779,7 @@
         </java>
         <echo message="AddJavaScriptToForm" />
         <java fork="yes" classname="part4.chapter13.AddJavaScriptToForm">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1583,6 +1787,7 @@
         </java>
         <echo message="ReplaceURL" />
         <java fork="yes" classname="part4.chapter13.ReplaceURL">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1592,6 +1797,7 @@
     <target name="part4.chapter14">
         <echo message="GetContentStream" />
         <java fork="yes" classname="part4.chapter14.GetContentStream">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1599,6 +1805,7 @@
         </java>
         <echo message="PathConstructionAndPainting" />
         <java fork="yes" classname="part4.chapter14.PathConstructionAndPainting">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1606,6 +1813,7 @@
         </java>
         <echo message="GraphicsStateOperators" />
         <java fork="yes" classname="part4.chapter14.GraphicsStateOperators">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1613,6 +1821,7 @@
         </java>
         <echo message="TransformationMatrix1" />
         <java fork="yes" classname="part4.chapter14.TransformationMatrix1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1620,6 +1829,7 @@
         </java>
         <echo message="TransformationMatrix2" />
         <java fork="yes" classname="part4.chapter14.TransformationMatrix2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1627,6 +1837,7 @@
         </java>
         <echo message="TransformationMatrix3" />
         <java fork="yes" classname="part4.chapter14.TransformationMatrix3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1634,6 +1845,7 @@
         </java>
         <echo message="TextStateOperators" />
         <java fork="yes" classname="part4.chapter14.TextStateOperators">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1641,6 +1853,7 @@
         </java>
         <echo message="TextMethods" />
         <java fork="yes" classname="part4.chapter14.TextMethods">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1648,6 +1861,7 @@
         </java>
         <echo message="PearToPdf" />
         <java fork="yes" classname="part4.chapter14.PearToPdf">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1655,6 +1869,7 @@
         </java>
         <echo message="DirectorCharts" />
         <java fork="yes" classname="part4.chapter14.DirectorCharts">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1665,6 +1880,7 @@
         </java>
         <echo message="Graphics2DFonts" />
         <java fork="yes" classname="part4.chapter14.Graphics2DFonts">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1672,6 +1888,7 @@
         </java>
         <echo message="Text1ToPdf1" />
         <java fork="yes" classname="part4.chapter14.Text1ToPdf1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1679,6 +1896,7 @@
         </java>
         <echo message="Text1ToPdf2" />
         <java fork="yes" classname="part4.chapter14.Text1ToPdf2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1686,6 +1904,7 @@
         </java>
         <echo message="Text2ToPdf1" />
         <java fork="yes" classname="part4.chapter14.Text2ToPdf1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1693,6 +1912,7 @@
         </java>
         <echo message="Text2ToPdf2" />
         <java fork="yes" classname="part4.chapter14.Text2ToPdf2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1701,6 +1921,7 @@
         </java>
         <echo message="Text2ToPdf3" />
         <java fork="yes" classname="part4.chapter14.Text2ToPdf3">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1708,6 +1929,7 @@
         </java>
         <echo message="Text3ToPdf" />
         <java fork="yes" classname="part4.chapter14.Text3ToPdf">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1715,6 +1937,7 @@
         </java>
         <echo message="Text4ToPdf" />
         <java fork="yes" classname="part4.chapter14.Text4ToPdf">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1724,6 +1947,7 @@
     <target name="part4.chapter15">
         <echo message="PeekABoo" />
         <java fork="yes" classname="part4.chapter15.PeekABoo">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1731,6 +1955,7 @@
         </java>
         <echo message="OptionalContentExample" />
         <java fork="yes" classname="part4.chapter15.OptionalContentExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1738,6 +1963,7 @@
         </java>
         <echo message="LayerMembershipExample1" />
         <java fork="yes" classname="part4.chapter15.LayerMembershipExample1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1745,6 +1971,7 @@
         </java>
         <echo message="LayerMembershipExample2" />
         <java fork="yes" classname="part4.chapter15.LayerMembershipExample2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1752,6 +1979,7 @@
         </java>
         <echo message="OptionalContentActionExample" />
         <java fork="yes" classname="part4.chapter15.OptionalContentActionExample">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1759,6 +1987,7 @@
         </java>
         <echo message="SvgToPdf" />
         <java fork="yes" classname="part4.chapter15.SvgToPdf">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1778,6 +2007,7 @@
         </java>
         <echo message="SvgLayers" />
         <java fork="yes" classname="part4.chapter15.SvgLayers">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1797,6 +2027,7 @@
         </java>
         <echo message="ObjectData" />
         <java fork="yes" classname="part4.chapter15.ObjectData">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1805,6 +2036,7 @@
         </java>
         <echo message="ReadOutLoud" />
         <java fork="yes" classname="part4.chapter15.ReadOutLoud">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1812,6 +2044,7 @@
         </java>
         <echo message="StructuredContent" />
         <java fork="yes" classname="part4.chapter15.StructuredContent">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1819,6 +2052,7 @@
         </java>
         <echo message="ParseTaggedPdf" />
         <java fork="yes" classname="part4.chapter15.ParseTaggedPdf">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1826,6 +2060,7 @@
         </java>
         <echo message="ParsingHelloWorld" />
         <java fork="yes" classname="part4.chapter15.ParsingHelloWorld">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1833,6 +2068,7 @@
         </java>
         <echo message="InspectPageContent" />
         <java fork="yes" classname="part4.chapter15.InspectPageContent">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1841,6 +2077,7 @@
         </java>
         <echo message="ExtractPageContent" />
         <java fork="yes" classname="part4.chapter15.ExtractPageContent">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1848,6 +2085,7 @@
         </java>
         <echo message="ExtractPageContentSorted1" />
         <java fork="yes" classname="part4.chapter15.ExtractPageContentSorted1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1855,6 +2093,7 @@
         </java>
         <echo message="ExtractPageContentSorted2" />
         <java fork="yes" classname="part4.chapter15.ExtractPageContentSorted2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1862,6 +2101,7 @@
         </java>
         <echo message="ExtractPageContentArea" />
         <java fork="yes" classname="part4.chapter15.ExtractPageContentArea">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1869,6 +2109,7 @@
         </java>
         <echo message="ShowTextMargins" />
         <java fork="yes" classname="part4.chapter15.ShowTextMargins">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1876,6 +2117,7 @@
         </java>
         <echo message="ExtractImages" />
         <java fork="yes" classname="part4.chapter15.ExtractImages">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1885,6 +2127,7 @@
     <target name="part4.chapter16">
         <echo message="SpecialId" />
         <java fork="yes" classname="part4.chapter16.SpecialId">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1892,6 +2135,7 @@
         </java>
         <echo message="ResizeImage" />
         <java fork="yes" classname="part4.chapter16.ResizeImage">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1899,6 +2143,7 @@
         </java>
         <echo message="ListUsedFonts" />
         <java fork="yes" classname="part4.chapter16.ListUsedFonts">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1907,6 +2152,7 @@
         </java>
         <echo message="EmbedFontPostFacto" />
         <java fork="yes" classname="part4.chapter16.EmbedFontPostFacto">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1914,6 +2160,7 @@
         </java>
         <echo message="KubrickDvds" />
         <java fork="yes" classname="part4.chapter16.KubrickDvds">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1922,6 +2169,7 @@
         </java>
         <echo message="KubrickDocumentary" />
         <java fork="yes" classname="part4.chapter16.KubrickDocumentary">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1930,6 +2178,7 @@
         </java>
         <echo message="KubrickBox" />
         <java fork="yes" classname="part4.chapter16.KubrickBox">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1938,6 +2187,7 @@
         </java>
         <echo message="KubrickMovies" />
         <java fork="yes" classname="part4.chapter16.KubrickMovies">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1946,6 +2196,7 @@
         </java>
         <echo message="KubrickCollection" />
         <java fork="yes" classname="part4.chapter16.KubrickCollection">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1954,6 +2205,7 @@
         </java>
         <echo message="MovieAnnotation" />
         <java fork="yes" classname="part4.chapter16.MovieAnnotation">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1961,6 +2213,7 @@
         </java>
         <echo message="Pdf3D" />
         <java fork="yes" classname="part4.chapter16.Pdf3D">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1968,6 +2221,7 @@
         </java>
         <echo message="FestivalCalendar1" />
         <java fork="yes" classname="part4.chapter16.FestivalCalendar1">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
@@ -1975,6 +2229,7 @@
         </java>
         <echo message="FestivalCalendar2" />
         <java fork="yes" classname="part4.chapter16.FestivalCalendar2">
+			<jvmarg value="-Dfile.encoding=windows-1252"/>
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
