@@ -32,11 +32,8 @@ public class HsqldbConnection extends DatabaseConnection {
         } catch (ClassNotFoundException e) {
             throw new SQLException("HSQLDB database driver not found");
         }
-        Properties p = new Properties();
-        p.setProperty("SA", "");
-        p.setProperty("useUnicode", "true");
         connection = DriverManager.getConnection(
-            "jdbc:hsqldb:resources/db/" + db_file_name_prefix, p);
+            "jdbc:hsqldb:resources/db/" + db_file_name_prefix, "SA", "");
     }
     
     /**
