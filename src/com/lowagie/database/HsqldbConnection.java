@@ -27,7 +27,6 @@ public class HsqldbConnection extends DatabaseConnection {
      */
     public HsqldbConnection(String db_file_name_prefix)
         throws SQLException {
-        System.setProperty( "sqlfile.charset", "UTF-8" );
         try {
             Class.forName("org.hsqldb.jdbcDriver");
         } catch (ClassNotFoundException e) {
@@ -36,7 +35,6 @@ public class HsqldbConnection extends DatabaseConnection {
         Properties p = new Properties();
         p.setProperty("SA", "");
         p.setProperty("useUnicode", "true");
-        p.setProperty("characterEncoding", "UTF-8");
         connection = DriverManager.getConnection(
             "jdbc:hsqldb:resources/db/" + db_file_name_prefix, p);
     }
