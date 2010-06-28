@@ -10,6 +10,7 @@ package com.lowagie.database;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 /**
  * This is a helper class to access an hsqldb database.
@@ -31,8 +32,12 @@ public class HsqldbConnection extends DatabaseConnection {
         } catch (ClassNotFoundException e) {
             throw new SQLException("HSQLDB database driver not found");
         }
+        Properties p = new Properties();
+        p.setProperty("SA", "");
+        p.setProperty("useUnicode", "true");
+        p.setProperty("characterEncoding", "UTF-8");
         connection = DriverManager.getConnection(
-            "jdbc:hsqldb:resources/db/" + db_file_name_prefix, "SA", "");
+            "jdbc:hsqldb:resources/db/" + db_file_name_prefix, p);
     }
     
     /**

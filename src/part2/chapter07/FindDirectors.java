@@ -100,12 +100,12 @@ public class FindDirectors {
      */
     public Paragraph createDirectorParagraph(PdfWriter writer, ResultSet rs)
         throws UnsupportedEncodingException, SQLException {
-        String n = new String(rs.getString("name").getBytes(), "UTF-8");
+        String n = new String(rs.getBytes("name"), "UTF-8");
         Chunk name = new Chunk(n);
         name.setAction(PdfAction.javaScript(
                 String.format("findDirector('%s');", n), writer));
         name.append(", ");
-        name.append(new String(rs.getString("given_name").getBytes(), "UTF-8"));
+        name.append(new String(rs.getBytes("given_name"), "UTF-8"));
         return new Paragraph(name);
     }
     

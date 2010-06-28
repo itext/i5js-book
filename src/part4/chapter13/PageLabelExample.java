@@ -87,7 +87,7 @@ public class PageLabelExample {
     	Statement stm = connection.createStatement();
     	ResultSet rs = stm.executeQuery(sql);
     	while (rs.next()) {
-    		document.add(new Paragraph(new String(rs.getString(field).getBytes(), "UTF-8")));
+    		document.add(new Paragraph(new String(rs.getBytes(field), "UTF-8")));
     	}
     }
     
