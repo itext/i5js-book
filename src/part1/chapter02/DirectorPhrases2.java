@@ -59,13 +59,13 @@ public class DirectorPhrases2 extends DirectorPhrases1 {
     public Phrase createDirectorPhrase(ResultSet rs)
         throws UnsupportedEncodingException, SQLException {
         Phrase director = new Phrase();
-        Chunk name = new Chunk(new String(rs.getString("name").getBytes("Cp1252"), "UTF-8"), BOLD);
+        Chunk name = new Chunk(new String(rs.getBytes("name"), "UTF-8"), BOLD);
         name.setUnderline(0.2f, -2f);
         director.add(name);
         director.add(new Chunk(",", BOLD));
         director.add(new Chunk(" ", NORMAL));
         director.add(
-            new Chunk(new String(rs.getString("given_name").getBytes("Cp1252"), "UTF-8"), NORMAL));
+            new Chunk(new String(rs.getBytes("given_name"), "UTF-8"), NORMAL));
         director.setLeading(24);
         return director;
     }
