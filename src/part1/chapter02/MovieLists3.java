@@ -59,7 +59,7 @@ public class MovieLists3 {
         List list = new RomanList();
         // Loop over the countries
         while (rs.next()) {
-        	// Create a list item for the country
+            // Create a list item for the country
             ListItem item = new ListItem(
                String.format("%s: %d movies", rs.getString("country"), rs.getInt("c")));
             // Create a list for the movies

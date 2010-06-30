@@ -85,7 +85,7 @@ public class FestivalOpening {
             PageSize.POSTCARD.getWidth() - 10, PageSize.POSTCARD.getHeight() - 10);
         under.fill();
         under.restoreState();
-        // step 4
+        // step 5
         document.close();
     }
 }

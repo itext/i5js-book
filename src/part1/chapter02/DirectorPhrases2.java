@@ -35,7 +35,7 @@ public class DirectorPhrases2 extends DirectorPhrases1 {
         BaseFont timesbd = null;
         BaseFont times = null;
         try {
-        	// create a font that will be embedded
+            // create a font that will be embedded
             timesbd = BaseFont.createFont(
                 "c:/windows/fonts/timesbd.ttf", BaseFont.WINANSI, BaseFont.EMBEDDED);
             // create a font that will be embedded

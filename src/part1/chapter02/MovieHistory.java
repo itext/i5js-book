@@ -75,7 +75,7 @@ public class MovieHistory {
         Section subsection = null;
         // loop over the movies
         for (Movie movie : movies) {
-        	// add the chapter if we're in a new epoch
+            // add the chapter if we're in a new epoch
             if (epoch < (movie.getYear() - 1940) / 10) {
                 epoch = (movie.getYear() - 1940) / 10;
                 if (chapter != null) {

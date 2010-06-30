@@ -68,7 +68,7 @@ public class DirectorOverview1 {
         stars.setSpacingAfter(30);
         // looping over the directors
         while (rs.next()) {
-        	// get the director object and use it in a Paragraph
+            // get the director object and use it in a Paragraph
             director = PojoFactory.getDirector(rs);
             Paragraph p = new Paragraph(
                 PojoToElementFactory.getDirectorPhrase(director));

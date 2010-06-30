@@ -61,7 +61,7 @@ public class MovieLists4 {
         list.setFirst(9);
         // Loop over the countries
         while (rs.next()) {
-        	// Create a list item for a country
+            // Create a list item for a country
             ListItem item = new ListItem(String.format("%s: %d movies",
                 rs.getString("country"), rs.getInt("c")));
             // Create a list for the movies

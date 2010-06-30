@@ -42,7 +42,8 @@ public class PositionedArrow extends VerticalPositionMark {
     public PositionedArrow(boolean left) {
         this.left = left;
         try {
-            zapfdingbats = BaseFont.createFont(BaseFont.ZAPFDINGBATS, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
+            zapfdingbats = BaseFont.createFont(
+                BaseFont.ZAPFDINGBATS, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
         }
         catch(DocumentException de) {
             zapfdingbats = null;

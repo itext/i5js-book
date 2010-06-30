@@ -63,7 +63,7 @@ public class MovieParagraphs2 extends MovieParagraphs1 {
         // step 4
         List<Movie> movies = PojoFactory.getMovies(connection);
         for (Movie movie : movies) {
-        	// Create a paragraph with the title
+            // Create a paragraph with the title
             Paragraph title = new Paragraph(
                 PojoToElementFactory.getMovieTitlePhrase(movie));
             title.setAlignment(Element.ALIGN_LEFT);

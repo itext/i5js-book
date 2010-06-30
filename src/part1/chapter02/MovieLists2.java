@@ -60,7 +60,7 @@ public class MovieLists2 {
         // Loop over the countries
         while (rs.next()) {
             // Create a list item for a country
-        	ListItem item = new ListItem(
+            ListItem item = new ListItem(
                String.format("%s: %d movies", rs.getString("country"), rs.getInt("c")));
             item.setListSymbol(new Chunk(rs.getString("country_id")));
             // Create a list for the movies produced in the current country

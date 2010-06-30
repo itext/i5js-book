@@ -56,7 +56,7 @@ public class MovieChain {
         // create a long Stringbuffer with movie titles
         StringBuffer buf1 = new StringBuffer();
         for (Movie movie : kubrick) {
-        	// replace spaces with non-breaking spaces
+            // replace spaces with non-breaking spaces
             buf1.append(movie.getMovieTitle().replace(' ', '\u00a0'));
             // use pipe as separator
             buf1.append('|');
