@@ -33,8 +33,6 @@ public class ColumnMovies2 {
 
     /** The resulting PDF file. */
     public static final String RESULT = "results/part1/chapter03/column_movies2.pdf";
-    /** Path to the resources. */
-    public static final String RESOURCE = "resources/posters/%s.jpg";
     
     /** Definition of two columns */
     public static final float[][] COLUMNS = {

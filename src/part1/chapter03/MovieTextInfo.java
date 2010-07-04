@@ -112,7 +112,7 @@ public class MovieTextInfo extends MovieTimeBlocks {
         x = (OFFSET_LEFT + WIDTH + OFFSET_LOCATION) / 2;
         y = OFFSET_BOTTOM + HEIGHT + 24;
         directcontent.showTextAligned(Element.ALIGN_CENTER,
-                "FOOBAR FILM FESTIVAL", x, y, 0);
+            "FOOBAR FILM FESTIVAL", x, y, 0);
         x = OFFSET_LOCATION + WIDTH_LOCATION / 2f - 6;
         y = OFFSET_BOTTOM + HEIGHT_LOCATION;
         directcontent.showTextAligned(Element.ALIGN_CENTER,
@@ -161,7 +161,8 @@ public class MovieTextInfo extends MovieTimeBlocks {
      * Draws the info about the movie.
      * @throws DocumentException 
      */
-    protected void drawMovieInfo(Screening screening, PdfContentByte directcontent) throws DocumentException {
+    protected void drawMovieInfo(Screening screening, PdfContentByte directcontent)
+        throws DocumentException {
         if (screening.isPress()) {
             Rectangle rect = getPosition(screening);
             ColumnText.showTextAligned(directcontent, Element.ALIGN_CENTER,
