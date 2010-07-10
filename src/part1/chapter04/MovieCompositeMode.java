@@ -72,7 +72,7 @@ public class MovieCompositeMode {
         List list;
         PdfPCell cell;
         for (Movie movie : movies) {
-        	// a table with two columns
+            // a table with two columns
             PdfPTable table = new PdfPTable(new float[]{1, 7});
             table.setWidthPercentage(100);
             table.setSpacingBefore(5);

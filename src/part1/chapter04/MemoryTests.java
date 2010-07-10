@@ -69,7 +69,7 @@ public class MemoryTests {
      */
     public void createPdfs() {
         try {
-        	// the report file
+            // the report file
             PrintWriter writer = new PrintWriter(new FileOutputStream(RESULT0));
             resetMaximum(writer);
             test = false;

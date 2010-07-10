@@ -122,7 +122,8 @@ public class PressPreviews implements PdfPCellEvent, PdfPTableEvent {
         for (Screening screening : screenings) {
             movie = screening.getMovie();
             table.addCell(screening.getLocation());
-            table.addCell(String.format("%s   %2$tH:%2$tM", screening.getDate().toString(), screening.getTime()));
+            table.addCell(String.format("%s   %2$tH:%2$tM",
+                screening.getDate().toString(), screening.getTime()));
             table.addCell(String.format("%d '", movie.getDuration()));
             table.addCell(movie.getMovieTitle());
             table.addCell(String.valueOf(movie.getYear()));

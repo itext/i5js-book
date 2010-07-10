@@ -62,7 +62,7 @@ public class ColumnTable {
             };
         // Loop over the festival days
         for (Date day : days) {
-        	// add content to the column
+            // add content to the column
             column.addElement(getTable(connection, day));
             int count = 0;
             float height = 0;

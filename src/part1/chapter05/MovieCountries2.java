@@ -88,7 +88,8 @@ public class MovieCountries2 extends MovieCountries1 {
                 document.add(new Paragraph(movie.getMovieTitle(), FilmFonts.BOLD));
                 if (movie.getOriginalTitle() != null)
                     document.add(new Paragraph(movie.getOriginalTitle(), FilmFonts.ITALIC));
-                document.add(new Paragraph(String.format("Year: %d; run length: %d minutes", movie.getYear(), movie.getDuration()), FilmFonts.NORMAL));
+                document.add(new Paragraph(String.format("Year: %d; run length: %d minutes",
+                    movie.getYear(), movie.getDuration()), FilmFonts.NORMAL));
                 document.add(PojoToElementFactory.getDirectorList(movie));
             }
             document.newPage();
