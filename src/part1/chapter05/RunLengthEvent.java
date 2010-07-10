@@ -65,7 +65,8 @@ public class RunLengthEvent {
             else {
                 cb.setRGBColorFill(0xFF, 0xA5, 0x00);
             }
-            cb.rectangle(rect.getLeft(), rect.getBottom(), rect.getWidth() * duration / 240, rect.getHeight());
+            cb.rectangle(rect.getLeft(), rect.getBottom(),
+                rect.getWidth() * duration / 240, rect.getHeight());
             cb.fill();
             cb.restoreState();
         }
