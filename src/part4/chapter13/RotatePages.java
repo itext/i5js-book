@@ -34,17 +34,17 @@ public class RotatePages {
      */
     public void manipulatePdf(String src, String dest)
         throws IOException, DocumentException {
-    	PdfReader reader = new PdfReader(MovieTemplates.RESULT);
-    	int n = reader.getNumberOfPages();
-    	int rot;
-    	PdfDictionary pageDict;
-    	for (int i = 1; i <= n; i++) {
-			rot = reader.getPageRotation(i);
-			pageDict = reader.getPageN(i);
-			pageDict.put(PdfName.ROTATE, new PdfNumber(rot + 90));
-		}
-    	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
-		stamper.close();
+        PdfReader reader = new PdfReader(MovieTemplates.RESULT);
+        int n = reader.getNumberOfPages();
+        int rot;
+        PdfDictionary pageDict;
+        for (int i = 1; i <= n; i++) {
+            rot = reader.getPageRotation(i);
+            pageDict = reader.getPageN(i);
+            pageDict.put(PdfName.ROTATE, new PdfNumber(rot + 90));
+        }
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
+        stamper.close();
     }
     
     /**

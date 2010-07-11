@@ -18,23 +18,23 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class FontFileAndSizes {
 
-	/** The names of the resulting PDF files. */
-	public static final String[] RESULT = {
-		"results/part3/chapter11/font_not_embedded.pdf",
-		"results/part3/chapter11/font_embedded.pdf",
-		"results/part3/chapter11/font_embedded_less_glyphs.pdf",
-		"results/part3/chapter11/font_compressed.pdf",
-		"results/part3/chapter11/font_full.pdf"
-	};
-	/** The path to the font. */
-	public static final String FONT = "c:/windows/fonts/arial.ttf";
+    /** The names of the resulting PDF files. */
+    public static final String[] RESULT = {
+        "results/part3/chapter11/font_not_embedded.pdf",
+        "results/part3/chapter11/font_embedded.pdf",
+        "results/part3/chapter11/font_embedded_less_glyphs.pdf",
+        "results/part3/chapter11/font_compressed.pdf",
+        "results/part3/chapter11/font_full.pdf"
+    };
+    /** The path to the font. */
+    public static final String FONT = "c:/windows/fonts/arial.ttf";
     /** Some text. */
     public static String TEXT
         = "quick brown fox jumps over the lazy dog";
     /** Some text. */
     public static String OOOO
         = "ooooo ooooo ooo ooooo oooo ooo oooo ooo";
-	
+    
     /**
      * Creates a PDF document.
      * @param filename the path to the new PDF document
@@ -43,19 +43,19 @@ public class FontFileAndSizes {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename, BaseFont bf, String text) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3: we open the document
-		document.open();
-		// step 4
-		document.add(new Paragraph(text, new Font(bf, 12)));
-		// step 5: we close the document
-		document.close();
-	}
-	
+    public void createPdf(String filename, BaseFont bf, String text) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3: we open the document
+        document.open();
+        // step 4
+        document.add(new Paragraph(text, new Font(bf, 12)));
+        // step 5: we close the document
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -63,19 +63,19 @@ public class FontFileAndSizes {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		FontFileAndSizes ffs = new FontFileAndSizes();
-		BaseFont bf;
-		bf = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
-		ffs.createPdf(RESULT[0], bf, TEXT);
-		bf = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.EMBEDDED);
-		ffs.createPdf(RESULT[1], bf, TEXT);
-		ffs.createPdf(RESULT[2], bf, OOOO);
-		bf = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.EMBEDDED);
-		bf.setCompressionLevel(9);
-		ffs.createPdf(RESULT[3], bf, TEXT);
-		bf = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.EMBEDDED);
-		bf.setSubset(false);
-		ffs.createPdf(RESULT[4], bf, TEXT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        FontFileAndSizes ffs = new FontFileAndSizes();
+        BaseFont bf;
+        bf = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
+        ffs.createPdf(RESULT[0], bf, TEXT);
+        bf = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.EMBEDDED);
+        ffs.createPdf(RESULT[1], bf, TEXT);
+        ffs.createPdf(RESULT[2], bf, OOOO);
+        bf = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.EMBEDDED);
+        bf.setCompressionLevel(9);
+        ffs.createPdf(RESULT[3], bf, TEXT);
+        bf = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.EMBEDDED);
+        bf.setSubset(false);
+        ffs.createPdf(RESULT[4], bf, TEXT);
+    }
 }

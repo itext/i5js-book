@@ -23,36 +23,36 @@ public class EncodingExample {
     /** The resulting PDF file. */
     public static final String RESULT
         = "results/part3/chapter11/encoding_example.pdf";
-	/** The path to the font. */
-	public static final String FONT
-	    = "c:/windows/fonts/arialbd.ttf";
-	/** Movie information. */
-	public static final String[][] MOVIES = {
-		{
-			"Cp1252",
-			"A Very long Engagement (France)",
-			"directed by Jean-Pierre Jeunet",
-			"Un long dimanche de fian\u00e7ailles"
-		},
-		{
-			"Cp1250",
-			"No Man's Land (Bosnia-Herzegovina)",
-			"Directed by Danis Tanovic",
-			"Nikogar\u0161nja zemlja"
-		},
-		{
-			"Cp1251",
-			"You I Love (Russia)",
-			"directed by Olga Stolpovskaja and Dmitry Troitsky",
-			"\u042f \u043b\u044e\u0431\u043b\u044e \u0442\u0435\u0431\u044f"
-		},
-		{
-			"Cp1253",
-			"Brides (Greece)",
-			"directed by Pantelis Voulgaris",
-			"\u039d\u03cd\u03c6\u03b5\u03c2"
-		}
-	};
+    /** The path to the font. */
+    public static final String FONT
+        = "c:/windows/fonts/arialbd.ttf";
+    /** Movie information. */
+    public static final String[][] MOVIES = {
+        {
+            "Cp1252",
+            "A Very long Engagement (France)",
+            "directed by Jean-Pierre Jeunet",
+            "Un long dimanche de fian\u00e7ailles"
+        },
+        {
+            "Cp1250",
+            "No Man's Land (Bosnia-Herzegovina)",
+            "Directed by Danis Tanovic",
+            "Nikogar\u0161nja zemlja"
+        },
+        {
+            "Cp1251",
+            "You I Love (Russia)",
+            "directed by Olga Stolpovskaja and Dmitry Troitsky",
+            "\u042f \u043b\u044e\u0431\u043b\u044e \u0442\u0435\u0431\u044f"
+        },
+        {
+            "Cp1253",
+            "Brides (Greece)",
+            "directed by Pantelis Voulgaris",
+            "\u039d\u03cd\u03c6\u03b5\u03c2"
+        }
+    };
     
     /**
      * Creates a PDF document.
@@ -62,28 +62,28 @@ public class EncodingExample {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3: we open the document
-		document.open();
-		// step 4
-		BaseFont bf;
-		for (int i = 0; i < 4; i++) {
-			bf = BaseFont.createFont(FONT, MOVIES[i][0], BaseFont.EMBEDDED);
-			document.add(new Paragraph("Font: " + bf.getPostscriptFontName()
-					+ " with encoding: " + bf.getEncoding()));
-			document.add(new Paragraph(MOVIES[i][1]));
-			document.add(new Paragraph(MOVIES[i][2]));
-			document.add(new Paragraph(MOVIES[i][3], new Font(bf, 12)));
-			document.add(Chunk.NEWLINE);
-		}
-		// step 5: we close the document
-		document.close();
-	}
-	
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3: we open the document
+        document.open();
+        // step 4
+        BaseFont bf;
+        for (int i = 0; i < 4; i++) {
+            bf = BaseFont.createFont(FONT, MOVIES[i][0], BaseFont.EMBEDDED);
+            document.add(new Paragraph("Font: " + bf.getPostscriptFontName()
+                    + " with encoding: " + bf.getEncoding()));
+            document.add(new Paragraph(MOVIES[i][1]));
+            document.add(new Paragraph(MOVIES[i][2]));
+            document.add(new Paragraph(MOVIES[i][3], new Font(bf, 12)));
+            document.add(Chunk.NEWLINE);
+        }
+        // step 5: we close the document
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -91,8 +91,8 @@ public class EncodingExample {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args)
-	    throws IOException, DocumentException {
-		new EncodingExample().createPdf(RESULT);
-	}
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+        new EncodingExample().createPdf(RESULT);
+    }
 }

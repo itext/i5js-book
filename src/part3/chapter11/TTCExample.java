@@ -23,8 +23,8 @@ public class TTCExample {
     /** The resulting PDF file. */
     public static final String RESULT
         = "results/part3/chapter11/ttc_example.pdf";
-	/** The path to the font. */
-	public static final String FONT = "c:/windows/fonts/msgothic.ttc";
+    /** The path to the font. */
+    public static final String FONT = "c:/windows/fonts/msgothic.ttc";
     
     /**
      * Creates a PDF document.
@@ -34,31 +34,31 @@ public class TTCExample {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3: we open the document
-		document.open();
-		// step 4
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3: we open the document
+        document.open();
+        // step 4
 
-		BaseFont bf;
-		Font font;
-		String[] names = BaseFont.enumerateTTCNames(FONT);
-		for (int i = 0; i < names.length; i++) {
-			bf = BaseFont.createFont(String.format("%s,%s", FONT, i),
-				BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-			font = new Font(bf, 12);
-			document.add(new Paragraph("font " + i + ": " + names[i], font));
-			document.add(new Paragraph("Rash\u00f4mon", font));
-			document.add(new Paragraph("Directed by Akira Kurosawa", font));
-			document.add(new Paragraph("\u7f85\u751f\u9580", font));
-			document.add(Chunk.NEWLINE);
-		}
-		// step 5: we close the document
-		document.close();
-	}
+        BaseFont bf;
+        Font font;
+        String[] names = BaseFont.enumerateTTCNames(FONT);
+        for (int i = 0; i < names.length; i++) {
+            bf = BaseFont.createFont(String.format("%s,%s", FONT, i),
+                BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            font = new Font(bf, 12);
+            document.add(new Paragraph("font " + i + ": " + names[i], font));
+            document.add(new Paragraph("Rash\u00f4mon", font));
+            document.add(new Paragraph("Directed by Akira Kurosawa", font));
+            document.add(new Paragraph("\u7f85\u751f\u9580", font));
+            document.add(Chunk.NEWLINE);
+        }
+        // step 5: we close the document
+        document.close();
+    }
 
     /**
      * Main method.
@@ -67,7 +67,7 @@ public class TTCExample {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new TTCExample().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new TTCExample().createPdf(RESULT);
+    }
 }

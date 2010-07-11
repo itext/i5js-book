@@ -21,7 +21,7 @@ import part1.chapter02.MovieLinks1;
 
 public class Concatenate {
 
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static final String RESULT
         = "results/part2/chapter06/concatenated.pdf";
 

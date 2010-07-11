@@ -16,21 +16,21 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PdfActionEvent implements PdfPCellEvent {
 
-	/** The writer to which we are going to add the action. */
-	protected PdfWriter writer;
-	/** The action we're going to add. */
-	protected PdfAction action;
-	
-	/** Creates a new Action event. */
-	public PdfActionEvent(PdfWriter writer, PdfAction action) {
-		this.writer = writer;
-		this.action = action;
-	}
-	
-	/** Implementation of the cellLayout method. */
-	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
-		writer.addAnnotation(new PdfAnnotation(writer,
-			position.getLeft(), position.getBottom(), position.getRight(), position.getTop(),
-			action));
-	}
+    /** The writer to which we are going to add the action. */
+    protected PdfWriter writer;
+    /** The action we're going to add. */
+    protected PdfAction action;
+    
+    /** Creates a new Action event. */
+    public PdfActionEvent(PdfWriter writer, PdfAction action) {
+        this.writer = writer;
+        this.action = action;
+    }
+    
+    /** Implementation of the cellLayout method. */
+    public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
+        writer.addAnnotation(new PdfAnnotation(writer,
+            position.getLeft(), position.getBottom(), position.getRight(), position.getTop(),
+            action));
+    }
 }

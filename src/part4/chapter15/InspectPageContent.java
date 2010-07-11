@@ -19,16 +19,30 @@ import com.itextpdf.text.pdf.parser.PdfContentReaderTool;
 
 public class InspectPageContent {
 
-	public static final String RESULT = "results/part4/chapter15/calendar_info.txt";
-	
-	public void inspectPdf(String pdf, String txt) throws IOException {
-		PrintWriter out = new PrintWriter(new FileOutputStream(txt));
-		PdfContentReaderTool.listContentStream(new File(pdf), out);
-		out.flush();
-		out.close();
-	}
-	public static void main(String[] args) throws IOException, DocumentException {
-		new MovieTemplates().createPdf(MovieTemplates.RESULT);
-		new InspectPageContent().inspectPdf(MovieTemplates.RESULT, RESULT);
-	}
+	/** Text file containing information about a PDF file. */
+    public static final String RESULT = "results/part4/chapter15/calendar_info.txt";
+    
+    /**
+     * Parses object and content information of a PDF into a text file.
+     * @param pdf the original PDF
+     * @param txt the resulting text
+     * @throws IOException
+     */
+    public void inspectPdf(String pdf, String txt) throws IOException {
+        PrintWriter out = new PrintWriter(new FileOutputStream(txt));
+        PdfContentReaderTool.listContentStream(new File(pdf), out);
+        out.flush();
+        out.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args) throws IOException, DocumentException {
+        new MovieTemplates().createPdf(MovieTemplates.RESULT);
+        new InspectPageContent().inspectPdf(MovieTemplates.RESULT, RESULT);
+    }
 }

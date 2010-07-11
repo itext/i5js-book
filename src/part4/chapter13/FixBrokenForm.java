@@ -36,23 +36,23 @@ public class FixBrokenForm {
      * @throws DocumentException 
      */
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
-    	PdfReader reader = new PdfReader(src);
-    	PdfDictionary root = reader.getCatalog();
-    	PdfDictionary form = root.getAsDict(PdfName.ACROFORM);
-    	PdfArray fields = form.getAsArray(PdfName.FIELDS);
+        PdfReader reader = new PdfReader(src);
+        PdfDictionary root = reader.getCatalog();
+        PdfDictionary form = root.getAsDict(PdfName.ACROFORM);
+        PdfArray fields = form.getAsArray(PdfName.FIELDS);
 
-    	PdfDictionary page;
-    	PdfArray annots;
-    	for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-    	    page = reader.getPageN(i);
-    	    annots = page.getAsArray(PdfName.ANNOTS);
-    	    for (int j = 0; j < annots.size(); j++) {
-    	        fields.add(annots.getAsIndirectObject(j));
-    	    }
-    	}
-    	PdfStamper stamper = new PdfStamper(reader,
-    	     new FileOutputStream(dest));
-    	stamper.close();
+        PdfDictionary page;
+        PdfArray annots;
+        for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+            page = reader.getPageN(i);
+            annots = page.getAsArray(PdfName.ANNOTS);
+            for (int j = 0; j < annots.size(); j++) {
+                fields.add(annots.getAsIndirectObject(j));
+            }
+        }
+        PdfStamper stamper = new PdfStamper(reader,
+             new FileOutputStream(dest));
+        stamper.close();
     }
     
     public void fillData(String src, String dest) throws IOException, DocumentException {
@@ -74,10 +74,10 @@ public class FixBrokenForm {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, DocumentException {
-    	FixBrokenForm example = new FixBrokenForm();
-    	example.manipulatePdf(ORIGINAL, FIXED);
-    	example.fillData(ORIGINAL, RESULT1);
-    	example.fillData(FIXED, RESULT2);
+        FixBrokenForm example = new FixBrokenForm();
+        example.manipulatePdf(ORIGINAL, FIXED);
+        example.fillData(ORIGINAL, RESULT1);
+        example.fillData(FIXED, RESULT2);
     }
 
 }

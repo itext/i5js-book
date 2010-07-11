@@ -34,7 +34,7 @@ import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class StampStationery {
-	/** The original PDF file. */
+    /** The original PDF file. */
     public static final String ORIGINAL
         = "results/part2/chapter06/original.pdf";
     /** The resulting PDF. */

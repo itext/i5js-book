@@ -33,8 +33,8 @@ public class Diacritics1 {
         = "resources/posters/0269217.jpg";
     /** Fonts */
     public static final String[] FONTS = {
-    	"c:/windows/fonts/angsa.ttf",
-    	"c:/windows/fonts/arialuni.ttf"
+        "c:/windows/fonts/angsa.ttf",
+        "c:/windows/fonts/arialuni.ttf"
     };
     
     /**
@@ -45,35 +45,35 @@ public class Diacritics1 {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		BaseFont bf;
-		Font font;
-		Image img = Image.getInstance(POSTER);
-		img.scalePercent(50);
-		img.setBorderWidth(18f);
-		img.setBorder(Image.BOX);
-		img.setBorderColor(GrayColor.GRAYWHITE);
-		img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
-		document.add(img);
-		document.add(new Paragraph(
-			"Movie title: Tears of the Black Tiger (Thailand)"));
-		document.add(new Paragraph("directed by Wisit Sasanatieng"));
-		for (int i = 0; i < 2; i++) {
-			bf = BaseFont.createFont(FONTS[i], BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-			document.add(new Paragraph("Font: " + bf.getPostscriptFontName()));
-			font = new Font(bf, 20);
-			document.add(new Paragraph(MOVIE, font));
-		}
-		// step 5: we close the document
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        BaseFont bf;
+        Font font;
+        Image img = Image.getInstance(POSTER);
+        img.scalePercent(50);
+        img.setBorderWidth(18f);
+        img.setBorder(Image.BOX);
+        img.setBorderColor(GrayColor.GRAYWHITE);
+        img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
+        document.add(img);
+        document.add(new Paragraph(
+            "Movie title: Tears of the Black Tiger (Thailand)"));
+        document.add(new Paragraph("directed by Wisit Sasanatieng"));
+        for (int i = 0; i < 2; i++) {
+            bf = BaseFont.createFont(FONTS[i], BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            document.add(new Paragraph("Font: " + bf.getPostscriptFontName()));
+            font = new Font(bf, 20);
+            document.add(new Paragraph(MOVIE, font));
+        }
+        // step 5: we close the document
+        document.close();
+    }
 
     /**
      * Main method.
@@ -82,7 +82,7 @@ public class Diacritics1 {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new Diacritics1().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new Diacritics1().createPdf(RESULT);
+    }
 }

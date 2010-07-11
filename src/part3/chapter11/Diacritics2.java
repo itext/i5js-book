@@ -35,8 +35,8 @@ public class Diacritics2 {
         = "Tomten \u00a8ar far till alla barnen";
     /** Fonts */
     public static final String[] FONTS = {
-    	"c:/windows/fonts/arial.ttf",
-    	"c:/windows/fonts/cour.ttf"
+        "c:/windows/fonts/arial.ttf",
+        "c:/windows/fonts/cour.ttf"
     };
     
     /**
@@ -47,27 +47,27 @@ public class Diacritics2 {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.open();
-		// step 4
-		document.add(new Paragraph("Movie title: In Bed With Santa (Sweden)"));
-		document.add(new Paragraph("directed by Kjell Sundvall"));
-		BaseFont bf = BaseFont.createFont(FONTS[0], BaseFont.CP1252, BaseFont.EMBEDDED);
-		Font font = new Font(bf, 12);
-		bf.setCharAdvance('\u00a8', -100);
-		document.add(new Paragraph(MOVIE, font));
-		bf = BaseFont.createFont(FONTS[1], BaseFont.CP1252, BaseFont.EMBEDDED);
-		bf.setCharAdvance('\u00a8', 0);
-		font = new Font(bf, 12);
-		document.add(new Paragraph(MOVIE, font));
-		// step 5
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        document.add(new Paragraph("Movie title: In Bed With Santa (Sweden)"));
+        document.add(new Paragraph("directed by Kjell Sundvall"));
+        BaseFont bf = BaseFont.createFont(FONTS[0], BaseFont.CP1252, BaseFont.EMBEDDED);
+        Font font = new Font(bf, 12);
+        bf.setCharAdvance('\u00a8', -100);
+        document.add(new Paragraph(MOVIE, font));
+        bf = BaseFont.createFont(FONTS[1], BaseFont.CP1252, BaseFont.EMBEDDED);
+        bf.setCharAdvance('\u00a8', 0);
+        font = new Font(bf, 12);
+        document.add(new Paragraph(MOVIE, font));
+        // step 5
+        document.close();
+    }
 
     /**
      * Main method.
@@ -76,7 +76,7 @@ public class Diacritics2 {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new Diacritics2().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new Diacritics2().createPdf(RESULT);
+    }
 }

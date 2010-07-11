@@ -14,25 +14,42 @@ import com.itextpdf.text.pdf.parser.TextRenderInfo;
 
 public class MyTextRenderListener implements RenderListener {
 
-	protected PrintWriter out;
-	public MyTextRenderListener(PrintWriter out) {
-		this.out = out;
-	}
-	
-	public void beginTextBlock() {
-		out.print("<");
-	}
+	/** The print writer to which the information will be written. */
+    protected PrintWriter out;
 
-	public void endTextBlock() {
-		out.println(">");
-	}
+    /**
+     * Creates a RenderListener that will look for text.
+     */
+    public MyTextRenderListener(PrintWriter out) {
+        this.out = out;
+    }
+    
+    /**
+     * @see com.itextpdf.text.pdf.parser.RenderListener#beginTextBlock()
+     */
+    public void beginTextBlock() {
+        out.print("<");
+    }
 
-	public void renderImage(ImageRenderInfo renderInfo) {
-	}
+    /**
+     * @see com.itextpdf.text.pdf.parser.RenderListener#endTextBlock()
+     */
+    public void endTextBlock() {
+        out.println(">");
+    }
 
-	public void renderText(TextRenderInfo renderInfo) {
-		out.print("<");
-		out.print(renderInfo.getText());
-		out.print(">");
-	}
+    /**
+     * @see com.itextpdf.text.pdf.parser.RenderListener#renderImage(com.itextpdf.text.pdf.parser.ImageRenderInfo)
+     */
+    public void renderImage(ImageRenderInfo renderInfo) {
+    }
+
+    /**
+     * @see com.itextpdf.text.pdf.parser.RenderListener#renderText(com.itextpdf.text.pdf.parser.TextRenderInfo)
+     */
+    public void renderText(TextRenderInfo renderInfo) {
+        out.print("<");
+        out.print(renderInfo.getText());
+        out.print(">");
+    }
 }

@@ -26,47 +26,55 @@ import com.itextpdf.text.pdf.PdfWriter;
  */
 
 public class PeekABoo {
-	public static String RESULT1 = "results/part4/chapter15/peek-a-boo1.pdf";
-	public static String RESULT2 = "results/part4/chapter15/peek-a-boo2.pdf";
 
-	
-	public void createPdf(String filename, boolean on) throws DocumentException, IOException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(document,
-			new FileOutputStream(filename));
-		writer.setViewerPreferences(PdfWriter.PageModeUseOC);
-		writer.setPdfVersion(PdfWriter.VERSION_1_5);
-		// step 3
-		document.open();
-		// step 4
-		PdfLayer layer = new PdfLayer("Do you see me?", writer);
-		layer.setOn(on);
-		BaseFont bf = BaseFont.createFont();
-		PdfContentByte cb = writer.getDirectContent();
-		cb.beginText();
-		cb.setFontAndSize(bf, 18);
-		cb.showTextAligned(Element.ALIGN_LEFT, "Do you see me?", 50, 790, 0);
-		cb.beginLayer(layer);
-		cb.showTextAligned(Element.ALIGN_LEFT, "Peek-a-Boo!!!", 50, 766, 0);
-		cb.endLayer();
-		cb.endText();
-		// step 5
-		document.close();
-	}
-	
-	/**
-	 * A simple example with optional content.
-	 * 
-	 * @param args
-	 *            no arguments needed here
-	 * @throws IOException 
-	 * @throws DocumentException 
-	 */
-	public static void main(String[] args) throws DocumentException, IOException {
-		PeekABoo peekaboo = new PeekABoo();
-		peekaboo.createPdf(RESULT1, true);
-		peekaboo.createPdf(RESULT2, false);
-	}
+    /** The first resulting PDF. */
+    public static String RESULT1 = "results/part4/chapter15/peek-a-boo1.pdf";
+    /** The second resulting PDF. */
+    public static String RESULT2 = "results/part4/chapter15/peek-a-boo2.pdf";
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws DocumentException 
+     * @throws IOException 
+     */
+    public void createPdf(String filename, boolean on) throws DocumentException, IOException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter writer = PdfWriter.getInstance(document,
+            new FileOutputStream(filename));
+        writer.setViewerPreferences(PdfWriter.PageModeUseOC);
+        writer.setPdfVersion(PdfWriter.VERSION_1_5);
+        // step 3
+        document.open();
+        // step 4
+        PdfLayer layer = new PdfLayer("Do you see me?", writer);
+        layer.setOn(on);
+        BaseFont bf = BaseFont.createFont();
+        PdfContentByte cb = writer.getDirectContent();
+        cb.beginText();
+        cb.setFontAndSize(bf, 18);
+        cb.showTextAligned(Element.ALIGN_LEFT, "Do you see me?", 50, 790, 0);
+        cb.beginLayer(layer);
+        cb.showTextAligned(Element.ALIGN_LEFT, "Peek-a-Boo!!!", 50, 766, 0);
+        cb.endLayer();
+        cb.endText();
+        // step 5
+        document.close();
+    }
+    
+    /**
+     * A simple example with optional content.
+     * 
+     * @param args
+     *            no arguments needed here
+     * @throws IOException 
+     * @throws DocumentException 
+     */
+    public static void main(String[] args) throws DocumentException, IOException {
+        PeekABoo peekaboo = new PeekABoo();
+        peekaboo.createPdf(RESULT1, true);
+        peekaboo.createPdf(RESULT2, false);
+    }
 }

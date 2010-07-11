@@ -89,12 +89,12 @@ public class PageLayoutExample extends MovieParagraphs1 {
      */
     public static void main(String[] args)
         throws IOException, DocumentException, SQLException {
-    	PageLayoutExample example = new PageLayoutExample();
+        PageLayoutExample example = new PageLayoutExample();
         example.createPdf(RESULT1, PdfWriter.PageLayoutSinglePage);
         example.createPdf(RESULT2, PdfWriter.PageLayoutOneColumn);
-   		example.createPdf(RESULT3, PdfWriter.PageLayoutTwoColumnLeft);
-   		example.createPdf(RESULT4, PdfWriter.PageLayoutTwoColumnRight);
-   		example.createPdf(RESULT5, PdfWriter.PageLayoutTwoPageLeft);
-   		example.createPdf(RESULT6, PdfWriter.PageLayoutTwoPageRight);
+           example.createPdf(RESULT3, PdfWriter.PageLayoutTwoColumnLeft);
+           example.createPdf(RESULT4, PdfWriter.PageLayoutTwoColumnRight);
+           example.createPdf(RESULT5, PdfWriter.PageLayoutTwoPageLeft);
+           example.createPdf(RESULT6, PdfWriter.PageLayoutTwoPageRight);
     }
 }

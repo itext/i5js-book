@@ -31,28 +31,28 @@ public class UnicodeExample extends EncodingExample {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3: we open the document
-		document.open();
-		// step 4
-		BaseFont bf;
-		for (int i = 0; i < 4; i++) {
-			bf = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-			document.add(new Paragraph("Font: " + bf.getPostscriptFontName()
-					+ " with encoding: " + bf.getEncoding()));
-			document.add(new Paragraph(MOVIES[i][1]));
-			document.add(new Paragraph(MOVIES[i][2]));
-			document.add(new Paragraph(MOVIES[i][3], new Font(bf, 12)));
-			document.add(Chunk.NEWLINE);
-		}
-		// step 5: we close the document
-		document.close();
-	}
-	
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3: we open the document
+        document.open();
+        // step 4
+        BaseFont bf;
+        for (int i = 0; i < 4; i++) {
+            bf = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            document.add(new Paragraph("Font: " + bf.getPostscriptFontName()
+                    + " with encoding: " + bf.getEncoding()));
+            document.add(new Paragraph(MOVIES[i][1]));
+            document.add(new Paragraph(MOVIES[i][2]));
+            document.add(new Paragraph(MOVIES[i][3], new Font(bf, 12)));
+            document.add(Chunk.NEWLINE);
+        }
+        // step 5: we close the document
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -60,8 +60,8 @@ public class UnicodeExample extends EncodingExample {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args)
-	    throws IOException, DocumentException {
-		new UnicodeExample().createPdf(RESULT);
-	}
+    public static void main(String[] args)
+        throws IOException, DocumentException {
+        new UnicodeExample().createPdf(RESULT);
+    }
 }

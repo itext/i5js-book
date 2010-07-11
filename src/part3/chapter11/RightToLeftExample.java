@@ -36,27 +36,27 @@ public class RightToLeftExample {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document(PageSize.A4);
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3: we open the document
-		document.open();
-		// step 4:
-		BaseFont bf = BaseFont.createFont(
-		    "c:/windows/fonts/arial.ttf", BaseFont.IDENTITY_H, true);
-		Font font = new Font(bf, 14);
-		document.add(new Paragraph("Movie title: Nina's Tragedies"));
-		document.add(new Paragraph("directed by Savi Gabizon"));
-		ColumnText column = new ColumnText(writer.getDirectContent());
-		column.setSimpleColumn(36, 770, 569, 36);
-		column.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
-		column.addElement(new Paragraph(MOVIE, font));
-	    column.go();
-		// step 5: we close the document
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document(PageSize.A4);
+        // step 2
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3: we open the document
+        document.open();
+        // step 4:
+        BaseFont bf = BaseFont.createFont(
+            "c:/windows/fonts/arial.ttf", BaseFont.IDENTITY_H, true);
+        Font font = new Font(bf, 14);
+        document.add(new Paragraph("Movie title: Nina's Tragedies"));
+        document.add(new Paragraph("directed by Savi Gabizon"));
+        ColumnText column = new ColumnText(writer.getDirectContent());
+        column.setSimpleColumn(36, 770, 569, 36);
+        column.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
+        column.addElement(new Paragraph(MOVIE, font));
+        column.go();
+        // step 5: we close the document
+        document.close();
+    }
 
     /**
      * Main method.
@@ -65,8 +65,8 @@ public class RightToLeftExample {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new RightToLeftExample().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new RightToLeftExample().createPdf(RESULT);
+    }
 
 }

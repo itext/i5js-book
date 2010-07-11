@@ -19,11 +19,11 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 
 public class EncryptionPdf {
-	/** User password. */
-	public static byte[] USER = "Hello".getBytes();
-	/** Owner password. */
-	public static byte[] OWNER = "World".getBytes();
-	
+    /** User password. */
+    public static byte[] USER = "Hello".getBytes();
+    /** Owner password. */
+    public static byte[] OWNER = "World".getBytes();
+    
     /** The resulting PDF file. */
     public static final String RESULT1
         = "results/part3/chapter12/encryption.pdf";
@@ -40,20 +40,20 @@ public class EncryptionPdf {
      * @throws DocumentException 
      * @throws IOException 
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		writer.setEncryption(USER, OWNER, PdfWriter.ALLOW_PRINTING, PdfWriter.STANDARD_ENCRYPTION_128);
-		writer.createXmpMetadata();
-		// step 3
-		document.open();
-		// step 4
-		document.add(new Paragraph("Hello World"));
-		// step 5
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        writer.setEncryption(USER, OWNER, PdfWriter.ALLOW_PRINTING, PdfWriter.STANDARD_ENCRYPTION_128);
+        writer.createXmpMetadata();
+        // step 3
+        document.open();
+        // step 4
+        document.add(new Paragraph("Hello World"));
+        // step 5
+        document.close();
+    }
 
     /**
      * Manipulates a PDF file src with the file dest as result
@@ -62,11 +62,11 @@ public class EncryptionPdf {
      * @throws IOException
      * @throws DocumentException
      */
-	public void decryptPdf(String src, String dest) throws IOException, DocumentException {
-		PdfReader reader = new PdfReader(src, OWNER);
-		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-		stamper.close();
-	}
+    public void decryptPdf(String src, String dest) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(src, OWNER);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        stamper.close();
+    }
 
     /**
      * Manipulates a PDF file src with the file dest as result
@@ -75,13 +75,13 @@ public class EncryptionPdf {
      * @throws IOException
      * @throws DocumentException
      */
-	public void encryptPdf(String src, String dest) throws IOException, DocumentException {
-		PdfReader reader = new PdfReader(src);
-		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-		stamper.setEncryption(USER, OWNER, PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128 | PdfWriter.DO_NOT_ENCRYPT_METADATA);
-		stamper.close();
-	}
-	
+    public void encryptPdf(String src, String dest) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        stamper.setEncryption(USER, OWNER, PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128 | PdfWriter.DO_NOT_ENCRYPT_METADATA);
+        stamper.close();
+    }
+    
     /**
      * Main method.
      *
@@ -89,10 +89,10 @@ public class EncryptionPdf {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		EncryptionPdf metadata = new EncryptionPdf();
-		metadata.createPdf(RESULT1);
-		metadata.decryptPdf(RESULT1, RESULT2);
-		metadata.encryptPdf(RESULT2, RESULT3);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        EncryptionPdf metadata = new EncryptionPdf();
+        metadata.createPdf(RESULT1);
+        metadata.decryptPdf(RESULT1, RESULT2);
+        metadata.encryptPdf(RESULT2, RESULT3);
+    }
 }

@@ -21,7 +21,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class NUpTool {
 
-	/** Format of the resulting PDF files. */
+    /** Format of the resulting PDF files. */
     public static final String RESULT
         = "results/part2/chapter06/result%dup.pdf";
     

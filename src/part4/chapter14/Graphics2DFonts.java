@@ -34,44 +34,44 @@ public class Graphics2DFonts {
         = "results/part4/chapter14/fonts.pdf";
     
     public static final Font[] FONTS = {
-    	new Font("Serif", Font.PLAIN, 12),
-    	new Font("Serif", Font.BOLD, 12),
-    	new Font("Serif", Font.ITALIC, 12),
-    	new Font("SansSerif", Font.PLAIN, 12),
-    	new Font("Monospaced", Font.PLAIN, 12)
+        new Font("Serif", Font.PLAIN, 12),
+        new Font("Serif", Font.BOLD, 12),
+        new Font("Serif", Font.ITALIC, 12),
+        new Font("SansSerif", Font.PLAIN, 12),
+        new Font("Monospaced", Font.PLAIN, 12)
     };
 
-	public static void main(String[] args) throws IOException, DocumentException {
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		String[] fontFamily = ge.getAvailableFontFamilyNames();
+    public static void main(String[] args) throws IOException, DocumentException {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fontFamily = ge.getAvailableFontFamilyNames();
         PrintStream out1 = new PrintStream(new FileOutputStream(RESULT1));
-		for (int i = 0; i < fontFamily.length; i++) {
-			out1.println(fontFamily[i]);
-		}
-		out1.flush();
-		out1.close();
-		
-		DefaultFontMapper mapper = new DefaultFontMapper();
-		mapper.insertDirectory("c:/windows/fonts/");
+        for (int i = 0; i < fontFamily.length; i++) {
+            out1.println(fontFamily[i]);
+        }
+        out1.flush();
+        out1.close();
+        
+        DefaultFontMapper mapper = new DefaultFontMapper();
+        mapper.insertDirectory("c:/windows/fonts/");
         PrintStream out2 = new PrintStream(new FileOutputStream(RESULT2));
-		for (Entry<String,BaseFontParameters> entry : mapper.getMapper().entrySet()) {
-			out2.println(String.format("%s: %s", entry.getKey(), entry.getValue().fontName));
-		}
-		out2.flush();
-		out2.close();
-		
-		float width = 150;
-		float height = 150;
-		Document document = new Document(new Rectangle(width, height));
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT3));
-		document.open();
-		PdfContentByte cb = writer.getDirectContent();
-		Graphics2D g2d = cb.createGraphics(width, height, mapper);
-		for (int i = 0; i < FONTS.length; ) {
-			g2d.setFont(FONTS[i++]);
-			g2d.drawString("Hello world", 5, 24 * i);
-		}
-		g2d.dispose();
-		document.close();
-	}
+        for (Entry<String,BaseFontParameters> entry : mapper.getMapper().entrySet()) {
+            out2.println(String.format("%s: %s", entry.getKey(), entry.getValue().fontName));
+        }
+        out2.flush();
+        out2.close();
+        
+        float width = 150;
+        float height = 150;
+        Document document = new Document(new Rectangle(width, height));
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT3));
+        document.open();
+        PdfContentByte cb = writer.getDirectContent();
+        Graphics2D g2d = cb.createGraphics(width, height, mapper);
+        for (int i = 0; i < FONTS.length; ) {
+            g2d.setFont(FONTS[i++]);
+            g2d.drawString("Hello world", 5, 24 * i);
+        }
+        g2d.dispose();
+        document.close();
+    }
 }

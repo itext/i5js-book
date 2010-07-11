@@ -32,30 +32,30 @@ public class InspectForm {
      */
     public void inspectPdf(String src, String dest)
         throws IOException, DocumentException {
-    	OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(dest));
-    	PdfReader reader = new PdfReader(src);
-    	AcroFields form = reader.getAcroFields();
-    	Map<String,AcroFields.Item> fields = form.getFields();
-    	AcroFields.Item item;
-    	PdfDictionary dict;
-    	int flags;
-    	for (Map.Entry<String,AcroFields.Item> entry : fields.entrySet()) {
-    		out.write(entry.getKey());
-    		item = entry.getValue();
-    		dict = item.getMerged(0);
-    		flags = dict.getAsNumber(PdfName.FF).intValue();
-    		if ((flags & BaseField.PASSWORD) > 0)
-    			out.write(" -> password");
-    		if ((flags & BaseField.MULTILINE) > 0)
-    			out.write(" -> multiline");
-    		out.write('\n');
-    	}
-    	out.flush();
-    	out.close();
+        OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(dest));
+        PdfReader reader = new PdfReader(src);
+        AcroFields form = reader.getAcroFields();
+        Map<String,AcroFields.Item> fields = form.getFields();
+        AcroFields.Item item;
+        PdfDictionary dict;
+        int flags;
+        for (Map.Entry<String,AcroFields.Item> entry : fields.entrySet()) {
+            out.write(entry.getKey());
+            item = entry.getValue();
+            dict = item.getMerged(0);
+            flags = dict.getAsNumber(PdfName.FF).intValue();
+            if ((flags & BaseField.PASSWORD) > 0)
+                out.write(" -> password");
+            if ((flags & BaseField.MULTILINE) > 0)
+                out.write(" -> multiline");
+            out.write('\n');
+        }
+        out.flush();
+        out.close();
     }
     
-	public static void main(String[] args) throws IOException, DocumentException {
-		new Subscribe().createPdf(Subscribe.RESULT);
-		new InspectForm().inspectPdf(Subscribe.RESULT, RESULTTXT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new Subscribe().createPdf(Subscribe.RESULT);
+        new InspectForm().inspectPdf(Subscribe.RESULT, RESULTTXT);
+    }
 }

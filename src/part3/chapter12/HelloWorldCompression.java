@@ -55,7 +55,7 @@ public class HelloWorldCompression {
     public static final String RESULT6
         = "results/part3/chapter12/compression_full_too.pdf";
     public static final String RESULT7
-    	= "results/part3/chapter12/compression_removed.pdf";
+        = "results/part3/chapter12/compression_removed.pdf";
     
     /**
      * Creates a PDF with information about the movies
@@ -72,17 +72,17 @@ public class HelloWorldCompression {
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
         switch(compression) {
         case -1:
-        	Document.compress = false;
-        	break;
+            Document.compress = false;
+            break;
         case 0:
-        	writer.setCompressionLevel(0);
-        	break;
+            writer.setCompressionLevel(0);
+            break;
         case 2:
-        	writer.setCompressionLevel(9);
-        	break;
+            writer.setCompressionLevel(9);
+            break;
         case 3:
-        	writer.setFullCompression();
-        	break;
+            writer.setFullCompression();
+            break;
         }
         // step 3
         document.open();
@@ -99,7 +99,7 @@ public class HelloWorldCompression {
         List list = new List(List.ORDERED);
         // loop over the countries
         while (rs.next()) {
-        	// create a list item for the country
+            // create a list item for the country
             ListItem item = new ListItem(
                 String.format("%s: %d movies",
                     rs.getString("country"), rs.getInt("c")),
@@ -139,17 +139,17 @@ public class HelloWorldCompression {
      * @throws IOException
      * @throws DocumentException
      */
-	public void compressPdf(String src, String dest) throws IOException, DocumentException {
-		PdfReader reader = new PdfReader(src);
-		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest), PdfWriter.VERSION_1_5);
-		stamper.getWriter().setCompressionLevel(9);
-		int total = reader.getNumberOfPages() + 1;
-		for (int i = 1; i < total; i++) {
-			reader.setPageContent(i, reader.getPageContent(i));
-		}
-		stamper.setFullCompression();
-		stamper.close();
-	}
+    public void compressPdf(String src, String dest) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest), PdfWriter.VERSION_1_5);
+        stamper.getWriter().setCompressionLevel(9);
+        int total = reader.getNumberOfPages() + 1;
+        for (int i = 1; i < total; i++) {
+            reader.setPageContent(i, reader.getPageContent(i));
+        }
+        stamper.setFullCompression();
+        stamper.close();
+    }
 
     /**
      * Manipulates a PDF file src with the file dest as result
@@ -159,36 +159,36 @@ public class HelloWorldCompression {
      * @throws IOException
      * @throws DocumentException
      */
-	public void decompressPdf(String src, String dest) throws IOException, DocumentException {
-		PdfReader reader = new PdfReader(src);
-		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-		Document.compress = false;
-		int total = reader.getNumberOfPages() + 1;
-		for (int i = 1; i < total; i++) {
-			reader.setPageContent(i, reader.getPageContent(i));
-		}
-		stamper.close();
+    public void decompressPdf(String src, String dest) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        Document.compress = false;
+        int total = reader.getNumberOfPages() + 1;
+        for (int i = 1; i < total; i++) {
+            reader.setPageContent(i, reader.getPageContent(i));
+        }
+        stamper.close();
         Document.compress = true;
-	}
-	
-	/**
-	 * Generates a PDF file, then reads it to generate a copy that is fully
-	 * compressed and one that isn't compressed.
-	 * 
-	 * @param args
-	 *            no arguments needed here
-	 * @throws SQLException 
-	 * @throws DocumentException 
-	 * @throws IOException 
-	 */
-	public static void main(String[] args) throws IOException, DocumentException, SQLException {
-		HelloWorldCompression hello = new HelloWorldCompression();
-		hello.createPdf(RESULT1, -1);
-		hello.createPdf(RESULT2, 0);
-		hello.createPdf(RESULT3, 1);
-		hello.createPdf(RESULT4, 2);
-		hello.createPdf(RESULT5, 3);
-		hello.compressPdf(RESULT2, RESULT6);
-		hello.decompressPdf(RESULT6, RESULT7);
-	}
+    }
+    
+    /**
+     * Generates a PDF file, then reads it to generate a copy that is fully
+     * compressed and one that isn't compressed.
+     * 
+     * @param args
+     *            no arguments needed here
+     * @throws SQLException 
+     * @throws DocumentException 
+     * @throws IOException 
+     */
+    public static void main(String[] args) throws IOException, DocumentException, SQLException {
+        HelloWorldCompression hello = new HelloWorldCompression();
+        hello.createPdf(RESULT1, -1);
+        hello.createPdf(RESULT2, 0);
+        hello.createPdf(RESULT3, 1);
+        hello.createPdf(RESULT4, 2);
+        hello.createPdf(RESULT5, 3);
+        hello.compressPdf(RESULT2, RESULT6);
+        hello.decompressPdf(RESULT6, RESULT7);
+    }
 }

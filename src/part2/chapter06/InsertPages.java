@@ -85,7 +85,7 @@ public class InsertPages {
         int i = 0;
         // Add the content of the ColumnText object 
         while(true) {
-        	// Add a new page
+            // Add a new page
             stamper.insertPage(++i, reader.getPageSize(1));
             // Add the stationary to the new page
             stamper.getUnderContent(i).addTemplate(page, 0, 0);

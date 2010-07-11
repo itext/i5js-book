@@ -20,18 +20,18 @@ import javax.swing.text.StyledDocument;
 
 public class TextExample4 {
     public static final String[] AKIRA = {
-    	"Akira Kurosawa", " (", "\u9ed2\u6fa4 \u660e", " or ",
+        "Akira Kurosawa", " (", "\u9ed2\u6fa4 \u660e", " or ",
         "\u9ed2\u6ca2 \u660e", ", Kurosawa Akira, 23 March 1910" +
         " - 6 September 1998) was a Japanese film director," +
         " producer, screenwriter and editor. In a career that" +
         " spanned 50 years, Kurosawa directed 30 films. " +
-	    "He is widely regarded as one of the most important and " +
+        "He is widely regarded as one of the most important and " +
         "influential filmmakers in film history." };
     
     public static final String[] STYLES =  {
       "bold", "regular", "japanese", "regular", "japanese", "regular" };
     
-	public static JTextPane createTextPane() throws BadLocationException {
+    public static JTextPane createTextPane() throws BadLocationException {
         JTextPane textPane = new JTextPane();
         StyledDocument doc = textPane.getStyledDocument();
         initStyles(doc);
@@ -42,9 +42,9 @@ public class TextExample4 {
         return textPane;
     }
 
-	public static void initStyles(StyledDocument doc) {
+    public static void initStyles(StyledDocument doc) {
         Style def =
-        	StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
+            StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
         StyleConstants.setFontFamily(def, "SansSerif");
         Style regular = doc.addStyle("regular", def);
         Style bold = doc.addStyle("bold", regular);
@@ -52,14 +52,14 @@ public class TextExample4 {
         Style japanese = doc.addStyle("japanese", def);
         StyleConstants.setFontFamily(japanese, "MS PGothic");
     }
-	
-	public static void main(String s[]) throws BadLocationException {
-		JFrame f = new JFrame("Kurosawa");
-	    f.getContentPane().add( createTextPane(), "Center" );
+    
+    public static void main(String s[]) throws BadLocationException {
+        JFrame f = new JFrame("Kurosawa");
+        f.getContentPane().add( createTextPane(), "Center" );
 
         f.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-            	System.exit(0);
+                System.exit(0);
             }
         });
         f.setSize(new Dimension(300, 150));

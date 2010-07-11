@@ -55,6 +55,6 @@ public class PrintPreferencesExample {
      */
     public static void main(String[] args)
         throws IOException, DocumentException {
-    	new PrintPreferencesExample().createPdf(RESULT);
+        new PrintPreferencesExample().createPdf(RESULT);
     }
 }

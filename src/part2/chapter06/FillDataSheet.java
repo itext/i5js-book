@@ -25,10 +25,10 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 public class FillDataSheet {
 
-	/** The original PDF file. */
+    /** The original PDF file. */
     public static final String DATASHEET
         = "resources/pdfs/datasheet.pdf";
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static final String RESULT
         = "results/part2/chapter06/imdb%s.pdf";
     

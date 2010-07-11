@@ -30,37 +30,37 @@ public class Text2ToPdf1 {
      * @throws DocumentException 
      * @throws IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		Document document = new Document(new Rectangle(300, 150));
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		document.open();
-		PdfContentByte canvas = writer.getDirectContent();
-		FontMapper arialuni = new FontMapper() {
-			public BaseFont awtToPdf(Font font) {
-				try {
-					return BaseFont.createFont(
-							"c:/windows/fonts/arialuni.ttf",
-							BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-				} catch (DocumentException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				return null;
-			}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        Document document = new Document(new Rectangle(300, 150));
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        document.open();
+        PdfContentByte canvas = writer.getDirectContent();
+        FontMapper arialuni = new FontMapper() {
+            public BaseFont awtToPdf(Font font) {
+                try {
+                    return BaseFont.createFont(
+                            "c:/windows/fonts/arialuni.ttf",
+                            BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                } catch (DocumentException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
 
-			public Font pdfToAwt(BaseFont font, int size) {
-				return null;
-			}
-			
-		};
-		Graphics2D g2 = canvas.createGraphics(300, 150, arialuni);
-		TextExample2 text = new TextExample2();
-		text.setSize(new Dimension(300, 150));
-		text.paint(g2);
-		g2.dispose();
-		document.close();
-	}
+            public Font pdfToAwt(BaseFont font, int size) {
+                return null;
+            }
+            
+        };
+        Graphics2D g2 = canvas.createGraphics(300, 150, arialuni);
+        TextExample2 text = new TextExample2();
+        text.setSize(new Dimension(300, 150));
+        text.paint(g2);
+        g2.dispose();
+        document.close();
+    }
     /**
      * Main method.
      *
@@ -69,6 +69,6 @@ public class Text2ToPdf1 {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, DocumentException {
-    	new Text2ToPdf1().createPdf(RESULT);
+        new Text2ToPdf1().createPdf(RESULT);
     }
 }

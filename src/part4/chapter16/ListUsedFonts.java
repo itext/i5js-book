@@ -53,7 +53,7 @@ public class ListUsedFonts {
         PdfDictionary xobjects = resource.getAsDict(PdfName.XOBJECT);
         if (xobjects != null) {
             for (PdfName key : xobjects.getKeys()) {
-            	processResource(set, xobjects.getAsDict(key));
+                processResource(set, xobjects.getAsDict(key));
             }
         }
         PdfDictionary fonts = resource.getAsDict(PdfName.FONT);
@@ -61,9 +61,9 @@ public class ListUsedFonts {
             return;
         PdfDictionary font;
         for (PdfName key : fonts.getKeys()) {
-        	font = fonts.getAsDict(key);
-        	String name = font.getAsName(PdfName.BASEFONT).toString();
-        	if (name.length() > 8 && name.charAt(7) == '+') {
+            font = fonts.getAsDict(key);
+            String name = font.getAsName(PdfName.BASEFONT).toString();
+            if (name.length() > 8 && name.charAt(7) == '+') {
                 name = String.format("%s subset (%s)", name.substring(8), name.substring(1, 7));
             }
             else {
@@ -72,11 +72,11 @@ public class ListUsedFonts {
                 if (desc == null)
                     name += " nofontdescriptor";
                 else if (desc.get(PdfName.FONTFILE) != null)
-                	name += " (Type 1) embedded";
+                    name += " (Type 1) embedded";
                 else if (desc.get(PdfName.FONTFILE2) != null)
-                	name += " (TrueType) embedded";
+                    name += " (TrueType) embedded";
                 else if (desc.get(PdfName.FONTFILE3) != null)
-                	name += " (" + font.getAsName(PdfName.SUBTYPE).toString().substring(1) + ") embedded";
+                    name += " (" + font.getAsName(PdfName.SUBTYPE).toString().substring(1) + ") embedded";
             }
             set.add(name);
         }
@@ -90,8 +90,8 @@ public class ListUsedFonts {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, DocumentException {
-    	new FontTypes().createPdf(FontTypes.RESULT);
-    	Set<String> set = new ListUsedFonts().listFonts(FontTypes.RESULT);
+        new FontTypes().createPdf(FontTypes.RESULT);
+        Set<String> set = new ListUsedFonts().listFonts(FontTypes.RESULT);
         PrintWriter out = new PrintWriter(new FileOutputStream(RESULT));
         for (String fontname : set)
             out.println(fontname);

@@ -34,22 +34,22 @@ public class Text4ToPdf {
      * @throws IOException
      * @throws BadLocationException 
      */
-	public void createPdf(String filename) throws IOException, DocumentException, BadLocationException {
-		Document document = new Document(new Rectangle(300, 150));
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		document.open();
-		PdfContentByte canvas = writer.getDirectContent();
-		DefaultFontMapper mapper = new DefaultFontMapper();
-		BaseFontParameters parameters = new BaseFontParameters("c:/windows/fonts/msgothic.ttc,1");
-		parameters.encoding = BaseFont.IDENTITY_H;
-		mapper.putName("MS PGothic", parameters );
-		Graphics2D g2 = canvas.createGraphics(300, 150, mapper);
-		JTextPane text = TextExample4.createTextPane();
-		text.setSize(new Dimension(300, 150));
-		text.print(g2);
-		g2.dispose();
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException, BadLocationException {
+        Document document = new Document(new Rectangle(300, 150));
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        document.open();
+        PdfContentByte canvas = writer.getDirectContent();
+        DefaultFontMapper mapper = new DefaultFontMapper();
+        BaseFontParameters parameters = new BaseFontParameters("c:/windows/fonts/msgothic.ttc,1");
+        parameters.encoding = BaseFont.IDENTITY_H;
+        mapper.putName("MS PGothic", parameters );
+        Graphics2D g2 = canvas.createGraphics(300, 150, mapper);
+        JTextPane text = TextExample4.createTextPane();
+        text.setSize(new Dimension(300, 150));
+        text.print(g2);
+        g2.dispose();
+        document.close();
+    }
     /**
      * Main method.
      *
@@ -59,6 +59,6 @@ public class Text4ToPdf {
      * @throws BadLocationException 
      */
     public static void main(String[] args) throws IOException, DocumentException, BadLocationException {
-    	new Text4ToPdf().createPdf(RESULT);
+        new Text4ToPdf().createPdf(RESULT);
     }
 }

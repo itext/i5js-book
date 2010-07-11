@@ -30,23 +30,33 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class StructuredContent {
 
-	public static final String RESULT = "results/part4/chapter15/moby.pdf";
-	public static final String RESOURCE = "resources/xml/moby.xml";
-	
-	public static void main(String[] args) throws IOException, DocumentException, SAXException, ParserConfigurationException {
-		Document document = new Document(PageSize.A5);
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
-		writer.setTagged();
-		document.open();
-		PdfStructureTreeRoot root = writer.getStructureTreeRoot();
-		root.mapRole(new PdfName("chapter"), PdfName.SECT);
-		root.mapRole(new PdfName("title"), PdfName.H);
-		root.mapRole(new PdfName("para"), PdfName.P);
-		PdfStructureElement top = new PdfStructureElement(root, new PdfName("chapter"));
-		SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-		List<PdfStructureElement> elements = new ArrayList<PdfStructureElement>();
-		parser.parse(new InputSource(new FileInputStream(RESOURCE)), new StructureParser(top, elements));
-		parser.parse(new InputSource(new FileInputStream(RESOURCE)), new ContentParser(document, writer, elements));
-		document.close();
-	}
+    /** The resulting PDF. */
+    public static final String RESULT = "results/part4/chapter15/moby.pdf";
+    /** An XML file that will be converted to PDF. */
+    public static final String RESOURCE = "resources/xml/moby.xml";
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
+    public static void main(String[] args) throws IOException, DocumentException, SAXException, ParserConfigurationException {
+        Document document = new Document(PageSize.A5);
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        writer.setTagged();
+        document.open();
+        PdfStructureTreeRoot root = writer.getStructureTreeRoot();
+        root.mapRole(new PdfName("chapter"), PdfName.SECT);
+        root.mapRole(new PdfName("title"), PdfName.H);
+        root.mapRole(new PdfName("para"), PdfName.P);
+        PdfStructureElement top = new PdfStructureElement(root, new PdfName("chapter"));
+        SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
+        List<PdfStructureElement> elements = new ArrayList<PdfStructureElement>();
+        parser.parse(new InputSource(new FileInputStream(RESOURCE)), new StructureParser(top, elements));
+        parser.parse(new InputSource(new FileInputStream(RESOURCE)), new ContentParser(document, writer, elements));
+        document.close();
+    }
 }

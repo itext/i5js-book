@@ -16,7 +16,8 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfSmartCopy;
 
 public class DataSheets2 extends DataSheets1 {
-	/** The resulting PDF file. */
+
+    /** The resulting PDF file. */
     public static final String RESULT
         = "results/part2/chapter06/datasheets2.pdf";
     

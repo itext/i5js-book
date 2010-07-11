@@ -24,10 +24,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class TextExample3 extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3639324875232824761L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3639324875232824761L;
     // The LineBreakMeasurer used to line-break the paragraph.
     private LineBreakMeasurer lineMeasurer;
     // index of the first character in the paragraph.
@@ -36,25 +36,25 @@ public class TextExample3 extends JPanel {
     // index of the first character after the end of the paragraph.
     private int paragraphEnd;
 
-	private static AttributedString akira;
+    private static AttributedString akira;
 
 
-	public TextExample3() {
-		akira = new AttributedString(
-			"Akira Kurosawa (\u9ed2\u6fa4 \u660e or \u9ed2\u6ca2 \u660e, " +
-			"Kurosawa Akira, 23 March 1910 - 6 September 1998) was a " +
-			"Japanese film director, producer, screenwriter and editor. " +
-			"In a career that spanned 50 years, Kurosawa directed 30 films. " +
-			"He is widely regarded as one of the most important and " +
-			"influential filmmakers in film history.");
-		akira.addAttribute(TextAttribute.FONT, new Font("SansSerif", Font.PLAIN, 12));
-		akira.addAttribute(TextAttribute.FONT, new Font("SansSerif", Font.BOLD, 12), 0, 14);
-	    akira.addAttribute(TextAttribute.FONT, new Font("MS PGothic", Font.PLAIN, 12), 16, 20);
-	    akira.addAttribute(TextAttribute.FONT, new Font("MS PGothic", Font.PLAIN, 12), 24, 28);
-	}
-	
-	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+    public TextExample3() {
+        akira = new AttributedString(
+            "Akira Kurosawa (\u9ed2\u6fa4 \u660e or \u9ed2\u6ca2 \u660e, " +
+            "Kurosawa Akira, 23 March 1910 - 6 September 1998) was a " +
+            "Japanese film director, producer, screenwriter and editor. " +
+            "In a career that spanned 50 years, Kurosawa directed 30 films. " +
+            "He is widely regarded as one of the most important and " +
+            "influential filmmakers in film history.");
+        akira.addAttribute(TextAttribute.FONT, new Font("SansSerif", Font.PLAIN, 12));
+        akira.addAttribute(TextAttribute.FONT, new Font("SansSerif", Font.BOLD, 12), 0, 14);
+        akira.addAttribute(TextAttribute.FONT, new Font("MS PGothic", Font.PLAIN, 12), 16, 20);
+        akira.addAttribute(TextAttribute.FONT, new Font("MS PGothic", Font.PLAIN, 12), 24, 28);
+    }
+    
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
         if (lineMeasurer == null) {
             AttributedCharacterIterator paragraph = akira.getIterator();
             paragraphStart = paragraph.getBeginIndex();
@@ -71,16 +71,16 @@ public class TextExample3 extends JPanel {
             layout.draw(g2d, 0, drawPosY);
             drawPosY += layout.getDescent() + layout.getLeading();
         }
-	}
-	
-	public static void main(String s[]) {
-		TextExample3 Kurosawa = new TextExample3();
-		JFrame f = new JFrame("Kurosawa");
-	    f.getContentPane().add( Kurosawa, "Center" );
+    }
+    
+    public static void main(String s[]) {
+        TextExample3 Kurosawa = new TextExample3();
+        JFrame f = new JFrame("Kurosawa");
+        f.getContentPane().add( Kurosawa, "Center" );
 
         f.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-            	System.exit(0);
+                System.exit(0);
             }
         });
         f.setSize(new Dimension(300, 150));

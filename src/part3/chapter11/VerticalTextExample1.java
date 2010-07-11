@@ -34,9 +34,9 @@ public class VerticalTextExample1 {
        + "Listen, I'm not a man with any special skill, "
        + "but I've had plenty of experience in battles; losing battles, all of them.";
     /** The conclusion. */
-	public static final String TEXT2
-	   = "In short, that's all I am. Drop such an idea for your own good.";
-	
+    public static final String TEXT2
+       = "In short, that's all I am. Drop such an idea for your own good.";
+    
     /**
      * Creates a PDF document.
      * @param filename the path to the new PDF document
@@ -45,30 +45,30 @@ public class VerticalTextExample1 {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document(new Rectangle(420, 600));
-		// step 2
-		PdfWriter writer
-		    = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3: we open the document
-		document.open();
-		// step 4
-		BaseFont bf = BaseFont.createFont(
-		    "KozMinPro-Regular", "UniJIS-UCS2-V", BaseFont.NOT_EMBEDDED);
-		Font font = new Font(bf, 20);
-		VerticalText vt = new VerticalText(writer.getDirectContent());
-		vt.setVerticalLayout(390, 570, 540, 12, 30);
-		vt.addText(new Chunk(MOVIE, font));
-		vt.go();
-		vt.addText(new Phrase(TEXT1, font));
-		vt.go();
-		vt.setAlignment(Element.ALIGN_RIGHT);
-		vt.addText(new Phrase(TEXT2, font));
-		vt.go();
-		// step 5: we close the document
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document(new Rectangle(420, 600));
+        // step 2
+        PdfWriter writer
+            = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3: we open the document
+        document.open();
+        // step 4
+        BaseFont bf = BaseFont.createFont(
+            "KozMinPro-Regular", "UniJIS-UCS2-V", BaseFont.NOT_EMBEDDED);
+        Font font = new Font(bf, 20);
+        VerticalText vt = new VerticalText(writer.getDirectContent());
+        vt.setVerticalLayout(390, 570, 540, 12, 30);
+        vt.addText(new Chunk(MOVIE, font));
+        vt.go();
+        vt.addText(new Phrase(TEXT1, font));
+        vt.go();
+        vt.setAlignment(Element.ALIGN_RIGHT);
+        vt.addText(new Phrase(TEXT2, font));
+        vt.go();
+        // step 5: we close the document
+        document.close();
+    }
 
     /**
      * Main method.
@@ -77,7 +77,7 @@ public class VerticalTextExample1 {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new VerticalTextExample1().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new VerticalTextExample1().createPdf(RESULT);
+    }
 }

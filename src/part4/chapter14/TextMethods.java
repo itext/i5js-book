@@ -26,43 +26,43 @@ public class TextMethods {
      * @throws DocumentException 
      * @throws IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
+    public void createPdf(String filename) throws IOException, DocumentException {
 
-		Document document = new Document();
-		PdfWriter writer = PdfWriter.getInstance(document,
-				new FileOutputStream(filename));
-		document.open();
-		PdfContentByte cb = writer.getDirectContent();
-		cb.setLineWidth(0f);
-		cb.moveTo(150, 600);
-		cb.lineTo(150, 800);
-		cb.moveTo(50, 760);
-		cb.lineTo(250, 760);
-		cb.moveTo(50, 700);
-		cb.lineTo(250, 700);
-		cb.moveTo(50, 640);
-		cb.lineTo(250, 640);
-		cb.stroke();
-		
-		String text = "AWAY again ";
-		BaseFont bf = BaseFont.createFont();
-		cb.beginText();
-		cb.setFontAndSize(bf, 12);
-		cb.setTextMatrix(50, 800);
-		cb.showText(text);
-		cb.showTextAligned(PdfContentByte.ALIGN_CENTER, text + " Center", 150, 760, 0);
-		cb.showTextAligned(PdfContentByte.ALIGN_RIGHT, text + " Right", 150, 700, 0);
-		cb.showTextAligned(PdfContentByte.ALIGN_LEFT, text + " Left", 150, 640, 0);
-		cb.showTextAlignedKerned(PdfContentByte.ALIGN_LEFT, text + " Left", 150, 628, 0);
-		cb.setTextMatrix(0, 1, -1, 0, 300, 600);
-		cb.showText("Position 300,600, rotated 90 degrees.");
-		for (int i = 0; i < 360; i += 30) {
-			cb.showTextAligned(PdfContentByte.ALIGN_LEFT, text, 400, 700, i);
-		}
-		cb.endText();
-		document.close();
-	}
-	
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document,
+                new FileOutputStream(filename));
+        document.open();
+        PdfContentByte cb = writer.getDirectContent();
+        cb.setLineWidth(0f);
+        cb.moveTo(150, 600);
+        cb.lineTo(150, 800);
+        cb.moveTo(50, 760);
+        cb.lineTo(250, 760);
+        cb.moveTo(50, 700);
+        cb.lineTo(250, 700);
+        cb.moveTo(50, 640);
+        cb.lineTo(250, 640);
+        cb.stroke();
+        
+        String text = "AWAY again ";
+        BaseFont bf = BaseFont.createFont();
+        cb.beginText();
+        cb.setFontAndSize(bf, 12);
+        cb.setTextMatrix(50, 800);
+        cb.showText(text);
+        cb.showTextAligned(PdfContentByte.ALIGN_CENTER, text + " Center", 150, 760, 0);
+        cb.showTextAligned(PdfContentByte.ALIGN_RIGHT, text + " Right", 150, 700, 0);
+        cb.showTextAligned(PdfContentByte.ALIGN_LEFT, text + " Left", 150, 640, 0);
+        cb.showTextAlignedKerned(PdfContentByte.ALIGN_LEFT, text + " Left", 150, 628, 0);
+        cb.setTextMatrix(0, 1, -1, 0, 300, 600);
+        cb.showText("Position 300,600, rotated 90 degrees.");
+        for (int i = 0; i < 360; i += 30) {
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, text, 400, 700, i);
+        }
+        cb.endText();
+        document.close();
+    }
+    
     /**
      * Main method.
      *
@@ -71,7 +71,7 @@ public class TextMethods {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, DocumentException {
-    	new TextMethods().createPdf(RESULT);
+        new TextMethods().createPdf(RESULT);
     }
 
 }

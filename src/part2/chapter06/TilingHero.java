@@ -20,11 +20,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class TilingHero {
 
-	/** The original PDF file. */
+    /** The original PDF file. */
     public static final String RESOURCE
         = "resources/pdfs/hero.pdf";
 
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static final String RESULT
         = "results/part2/chapter06/superman.pdf";
     

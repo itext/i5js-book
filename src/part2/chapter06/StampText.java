@@ -22,13 +22,13 @@ import part1.chapter01.HelloWorldLandscape1;
 import part1.chapter01.HelloWorldLandscape2;
 
 public class StampText {
-	/** A resulting PDF file. */
+    /** A resulting PDF file. */
     public static final String RESULT1
         = "results/part2/chapter06/hello1.pdf";
-	/** A resulting PDF file. */
+    /** A resulting PDF file. */
     public static final String RESULT2
         = "results/part2/chapter06/hello2.pdf";
-	/** A resulting PDF file. */
+    /** A resulting PDF file. */
     public static final String RESULT3
         = "results/part2/chapter06/hello3.pdf";
     

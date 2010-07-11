@@ -19,7 +19,7 @@ import com.itextpdf.text.pdf.PdfReader;
 
 public class Burst {
 
-	/** Format of the resulting PDF files. */
+    /** Format of the resulting PDF files. */
     public static final String RESULT
         = "results/part2/chapter06/timetable_p%d.pdf";
 
@@ -45,7 +45,7 @@ public class Burst {
             document = new Document();
             // step 2
             copy = new PdfCopy(document,
-                    new FileOutputStream(String.format(RESULT, ++i)));
+                new FileOutputStream(String.format(RESULT, ++i)));
             // step 3
             document.open();
             // step 4

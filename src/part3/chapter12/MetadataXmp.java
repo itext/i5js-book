@@ -44,57 +44,57 @@ public class MetadataXmp {
      * @throws DocumentException 
      * @throws IOException 
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT1));
-		ByteArrayOutputStream os = new ByteArrayOutputStream();
-		XmpWriter xmp = new XmpWriter(os);
-		XmpSchema dc = new com.itextpdf.text.xml.xmp.DublinCoreSchema();
-		XmpArray subject = new XmpArray(XmpArray.UNORDERED);
-		subject.add("Hello World");
-		subject.add("XMP & Metadata");
-		subject.add("Metadata");
-		dc.setProperty(DublinCoreSchema.SUBJECT, subject);
-		xmp.addRdfDescription(dc);
-		PdfSchema pdf = new PdfSchema();
-		pdf.setProperty(PdfSchema.KEYWORDS, "Hello World, XMP, Metadata");
-		pdf.setProperty(PdfSchema.VERSION, "1.4");
-		xmp.addRdfDescription(pdf);
-		xmp.close();
-		writer.setXmpMetadata(os.toByteArray());
-		// step 3
-		document.open();
-		// step 4
-		document.add(new Paragraph("Hello World"));
-		// step 5
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT1));
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        XmpWriter xmp = new XmpWriter(os);
+        XmpSchema dc = new com.itextpdf.text.xml.xmp.DublinCoreSchema();
+        XmpArray subject = new XmpArray(XmpArray.UNORDERED);
+        subject.add("Hello World");
+        subject.add("XMP & Metadata");
+        subject.add("Metadata");
+        dc.setProperty(DublinCoreSchema.SUBJECT, subject);
+        xmp.addRdfDescription(dc);
+        PdfSchema pdf = new PdfSchema();
+        pdf.setProperty(PdfSchema.KEYWORDS, "Hello World, XMP, Metadata");
+        pdf.setProperty(PdfSchema.VERSION, "1.4");
+        xmp.addRdfDescription(pdf);
+        xmp.close();
+        writer.setXmpMetadata(os.toByteArray());
+        // step 3
+        document.open();
+        // step 4
+        document.add(new Paragraph("Hello World"));
+        // step 5
+        document.close();
+    }
     /**
      * Creates a PDF document.
      * @param filename the path to the new PDF document
      * @throws DocumentException 
      * @throws IOException 
      */
-	public void createPdfAutomatic(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		document.addTitle("Hello World example");
-		document.addSubject("This example shows how to add metadata & XMP");
-		document.addKeywords("Metadata, iText, step 3");
-		document.addCreator("My program using 'iText'");
-		document.addAuthor("Bruno Lowagie & Paulo Soares");
-		writer.createXmpMetadata();
-		// step 3
-		document.open();
-		// step 4
-		document.add(new Paragraph("Hello World"));
-		// step 5
-		document.close();
-	}
+    public void createPdfAutomatic(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        document.addTitle("Hello World example");
+        document.addSubject("This example shows how to add metadata & XMP");
+        document.addKeywords("Metadata, iText, step 3");
+        document.addCreator("My program using 'iText'");
+        document.addAuthor("Bruno Lowagie & Paulo Soares");
+        writer.createXmpMetadata();
+        // step 3
+        document.open();
+        // step 4
+        document.add(new Paragraph("Hello World"));
+        // step 5
+        document.close();
+    }
 
     /**
      * Manipulates a PDF file src with the file dest as result
@@ -103,26 +103,26 @@ public class MetadataXmp {
      * @throws IOException
      * @throws DocumentException
      */
-	public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
-		PdfReader reader = new PdfReader(src);
-		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-		HashMap<String, String> info = reader.getInfo();
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		XmpWriter xmp = new XmpWriter(baos, info);
-		xmp.close();
-		stamper.setXmpMetadata(baos.toByteArray());
-		stamper.close();
-	}
-	
-	public void readXmpMetadata(String src, String dest) throws IOException {
-		PdfReader reader = new PdfReader(src);
-		FileOutputStream fos = new FileOutputStream(dest);
-		byte[] b = reader.getMetadata();
-		fos.write(b, 0, b.length);
-		fos.flush();
-		fos.close();
-	}
-	
+    public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        HashMap<String, String> info = reader.getInfo();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        XmpWriter xmp = new XmpWriter(baos, info);
+        xmp.close();
+        stamper.setXmpMetadata(baos.toByteArray());
+        stamper.close();
+    }
+    
+    public void readXmpMetadata(String src, String dest) throws IOException {
+        PdfReader reader = new PdfReader(src);
+        FileOutputStream fos = new FileOutputStream(dest);
+        byte[] b = reader.getMetadata();
+        fos.write(b, 0, b.length);
+        fos.flush();
+        fos.close();
+    }
+    
     /**
      * Main method.
      *
@@ -130,12 +130,12 @@ public class MetadataXmp {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		MetadataXmp metadata = new MetadataXmp();
-		metadata.createPdf(RESULT1);
-		metadata.createPdfAutomatic(RESULT2);
-		new MetadataPdf().createPdf(MetadataPdf.RESULT1);
-		metadata.manipulatePdf(MetadataPdf.RESULT1, RESULT3);
-		metadata.readXmpMetadata(RESULT3, RESULT4);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        MetadataXmp metadata = new MetadataXmp();
+        metadata.createPdf(RESULT1);
+        metadata.createPdfAutomatic(RESULT2);
+        new MetadataPdf().createPdf(MetadataPdf.RESULT1);
+        metadata.manipulatePdf(MetadataPdf.RESULT1, RESULT3);
+        metadata.readXmpMetadata(RESULT3, RESULT4);
+    }
 }

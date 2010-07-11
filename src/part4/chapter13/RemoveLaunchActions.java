@@ -32,21 +32,21 @@ public class RemoveLaunchActions {
      * @throws DocumentException
      */
     public void manipulatePdf(String src, String dest) throws DocumentException, IOException {
-    	PdfReader reader = new PdfReader(src);
+        PdfReader reader = new PdfReader(src);
         PdfObject object;
         PdfDictionary action;
         for (int i = 1; i < reader.getXrefSize(); i++) {
-        	object = reader.getPdfObject(i);
-        	if (object instanceof PdfDictionary) {
-        		action = ((PdfDictionary)object).getAsDict(PdfName.A);
-        		if (action == null) continue;
-        		if (PdfName.LAUNCH.equals(action.getAsName(PdfName.S))) {
-        			action.remove(PdfName.F);
-        			action.remove(PdfName.WIN);
-        			action.put(PdfName.S, PdfName.JAVASCRIPT);
-        			action.put(PdfName.JS, new PdfString("app.alert('Launch Application Action removed by iText');\r"));
-        		}
-        	}
+            object = reader.getPdfObject(i);
+            if (object instanceof PdfDictionary) {
+                action = ((PdfDictionary)object).getAsDict(PdfName.A);
+                if (action == null) continue;
+                if (PdfName.LAUNCH.equals(action.getAsName(PdfName.S))) {
+                    action.remove(PdfName.F);
+                    action.remove(PdfName.WIN);
+                    action.put(PdfName.S, PdfName.JAVASCRIPT);
+                    action.put(PdfName.JS, new PdfString("app.alert('Launch Application Action removed by iText');\r"));
+                }
+            }
         }
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
@@ -60,7 +60,7 @@ public class RemoveLaunchActions {
      */
     public static void main(String[] args)
         throws IOException, DocumentException {
-    	new LaunchAction().createPdf(LaunchAction.RESULT);
-    	new RemoveLaunchActions().manipulatePdf(LaunchAction.RESULT, RESULT);
+        new LaunchAction().createPdf(LaunchAction.RESULT);
+        new RemoveLaunchActions().manipulatePdf(LaunchAction.RESULT, RESULT);
     }
 }

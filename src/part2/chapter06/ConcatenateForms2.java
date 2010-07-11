@@ -21,10 +21,10 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 public class ConcatenateForms2 {
 
-	/** The original PDF file. */
+    /** The original PDF file. */
     public static final String DATASHEET
         = "resources/pdfs/datasheet.pdf";
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static final String RESULT
         = "results/part2/chapter06/concatenated_forms2.pdf";
     
@@ -55,7 +55,6 @@ public class ConcatenateForms2 {
      * @throws IOException
      * @throws DocumentException
      */
-    @SuppressWarnings("unchecked")
     private static byte[] renameFieldsIn(String datasheet, int i)
         throws IOException, DocumentException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -64,9 +63,9 @@ public class ConcatenateForms2 {
         // Get the fields
         AcroFields form = stamper.getAcroFields();
         // Loop over the fields
-        Set<String> keys = new HashSet(form.getFields().keySet());
+        Set<String> keys = new HashSet<String>(form.getFields().keySet());
         for (String key : keys) {
-        	// rename the fields
+            // rename the fields
             form.renameField(key, String.format("%s_%d", key, i));
         }
         // close the stamper

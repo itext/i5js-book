@@ -19,6 +19,7 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.TaggedPdfReaderTool;
 
 public class ParseTaggedPdf {
+
     /** The resulting XML file. */
     public static final String RESULT
         = "results/part4/chapter15/moby_extracted.xml";
@@ -31,7 +32,7 @@ public class ParseTaggedPdf {
     public static void main(String[] args)
         throws IOException, DocumentException, SAXException, ParserConfigurationException {
         StructuredContent.main(args);
-    	TaggedPdfReaderTool reader = new TaggedPdfReaderTool();
-    	reader.convertToXml(new PdfReader(StructuredContent.RESULT), new FileOutputStream(RESULT));
+        TaggedPdfReaderTool reader = new TaggedPdfReaderTool();
+        reader.convertToXml(new PdfReader(StructuredContent.RESULT), new FileOutputStream(RESULT));
     }
 }

@@ -29,24 +29,32 @@ import com.itextpdf.text.pdf.parser.RenderListener;
 
 public class ParsingHelloWorld {
 
-	public static final String PDF = "results/part4/chapter15/hello_reverse.pdf";
-	public static final String TEXT1 = "results/part4/chapter15/result1.txt";
-	public static final String TEXT2 = "results/part4/chapter15/result2.txt";
-	public static final String TEXT3 = "results/part4/chapter15/result3.txt";
-	
-	/**
-	 * Generates a PDF file with the text 'Hello World'
-	 * @throws DocumentException 
-	 * @throws IOException 
-	 */
-	public void createPdf(String filename) throws DocumentException, IOException {
-		Document document = new Document();
-		PdfWriter writer
-		  = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		document.open();
-		// we add the text to the direct content, but not in the right order
-		PdfContentByte cb = writer.getDirectContent();
-		BaseFont bf = BaseFont.createFont();
+    /** The resulting PDF. */
+    public static final String PDF = "results/part4/chapter15/hello_reverse.pdf";
+    /** A possible resulting after parsing the PDF. */
+    public static final String TEXT1 = "results/part4/chapter15/result1.txt";
+    /** A possible resulting after parsing the PDF. */
+    public static final String TEXT2 = "results/part4/chapter15/result2.txt";
+    /** A possible resulting after parsing the PDF. */
+    public static final String TEXT3 = "results/part4/chapter15/result3.txt";
+    
+    /**
+     * Generates a PDF file with the text 'Hello World'
+     * @throws DocumentException 
+     * @throws IOException 
+     */
+    public void createPdf(String filename) throws DocumentException, IOException {
+        // step 1
+    	Document document = new Document();
+        // step 2
+    	PdfWriter writer
+          = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+    	document.open();
+    	// step 4
+        // we add the text to the direct content, but not in the right order
+        PdfContentByte cb = writer.getDirectContent();
+        BaseFont bf = BaseFont.createFont();
         cb.beginText();
         cb.setFontAndSize(bf, 12);
         cb.moveText(88.66f, 367); 
@@ -58,6 +66,7 @@ public class ParsingHelloWorld {
         cb.moveText(-15.33f, 0); 
         cb.showText("He");
         cb.endText();
+        // we also add text in a form XObject
         PdfTemplate tmp = cb.createTemplate(250, 25);
         tmp.beginText();
         tmp.setFontAndSize(bf, 12);
@@ -65,42 +74,61 @@ public class ParsingHelloWorld {
         tmp.showText("Hello People");
         tmp.endText();
         cb.addTemplate(tmp, 36, 343);
-		document.close();
-	}
-	
-	public void parsePdf(String src, String dest) throws IOException {
-		PdfReader reader = new PdfReader(src);
-		// we can inspect the syntax of the imported page
-		byte[] streamBytes = reader.getPageContent(1);
-		PRTokeniser tokenizer = new PRTokeniser(streamBytes);
+        // step 5
+        document.close();
+    }
+    
+    /**
+     * Parses the PDF using PRTokeniser
+     * @param src  the path to the original PDF file
+     * @param dest the path to the resulting text file
+     * @throws IOException
+     */
+    public void parsePdf(String src, String dest) throws IOException {
+        PdfReader reader = new PdfReader(src);
+        // we can inspect the syntax of the imported page
+        byte[] streamBytes = reader.getPageContent(1);
+        PRTokeniser tokenizer = new PRTokeniser(streamBytes);
         PrintWriter out = new PrintWriter(new FileOutputStream(dest));
-		while (tokenizer.nextToken()) {
-			if (tokenizer.getTokenType() == PRTokeniser.TokenType.STRING) {
-				out.println(tokenizer.getStringValue());
-			}
-		}
-		out.flush();
-		out.close();
-	}
-	
-	public void extractText(String src, String dest) throws IOException {
-		PrintWriter out = new PrintWriter(new FileOutputStream(dest));
-		PdfReader reader = new PdfReader(src);
-		RenderListener listener = new MyTextRenderListener(out);
-		PdfContentStreamProcessor processor = new PdfContentStreamProcessor(listener);
-		PdfDictionary pageDic = reader.getPageN(1);
+        while (tokenizer.nextToken()) {
+            if (tokenizer.getTokenType() == PRTokeniser.TokenType.STRING) {
+                out.println(tokenizer.getStringValue());
+            }
+        }
+        out.flush();
+        out.close();
+    }
+    
+    /**
+     * Extracts text from a PDF document.
+     * @param src  the original PDF document
+     * @param dest the resulting text file
+     * @throws IOException
+     */
+    public void extractText(String src, String dest) throws IOException {
+        PrintWriter out = new PrintWriter(new FileOutputStream(dest));
+        PdfReader reader = new PdfReader(src);
+        RenderListener listener = new MyTextRenderListener(out);
+        PdfContentStreamProcessor processor = new PdfContentStreamProcessor(listener);
+        PdfDictionary pageDic = reader.getPageN(1);
         PdfDictionary resourcesDic = pageDic.getAsDict(PdfName.RESOURCES);
-		processor.processContent(ContentByteUtils.getContentBytesForPage(reader, 1), resourcesDic);
-		out.flush();
-		out.close();
-	}
-	
-	public static void main(String[] args) throws DocumentException, IOException {
-		ParsingHelloWorld example = new ParsingHelloWorld();
-		HelloWorld.main(args);
-		example.createPdf(PDF);
-		example.parsePdf(HelloWorld.RESULT, TEXT1);
-		example.parsePdf(PDF, TEXT2);
-		example.extractText(PDF, TEXT3);
-	}
+        processor.processContent(ContentByteUtils.getContentBytesForPage(reader, 1), resourcesDic);
+        out.flush();
+        out.close();
+    }
+
+    /**
+     * Main method.
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     */
+    public static void main(String[] args) throws DocumentException, IOException {
+        ParsingHelloWorld example = new ParsingHelloWorld();
+        HelloWorld.main(args);
+        example.createPdf(PDF);
+        example.parsePdf(HelloWorld.RESULT, TEXT1);
+        example.parsePdf(PDF, TEXT2);
+        example.extractText(PDF, TEXT3);
+    }
 }

@@ -16,19 +16,19 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class LocalDestinationEvent implements PdfPCellEvent {
 
-	/** The writer to which the local destination will be added. */
-	protected PdfWriter writer;
-	/** The name of the local destination. */
-	protected String name;
-	
-	/** Constructs a local destination event. */
-	public LocalDestinationEvent(PdfWriter writer, String name) {
-		this.writer = writer;
-		this.name = name;
-	}
-	
-	/** Implementation of the cellLayout method. */
-	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
-		writer.getDirectContent().localDestination(name, new PdfDestination(PdfDestination.FITH, position.getTop()));
-	}
+    /** The writer to which the local destination will be added. */
+    protected PdfWriter writer;
+    /** The name of the local destination. */
+    protected String name;
+    
+    /** Constructs a local destination event. */
+    public LocalDestinationEvent(PdfWriter writer, String name) {
+        this.writer = writer;
+        this.name = name;
+    }
+    
+    /** Implementation of the cellLayout method. */
+    public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
+        writer.getDirectContent().localDestination(name, new PdfDestination(PdfDestination.FITH, position.getTop()));
+    }
 }

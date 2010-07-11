@@ -106,15 +106,15 @@ public class ReplaceURL {
      */
     public void manipulatePdf(String src, String dest)
         throws IOException, DocumentException {
-    	PdfReader reader = new PdfReader(src);
-    	AcroFields form = reader.getAcroFields();
-    	AcroFields.Item item = form.getFieldItem("post");
-    	PdfDictionary field = item.getMerged(0);
-    	PdfDictionary action = field.getAsDict(PdfName.A);
-    	PdfDictionary f = action.getAsDict(PdfName.F);
-    	f.put(PdfName.F, new PdfString("http://itextpdf.com:8080/book/request"));
-    	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-    	stamper.close();
+        PdfReader reader = new PdfReader(src);
+        AcroFields form = reader.getAcroFields();
+        AcroFields.Item item = form.getFieldItem("post");
+        PdfDictionary field = item.getMerged(0);
+        PdfDictionary action = field.getAsDict(PdfName.A);
+        PdfDictionary f = action.getAsDict(PdfName.F);
+        f.put(PdfName.F, new PdfString("http://itextpdf.com:8080/book/request"));
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        stamper.close();
     }
     
     /**
@@ -126,8 +126,8 @@ public class ReplaceURL {
      */
     public static void main(String[] args)
         throws IOException, DocumentException {
-    	ReplaceURL form = new ReplaceURL();
-    	form.createPdf(RESULT1);
+        ReplaceURL form = new ReplaceURL();
+        form.createPdf(RESULT1);
         form.manipulatePdf(RESULT1, RESULT2);
     }
 }

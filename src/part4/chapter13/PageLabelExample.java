@@ -42,9 +42,9 @@ public class PageLabelExample {
         = "results/part4/chapter13/page_labels.txt";
     /** SQL statements */
     public static final String[] SQL = {
-    	"SELECT country FROM film_country ORDER BY country",
-    	"SELECT name FROM film_director ORDER BY name",
-    	"SELECT title FROM film_movietitle ORDER BY title"
+        "SELECT country FROM film_country ORDER BY country",
+        "SELECT name FROM film_director ORDER BY name",
+        "SELECT title FROM film_movietitle ORDER BY title"
     };
     /** SQL statements */
     public static final String[] FIELD = { "country", "name", "title" };
@@ -59,7 +59,7 @@ public class PageLabelExample {
     public void createPdf(String filename)
         throws IOException, DocumentException, SQLException{
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
-    	// step 1
+        // step 1
         Document document = new Document(PageSize.A5);
         // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
@@ -68,9 +68,9 @@ public class PageLabelExample {
         // step 4
         int[] start = new int[3];
         for (int i = 0; i < 3; i++) {
-        	start[i] = writer.getPageNumber();
-        	addParagraphs(document, connection, SQL[i], FIELD[i]);
-        	document.newPage();
+            start[i] = writer.getPageNumber();
+            addParagraphs(document, connection, SQL[i], FIELD[i]);
+            document.newPage();
         }
         PdfPageLabels labels = new PdfPageLabels();
         labels.addPageLabel(start[0], PdfPageLabels.UPPERCASE_LETTERS);
@@ -80,46 +80,46 @@ public class PageLabelExample {
         // step 5
         document.close();
         connection.close();
-    	
+        
     }
     
     public void addParagraphs(Document document, DatabaseConnection connection, String sql, String field) throws SQLException, DocumentException, IOException {
-    	Statement stm = connection.createStatement();
-    	ResultSet rs = stm.executeQuery(sql);
-    	while (rs.next()) {
-    		document.add(new Paragraph(new String(rs.getBytes(field), "UTF-8")));
-    	}
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(sql);
+        while (rs.next()) {
+            document.add(new Paragraph(new String(rs.getBytes(field), "UTF-8")));
+        }
     }
     
     public void listPageLabels(String src, String dest) throws IOException {
-    	// no PDF, just a text file
+        // no PDF, just a text file
         PrintStream out = new PrintStream(new FileOutputStream(dest));
-    	String[] labels = PdfPageLabels.getPageLabels(new PdfReader(src));
-    	for (int i = 0; i < labels.length; i++) {
-    		out.println(labels[i]);
-    	}
-    	out.flush();
-    	out.close();
+        String[] labels = PdfPageLabels.getPageLabels(new PdfReader(src));
+        for (int i = 0; i < labels.length; i++) {
+            out.println(labels[i]);
+        }
+        out.flush();
+        out.close();
     }
     
     public void manipulatePageLabel(String src, String dest) throws IOException, DocumentException {
-    	PdfReader reader = new PdfReader(src);
-    	PdfDictionary root = reader.getCatalog();
-    	PdfDictionary labels = root.getAsDict(PdfName.PAGELABELS);
-    	PdfArray nums = labels.getAsArray(PdfName.NUMS);
-    	int n;
-    	PdfDictionary pagelabel;
-    	for (int i = 0; i < nums.size(); i++) {
-    		n = nums.getAsNumber(i).intValue();
-    		i++;
-    		if (n == 5) {
-    			pagelabel = nums.getAsDict(i);
-    			pagelabel.remove(PdfName.ST);
-    			pagelabel.put(PdfName.P, new PdfString("Film-"));
-    		}
-    	}
-    	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-    	stamper.close();
+        PdfReader reader = new PdfReader(src);
+        PdfDictionary root = reader.getCatalog();
+        PdfDictionary labels = root.getAsDict(PdfName.PAGELABELS);
+        PdfArray nums = labels.getAsArray(PdfName.NUMS);
+        int n;
+        PdfDictionary pagelabel;
+        for (int i = 0; i < nums.size(); i++) {
+            n = nums.getAsNumber(i).intValue();
+            i++;
+            if (n == 5) {
+                pagelabel = nums.getAsDict(i);
+                pagelabel.remove(PdfName.ST);
+                pagelabel.put(PdfName.P, new PdfString("Film-"));
+            }
+        }
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        stamper.close();
     }
     
     /**

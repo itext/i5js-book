@@ -31,17 +31,17 @@ public class AppendMode {
      * @throws IOException 
      * @throws DocumentException
      */
-	public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
-		PdfReader reader = new PdfReader(src);
-		PdfStamper stamper =
-			new PdfStamper(reader, new FileOutputStream(dest), '\0', true);
-		PdfContentByte cb = stamper.getUnderContent(1);
-		cb.beginText();
-		cb.setFontAndSize(BaseFont.createFont(), 12);
-		cb.showTextAligned(Element.ALIGN_LEFT, "Hello People!", 36, 770, 0);
-		cb.endText();
-		stamper.close();
-	}
+    public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper =
+            new PdfStamper(reader, new FileOutputStream(dest), '\0', true);
+        PdfContentByte cb = stamper.getUnderContent(1);
+        cb.beginText();
+        cb.setFontAndSize(BaseFont.createFont(), 12);
+        cb.showTextAligned(Element.ALIGN_LEFT, "Hello People!", 36, 770, 0);
+        cb.endText();
+        stamper.close();
+    }
     
     /**
      * Main method.

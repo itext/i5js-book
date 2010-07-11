@@ -34,43 +34,43 @@ import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class SignatureField {
-	
-	public static String ORIGINAL = "results/part3/chapter12/unsigned.pdf";
-	public static String SIGNED1 = "results/part3/chapter12/signed_1.pdf";
-	public static String SIGNED2 = "results/part3/chapter12/signed_2.pdf";
+    
+    public static String ORIGINAL = "results/part3/chapter12/unsigned.pdf";
+    public static String SIGNED1 = "results/part3/chapter12/signed_1.pdf";
+    public static String SIGNED2 = "results/part3/chapter12/signed_2.pdf";
 
     /** One of the resources. */
     public static final String RESOURCE
         = "resources/img/1t3xt.gif";
 
-	public static String PATH = "c:/home/blowagie/key.properties";
-	public static Properties properties = new Properties();
-	
+    public static String PATH = "c:/home/blowagie/key.properties";
+    public static Properties properties = new Properties();
+    
     /**
      * Creates a PDF document.
      * @param filename the path to the new PDF document
      * @throws DocumentException 
      * @throws IOException 
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		Document document = new Document();
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-		document.open();
-		document.add(new Paragraph("Hello World!"));
-		PdfFormField field = PdfFormField.createSignature(writer);
-		field.setWidget(new Rectangle(72, 732, 144, 780), PdfAnnotation.HIGHLIGHT_INVERT);
-		field.setFieldName("mySig");
-		field.setFlags(PdfAnnotation.FLAGS_PRINT);
-		field.setPage();
-		field.setMKBorderColor(BaseColor.BLACK);
+    public void createPdf(String filename) throws IOException, DocumentException {
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        document.open();
+        document.add(new Paragraph("Hello World!"));
+        PdfFormField field = PdfFormField.createSignature(writer);
+        field.setWidget(new Rectangle(72, 732, 144, 780), PdfAnnotation.HIGHLIGHT_INVERT);
+        field.setFieldName("mySig");
+        field.setFlags(PdfAnnotation.FLAGS_PRINT);
+        field.setPage();
+        field.setMKBorderColor(BaseColor.BLACK);
         field.setMKBackgroundColor(BaseColor.WHITE);
         PdfAppearance tp = PdfAppearance.createAppearance(writer, 72, 48);
         tp.rectangle(0.5f, 0.5f, 71.5f, 47.5f);
         tp.stroke();
         field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, tp);
         writer.addAnnotation(field);
-		document.close();
-	}
+        document.close();
+    }
 
     /**
      * Manipulates a PDF file src with the file dest as result
@@ -80,33 +80,33 @@ public class SignatureField {
      * @throws DocumentException
      * @throws GeneralSecurityException 
      */
-	public void signPdf(String src, String dest, boolean certified, boolean graphic) throws IOException, DocumentException, GeneralSecurityException {
-		String path = properties.getProperty("PRIVATE");
-		String keystore_password = properties.getProperty("PASSWORD");
-		String key_password = properties.getProperty("PASSWORD");
-		KeyStore ks = KeyStore.getInstance("pkcs12", "BC");
-		ks.load(new FileInputStream(path), keystore_password.toCharArray());
-		String alias = (String)ks.aliases().nextElement();
-		PrivateKey pk = (PrivateKey)ks.getKey(alias, key_password.toCharArray());
-		Certificate[] chain = ks.getCertificateChain(alias);
+    public void signPdf(String src, String dest, boolean certified, boolean graphic) throws IOException, DocumentException, GeneralSecurityException {
+        String path = properties.getProperty("PRIVATE");
+        String keystore_password = properties.getProperty("PASSWORD");
+        String key_password = properties.getProperty("PASSWORD");
+        KeyStore ks = KeyStore.getInstance("pkcs12", "BC");
+        ks.load(new FileInputStream(path), keystore_password.toCharArray());
+        String alias = (String)ks.aliases().nextElement();
+        PrivateKey pk = (PrivateKey)ks.getKey(alias, key_password.toCharArray());
+        Certificate[] chain = ks.getCertificateChain(alias);
 
-		PdfReader reader = new PdfReader(ORIGINAL);
-		PdfStamper stamper = PdfStamper.createSignature(reader, new FileOutputStream(dest), '\0');
-		PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
-		appearance.setVisibleSignature("mySig");
-		appearance.setReason("It's personal.");
-		appearance.setLocation("Foobar");
-		appearance.setCrypto(pk, chain, null, PdfSignatureAppearance.WINCER_SIGNED);
-		if (certified)
-			appearance.setCertificationLevel(PdfSignatureAppearance.CERTIFIED_NO_CHANGES_ALLOWED);
-		if (graphic) {
-			appearance.setAcro6Layers(true);
-			appearance.setSignatureGraphic(Image.getInstance(RESOURCE));
-			appearance.setRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
-		}
-		stamper.close();
-	}
-	
+        PdfReader reader = new PdfReader(ORIGINAL);
+        PdfStamper stamper = PdfStamper.createSignature(reader, new FileOutputStream(dest), '\0');
+        PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
+        appearance.setVisibleSignature("mySig");
+        appearance.setReason("It's personal.");
+        appearance.setLocation("Foobar");
+        appearance.setCrypto(pk, chain, null, PdfSignatureAppearance.WINCER_SIGNED);
+        if (certified)
+            appearance.setCertificationLevel(PdfSignatureAppearance.CERTIFIED_NO_CHANGES_ALLOWED);
+        if (graphic) {
+            appearance.setAcro6Layers(true);
+            appearance.setSignatureGraphic(Image.getInstance(RESOURCE));
+            appearance.setRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
+        }
+        stamper.close();
+    }
+    
     /**
      * Main method.
      *
@@ -115,12 +115,12 @@ public class SignatureField {
      * @throws IOException
      * @throws GeneralSecurityException 
      */
-	public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException {
-		Security.addProvider(new BouncyCastleProvider());
-		properties.load(new FileInputStream(PATH));
-		SignatureField signatures = new SignatureField();
-		signatures.createPdf(ORIGINAL);
-		signatures.signPdf(ORIGINAL, SIGNED1, false, false);
-		signatures.signPdf(ORIGINAL, SIGNED2, true, true);
-	}
+    public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException {
+        Security.addProvider(new BouncyCastleProvider());
+        properties.load(new FileInputStream(PATH));
+        SignatureField signatures = new SignatureField();
+        signatures.createPdf(ORIGINAL);
+        signatures.signPdf(ORIGINAL, SIGNED1, false, false);
+        signatures.signPdf(ORIGINAL, SIGNED2, true, true);
+    }
 }

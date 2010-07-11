@@ -32,7 +32,13 @@ public class HelloWorld {
     	throws DocumentException, IOException {
     	new HelloWorld().createPdf(RESULT);
     }
-    
+
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException 
+     */
     public void createPdf(String filename)
 	throws DocumentException, IOException {
         // step 1

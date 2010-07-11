@@ -67,7 +67,7 @@ public class Bookmarks2NamedDestinations {
      * @throws    IOException
      * @throws SQLException 
      */
-	public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+    public void createPdf(String filename) throws IOException, DocumentException, SQLException {
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         Document document = new Document();
         // step 2
@@ -85,7 +85,7 @@ public class Bookmarks2NamedDestinations {
         Section section = null;
 
         for (Movie movie : movies) {
-        	// add the chapter if we're in a new epoch
+            // add the chapter if we're in a new epoch
             if (epoch < (movie.getYear() - 1940) / 10) {
                 epoch = (movie.getYear() - 1940) / 10;
                 if (chapter != null) {
@@ -119,7 +119,7 @@ public class Bookmarks2NamedDestinations {
         document.add(chapter);
         document.close();
         connection.close();
-	}
+    }
     /**
      * Manipulates a PDF file src with the file dest as result
      * @param src the original PDF
@@ -128,32 +128,32 @@ public class Bookmarks2NamedDestinations {
      * @throws DocumentException 
      */
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
-    	PdfReader reader = new PdfReader(src);
-    	PdfDictionary root = reader.getCatalog();
-    	PdfDictionary outlines = root.getAsDict(PdfName.OUTLINES);
-    	if (outlines == null)
-    		return;
-    	PdfArray dests = new PdfArray();
-    	addKids(dests, outlines.getAsDict(PdfName.FIRST));
-    	if (dests.size() == 0)
-    		return;
-    	PdfIndirectReference ref = reader.addPdfObject(dests);
-    	PdfDictionary nametree = new PdfDictionary();
-    	nametree.put(PdfName.NAMES, ref);
-    	PdfDictionary names = new PdfDictionary();
-    	names.put(PdfName.DESTS, nametree);
-    	root.put(PdfName.NAMES, names);
-    	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-    	stamper.close();
+        PdfReader reader = new PdfReader(src);
+        PdfDictionary root = reader.getCatalog();
+        PdfDictionary outlines = root.getAsDict(PdfName.OUTLINES);
+        if (outlines == null)
+            return;
+        PdfArray dests = new PdfArray();
+        addKids(dests, outlines.getAsDict(PdfName.FIRST));
+        if (dests.size() == 0)
+            return;
+        PdfIndirectReference ref = reader.addPdfObject(dests);
+        PdfDictionary nametree = new PdfDictionary();
+        nametree.put(PdfName.NAMES, ref);
+        PdfDictionary names = new PdfDictionary();
+        names.put(PdfName.DESTS, nametree);
+        root.put(PdfName.NAMES, names);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        stamper.close();
     }
     
     public void addKids(PdfArray dests, PdfDictionary outline) {
-    	while (outline != null) {
-    		dests.add(outline.getAsString(PdfName.TITLE));
-    		dests.add(outline.getAsArray(PdfName.DEST));
-    		addKids(dests, outline.getAsDict(PdfName.FIRST));
-    		outline = outline.getAsDict(PdfName.NEXT);
-    	}
+        while (outline != null) {
+            dests.add(outline.getAsString(PdfName.TITLE));
+            dests.add(outline.getAsArray(PdfName.DEST));
+            addKids(dests, outline.getAsDict(PdfName.FIRST));
+            outline = outline.getAsDict(PdfName.NEXT);
+        }
     }
     
     /**
@@ -165,9 +165,9 @@ public class Bookmarks2NamedDestinations {
      * @throws SQLException 
      */
     public static void main(String[] args) throws IOException, DocumentException, SQLException {
-    	Bookmarks2NamedDestinations example = new Bookmarks2NamedDestinations();
-    	example.createPdf(RESULT1);
-    	example.manipulatePdf(RESULT1, RESULT2);
-    	new LinkActions().createXml(RESULT2, RESULT3);
+        Bookmarks2NamedDestinations example = new Bookmarks2NamedDestinations();
+        example.createPdf(RESULT1);
+        example.manipulatePdf(RESULT1, RESULT2);
+        new LinkActions().createXml(RESULT2, RESULT3);
     }
 }

@@ -35,25 +35,25 @@ public class ExtraCharSpace {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3: we open the document
-		document.open();
-		// step 4
-		BaseFont bf1 = BaseFont.createFont("c:/windows/fonts/arial.ttf",
-		    BaseFont.CP1252, BaseFont.EMBEDDED);
-		Font font1 = new Font(bf1, 12);
-		document.add(new Paragraph("Movie title: Moscou, Belgium", font1));
-		document.add(new Paragraph("directed by Christophe Van Rompaey", font1));
-		Chunk chunk = new Chunk(MOVIE, font1);
-		chunk.setCharacterSpacing(10);
-		document.add(new Paragraph(chunk));
-		// step 5: we close the document
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3: we open the document
+        document.open();
+        // step 4
+        BaseFont bf1 = BaseFont.createFont("c:/windows/fonts/arial.ttf",
+            BaseFont.CP1252, BaseFont.EMBEDDED);
+        Font font1 = new Font(bf1, 12);
+        document.add(new Paragraph("Movie title: Moscou, Belgium", font1));
+        document.add(new Paragraph("directed by Christophe Van Rompaey", font1));
+        Chunk chunk = new Chunk(MOVIE, font1);
+        chunk.setCharacterSpacing(10);
+        document.add(new Paragraph(chunk));
+        // step 5: we close the document
+        document.close();
+    }
 
     /**
      * Main method.
@@ -62,7 +62,7 @@ public class ExtraCharSpace {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new ExtraCharSpace().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new ExtraCharSpace().createPdf(RESULT);
+    }
 }

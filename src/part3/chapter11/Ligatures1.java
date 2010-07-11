@@ -31,41 +31,41 @@ public class Ligatures1 {
      * @throws    DocumentException 
      * @throws    IOException
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3: we open the document
-		document.open();
-		// step 4
-		BaseFont bf = BaseFont.createFont(
-			"c:/windows/fonts/arial.ttf", BaseFont.CP1252, BaseFont.EMBEDDED);
-		Font font = new Font(bf, 12);
-		document.add(new Paragraph("Movie title: Love at First Hiccough (Denmark)", font));
-		document.add(new Paragraph("directed by Tomas Villum Jensen", font));
-		document.add(new Paragraph("K\u00e6rlighed ved f\u00f8rste hik", font));
-		document.add(new Paragraph(ligaturize("Kaerlighed ved f/orste hik"), font));
-		// step 5: we close the document
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3: we open the document
+        document.open();
+        // step 4
+        BaseFont bf = BaseFont.createFont(
+            "c:/windows/fonts/arial.ttf", BaseFont.CP1252, BaseFont.EMBEDDED);
+        Font font = new Font(bf, 12);
+        document.add(new Paragraph("Movie title: Love at First Hiccough (Denmark)", font));
+        document.add(new Paragraph("directed by Tomas Villum Jensen", font));
+        document.add(new Paragraph("K\u00e6rlighed ved f\u00f8rste hik", font));
+        document.add(new Paragraph(ligaturize("Kaerlighed ved f/orste hik"), font));
+        // step 5: we close the document
+        document.close();
+    }
 
-	/**
-	 * Method that makes the ligatures for the combinations 'a' and 'e'
-	 * and for '/' and 'o'.
-	 * @param s a String that may have the combinations ae or /o
-	 * @return a String where the combinations are replaced by a unicode character
-	 */
-	public String ligaturize(String s) {
-		int pos;
-		while ((pos = s.indexOf("ae")) > -1) {
-			s = s.substring(0, pos) + '\u00e6' + s.substring(pos + 2);
-		}
-		while ((pos = s.indexOf("/o")) > -1) {
-			s = s.substring(0, pos) + '\u00f8' + s.substring(pos + 2);
-		}
-		return s;
-	}
+    /**
+     * Method that makes the ligatures for the combinations 'a' and 'e'
+     * and for '/' and 'o'.
+     * @param s a String that may have the combinations ae or /o
+     * @return a String where the combinations are replaced by a unicode character
+     */
+    public String ligaturize(String s) {
+        int pos;
+        while ((pos = s.indexOf("ae")) > -1) {
+            s = s.substring(0, pos) + '\u00e6' + s.substring(pos + 2);
+        }
+        while ((pos = s.indexOf("/o")) > -1) {
+            s = s.substring(0, pos) + '\u00f8' + s.substring(pos + 2);
+        }
+        return s;
+    }
 
     /**
      * Main method.
@@ -74,7 +74,7 @@ public class Ligatures1 {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		new Ligatures1().createPdf(RESULT);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        new Ligatures1().createPdf(RESULT);
+    }
 }

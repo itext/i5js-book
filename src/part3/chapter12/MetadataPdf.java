@@ -33,23 +33,23 @@ public class MetadataPdf {
      * @throws DocumentException 
      * @throws IOException 
      */
-	public void createPdf(String filename) throws IOException, DocumentException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter.getInstance(document, new FileOutputStream(filename));
-		// step 3
-		document.addTitle("Hello World example");
-		document.addAuthor("Bruno Lowagie");
-		document.addSubject("This example shows how to add metadata");
-		document.addKeywords("Metadata, iText, PDF");
-		document.addCreator("My program using iText");
-		document.open();
-		// step 4
-		document.add(new Paragraph("Hello World"));
-		// step 5
-		document.close();
-	}
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.addTitle("Hello World example");
+        document.addAuthor("Bruno Lowagie");
+        document.addSubject("This example shows how to add metadata");
+        document.addKeywords("Metadata, iText, PDF");
+        document.addCreator("My program using iText");
+        document.open();
+        // step 4
+        document.add(new Paragraph("Hello World"));
+        // step 5
+        document.close();
+    }
 
     /**
      * Manipulates a PDF file src with the file dest as result
@@ -58,19 +58,19 @@ public class MetadataPdf {
      * @throws IOException
      * @throws DocumentException
      */
-	public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
-		PdfReader reader = new PdfReader(src);
-		PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-		HashMap<String, String> info = reader.getInfo();
-		info.put("Title", "Hello World stamped");
-		info.put("Subject", "Hello World with changed metadata");
-		info.put("Keywords", "iText in Action, PdfStamper");
-		info.put("Creator", "Silly standalone example");
-		info.put("Author", "Also Bruno Lowagie");
-		stamper.setMoreInfo(info);
-		stamper.close();
-	}
-	
+    public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        HashMap<String, String> info = reader.getInfo();
+        info.put("Title", "Hello World stamped");
+        info.put("Subject", "Hello World with changed metadata");
+        info.put("Keywords", "iText in Action, PdfStamper");
+        info.put("Creator", "Silly standalone example");
+        info.put("Author", "Also Bruno Lowagie");
+        stamper.setMoreInfo(info);
+        stamper.close();
+    }
+    
     /**
      * Main method.
      *
@@ -78,9 +78,9 @@ public class MetadataPdf {
      * @throws DocumentException 
      * @throws IOException
      */
-	public static void main(String[] args) throws IOException, DocumentException {
-		MetadataPdf metadata = new MetadataPdf();
-		metadata.createPdf(RESULT1);
-		metadata.manipulatePdf(RESULT1, RESULT2);
-	}
+    public static void main(String[] args) throws IOException, DocumentException {
+        MetadataPdf metadata = new MetadataPdf();
+        metadata.createPdf(RESULT1);
+        metadata.manipulatePdf(RESULT1, RESULT2);
+    }
 }

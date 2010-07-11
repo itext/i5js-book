@@ -18,10 +18,10 @@ import com.itextpdf.text.pdf.PdfReader;
 
 public class FormInformation {
 
-	/** The original PDF file. */
+    /** The original PDF file. */
     public static final String DATASHEET
         = "resources/pdfs/datasheet.pdf";
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static final String RESULT
         = "results/part2/chapter06/form_info.txt";    
     

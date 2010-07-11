@@ -26,9 +26,11 @@ import com.itextpdf.text.pdf.parser.PdfImageObject;
 
 public class ResizeImage {
 
-	public static String RESULT = "results/part4/chapter16/resized_image.pdf";
-	public static float FACTOR = 0.5f;
-	
+	/** The resulting PDF file. */
+    public static String RESULT = "results/part4/chapter16/resized_image.pdf";
+    /** The multiplication factor for the image. */
+    public static float FACTOR = 0.5f;
+    
     /**
      * Manipulates a PDF file src with the file dest as result
      * @param src the original PDF
@@ -37,21 +39,23 @@ public class ResizeImage {
      * @throws DocumentException 
      */
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
-    	PdfName key = new PdfName("ITXT_SpecialId");
-    	PdfName value = new PdfName("123456789");
-    	PdfReader reader = new PdfReader(SpecialId.RESULT);
-		int n = reader.getXrefSize();
-		PdfObject object;
-		PRStream stream;
-		for (int i = 0; i < n; i++) {
-			object = reader.getPdfObject(i);
-			if (object == null || !object.isStream())
-				continue;
-			stream = (PRStream)object;
-			if (value.equals(stream.get(key))) {
-				PdfImageObject image = new PdfImageObject(stream);
-				BufferedImage bi = image.getBufferedImage();
-				if (bi == null) continue;
+        PdfName key = new PdfName("ITXT_SpecialId");
+        PdfName value = new PdfName("123456789");
+        // Read the file
+        PdfReader reader = new PdfReader(SpecialId.RESULT);
+        int n = reader.getXrefSize();
+        PdfObject object;
+        PRStream stream;
+        // Look for image and manipulate image stream
+        for (int i = 0; i < n; i++) {
+            object = reader.getPdfObject(i);
+            if (object == null || !object.isStream())
+                continue;
+            stream = (PRStream)object;
+            if (value.equals(stream.get(key))) {
+                PdfImageObject image = new PdfImageObject(stream);
+                BufferedImage bi = image.getBufferedImage();
+                if (bi == null) continue;
                 int width = (int)(bi.getWidth() * FACTOR);
                 int height = (int)(bi.getHeight() * FACTOR);
                 BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -70,10 +74,11 @@ public class ResizeImage {
                 stream.put(PdfName.HEIGHT, new PdfNumber(height));
                 stream.put(PdfName.BITSPERCOMPONENT, new PdfNumber(8));
                 stream.put(PdfName.COLORSPACE, PdfName.DEVICERGB);
-			}
-		}
-    	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
-    	stamper.close();
+            }
+        }
+        // Save altered PDF
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
+        stamper.close();
     }
 
     /**
@@ -84,7 +89,7 @@ public class ResizeImage {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, DocumentException {
-    	new SpecialId().createPdf(SpecialId.RESULT);
-    	new ResizeImage().manipulatePdf(SpecialId.RESULT, RESULT);
+        new SpecialId().createPdf(SpecialId.RESULT);
+        new ResizeImage().manipulatePdf(SpecialId.RESULT, RESULT);
     }
 }

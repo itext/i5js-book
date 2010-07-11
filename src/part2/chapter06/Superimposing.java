@@ -92,7 +92,7 @@ public class Superimposing {
         Image img = Image.getInstance(RESOURCE);
         img.setAbsolutePosition(
             (PageSize.POSTCARD.getWidth() - img.getScaledWidth()) / 2,
-             (PageSize.POSTCARD.getHeight() - img.getScaledHeight()) / 2);
+            (PageSize.POSTCARD.getHeight() - img.getScaledHeight()) / 2);
         document.add(img);
         document.newPage();
         // page 3: the words "Foobar Film Festival"

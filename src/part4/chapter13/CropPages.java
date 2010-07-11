@@ -34,16 +34,16 @@ public class CropPages {
      */
     public void manipulatePdf(String src, String dest)
         throws IOException, DocumentException {
-    	PdfReader reader = new PdfReader(src);
-    	int n = reader.getNumberOfPages();
-    	PdfDictionary pageDict;
-    	PdfRectangle rect = new PdfRectangle(55, 76, 560, 816);
-    	for (int i = 1; i <= n; i++) {
-			pageDict = reader.getPageN(i);
-			pageDict.put(PdfName.CROPBOX, rect);
-		}
-    	PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-		stamper.close();
+        PdfReader reader = new PdfReader(src);
+        int n = reader.getNumberOfPages();
+        PdfDictionary pageDict;
+        PdfRectangle rect = new PdfRectangle(55, 76, 560, 816);
+        for (int i = 1; i <= n; i++) {
+            pageDict = reader.getPageN(i);
+            pageDict.put(PdfName.CROPBOX, rect);
+        }
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        stamper.close();
     }
     
     /**
