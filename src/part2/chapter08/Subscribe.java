@@ -25,18 +25,21 @@ import com.itextpdf.text.pdf.TextField;
 
 public class Subscribe {
 
+	/** The resulting PDF. */
     public static final String FORM = "results/part2/chapter08/subscribe.pdf";
+	/** The resulting PDFs. */
     public static final String RESULT = "results/part2/chapter08/filled_form_%d.pdf";
-    
-    public static void main(String[] args) throws IOException, DocumentException {
-        Subscribe subscribe = new Subscribe();
-        subscribe.createPdf(FORM);
-        HashMap<String,TextField> fieldCache = new HashMap<String,TextField>();
-        subscribe.manipulatePdf(FORM, String.format(RESULT, 1), fieldCache, "Bruno Lowagie", "blowagie");
-        subscribe.manipulatePdf(FORM, String.format(RESULT, 2), fieldCache, "Paulo Soares", "psoares");
-        subscribe.manipulatePdf(FORM, String.format(RESULT, 3), fieldCache, "Mark Storer", "mstorer");
-    }
-    
+
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @param cache a map that will be used to cache text field information
+     * @param name the name of a person
+     * @param login the login name of the same person
+     * @throws IOException
+     * @throws DocumentException
+     */
     public void manipulatePdf(String src, String dest, HashMap<String,TextField> cache, String name, String login) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
@@ -60,9 +63,13 @@ public class Subscribe {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfFormField personal = PdfFormField.createEmpty(writer);
         personal.setFieldName("personal");
         PdfPTable table = new PdfPTable(3);
@@ -98,6 +105,22 @@ public class Subscribe {
         table.addCell(cell);
         document.add(table);
         writer.addAnnotation(personal);
+        // step 5
         document.close();
+    }
+    
+    /**
+     * Main method
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void main(String[] args) throws IOException, DocumentException {
+        Subscribe subscribe = new Subscribe();
+        subscribe.createPdf(FORM);
+        HashMap<String,TextField> fieldCache = new HashMap<String,TextField>();
+        subscribe.manipulatePdf(FORM, String.format(RESULT, 1), fieldCache, "Bruno Lowagie", "blowagie");
+        subscribe.manipulatePdf(FORM, String.format(RESULT, 2), fieldCache, "Paulo Soares", "psoares");
+        subscribe.manipulatePdf(FORM, String.format(RESULT, 3), fieldCache, "Mark Storer", "mstorer");
     }
 }

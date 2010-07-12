@@ -22,13 +22,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.RadioCheckField;
 
 public class RadioButtons {
-
+	/** The resulting PDF. */
     public static final String RESULT = "results/part2/chapter08/radiobuttons.pdf";
+    /** Possible values of a Choice field. */
     public static final String[] LANGUAGES = { "English", "German", "French", "Spanish", "Dutch" };
-    
-    public static void main(String[] args) throws IOException, DocumentException {
-        new RadioButtons().createPdf(RESULT);
-    }
 
     /**
      * Creates a PDF document.
@@ -37,13 +34,17 @@ public class RadioButtons {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer =
             PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte cb = writer.getDirectContent();
         BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
-        
+        // create a radio field spanning different pages
         PdfFormField radiogroup = PdfFormField.createRadioButton(writer, true);
         radiogroup.setFieldName("language");
         Rectangle rect = new Rectangle(40, 806, 60, 788);
@@ -57,6 +58,7 @@ public class RadioButtons {
             radiogroup.addKid(radiofield);
         }
         writer.addAnnotation(radiogroup);
+        // add the content
         for (int i = 0; i < LANGUAGES.length; i++) {
             cb.beginText();
             cb.setFontAndSize(bf, 18);
@@ -64,8 +66,17 @@ public class RadioButtons {
             cb.endText();
             document.newPage();
         }
-        
+        // step 5
         document.close();
-
+    }
+    
+    /**
+     * Main method
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void main(String[] args) throws IOException, DocumentException {
+        new RadioButtons().createPdf(RESULT);
     }
 }

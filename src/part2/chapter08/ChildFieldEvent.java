@@ -17,10 +17,19 @@ import com.itextpdf.text.pdf.PdfPCellEvent;
 
 public class ChildFieldEvent implements PdfPCellEvent {
 
+	/** A parent field to which a child field has to be added. */
     protected PdfFormField parent;
+    /** The child field that has to be added */
     protected PdfFormField kid;
+    /** The padding of the field inside the cell */
     protected float padding;
     
+    /**
+     * Creates a ChildFieldEvent.
+     * @param parent the parent field
+     * @param kid the child field
+     * @param padding a padding
+     */
     public ChildFieldEvent(PdfFormField parent, PdfFormField kid, float padding) {
         this.parent = parent;
         this.kid = kid;
@@ -28,6 +37,7 @@ public class ChildFieldEvent implements PdfPCellEvent {
     }
     
     /**
+     * Add the child field to the parent, and sets the coordinates of the child field.
      * @see com.lowagie.text.pdf.PdfPCellEvent#cellLayout(com.lowagie.text.pdf.PdfPCell,
      *      com.lowagie.text.Rectangle, com.lowagie.text.pdf.PdfContentByte[])
      */

@@ -17,13 +17,19 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfReader;
 
 public class GetContentStream {
-    /** The resulting PDF. */
+    /** The content stream of a first PDF. */
     public static final String RESULT1
         = "results/part4/chapter14/contentstream1.txt";
-    /** The resulting PDF. */
+    /** The content stream of a second PDF. */
     public static final String RESULT2
         = "results/part4/chapter14/contentstream2.txt";
     
+    /**
+     * Reads the content stream of the first page of a PDF into a text file.
+     * @param src    the path to a PDF file
+     * @param result the path to the resulting text file
+     * @throws IOException
+     */
     public void readContent(String src, String result) throws IOException {
         PdfReader reader = new PdfReader(src);
         FileOutputStream out = new FileOutputStream(result);

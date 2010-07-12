@@ -20,24 +20,6 @@ import javax.swing.JPanel;
 
 public class PearExample extends JPanel {
     
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1251626928914650961L;
-
-    public PearExample() {
-        circle = new Ellipse2D.Double();
-        oval = new Ellipse2D.Double();
-        leaf = new Ellipse2D.Double();
-        stem = new Ellipse2D.Double();
-        circ = new Area(circle);
-        ov = new Area(oval);
-        leaf1 = new Area(leaf);
-        leaf2 = new Area(leaf);
-        st1 = new Area(stem);
-        st2 = new Area(stem);
-    }
-    
     /** Ellipse in Double precision */
     Ellipse2D.Double circle;
     /** Ellipse in Double precision */
@@ -59,7 +41,27 @@ public class PearExample extends JPanel {
     Area st1;
     /** A geometric area */
     Area st2;
+
+	/**
+	 * Initializes all the values needed to draw a Pear on a JPanel.
+	 */
+    public PearExample() {
+        circle = new Ellipse2D.Double();
+        oval = new Ellipse2D.Double();
+        leaf = new Ellipse2D.Double();
+        stem = new Ellipse2D.Double();
+        circ = new Area(circle);
+        ov = new Area(oval);
+        leaf1 = new Area(leaf);
+        leaf2 = new Area(leaf);
+        st1 = new Area(stem);
+        st2 = new Area(stem);
+    }
     
+    /**
+     * Paints a pear.
+     * @see javax.swing.JComponent#paint(java.awt.Graphics)
+     */
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         double ew = 75;
@@ -105,7 +107,11 @@ public class PearExample extends JPanel {
         g2.fill(circ);
     }
     
-    public static void main(String s[]) {
+    /**
+     * Opens a JFrame showing a Pear.
+     * @param args no arguments needed
+     */
+    public static void main(String[] args) {
         PearExample pear = new PearExample();
         JFrame f = new JFrame("Pear");
         f.getContentPane().add( pear, "Center" );
@@ -119,4 +125,6 @@ public class PearExample extends JPanel {
         f.setVisible(true);
     }
 
+    /** A serial version UID. */
+    private static final long serialVersionUID = 1251626928914650961L;
 }

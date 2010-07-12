@@ -22,6 +22,7 @@ public class PrintPreferencesExample {
     /** The resulting PDF file. */
     public static final String RESULT
         = "results/part4/chapter13/printpreferences.pdf";
+
     /**
      * Creates a PDF with information about the movies
      * @param filename the name of the PDF file that will be created.

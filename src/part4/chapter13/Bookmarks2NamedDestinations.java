@@ -69,6 +69,7 @@ public class Bookmarks2NamedDestinations {
      */
     public void createPdf(String filename) throws IOException, DocumentException, SQLException {
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
+        // step 1
         Document document = new Document();
         // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
@@ -117,6 +118,7 @@ public class Bookmarks2NamedDestinations {
             section.add(PojoToElementFactory.getCountryList(movie));
         }
         document.add(chapter);
+        // step 5
         document.close();
         connection.close();
     }
@@ -147,7 +149,12 @@ public class Bookmarks2NamedDestinations {
         stamper.close();
     }
     
-    public void addKids(PdfArray dests, PdfDictionary outline) {
+    /**
+     * Adds Outline dictionaries to an array of destinations.
+     * @param dests
+     * @param outline
+     */
+    public static void addKids(PdfArray dests, PdfDictionary outline) {
         while (outline != null) {
             dests.add(outline.getAsString(PdfName.TITLE));
             dests.add(outline.getAsArray(PdfName.DEST));

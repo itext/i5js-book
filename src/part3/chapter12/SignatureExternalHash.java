@@ -35,12 +35,21 @@ import com.itextpdf.text.pdf.PdfString;
 
 public class SignatureExternalHash {
 
+    /**
+     * A properties file that is PRIVATE.
+     * You should make your own properties file and adapt this line.
+     */
     public static String PATH = "c:/home/blowagie/key.properties";
+    /** Some properties used when signing. */
     public static Properties properties = new Properties();
 
+    /** The resulting PDF */
     public static String SIGNED1 = "results/part3/chapter12/externalhash_1.pdf";
+    /** The resulting PDF */
     public static String SIGNED2 = "results/part3/chapter12/externalhash_2.pdf";
+    /** The resulting PDF */
     public static String SIGNED3 = "results/part3/chapter12/externalhash_3.pdf";
+
     /**
      * Manipulates a PDF file src with the file dest as result
      * @param src the original PDF
@@ -50,6 +59,7 @@ public class SignatureExternalHash {
      * @throws GeneralSecurityException 
      */
     public void signPdfSelf(String src, String dest) throws IOException, DocumentException, GeneralSecurityException {
+    	// Private key and certificate
         String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
         String key_password = properties.getProperty("PASSWORD");
@@ -58,6 +68,7 @@ public class SignatureExternalHash {
         String alias = (String)ks.aliases().nextElement();
         PrivateKey key = (PrivateKey) ks.getKey(alias, key_password.toCharArray());
         Certificate[] chain = ks.getCertificateChain(alias);
+        // reader and stamper
         PdfReader reader = new PdfReader(src);
         FileOutputStream os = new FileOutputStream(dest);
         PdfStamper stamper = PdfStamper.createSignature(reader, os, '\0');
@@ -68,6 +79,7 @@ public class SignatureExternalHash {
         appearance.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1,    "sig");
         appearance.setExternalDigest(new byte[128], null, "RSA");
         appearance.preClose();
+        // digital signature
         Signature signature = Signature.getInstance("SHA1withRSA");
         signature.initSign(key);
         byte buf[] = new byte[8192];
@@ -91,7 +103,8 @@ public class SignatureExternalHash {
      * @throws GeneralSecurityException 
      */
     public void signPdfWinCer(String src, String dest, boolean sign) throws IOException, DocumentException, GeneralSecurityException {
-        String path = properties.getProperty("PRIVATE");
+        // private key and certificate
+    	String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
         String key_password = properties.getProperty("PASSWORD");
         KeyStore ks = KeyStore.getInstance("pkcs12", "BC");
@@ -99,6 +112,7 @@ public class SignatureExternalHash {
         String alias = (String)ks.aliases().nextElement();
         PrivateKey key = (PrivateKey) ks.getKey(alias, key_password.toCharArray());
         Certificate[] chain = ks.getCertificateChain(alias);
+        // reader and stamper
         PdfReader reader = new PdfReader(src);
         FileOutputStream os = new FileOutputStream(dest);
         PdfStamper stamper = PdfStamper.createSignature(reader, os, '\0');
@@ -109,6 +123,7 @@ public class SignatureExternalHash {
         appearance.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1,    "sig");
         appearance.setExternalDigest(null, new byte[20], null);
         appearance.preClose();
+        // signature
         MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
         byte buf[] = new byte[8192];
         int n;

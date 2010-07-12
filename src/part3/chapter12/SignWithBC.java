@@ -45,14 +45,32 @@ import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfString;
 
 public class SignWithBC {
-    
+
+    /** The resulting PDF */
     public static String SIGNED1 = "results/part3/chapter12/bc_detached.pdf";
+    /** The resulting PDF */
     public static String SIGNED2 = "results/part3/chapter12/bc_encapsulated.pdf";
-    
+
+    /**
+     * A properties file that is PRIVATE.
+     * You should make your own properties file and adapt this line.
+     */
     public static String PATH = "c:/home/blowagie/key.properties";
+    /** Some properties used when signing. */
     public static Properties properties = new Properties();
     
+    /**
+     * Signs an existing PDF
+     * @param src      path to the existing PDF
+     * @param dest     path to the resulting PDF
+     * @param detached how to create the signature
+     * @throws IOException
+     * @throws DocumentException
+     * @throws GeneralSecurityException
+     * @throws CMSException
+     */
     public void signPdf(String src, String dest, boolean detached) throws IOException, DocumentException, GeneralSecurityException, CMSException {
+    	// private key and certificate
         String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
         String key_password = properties.getProperty("PASSWORD");
@@ -61,7 +79,7 @@ public class SignWithBC {
         String alias = (String)ks.aliases().nextElement();
         PrivateKey key = (PrivateKey)ks.getKey(alias, key_password.toCharArray());
         Certificate[] chain = ks.getCertificateChain(alias);
-
+        // reader and stamper
         PdfReader reader = new PdfReader(src);
         PdfStamper stp = PdfStamper.createSignature(reader, new FileOutputStream(dest), '\0');
         PdfSignatureAppearance sap = stp.getSignatureAppearance();
@@ -84,8 +102,7 @@ public class SignWithBC {
         HashMap<PdfName,Integer> exc = new HashMap<PdfName,Integer>();
         exc.put(PdfName.CONTENTS, new Integer(csize * 2 + 2));
         sap.preClose(exc);
-
-        
+        // signature
         CMSSignedDataGenerator generator = new CMSSignedDataGenerator();
         generator.addSigner(key, (X509Certificate)chain[0], CMSSignedDataGenerator.DIGEST_SHA1);
 
@@ -121,6 +138,9 @@ public class SignWithBC {
         sap.close(dic2);
     }
 
+    /**
+     * CMSProcessable implementation.
+     */
     class CMSProcessableRange implements CMSProcessable {
         private PdfSignatureAppearance sap;
         private byte[] buf = new byte[8192];
@@ -141,7 +161,16 @@ public class SignWithBC {
             return sap;
         }
     }
-
+    
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws GeneralSecurityException 
+     * @throws CMSException
+     */
     public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException, CMSException {
         Security.addProvider(new BouncyCastleProvider());
         properties.load(new FileInputStream(PATH));

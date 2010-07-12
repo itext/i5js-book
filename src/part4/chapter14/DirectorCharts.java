@@ -34,12 +34,13 @@ import com.lowagie.filmfestival.PojoFactory;
 public class DirectorCharts {
     /** The resulting PDF. */
     public static final String RESULT = "results/part4/chapter14/director_charts.pdf";
-
+    /** A query that needs to be visualized in a chart. */
     public static final String QUERY1 =
         "SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
             + "FROM film_director d, film_movie_director md "
             + "WHERE d.id = md.director_id "
             + "GROUP BY d.id, d.name, d.given_name ORDER BY c DESC, name LIMIT 9";
+    /** A query that needs to be visualized in a chart. */
     public static final String QUERY2 =
         "SELECT DISTINCT d.id, d.name, d.given_name, count(*) AS c "
             + "FROM film_director d, film_movie_director md "
@@ -54,24 +55,31 @@ public class DirectorCharts {
      * @throws SQLException 
      */
     public void createPdf(String filename) throws IOException, DocumentException, SQLException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte cb = writer.getDirectContent();
         float width = PageSize.A4.getWidth();
         float height = PageSize.A4.getHeight() / 2;
+        // Pie chart
         PdfTemplate pie = cb.createTemplate(width, height);
         Graphics2D g2d1 = pie.createGraphics(width, height);
         Rectangle2D r2d1 = new Rectangle2D.Double(0, 0, width, height);
         getPieChart().draw(g2d1, r2d1);
         g2d1.dispose();
         cb.addTemplate(pie, 0, height);
+        // Bar chart
         PdfTemplate bar = cb.createTemplate(width, height);
         Graphics2D g2d2 = bar.createGraphics(width, height);
         Rectangle2D r2d2 = new Rectangle2D.Double(0, 0, width, height);
         getBarChart().draw(g2d2, r2d2);
         g2d2.dispose();
         cb.addTemplate(bar, 0, 0);
+        // step 5
         document.close();
     }
     
@@ -88,9 +96,9 @@ public class DirectorCharts {
     }
     
     /**
-     * Gets an example piechart.
+     * Gets an example pie chart.
      * 
-     * @return a piechart
+     * @return a pie chart
      * @throws SQLException 
      * @throws IOException 
      */
@@ -112,9 +120,9 @@ public class DirectorCharts {
     }
     
     /**
-     * Gets an example piechart.
+     * Gets an example bar chart.
      * 
-     * @return a piechart
+     * @return a bar chart
      * @throws SQLException 
      * @throws IOException 
      */

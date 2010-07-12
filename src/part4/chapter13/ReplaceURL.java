@@ -46,9 +46,13 @@ public class ReplaceURL {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfFormField personal = PdfFormField.createEmpty(writer);
         personal.setFieldName("personal");
         PdfPTable table = new PdfPTable(3);
@@ -94,6 +98,7 @@ public class ReplaceURL {
         submit1.setAction(PdfAction.createSubmitForm("/book/request", null,
             PdfAction.SUBMIT_HTML_FORMAT | PdfAction.SUBMIT_COORDINATES));
         writer.addAnnotation(submit1);
+        // step 5
         document.close();
     }
     

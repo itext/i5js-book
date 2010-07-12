@@ -32,21 +32,28 @@ import com.itextpdf.text.pdf.TextField;
 
 public class TextFields implements PdfPCellEvent {
 
+	/** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/text_fields.pdf";
+	/** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/text_filled.pdf";
-    
+    /** The text field index of a TextField that needs to be added to a cell. */
     protected int tf;
-    
-    public static void main(String[] args) throws DocumentException, IOException {
-        TextFields example = new TextFields(0);
-        example.createPdf(RESULT1);
-        example.manipulatePdf(RESULT1, RESULT2);
-    }
-    
+
+    /**
+     * Creates a cell event that will add a text field to a cell.
+     * @param tf a text field index.
+     */
     public TextFields(int tf) {
         this.tf = tf;
     }
-    
+
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
@@ -70,10 +77,13 @@ public class TextFields implements PdfPCellEvent {
      * @throws    IOException 
      */
     public void createPdf(String filename) throws DocumentException, IOException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-
+        // step 4
         PdfPCell cell;
         PdfPTable table = new PdfPTable(2);
         table.setWidths(new int[]{ 1, 2 });
@@ -100,11 +110,15 @@ public class TextFields implements PdfPCellEvent {
         table.addCell(cell);
 
         document.add(table);
-        
+        // step 5
         document.close();
 
     }
 
+    /**
+     * Creates and adds a text field that will be added to a cell.
+     * @see com.itextpdf.text.pdf.PdfPCellEvent#cellLayout(com.itextpdf.text.pdf.PdfPCell, com.itextpdf.text.Rectangle, com.itextpdf.text.pdf.PdfContentByte[])
+     */
     public void cellLayout(PdfPCell cell, Rectangle rectangle, PdfContentByte[] canvases) {
         PdfWriter writer = canvases[0].getPdfWriter();
         TextField text = new TextField(writer, rectangle,
@@ -153,5 +167,17 @@ public class TextFields implements PdfPCellEvent {
         catch(DocumentException de) {
             throw new ExceptionConverter(de);
         }
+    }
+
+    /**
+     * Main method
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void main(String[] args) throws DocumentException, IOException {
+        TextFields example = new TextFields(0);
+        example.createPdf(RESULT1);
+        example.manipulatePdf(RESULT1, RESULT2);
     }
 }

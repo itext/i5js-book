@@ -17,6 +17,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class PearToPdf {
+
     /** The resulting PDF. */
     public static final String RESULT = "results/part4/chapter14/pear.pdf";
 
@@ -27,16 +28,22 @@ public class PearToPdf {
      * @throws IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(new Rectangle(150, 150));
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
         Graphics2D g2 = canvas.createGraphics(150, 150);
         PearExample pear = new PearExample();
         pear.paint(g2);
         g2.dispose();
+        // step 5
         document.close();
     }
+
     /**
      * Main method.
      *

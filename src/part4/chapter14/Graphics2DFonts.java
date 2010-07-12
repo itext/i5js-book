@@ -23,16 +23,17 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.DefaultFontMapper.BaseFontParameters;
 
 public class Graphics2DFonts {
-    /** The resulting PDF. */
+    /** A text file containing the available AWT fonts. */
     public static final String RESULT1
         = "results/part4/chapter14/awt_fonts.txt";
-    /** The resulting PDF. */
+    /** A text file containing the mapping of PDF and AWT fonts. */
     public static final String RESULT2
         = "results/part4/chapter14/pdf_fonts.txt";
     /** The resulting PDF. */
     public static final String RESULT3
         = "results/part4/chapter14/fonts.pdf";
     
+    /** A series of fonts that will be used. */
     public static final Font[] FONTS = {
         new Font("Serif", Font.PLAIN, 12),
         new Font("Serif", Font.BOLD, 12),
@@ -41,7 +42,15 @@ public class Graphics2DFonts {
         new Font("Monospaced", Font.PLAIN, 12)
     };
 
+    /**
+     * Creates lists of fonts that can be used in AWT and PDF.
+     * Creates a PDF document.
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
     public static void main(String[] args) throws IOException, DocumentException {
+    	// Creates a list of the available font families in Java AWT.
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String[] fontFamily = ge.getAvailableFontFamilyNames();
         PrintStream out1 = new PrintStream(new FileOutputStream(RESULT1));
@@ -51,8 +60,10 @@ public class Graphics2DFonts {
         out1.flush();
         out1.close();
         
+        // Creates a mapper to map fonts available for PDF creation with AWT fonts
         DefaultFontMapper mapper = new DefaultFontMapper();
         mapper.insertDirectory("c:/windows/fonts/");
+        // Writes a text version of this mapper to a file
         PrintStream out2 = new PrintStream(new FileOutputStream(RESULT2));
         for (Entry<String,BaseFontParameters> entry : mapper.getMapper().entrySet()) {
             out2.println(String.format("%s: %s", entry.getKey(), entry.getValue().fontName));
@@ -60,11 +71,16 @@ public class Graphics2DFonts {
         out2.flush();
         out2.close();
         
+        // Creates a PDF with the text "Hello World" in different fonts.
         float width = 150;
         float height = 150;
+        // step 1
         Document document = new Document(new Rectangle(width, height));
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT3));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte cb = writer.getDirectContent();
         Graphics2D g2d = cb.createGraphics(width, height, mapper);
         for (int i = 0; i < FONTS.length; ) {
@@ -72,6 +88,7 @@ public class Graphics2DFonts {
             g2d.drawString("Hello world", 5, 24 * i);
         }
         g2d.dispose();
+        // step 5
         document.close();
     }
 }

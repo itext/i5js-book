@@ -27,11 +27,15 @@ public class TextMethods {
      * @throws IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
-
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document,
                 new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
+        // draw helper lines
         PdfContentByte cb = writer.getDirectContent();
         cb.setLineWidth(0f);
         cb.moveTo(150, 600);
@@ -43,7 +47,7 @@ public class TextMethods {
         cb.moveTo(50, 640);
         cb.lineTo(250, 640);
         cb.stroke();
-        
+        // draw text
         String text = "AWAY again ";
         BaseFont bf = BaseFont.createFont();
         cb.beginText();
@@ -60,6 +64,7 @@ public class TextMethods {
             cb.showTextAligned(PdfContentByte.ALIGN_LEFT, text, 400, 700, i);
         }
         cb.endText();
+        // step 5
         document.close();
     }
     

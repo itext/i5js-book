@@ -30,20 +30,30 @@ public class Text1ToPdf2 {
      * @throws IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(new Rectangle(600, 60));
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
+        // create a font mapper
         DefaultFontMapper mapper = new DefaultFontMapper();
+        // map MS Gothic to the corresponding font program
         BaseFontParameters parameters = new BaseFontParameters("c:/windows/fonts/msgothic.ttc,1");
         parameters.encoding = BaseFont.IDENTITY_H;
         mapper.putName("MS PGothic", parameters );
+        // Create a Graphics2D object
         Graphics2D g2 = canvas.createGraphics(600, 60, mapper);
+        // write the text to the Graphics2D
         TextExample1 text = new TextExample1();
         text.paint(g2);
         g2.dispose();
+        // step 5
         document.close();
     }
+
     /**
      * Main method.
      *

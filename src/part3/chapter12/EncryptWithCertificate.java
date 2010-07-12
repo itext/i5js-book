@@ -30,20 +30,28 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class EncryptWithCertificate {
 
+    /** The resulting PDF */
     public static String RESULT1 = "results/part3/chapter12/certificate_encryption.pdf";
+    /** The resulting PDF */
     public static String RESULT2 = "results/part3/chapter12/certificate_decrypted.pdf";
+    /** The resulting PDF */
     public static String RESULT3 = "results/part3/chapter12/certificate_encrypted.pdf";
-    
+
+    /**
+     * A properties file that is PRIVATE.
+     * You should make your own properties file and adapt this line.
+     */
     public static String PATH = "c:/home/blowagie/key.properties";
+    /** Some properties used when signing. */
     public static Properties properties = new Properties();
     
-    public Certificate getPublicCertificate(String path) throws IOException, CertificateException {
-        FileInputStream is = new FileInputStream(path);
-        CertificateFactory cf = CertificateFactory.getInstance("X.509");
-        X509Certificate cert = (X509Certificate) cf.generateCertificate(is);
-        return cert;
-    }
-    
+    /**
+     * Creates a PDF that is encrypted using two different public certificates.
+     * @param filename the path to the resulting PDF file
+     * @throws IOException
+     * @throws DocumentException
+     * @throws GeneralSecurityException
+     */
     public void createPdf(String filename) throws IOException, DocumentException, GeneralSecurityException {
         // step 1
         Document document = new Document();
@@ -60,6 +68,26 @@ public class EncryptWithCertificate {
         document.close();
     }
     
+    /**
+     * Gets a public certificate from a certificate file.
+     * @param path the path to the certificate
+     * @return a Certificate object
+     * @throws IOException
+     * @throws CertificateException
+     */
+    public Certificate getPublicCertificate(String path) throws IOException, CertificateException {
+        FileInputStream is = new FileInputStream(path);
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        X509Certificate cert = (X509Certificate) cf.generateCertificate(is);
+        return cert;
+    }
+    
+    /**
+     * Gets a private key from a KeyStore.
+     * @return a PrivateKey object
+     * @throws GeneralSecurityException
+     * @throws IOException
+     */
     public PrivateKey getPrivateKey() throws GeneralSecurityException, IOException {
         String path = "resources/encryption/.keystore";
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -68,12 +96,28 @@ public class EncryptWithCertificate {
         return pk;
     }
     
+    /**
+     * Decrypts a PDF that was encrypted using a certificate
+     * @param src  The encrypted PDF
+     * @param dest The decrypted PDF
+     * @throws IOException
+     * @throws DocumentException
+     * @throws GeneralSecurityException
+     */
     public void decryptPdf(String src, String dest) throws IOException, DocumentException, GeneralSecurityException {
         PdfReader reader = new PdfReader(src, getPublicCertificate("resources/encryption/foobar.cer"), getPrivateKey(), "BC");
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
     }
     
+    /**
+     * Encrypts a PDF using a public certificate.
+     * @param src  The original PDF document
+     * @param dest The encrypted PDF document
+     * @throws IOException
+     * @throws DocumentException
+     * @throws CertificateException
+     */
     public void encryptPdf(String src, String dest) throws IOException, DocumentException, CertificateException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
@@ -81,7 +125,15 @@ public class EncryptWithCertificate {
         stamper.setEncryption(new Certificate[]{cert}, new int[]{PdfWriter.ALLOW_PRINTING}, PdfWriter.ENCRYPTION_AES_128);
         stamper.close();
     }
-    
+
+    /**
+     * Main method.
+     *
+     * @param    args    no arguments needed
+     * @throws DocumentException 
+     * @throws IOException
+     * @throws GeneralSecurityException 
+     */
     public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException {
         Security.addProvider(new BouncyCastleProvider());
         properties.load(new FileInputStream(PATH));

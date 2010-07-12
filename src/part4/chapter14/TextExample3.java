@@ -24,21 +24,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class TextExample3 extends JPanel {
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -3639324875232824761L;
-    // The LineBreakMeasurer used to line-break the paragraph.
-    private LineBreakMeasurer lineMeasurer;
-    // index of the first character in the paragraph.
-    private int paragraphStart;
 
-    // index of the first character after the end of the paragraph.
-    private int paragraphEnd;
-
+	/** A String that needs to be displayed in a PDF document */
     private static AttributedString akira;
 
-
+    /**
+     * Creates a TextExample that will be used to demonstrate how text in AWT can be translated to PDF.
+     */
     public TextExample3() {
         akira = new AttributedString(
             "Akira Kurosawa (\u9ed2\u6fa4 \u660e or \u9ed2\u6ca2 \u660e, " +
@@ -52,8 +44,15 @@ public class TextExample3 extends JPanel {
         akira.addAttribute(TextAttribute.FONT, new Font("MS PGothic", Font.PLAIN, 12), 16, 20);
         akira.addAttribute(TextAttribute.FONT, new Font("MS PGothic", Font.PLAIN, 12), 24, 28);
     }
-    
+
+    /**
+     * Draws the String to a Graphics object.
+     * @see javax.swing.JComponent#paint(java.awt.Graphics)
+     */
     public void paint(Graphics g) {
+    	LineBreakMeasurer lineMeasurer = null;
+    	int paragraphStart = 0;
+    	int paragraphEnd = 0;
         Graphics2D g2d = (Graphics2D) g;
         if (lineMeasurer == null) {
             AttributedCharacterIterator paragraph = akira.getIterator();
@@ -73,7 +72,11 @@ public class TextExample3 extends JPanel {
         }
     }
     
-    public static void main(String s[]) {
+    /**
+     * Creates a JFrame and draws a String to it.
+     * @param args no arguments needed
+     */
+    public static void main(String[] args) {
         TextExample3 Kurosawa = new TextExample3();
         JFrame f = new JFrame("Kurosawa");
         f.getContentPane().add( Kurosawa, "Center" );
@@ -87,4 +90,6 @@ public class TextExample3 extends JPanel {
         f.setVisible(true);
     }
 
+    /** A serial version UID. */
+    private static final long serialVersionUID = -3639324875232824761L;
 }

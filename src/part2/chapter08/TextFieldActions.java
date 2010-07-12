@@ -22,10 +22,8 @@ import com.itextpdf.text.pdf.TextField;
 
 public class TextFieldActions {
 
+    /** The resulting PDF. */
     public static final String RESULT = "results/part2/chapter08/field_actions.pdf";
-    public static void main(String[] args) throws IOException, DocumentException {
-        new TextFieldActions().createPdf(RESULT);
-    }
     
     /**
      * Creates a PDF document.
@@ -34,9 +32,13 @@ public class TextFieldActions {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         TextField date = new TextField(writer, new Rectangle(36, 806, 126, 780), "date");
         date.setBorderColor(new GrayColor(0.2f));
         PdfFormField datefield = date.getTextField();
@@ -53,6 +55,17 @@ public class TextFieldActions {
         namefield.setAdditionalActions(PdfName.K, PdfAction.javaScript(
                 "event.change = event.change.toUpperCase();", writer));
         writer.addAnnotation(namefield);
+        // step 5
         document.close();
+    }
+
+    /**
+     * Main method
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void main(String[] args) throws IOException, DocumentException {
+        new TextFieldActions().createPdf(RESULT);
     }
 }

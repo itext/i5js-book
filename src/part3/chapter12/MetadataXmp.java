@@ -34,7 +34,7 @@ public class MetadataXmp {
     /** The resulting PDF file. */
     public static final String RESULT3
         = "results/part3/chapter12/xmp_metadata_added.pdf";
-    /** The resulting PDF file. */
+    /** An XML file containing an XMP stream. */
     public static final String RESULT4
         = "results/part3/chapter12/xmp.xml";
     
@@ -114,6 +114,12 @@ public class MetadataXmp {
         stamper.close();
     }
     
+    /**
+     * Reads the XML stream inside a PDF file into an XML file.
+     * @param src  A PDF file containing XMP data
+     * @param dest XML file containing the XMP data extracted from the PDF
+     * @throws IOException
+     */
     public void readXmpMetadata(String src, String dest) throws IOException {
         PdfReader reader = new PdfReader(src);
         FileOutputStream fos = new FileOutputStream(dest);

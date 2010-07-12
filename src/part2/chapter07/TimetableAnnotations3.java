@@ -30,7 +30,7 @@ import com.itextpdf.text.BaseColor;
 import part1.chapter03.MovieTemplates;
 
 public class TimetableAnnotations3 extends TimetableAnnotations1 {
-
+    /** The resulting PDF file. */
     public static final String RESULT = "results/part2/chapter07/timetable_tickets.pdf";
     /** Path to IMDB. */
     public static final String IMDB = "http://imdb.com/title/tt%s/";

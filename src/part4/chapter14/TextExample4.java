@@ -19,6 +19,8 @@ import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
 public class TextExample4 {
+
+	/** A String that needs to be displayed in a PDF document */
     public static final String[] AKIRA = {
         "Akira Kurosawa", " (", "\u9ed2\u6fa4 \u660e", " or ",
         "\u9ed2\u6ca2 \u660e", ", Kurosawa Akira, 23 March 1910" +
@@ -27,10 +29,16 @@ public class TextExample4 {
         " spanned 50 years, Kurosawa directed 30 films. " +
         "He is widely regarded as one of the most important and " +
         "influential filmmakers in film history." };
-    
+
+    /** Styles that will be used in the AKIRA String. */
     public static final String[] STYLES =  {
       "bold", "regular", "japanese", "regular", "japanese", "regular" };
     
+    /**
+     * Creates a JTextPane with the String we want to display in a PDF document.
+     * @return a JTextPane
+     * @throws BadLocationException
+     */
     public static JTextPane createTextPane() throws BadLocationException {
         JTextPane textPane = new JTextPane();
         StyledDocument doc = textPane.getStyledDocument();
@@ -42,6 +50,10 @@ public class TextExample4 {
         return textPane;
     }
 
+    /**
+     * Initialization of the styles that are used in the String.
+     * @param doc    a StyledDocument
+     */
     public static void initStyles(StyledDocument doc) {
         Style def =
             StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
@@ -53,7 +65,12 @@ public class TextExample4 {
         StyleConstants.setFontFamily(japanese, "MS PGothic");
     }
     
-    public static void main(String s[]) throws BadLocationException {
+    /**
+     * Creates a JFrame and draws a String to it.
+     * @param args no arguments needed
+     * @throws BadLocationException
+     */
+    public static void main(String[] args) throws BadLocationException {
         JFrame f = new JFrame("Kurosawa");
         f.getContentPane().add( createTextPane(), "Center" );
 

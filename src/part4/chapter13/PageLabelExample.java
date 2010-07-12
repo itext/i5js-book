@@ -37,7 +37,7 @@ public class PageLabelExample {
     /** The resulting PDF file. */
     public static final String RESULT2
         = "results/part4/chapter13/page_labels_changed.pdf";
-    /** The resulting PDF file. */
+    /** A text file containing page numbers and labels. */
     public static final String LABELS
         = "results/part4/chapter13/page_labels.txt";
     /** SQL statements */
@@ -83,6 +83,16 @@ public class PageLabelExample {
         
     }
     
+    /**
+     * Performs an SQL query and writes the results to a PDF using the Paragraph object.
+     * @param document    The document to which the paragraphs have to be added
+     * @param connection  The database connection that has to be used
+     * @param sql         The SQL statement
+     * @param field       The name of the field that has to be shown
+     * @throws SQLException
+     * @throws DocumentException
+     * @throws IOException
+     */
     public void addParagraphs(Document document, DatabaseConnection connection, String sql, String field) throws SQLException, DocumentException, IOException {
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(sql);
@@ -91,6 +101,12 @@ public class PageLabelExample {
         }
     }
     
+    /**
+     * Reads the page labels from an existing PDF
+     * @param src  the path to an existing PDF
+     * @param dest the path to the resulting text file
+     * @throws IOException
+     */
     public void listPageLabels(String src, String dest) throws IOException {
         // no PDF, just a text file
         PrintStream out = new PrintStream(new FileOutputStream(dest));
@@ -102,6 +118,13 @@ public class PageLabelExample {
         out.close();
     }
     
+    /**
+     * Manipulates the page labels at the lowest PDF level.
+     * @param src  The path to the source file
+     * @param dest The path to the changed PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
     public void manipulatePageLabel(String src, String dest) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfDictionary root = reader.getCatalog();

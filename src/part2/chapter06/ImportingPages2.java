@@ -22,7 +22,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class ImportingPages2 {
 
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static final String RESULT
         = "results/part2/chapter06/time_table_imported2.pdf";
     

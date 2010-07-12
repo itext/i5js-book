@@ -23,21 +23,31 @@ public class Text1ToPdf1 {
 
     /**
      * Creates a PDF document.
+     * This example doesn't work as expected.
+     * See Text1ToPdf2 to find out how to do it correctly.
      * @param filename the path to the new PDF document
      * @throws DocumentException 
      * @throws IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(new Rectangle(600, 60));
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
+        // Create a font mapper and add a font directory
         DefaultFontMapper mapper = new DefaultFontMapper();
         mapper.insertDirectory("c:/windows/fonts/");
+        // create the Graphics2D object
         Graphics2D g2 = canvas.createGraphics(600, 60, mapper);
+        // write the text to the Graphics2D (will NOT work as expected!)
         TextExample1 text = new TextExample1();
         text.paint(g2);
         g2.dispose();
+        // step 5
         document.close();
     }
     /**

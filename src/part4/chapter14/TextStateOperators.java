@@ -31,11 +31,14 @@ public class TextStateOperators {
      * @throws IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
-
+        // step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document,
                 new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
         String text = "AWAY again";
         BaseFont bf = BaseFont.createFont();
@@ -157,6 +160,7 @@ public class TextStateOperators {
         canvas.addTemplate(template, 360, 490);
         canvas.restoreState();
 
+        // step 5
         document.close();
     }
     

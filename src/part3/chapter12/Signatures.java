@@ -37,13 +37,24 @@ import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class Signatures {
+
+    /** The resulting PDF */
     public static String ORIGINAL = "results/part3/chapter12/hello.pdf";
+    /** The resulting PDF */
     public static String SIGNED1 = "results/part3/chapter12/signature_1.pdf";
+    /** The resulting PDF */
     public static String SIGNED2 = "results/part3/chapter12/signature_2.pdf";
+    /** Info after verification of a signed PDF */
     public static String VERIFICATION = "results/part3/chapter12/verify.txt";
+    /** The resulting PDF */
     public static String REVISION = "results/part3/chapter12/revision_1.pdf";
 
+    /**
+     * A properties file that is PRIVATE.
+     * You should make your own properties file and adapt this line.
+     */
     public static String PATH = "c:/home/blowagie/key.properties";
+    /** Some properties used when signing. */
     public static Properties properties = new Properties();
     /** One of the resources. */
     public static final String RESOURCE = "resources/img/logo.gif";
@@ -124,6 +135,11 @@ public class Signatures {
 
     }
     
+    /**
+     * Verifies the signatures of a PDF we've signed twice.
+     * @throws GeneralSecurityException
+     * @throws IOException
+     */
     public void verifySignatures() throws GeneralSecurityException, IOException {
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
         ks.load(null, null);
@@ -158,6 +174,10 @@ public class Signatures {
         out.close();
     }
     
+    /**
+     * Extracts the first revision of a PDF we've signed twice.
+     * @throws IOException
+     */
     public void extractFirstRevision() throws IOException {
         PdfReader reader = new PdfReader(SIGNED2);
         AcroFields af = reader.getAcroFields();

@@ -31,26 +31,34 @@ import com.itextpdf.text.pdf.TextField;
 
 public class ChoiceFields implements PdfPCellEvent {
 
+	/** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/choice_fields.pdf";
+	/** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/choice_filled.pdf";
-
+    /** A choice field index. */
     protected int cf;
-    
+    /** An array with possible languages for a choice field. */
     public static final String[] LANGUAGES =
         { "English", "German", "French", "Spanish", "Dutch" };
+    /** An array with export values for possible languages in a choice field. */
     public static final String[] EXPORTVALUES =
         { "EN", "DE", "FR", "ES", "NL" };
-    
+
+    /**
+     * Creates a cell event that adds a Choice field to a cell.
+     * @param cf a choice field index
+     */
     public ChoiceFields(int cf) {
         this.cf = cf;
     }
-    
-    public static void main(String[] args) throws IOException, DocumentException {
-        ChoiceFields fields = new ChoiceFields(0);
-        fields.createPdf(RESULT1);
-        fields.manipulatePdf(RESULT1, RESULT2);
-    }
-    
+
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
@@ -83,10 +91,13 @@ public class ChoiceFields implements PdfPCellEvent {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        
+        // step 4
         PdfPCell cell;
         PdfPTable table = new PdfPTable(2);
         table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
@@ -108,13 +119,16 @@ public class ChoiceFields implements PdfPCellEvent {
         cell = new PdfPCell();
         cell.setCellEvent(new ChoiceFields(4));
         table.addCell(cell);
-        
         document.add(table);
-
+        // step 5
         document.close();
 
     }
 
+    /**
+     * Creates a choice field and adds it to a cell.
+     * see com.itextpdf.text.pdf.PdfPCellEvent#cellLayout(com.itextpdf.text.pdf.PdfPCell, com.itextpdf.text.Rectangle, com.itextpdf.text.pdf.PdfContentByte[])
+     */
     public void cellLayout(PdfPCell cell, Rectangle rectangle,
             PdfContentByte[] canvases) {
         PdfWriter writer = canvases[0].getPdfWriter();
@@ -161,5 +175,17 @@ public class ChoiceFields implements PdfPCellEvent {
         catch(DocumentException de) {
             throw new ExceptionConverter(de);
         }
+    }
+    
+    /**
+     * Main method
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void main(String[] args) throws IOException, DocumentException {
+        ChoiceFields fields = new ChoiceFields(0);
+        fields.createPdf(RESULT1);
+        fields.manipulatePdf(RESULT1, RESULT2);
     }
 }

@@ -27,14 +27,6 @@ import com.lowagie.filmfestival.FilmFonts;
 import com.lowagie.filmfestival.Movie;
 import com.lowagie.filmfestival.PojoFactory;
 
-/**
- * This example was written by Bruno Lowagie. It is part of the book 'iText in
- * Action' by Manning Publications. 
- * ISBN: 1932394796
- * http://www.1t3xt.com/docs/book.php 
- * http://www.manning.com/lowagie/
- */
-
 public class HelloWorldCompression {
     /** The resulting PDF file. */
     public static final String RESULT1
@@ -54,6 +46,7 @@ public class HelloWorldCompression {
     /** The resulting PDF file. */
     public static final String RESULT6
         = "results/part3/chapter12/compression_full_too.pdf";
+    /** The resulting PDF file. */
     public static final String RESULT7
         = "results/part3/chapter12/compression_removed.pdf";
     

@@ -29,9 +29,13 @@ public class Text2ToPdf2 {
      * @throws IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document(new Rectangle(300, 150));
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
         Graphics2D g2 = canvas.createGraphics(300, 150, new AsianFontMapper(
                 AsianFontMapper.JapaneseFont_Min, AsianFontMapper.JapaneseEncoding_H));
@@ -39,6 +43,7 @@ public class Text2ToPdf2 {
         text.setSize(new Dimension(300, 150));
         text.paint(g2);
         g2.dispose();
+        // step 5
         document.close();
     }
     /**

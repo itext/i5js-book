@@ -41,12 +41,21 @@ import com.itextpdf.text.pdf.TSAClientBouncyCastle;
 
 public class TimestampOCSP {
 
+    /** The resulting PDF */
     public static String SIGNED0 = "results/part3/chapter12/without.pdf";
+    /** The resulting PDF */
     public static String SIGNED1 = "results/part3/chapter12/ts.pdf";
+    /** The resulting PDF */
     public static String SIGNED2 = "results/part3/chapter12/ocsp.pdf";
+    /** The resulting PDF */
     public static String SIGNED3 = "results/part3/chapter12/ts_oscp.pdf";
-    
+
+    /**
+     * A properties file that is PRIVATE.
+     * You should make your own properties file and adapt this line.
+     */
     public static String PATH = "c:/home/blowagie/key.properties";
+    /** Some properties used when signing. */
     public static Properties properties = new Properties();
     
     /**
@@ -58,14 +67,15 @@ public class TimestampOCSP {
      * @throws GeneralSecurityException 
      */
     public void signPdf(String src, String dest, boolean withTS, boolean withOCSP) throws IOException, DocumentException, GeneralSecurityException {
-        String keystore = properties.getProperty("PRIVATE");
+        // Keystore and certificate chain
+    	String keystore = properties.getProperty("PRIVATE");
         String password = properties.getProperty("PASSWORD");
         KeyStore ks = KeyStore.getInstance("PKCS12", "BC");
         ks.load(new FileInputStream(keystore), password.toCharArray());
         String alias = (String)ks.aliases().nextElement();
         PrivateKey pk = (PrivateKey)ks.getKey(alias, password.toCharArray());
         Certificate[] chain = ks.getCertificateChain(alias);
-        
+        // reader and stamper
         PdfReader reader = new PdfReader(src);
         FileOutputStream fout = new FileOutputStream(dest);
         PdfStamper stp = PdfStamper.createSignature(reader, fout, '\0');
@@ -78,12 +88,13 @@ public class TimestampOCSP {
         dic.setContact(sap.getContact());
         dic.setDate(new PdfDate(sap.getSignDate()));
         sap.setCryptoDictionary(dic);
-
+        // preserve some space for the contents
         int contentEstimated = 15000;
         HashMap<PdfName,Integer> exc = new HashMap<PdfName,Integer>();
         exc.put(PdfName.CONTENTS, new Integer(contentEstimated * 2 + 2));
         sap.preClose(exc);
 
+        // make the digest
         InputStream data = sap.getRangeStream();
         MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
         byte buf[] = new byte[8192];
@@ -93,7 +104,7 @@ public class TimestampOCSP {
         }
         byte hash[] = messageDigest.digest();
         Calendar cal = Calendar.getInstance();
-
+        // If we add a time stamp:
         TSAClient tsc = null;
         if (withTS) {
             String tsa_url    = properties.getProperty("TSA");
@@ -101,6 +112,7 @@ public class TimestampOCSP {
             String tsa_passw  = properties.getProperty("TSA_PASSWORD");
             tsc = new TSAClientBouncyCastle(tsa_url, tsa_login, tsa_passw);
         }
+        // If we use OCSP:
         byte[] ocsp = null;
         if (withOCSP) {
             String url = PdfPKCS7.getOCSPURL((X509Certificate)chain[0]);
@@ -109,6 +121,7 @@ public class TimestampOCSP {
             X509Certificate root = (X509Certificate) cf.generateCertificate(is);
             ocsp = new OcspClientBouncyCastle((X509Certificate)chain[0], root, url).getEncoded();
         }
+        // Create the signature
         PdfPKCS7 sgn = new PdfPKCS7(pk, chain, null, "SHA1", null, false);
         byte sh[] = sgn.getAuthenticatedAttributeBytes(hash, cal, ocsp);
         sgn.update(sh, 0, sh.length);
@@ -119,7 +132,7 @@ public class TimestampOCSP {
 
         byte[] paddedSig = new byte[contentEstimated];
         System.arraycopy(encodedSig, 0, paddedSig, 0, encodedSig.length);
-
+        // Replace the contents
         PdfDictionary dic2 = new PdfDictionary();
         dic2.put(PdfName.CONTENTS, new PdfString(paddedSig).setHexWriting(true));
         sap.close(dic2);

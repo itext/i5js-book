@@ -24,6 +24,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.DefaultFontMapper.BaseFontParameters;
 
 public class Text4ToPdf {
+
     /** The resulting PDF. */
     public static final String RESULT = "results/part4/chapter14/text4.pdf";
 
@@ -35,19 +36,27 @@ public class Text4ToPdf {
      * @throws BadLocationException 
      */
     public void createPdf(String filename) throws IOException, DocumentException, BadLocationException {
+    	// step 1
         Document document = new Document(new Rectangle(300, 150));
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
+        // create a default font mapper
         DefaultFontMapper mapper = new DefaultFontMapper();
+        // and map MS Gothic to the corresponding font program
         BaseFontParameters parameters = new BaseFontParameters("c:/windows/fonts/msgothic.ttc,1");
         parameters.encoding = BaseFont.IDENTITY_H;
         mapper.putName("MS PGothic", parameters );
         Graphics2D g2 = canvas.createGraphics(300, 150, mapper);
+        // create the text pane and print it.
         JTextPane text = TextExample4.createTextPane();
         text.setSize(new Dimension(300, 150));
         text.print(g2);
         g2.dispose();
+        // step 5
         document.close();
     }
     /**

@@ -22,7 +22,9 @@ import part2.chapter08.Subscribe;
 
 public class InspectForm {
 
+	/** A text file containing information about a form. */
     public static final String RESULTTXT = "results/part4/chapter13/fieldflags.txt";
+
     /**
      * Inspects a PDF file src with the file dest as result
      * @param src the original PDF
@@ -54,6 +56,12 @@ public class InspectForm {
         out.close();
     }
     
+    /**
+     * Inspects a form.
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
     public static void main(String[] args) throws IOException, DocumentException {
         new Subscribe().createPdf(Subscribe.RESULT);
         new InspectForm().inspectPdf(Subscribe.RESULT, RESULTTXT);

@@ -27,22 +27,41 @@ import com.lowagie.filmfestival.Movie;
 import com.lowagie.filmfestival.PojoFactory;
 
 public class XfaMovies {
-    
+
+	/** The original PDF. */
     public static final String RESOURCE = "resources/pdfs/xfa_movies.pdf";
+    /** Information about the form in xfa_movies.pdf */
     public static final String RESULTTXT = "results/part2/chapter08/movies_xfa.txt";
+    /** The XML data that is going to be used to fill out the XFA form. */
     public static final String XMLDATA = "results/part2/chapter08/movies.xml";
-    public static final String RESULTXFA = "results/part2/chapter08/movies_xfa.xml";
+	/** The resulting PDF. */
     public static final String RESULT = "results/part2/chapter08/xfa_filled_in.pdf";
 
-    public static void main(String[] args) throws IOException, SQLException, DocumentException {
-        new XfaMovie().readFieldnames(RESOURCE, RESULTTXT);
-        XfaMovies xfa = new XfaMovies();
-        xfa.createXML(XMLDATA);
-        xfa.manipulatePdf(RESOURCE, XMLDATA, RESULT);
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param xml the XML data that needs to be added to the XFA form
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public void manipulatePdf(String src, String xml, String dest) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(src);
+        PdfStamper stamper = new PdfStamper(reader,
+                new FileOutputStream(dest));
+        AcroFields form = stamper.getAcroFields();
+        XfaForm xfa = form.getXfa();
+        xfa.fillXfaForm(new FileInputStream(XMLDATA));
+        stamper.close();
     }
     
+    /**
+     * Creates an XML file containing data about movies.
+     * @param dest the path to the resulting XML file
+     * @throws IOException
+     * @throws SQLException
+     */
     public void createXML(String dest) throws IOException, SQLException {
-        // getting new data from a "datasets" XML snippet
         OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(dest), "UTF-8");
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
         List<Movie> movies = PojoFactory.getMovies(connection);
@@ -56,17 +75,12 @@ public class XfaMovies {
         out.close();
         connection.close();
     }
-
-    public void manipulatePdf(String src, String xml, String dest) throws IOException, DocumentException {
-        PdfReader reader = new PdfReader(src);
-        PdfStamper stamper = new PdfStamper(reader,
-                new FileOutputStream(dest));
-        AcroFields form = stamper.getAcroFields();
-        XfaForm xfa = form.getXfa();
-        xfa.fillXfaForm(new FileInputStream(XMLDATA));
-        stamper.close();
-    }
     
+    /**
+     * Creates an XML snippet containing information about a movie.
+     * @param movie the Movie pojo
+     * @return an XML snippet 
+     */
     public String getXml(Movie movie) {
         StringBuffer buf = new StringBuffer();
         buf.append("<movie duration=\"");
@@ -102,5 +116,18 @@ public class XfaMovies {
         buf.append("</countries>");
         buf.append("</movie>\n");
         return buf.toString();
+    }
+
+    /**
+     * Main method
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void main(String[] args) throws IOException, SQLException, DocumentException {
+        new XfaMovie().readFieldnames(RESOURCE, RESULTTXT);
+        XfaMovies xfa = new XfaMovies();
+        xfa.createXML(XMLDATA);
+        xfa.manipulatePdf(RESOURCE, XMLDATA, RESULT);
     }
 }

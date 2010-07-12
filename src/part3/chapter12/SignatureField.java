@@ -34,16 +34,24 @@ import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class SignatureField {
-    
+
+    /** The resulting PDF */
     public static String ORIGINAL = "results/part3/chapter12/unsigned.pdf";
+    /** The resulting PDF */
     public static String SIGNED1 = "results/part3/chapter12/signed_1.pdf";
+    /** The resulting PDF */
     public static String SIGNED2 = "results/part3/chapter12/signed_2.pdf";
 
     /** One of the resources. */
     public static final String RESOURCE
         = "resources/img/1t3xt.gif";
 
+    /**
+     * A properties file that is PRIVATE.
+     * You should make your own properties file and adapt this line.
+     */
     public static String PATH = "c:/home/blowagie/key.properties";
+    /** Some properties used when signing. */
     public static Properties properties = new Properties();
     
     /**
@@ -53,9 +61,13 @@ public class SignatureField {
      * @throws IOException 
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         document.add(new Paragraph("Hello World!"));
         PdfFormField field = PdfFormField.createSignature(writer);
         field.setWidget(new Rectangle(72, 732, 144, 780), PdfAnnotation.HIGHLIGHT_INVERT);
@@ -69,6 +81,7 @@ public class SignatureField {
         tp.stroke();
         field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, tp);
         writer.addAnnotation(field);
+        // step 5
         document.close();
     }
 
@@ -81,7 +94,8 @@ public class SignatureField {
      * @throws GeneralSecurityException 
      */
     public void signPdf(String src, String dest, boolean certified, boolean graphic) throws IOException, DocumentException, GeneralSecurityException {
-        String path = properties.getProperty("PRIVATE");
+        // private key and certificate
+    	String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
         String key_password = properties.getProperty("PASSWORD");
         KeyStore ks = KeyStore.getInstance("pkcs12", "BC");
@@ -89,7 +103,7 @@ public class SignatureField {
         String alias = (String)ks.aliases().nextElement();
         PrivateKey pk = (PrivateKey)ks.getKey(alias, key_password.toCharArray());
         Certificate[] chain = ks.getCertificateChain(alias);
-
+        // reader and stamper
         PdfReader reader = new PdfReader(ORIGINAL);
         PdfStamper stamper = PdfStamper.createSignature(reader, new FileOutputStream(dest), '\0');
         PdfSignatureAppearance appearance = stamper.getSignatureAppearance();

@@ -35,19 +35,16 @@ import com.itextpdf.text.pdf.PushbuttonField;
 import com.itextpdf.text.pdf.RadioCheckField;
 
 public class Buttons {
-
+	/** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/buttons.pdf";
+	/** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/buttons_filled.pdf";
-    /** Path to the resources. */
+    /** Path to a JavaScript resource. */
     public static final String RESOURCE = "resources/js/buttons.js";
+    /** Path to an image used as button icon. */
     public static final String IMAGE = "resources/img/info.png";
+    /** Possible values of a radio field / checkboxes */
     public static final String[] LANGUAGES = { "English", "German", "French", "Spanish", "Dutch" };
-
-    public static void main(String[] args) throws IOException, DocumentException {
-        Buttons buttons = new Buttons();
-        buttons.createPdf(RESULT1);
-        buttons.manipulatePdf(RESULT1, RESULT2);
-    }
 
     /**
      * Creates a PDF document.
@@ -56,12 +53,17 @@ public class Buttons {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer =
             PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
+        // add the JavaScript
         writer.addJavaScript(Utilities.readFileToString(RESOURCE));
-        
+        // add the radio buttons
         PdfContentByte canvas = writer.getDirectContent();
         Font font = new Font(FontFamily.HELVETICA, 18);
         Rectangle rect;
@@ -80,7 +82,7 @@ public class Buttons {
             ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(LANGUAGES[i], font), 70, 790 - i * 40, 0);
         }
         writer.addAnnotation(radiogroup);
-
+        // Add the check boxes
         PdfAppearance[] onOff = new PdfAppearance[2];
         onOff[0] = canvas.createAppearance(20, 20);
         onOff[0].rectangle(1, 1, 18, 18);
@@ -106,7 +108,7 @@ public class Buttons {
             ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(LANGUAGES[i], font), 210,
                     790 - i * 40, 0);
         }
-        
+        // Add the push button
         rect = new Rectangle(300, 806, 370, 788);
         PushbuttonField button = new PushbuttonField(writer, rect, "Buttons");
         button.setBackgroundColor(new GrayColor(0.75f));
@@ -124,11 +126,18 @@ public class Buttons {
         field = button.getField();
         field.setAction(PdfAction.javaScript("this.showButtonState()", writer));
         writer.addAnnotation(field);
-        
+        // step 5
         document.close();
 
     }
-    
+
+    /**
+     * Manipulates a PDF file src with the file dest as result
+     * @param src the original PDF
+     * @param dest the resulting PDF
+     * @throws IOException
+     * @throws DocumentException
+     */
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
@@ -140,5 +149,17 @@ public class Buttons {
             form.setField(LANGUAGES[i], checkboxstates[i % 2 == 0 ? 1 : 0]);
         }
         stamper.close();
+    }
+
+    /**
+     * Main method
+     * @param args no arguments needed
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void main(String[] args) throws IOException, DocumentException {
+        Buttons buttons = new Buttons();
+        buttons.createPdf(RESULT1);
+        buttons.manipulatePdf(RESULT1, RESULT2);
     }
 }

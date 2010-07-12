@@ -18,10 +18,14 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PdfXPdfA {
 
+    /** The resulting PDF file. */
     public static final String RESULT1 = "results/part4/chapter13/x.pdf";
+    /** The resulting PDF file. */
     public static final String RESULT2 = "results/part4/chapter13/a.pdf";
 
+    /** A font program that is used. */
     public static final String FONT = "c:/windows/fonts/arial.ttf";
+    /** A color profile that is used. */
     public static final String PROFILE = "resources/img/sRGB.profile";
     
     /**
@@ -30,8 +34,7 @@ public class PdfXPdfA {
      * @throws DocumentException 
      * @throws IOException
      */
-    public void createPdfX(String filename)
-    throws IOException, DocumentException {
+    public void createPdfX(String filename) throws IOException, DocumentException {
         // step 1
         Document document = new Document();
         // step 2
@@ -55,8 +58,7 @@ public class PdfXPdfA {
      * @throws DocumentException 
      * @throws IOException
      */
-    public void createPdfA(String filename)
-    throws IOException, DocumentException {
+    public void createPdfA(String filename) throws IOException, DocumentException {
         // step 1
         Document document = new Document();
         // step 2

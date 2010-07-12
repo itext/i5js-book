@@ -21,7 +21,7 @@ public class TransformationMatrix2 {
 
     /** The resulting PDF. */
     public static final String RESULT = "results/part4/chapter14/transformation_matrix2.pdf";
-
+    /** A PDF with the iText logo that will be transformed. */
     public static final String RESOURCE = "resources/pdfs/logo.pdf";
     
     /**
@@ -31,11 +31,16 @@ public class TransformationMatrix2 {
      * @throws IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Rectangle rect = new Rectangle(-595, -842, 595, 842);
         Document document = new Document(rect);
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document,
                 new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
+        // draw the coordinate system
         PdfContentByte canvas = writer.getDirectContent();
         canvas.moveTo(-595, 0);
         canvas.lineTo(595, 0);
@@ -43,16 +48,17 @@ public class TransformationMatrix2 {
         canvas.lineTo(0, 842);
         canvas.stroke();
         
+        // read the PDF with the logo
         PdfReader reader = new PdfReader(RESOURCE);
         PdfTemplate template = writer.getImportedPage(reader, 1);
-        
+        // add it at different positions using different transformations
         canvas.addTemplate(template, 0, 0);
         canvas.addTemplate(template, 0.5f, 0, 0, 0.5f, -595, 0);
         canvas.addTemplate(template, 0.5f, 0, 0, 0.5f, -297.5f, 297.5f);
         canvas.addTemplate(template, 1, 0, 0.4f, 1, -750, -650);
         canvas.addTemplate(template, 0, -1, -1, 0, 650, 0);
         canvas.addTemplate(template, 0, -0.2f, -0.5f, 0, 350, 0);
-
+        // step 5
         document.close();
     }
     

@@ -22,7 +22,7 @@ public class TransformationMatrix3 {
 
     /** The resulting PDF. */
     public static final String RESULT = "results/part4/chapter14/transformation_matrix3.pdf";
-
+    /** A PDF with the iText logo that will be transformed */
     public static final String RESOURCE = "resources/pdfs/logo.pdf";
     
     /**
@@ -32,21 +32,26 @@ public class TransformationMatrix3 {
      * @throws IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Rectangle rect = new Rectangle(-595, -842, 595, 842);
         Document document = new Document(rect);
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document,
                 new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
+        // draw coordinate system
         canvas.moveTo(-595, 0);
         canvas.lineTo(595, 0);
         canvas.moveTo(0, -842);
         canvas.lineTo(0, 842);
         canvas.stroke();
-        
+        // read the PDF with the logo
         PdfReader reader = new PdfReader(RESOURCE);
         PdfTemplate template = writer.getImportedPage(reader, 1);
-        
+        // add it
         canvas.saveState();
         canvas.addTemplate(template, 0, 0);
         AffineTransform af = new AffineTransform();
@@ -69,7 +74,7 @@ public class TransformationMatrix3 {
         af = new AffineTransform(0, -0.2f, -0.5f, 0, 350, 0);
         canvas.addTemplate(template, af);
         canvas.restoreState();
-        
+        // step 5
         document.close();
     }
     

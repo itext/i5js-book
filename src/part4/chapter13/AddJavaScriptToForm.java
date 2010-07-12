@@ -50,10 +50,13 @@ public class AddJavaScriptToForm {
      * @throws    SQLException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
- 
+        // step 4
         BaseFont bf = BaseFont.createFont();
         PdfContentByte directcontent = writer.getDirectContent();
         directcontent.beginText();
@@ -63,7 +66,7 @@ public class AddJavaScriptToForm {
         directcontent.showTextAligned(Element.ALIGN_LEFT, "NO", 102, 750, 0);
         directcontent.showTextAligned(Element.ALIGN_LEFT, "Name partner?", 36, 730, 0);
         directcontent.endText();
- 
+        // create a radio button field
         PdfFormField married = PdfFormField.createRadioButton(writer, true);
         married.setFieldName("married");
         married.setValueAsName("yes");
@@ -76,13 +79,13 @@ public class AddJavaScriptToForm {
         no.setChecked(false);
         married.addKid(no.getRadioField());
         writer.addAnnotation(married);
- 
+        // create a text field
         Rectangle rect = new Rectangle(40, 710, 200, 726);
         TextField partner = new TextField(writer, rect, "partner");
         partner.setBorderColor(GrayColor.GRAYBLACK);
         partner.setBorderWidth(0.5f);
         writer.addAnnotation(partner.getTextField());
- 
+        // step 5
         document.close();
     }
     
@@ -95,12 +98,17 @@ public class AddJavaScriptToForm {
      */
     public void manipulatePdf(String src, String dest)
         throws IOException, DocumentException {
+    	// Create a reader and a stamper
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-        stamper.getWriter().addJavaScript(Utilities.readFileToString(RESOURCE));
+        // Get the writer from the stamper
+        PdfWriter writer = stamper.getWriter();
+        // Add JavaScript
+        writer.addJavaScript(Utilities.readFileToString(RESOURCE));
+        // get the form fields
         AcroFields form = stamper.getAcroFields();
         AcroFields.Item fd = form.getFieldItem("married");
- 
+        // Get the PDF dictionary of the YES radio button and add an additional action
         PdfDictionary dictYes =
             (PdfDictionary) PdfReader.getPdfObject(fd.getWidgetRef(0));
         PdfDictionary yesAction = dictYes.getAsDict(PdfName.AA);
@@ -108,7 +116,7 @@ public class AddJavaScriptToForm {
         yesAction.put(new PdfName("Fo"),
                 PdfAction.javaScript("setReadOnly(false);", stamper.getWriter()));
         dictYes.put(PdfName.AA, yesAction);
- 
+        // Get the PDF dictionary of the NO radio button and add an additional action
         PdfDictionary dictNo =
             (PdfDictionary) PdfReader.getPdfObject(fd.getWidgetRef(1));
         PdfDictionary noAction = dictNo.getAsDict(PdfName.AA);
@@ -116,8 +124,7 @@ public class AddJavaScriptToForm {
         noAction.put(new PdfName("Fo"),
                 PdfAction.javaScript("setReadOnly(true);", stamper.getWriter()));
         dictNo.put(PdfName.AA, noAction);
- 
-        PdfWriter writer = stamper.getWriter();
+        // Create a submit button and add it to the stamper
         PushbuttonField button = new PushbuttonField(writer,
                 new Rectangle(40, 690, 200, 710), "submit");
         button.setText("validate and submit");
@@ -125,6 +132,7 @@ public class AddJavaScriptToForm {
         PdfFormField validateAndSubmit = button.getField();
         validateAndSubmit.setAction(PdfAction.javaScript("validate();", stamper.getWriter()));
         stamper.addAnnotation(validateAndSubmit, 1);
+        // close the stamper
         stamper.close();
     }
     

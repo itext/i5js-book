@@ -20,12 +20,14 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 public class FixBrokenForm {
 
-    /** The resulting PDF file. */
+    /** The original PDF file. */
     public static final String ORIGINAL = "resources/pdfs/broken_form.pdf";
     /** The resulting PDF file. */
     public static final String FIXED = "results/part4/chapter13/fixed_form.pdf";
 
+    /** The original PDF file that couldn't be filled out. */
     public static final String RESULT1 = "results/part4/chapter13/broken_form.pdf";
+    /** The fixed PDF file that was correctly filled out. */
     public static final String RESULT2 = "results/part4/chapter13/filled_form.pdf";
     
     /**
@@ -55,6 +57,12 @@ public class FixBrokenForm {
         stamper.close();
     }
     
+    /**
+     * @param src
+     * @param dest
+     * @throws IOException
+     * @throws DocumentException
+     */
     public void fillData(String src, String dest) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));

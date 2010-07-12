@@ -29,11 +29,17 @@ public class GraphicsStateOperators {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter writer = PdfWriter.getInstance(document,
                 new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         PdfContentByte canvas = writer.getDirectContent();
+        
+        // line widths
         canvas.saveState();
         for (int i = 25; i > 0; i--) {
             canvas.setLineWidth((float) i / 10);
@@ -43,6 +49,7 @@ public class GraphicsStateOperators {
         }
         canvas.restoreState();
         
+        // line cap
         canvas.moveTo(350, 800);
         canvas.lineTo(350, 750);
         canvas.moveTo(540, 800);
@@ -65,6 +72,7 @@ public class GraphicsStateOperators {
         canvas.stroke();
         canvas.restoreState();
         
+        // join miter
         canvas.saveState();
         canvas.setLineWidth(8);
         canvas.setLineJoin(PdfContentByte.LINE_JOIN_MITER);
@@ -84,6 +92,7 @@ public class GraphicsStateOperators {
         canvas.stroke();
         canvas.restoreState();
 
+        // line dash
         canvas.saveState();
         canvas.setLineWidth(3);
         canvas.moveTo(50, 660);
@@ -114,6 +123,7 @@ public class GraphicsStateOperators {
         canvas.stroke();
         canvas.restoreState();
 
+        // miter limit
         PdfTemplate hooks = canvas.createTemplate(300, 120);
         hooks.setLineWidth(8);
         hooks.moveTo(46, 50);
@@ -146,7 +156,7 @@ public class GraphicsStateOperators {
         canvas.setMiterLimit(2.1f);
         canvas.addTemplate(hooks, 300, 550);
         canvas.restoreState();
-        
+        // step 5
         document.close();
     }
         
