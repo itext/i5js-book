@@ -51,12 +51,19 @@ public class EncodingNames {
         showEncodings(document, FONT[1]);
         document.newPage();
         showEncodings(document, FONT[2]);
-        // step 5: we close the document
+        // step 5
         document.close();
     }
     
+    /**
+     * Writes the available encodings of a font to the document.
+     * @param document the document to which the encodings have to be written
+     * @param font     the font
+     * @throws DocumentException
+     * @throws IOException
+     */
     public void showEncodings(Document document, String font) throws DocumentException, IOException {
-        BaseFont bf = BaseFont.createFont(font,    BaseFont.WINANSI, BaseFont.EMBEDDED);
+        BaseFont bf = BaseFont.createFont(font, BaseFont.WINANSI, BaseFont.EMBEDDED);
         document.add(new Paragraph("PostScript name: " + bf.getPostscriptFontName()));
         document.add(new Paragraph("Available code pages:"));
         String[] encoding = bf.getCodePagesSupported();

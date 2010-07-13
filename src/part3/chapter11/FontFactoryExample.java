@@ -38,7 +38,7 @@ public class FontFactoryExample {
         Document document = new Document();
         // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
-        // step 3: we open the document
+        // step 3
         document.open();
         // step 4:
         Font font = FontFactory.getFont("Times-Roman");
@@ -78,7 +78,7 @@ public class FontFactoryExample {
         document.add(new Paragraph("Garamond", garamond));
         Font garamondItalic = FontFactory.getFont("Garamond", BaseFont.WINANSI, BaseFont.EMBEDDED, 12, Font.ITALIC);
         document.add(new Paragraph("Garamond-Italic", garamondItalic));
-        // step 5: we close the document
+        // step 5
         document.close();
     }
 

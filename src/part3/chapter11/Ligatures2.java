@@ -43,7 +43,7 @@ public class Ligatures2 {
         Document document = new Document();
         // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-        // step 3: we open the document
+        // step 3
         document.open();
         // step 4
         BaseFont bf = BaseFont.createFont(
@@ -58,7 +58,7 @@ public class Ligatures2 {
         column.addElement(new Paragraph("Wrong: " + MOVIE_WITH_SPACES, font));
         column.addElement(new Paragraph(MOVIE, font));
         column.go();
-        // step 5: we close the document
+        // step 5
         document.close();
     }
 

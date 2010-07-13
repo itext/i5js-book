@@ -57,7 +57,14 @@ public class PagedImages {
         document.close();
     }
     
-    public void addTif(Document document, String path) throws DocumentException, IOException {
+    /**
+     * Adds the different pages inside a single TIFF file to a document.
+     * @param document the document to which the pages have to be added
+     * @param path     the path to the TIFF file
+     * @throws DocumentException
+     * @throws IOException
+     */
+    public static void addTif(Document document, String path) throws DocumentException, IOException {
         RandomAccessFileOrArray ra = new RandomAccessFileOrArray(RESOURCE1);
         int n = TiffImage.getNumberOfPages(ra);
         Image img;
@@ -68,7 +75,14 @@ public class PagedImages {
         }
     }
     
-    public void addJBIG2(Document document, String path) throws IOException, DocumentException {
+    /**
+     * Adds the different pages inside a JBIG2 file to a document.
+     * @param document the document to which the pages have to be added
+     * @param path     the path to the JBIG2 file
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void addJBIG2(Document document, String path) throws IOException, DocumentException {
         RandomAccessFileOrArray ra = new RandomAccessFileOrArray(RESOURCE2);
         int n = JBIG2Image.getNumberOfPages(ra);
         Image img;
@@ -79,7 +93,14 @@ public class PagedImages {
         }
     }
     
-    public void addGif(Document document, String path) throws IOException, DocumentException {
+    /**
+     * Adds the different frames inside an animated GIF to a document.
+     * @param document the document to which the frames have to be added
+     * @param path     the path to the GIF file
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public static void addGif(Document document, String path) throws IOException, DocumentException {
         GifImage img = new GifImage(RESOURCE3);
         int n = img.getFrameCount();
         for (int i = 1; i <= n; i++) {

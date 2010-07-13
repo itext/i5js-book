@@ -33,6 +33,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class Barcodes {
 
+    /** The resulting PDF. */
     private static final String RESULT = "results/part3/chapter10/barcodes.pdf";
 
     /**
@@ -48,21 +49,20 @@ public class Barcodes {
         new Barcodes().createPdf(RESULT);
     }
 
-    public void createPdf(String filename) throws IOException,
-            DocumentException {
-        // step 1: creation of a document-object
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException
+     */
+    public void createPdf(String filename) throws IOException, DocumentException {
+        // step 1
         Document document = new Document(new Rectangle(340, 842));
-        // step 2:
-        // we create a writer
-        PdfWriter writer = PdfWriter
-                .getInstance(
-                // that listens to the document
-                        document,
-                        // and directs a PDF-stream to a file
-                        new FileOutputStream(filename));
-        // step 3: we open the document
+        // step 2
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
-        // step 4: we add a paragraph to the document
+        // step 4
         PdfContentByte cb = writer.getDirectContent();
 
         // EAN 13
@@ -228,7 +228,7 @@ public class Barcodes {
         img = qrcode.getImage();
         document.add(img);
         
-        // step 5: we close the document
+        // step 5
         document.close();
     }
 }

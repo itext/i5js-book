@@ -41,9 +41,9 @@ public class RightToLeftExample {
         Document document = new Document(PageSize.A4);
         // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
-        // step 3: we open the document
+        // step 3
         document.open();
-        // step 4:
+        // step 4
         BaseFont bf = BaseFont.createFont(
             "c:/windows/fonts/arial.ttf", BaseFont.IDENTITY_H, true);
         Font font = new Font(bf, 14);
@@ -54,7 +54,7 @@ public class RightToLeftExample {
         column.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
         column.addElement(new Paragraph(MOVIE, font));
         column.go();
-        // step 5: we close the document
+        // step 5
         document.close();
     }
 

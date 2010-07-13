@@ -145,7 +145,7 @@ public class Peace extends DefaultHandler {
         // step 1
         Document doc = new Document(PageSize.A4.rotate());
         try {
-            // step 2 (creating the writer)
+            // step 2
             PdfWriter.getInstance(doc, new FileOutputStream(RESULT));
             // step 3
             doc.open();

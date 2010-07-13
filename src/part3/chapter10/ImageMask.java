@@ -44,7 +44,6 @@ public class ImageMask {
         Image img = Image.getInstance(RESOURCE);
         img.setImageMask(mask);
         document.add(img);
-
         // step 5
         document.close();
     }

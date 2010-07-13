@@ -39,8 +39,11 @@ public class XmlHandler extends DefaultHandler {
     /** This is the current chunk to which characters can be added. */
     protected Chunk currentChunk = null;
 
+    /** Stores the year when it's encountered in the XML. */
     protected String year = null;
+    /** Stores the duration when it's encountered in the XML. */
     protected String duration = null;
+    /** Stores the imdb ID when it's encountered in the XML. */
     protected String imdb = null;
     
     /**
@@ -156,7 +159,7 @@ public class XmlHandler extends DefaultHandler {
     }
 
     /**
-     * Flushes the stack, adding al objects in it to the document.
+     * Flushes the stack, adding all objects in it to the document.
      */
     private void flushStack() {
         try {

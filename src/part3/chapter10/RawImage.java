@@ -35,14 +35,14 @@ public class RawImage {
         // step 3
         document.open();
         // step 4
-        // Image in colorspace DeviceGray
+        // Image in color space DeviceGray
         byte gradient[] = new byte[256];
         for (int i = 0; i < 256; i++)
             gradient[i] = (byte) i;
         Image img1 = Image.getInstance(256, 1, 1, 8, gradient);
         img1.scaleAbsolute(256, 50);
         document.add(img1);
-        // Image in colorspace RGB
+        // Image in color space RGB
         byte cgradient[] = new byte[256 * 3];
         for (int i = 0; i < 256; i++) {
             cgradient[i * 3] = (byte) (255 - i);

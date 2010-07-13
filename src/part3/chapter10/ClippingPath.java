@@ -51,7 +51,6 @@ public class ClippingPath {
         Image clipped = Image.getInstance(t);
         clipped.scalePercent(50);
         document.add(clipped);
-
         // step 5
         document.close();
     }

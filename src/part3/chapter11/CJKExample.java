@@ -74,7 +74,7 @@ public class CJKExample {
         }
 
         
-        // step 5: we close the document
+        // step 5
         document.close();
     }
 

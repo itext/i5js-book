@@ -27,7 +27,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class MovieServlet extends HttpServlet {
 
-
     /**
      * Reads an XML file and serves it as PDF to the browser.
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +42,7 @@ public class MovieServlet extends HttpServlet {
             document.open();
             // step 4
             InputStream is
-            = getServletContext().getResourceAsStream("/movies.xml");
+                = getServletContext().getResourceAsStream("/movies.xml");
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
             parser.parse(new InputSource(is), new XmlHandler(document));
             // step 5

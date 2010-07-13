@@ -17,13 +17,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 
-/**
- * This example was written by Bruno Lowagie. It is part of the book 'iText in
- * Action' by Manning Publications. 
- * ISBN: 1932394796
- * http://www.1t3xt.com/docs/book.php 
- * http://www.manning.com/lowagie/
- */
 
 public class Diacritics2 {
 

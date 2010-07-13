@@ -47,9 +47,13 @@ public class FontTypes {
      * @throws    IOException
      */
     public void createPdf(String filename) throws IOException, DocumentException {
+    	// step 1
         Document document = new Document();
+        // step 2
         PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
         document.open();
+        // step 4
         BaseFont bf;
         Font font;
         for (int i = 0; i < FONTS.length; i++) {
@@ -62,6 +66,7 @@ public class FontTypes {
             document.add(new Paragraph(TEXT, font));
             document.add(new LineSeparator(0.5f, 100, null, 0, -5));
         }
+        // step 5
         document.close();
     }
 

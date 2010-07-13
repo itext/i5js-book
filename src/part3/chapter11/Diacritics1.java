@@ -71,7 +71,7 @@ public class Diacritics1 {
             font = new Font(bf, 20);
             document.add(new Paragraph(MOVIE, font));
         }
-        // step 5: we close the document
+        // step 5
         document.close();
     }
 

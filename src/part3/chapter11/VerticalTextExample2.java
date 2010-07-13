@@ -54,7 +54,6 @@ public class VerticalTextExample2 extends VerticalTextExample1 {
         vt.setAlignment(Element.ALIGN_RIGHT);
         vt.addText(new Phrase(convertCIDs(TEXT2), font));
         vt.go();
-
         // step 5: we close the document
         document.close();
     }

@@ -54,6 +54,7 @@ public class ImageTypes {
         // step 3
         document.open();
         // step 4
+        // Adding a series of images
         Image img;
         for (int i = 0; i < RESOURCES.length; i++) {
             img = Image.getInstance(String.format("resources/img/%s", RESOURCES[i]));
@@ -64,13 +65,13 @@ public class ImageTypes {
                     String.format("%s is an image of type %s", RESOURCES[i], img.getClass().getName())));
             document.add(img);
         }
-        
+        // Adding a java.awt.Image
         java.awt.Image awtImage = Toolkit.getDefaultToolkit().createImage(RESOURCE);
         img = com.itextpdf.text.Image.getInstance(awtImage, null);
         document.add(new Paragraph(
                 String.format("%s is an image of type %s", "java.awt.Image", img.getClass().getName())));
         document.add(img);
-        
+        // Adding a barcode
         BarcodeEAN codeEAN = new BarcodeEAN();
         codeEAN.setCodeType(Barcode.EAN13);
         codeEAN.setCode("9781935182610");
@@ -78,7 +79,7 @@ public class ImageTypes {
         document.add(new Paragraph(
                 String.format("%s is an image of type %s", "barcode", img.getClass().getName())));
         document.add(img);
-
+        // Adding a matrix code
         BarcodePDF417 pdf417 = new BarcodePDF417();
         String text = "iText in Action, a book by Bruno Lowagie.";
         pdf417.setText(text);

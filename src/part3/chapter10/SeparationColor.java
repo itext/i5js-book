@@ -78,8 +78,6 @@ public class SeparationColor extends DeviceColor {
         canvas.rectangle(306, 716, 36, 36);
         canvas.fillStroke();
 
-
-
         // step 5
         document.close();
     }
