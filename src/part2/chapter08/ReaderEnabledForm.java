@@ -39,7 +39,8 @@ public class ReaderEnabledForm {
      * @throws IOException
      * @throws DocumentException
      */
-    public void manipulatePdf(String src, String dest, boolean remove, boolean preserve) throws IOException, DocumentException {
+    public void manipulatePdf(String src, String dest, boolean remove, boolean preserve)
+        throws IOException, DocumentException {
         // create the reader
     	PdfReader reader = new PdfReader(src);
         // remove the usage rights (or not)
@@ -73,7 +74,9 @@ public class ReaderEnabledForm {
      * @throws TransformerException
      * @throws DocumentException
      */
-    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException, DocumentException {
+    public static void main(String[] args) throws IOException, DocumentException,
+        ParserConfigurationException, SAXException,
+        TransformerFactoryConfigurationError, TransformerException {
         ReaderEnabledForm form = new ReaderEnabledForm();
         form.manipulatePdf(RESOURCE, RESULT1, false, false);
         form.manipulatePdf(RESOURCE, RESULT2, true, false);

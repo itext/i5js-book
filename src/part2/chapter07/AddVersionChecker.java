@@ -19,7 +19,8 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
 public class AddVersionChecker {
-	/** The resulting PDF file. */
+
+    /** The resulting PDF file. */
     public static final String RESULT
         = "results/part2/chapter07/version_checker.pdf";
     /** Path to a resource. */

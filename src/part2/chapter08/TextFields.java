@@ -32,9 +32,9 @@ import com.itextpdf.text.pdf.TextField;
 
 public class TextFields implements PdfPCellEvent {
 
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/text_fields.pdf";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/text_filled.pdf";
     /** The text field index of a TextField that needs to be added to a cell. */
     protected int tf;
@@ -117,7 +117,8 @@ public class TextFields implements PdfPCellEvent {
 
     /**
      * Creates and adds a text field that will be added to a cell.
-     * @see com.itextpdf.text.pdf.PdfPCellEvent#cellLayout(com.itextpdf.text.pdf.PdfPCell, com.itextpdf.text.Rectangle, com.itextpdf.text.pdf.PdfContentByte[])
+     * @see com.itextpdf.text.pdf.PdfPCellEvent#cellLayout(com.itextpdf.text.pdf.PdfPCell,
+     *      com.itextpdf.text.Rectangle, com.itextpdf.text.pdf.PdfContentByte[])
      */
     public void cellLayout(PdfPCell cell, Rectangle rectangle, PdfContentByte[] canvases) {
         PdfWriter writer = canvases[0].getPdfWriter();
@@ -150,7 +151,8 @@ public class TextFields implements PdfPCellEvent {
             text.setBorderColor(BaseColor.RED);
             text.setBorderWidth(2);
             text.setFontSize(8);
-            text.setText("Enter the reason why you want to win a free accreditation for the Foobar Film Festival");
+            text.setText(
+                "Enter the reason why you want to win a free accreditation for the Foobar Film Festival");
             text.setOptions(TextField.MULTILINE | TextField.REQUIRED);
             break;
         }

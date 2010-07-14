@@ -90,7 +90,9 @@ public class XfaMovie {
      * @throws TransformerFactoryConfigurationError
      * @throws TransformerException
      */
-    public void readXfa(String src, String dest) throws IOException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
+    public void readXfa(String src, String dest)
+        throws IOException, ParserConfigurationException, SAXException,
+            TransformerFactoryConfigurationError, TransformerException {
         FileOutputStream os = new FileOutputStream(dest);
         PdfReader reader = new PdfReader(src);
         XfaForm xfa = new XfaForm(reader);
@@ -132,7 +134,8 @@ public class XfaMovie {
      * @throws ParserConfigurationException
      * @throws SAXException
      */
-    public void fillData2(String src, String xml, String dest) throws IOException, DocumentException, ParserConfigurationException, SAXException {
+    public void fillData2(String src, String xml, String dest)
+        throws IOException, DocumentException, ParserConfigurationException, SAXException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         XfaForm xfa = new XfaForm(reader);
@@ -156,7 +159,9 @@ public class XfaMovie {
      * @throws TransformerFactoryConfigurationError
      * @throws TransformerException
      */
-    public void readData(String src, String dest) throws IOException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
+    public void readData(String src, String dest)
+        throws IOException, ParserConfigurationException, SAXException,
+            TransformerFactoryConfigurationError, TransformerException {
         FileOutputStream os = new FileOutputStream(dest);
         PdfReader reader = new PdfReader(src);
         XfaForm xfa = new XfaForm(reader);
@@ -208,7 +213,9 @@ public class XfaMovie {
      * @throws IOException
      * @throws DocumentException
      */
-    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException, DocumentException {
+    public static void main(String[] args) throws IOException, DocumentException,
+        ParserConfigurationException, SAXException,
+        TransformerFactoryConfigurationError, TransformerException {
         XfaMovie xfa = new XfaMovie();
         xfa.readFieldnames(RESOURCE, RESULTTXT1);
         xfa.readXfa(RESOURCE, RESULTXML);

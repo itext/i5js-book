@@ -68,7 +68,8 @@ public class LinkActions {
         // Add text with a link to an external URL
         Chunk imdb = new Chunk("Internet Movie Database", FilmFonts.ITALIC);
         imdb.setAction(new PdfAction(new URL("http://www.imdb.com/")));
-        p = new Paragraph("Click on a country, and you'll get a list of movies, containing links to the ");
+        p = new Paragraph(
+            "Click on a country, and you'll get a list of movies, containing links to the ");
         p.add(imdb);
         p.add(".");
         document.add(p);
@@ -91,7 +92,8 @@ public class LinkActions {
             Paragraph country = new Paragraph(rs.getString("country"));
             country.add(": ");
             Chunk link = new Chunk(String.format("%d movies", rs.getInt("c")));
-            link.setAction(PdfAction.gotoRemotePage("movie_links_1.pdf", rs.getString("country_id"), false, true));
+            link.setAction(
+                PdfAction.gotoRemotePage("movie_links_1.pdf", rs.getString("country_id"), false, true));
             country.add(link);
             document.add(country);
         }

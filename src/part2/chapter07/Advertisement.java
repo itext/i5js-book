@@ -24,7 +24,8 @@ import com.itextpdf.text.pdf.PushbuttonField;
 import com.itextpdf.text.BaseColor;
 
 public class Advertisement {
-	/** Path to a resource. */
+
+    /** Path to a resource. */
     public static final String RESOURCE = "resources/pdfs/hero.pdf";
     /** Path to a resource. */
     public static final String IMAGE = "resources/img/close.png";

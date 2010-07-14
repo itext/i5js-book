@@ -40,7 +40,9 @@ public class Subscribe {
      * @throws IOException
      * @throws DocumentException
      */
-    public void manipulatePdf(String src, String dest, HashMap<String,TextField> cache, String name, String login) throws IOException, DocumentException {
+    public void manipulatePdf(String src, String dest,
+        HashMap<String,TextField> cache, String name, String login)
+        throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         AcroFields form = stamper.getAcroFields();

@@ -69,7 +69,8 @@ public class MoviePosters2 {
             urx = x + img.getScaledWidth();
             ury = y + img.getScaledHeight();
             addPopup(stamper, new Rectangle(llx, lly, urx, ury),
-                    movie.getMovieTitle(), String.format(INFO, movie.getYear(), movie.getDuration()), movie.getImdb());
+                movie.getMovieTitle(),
+                String.format(INFO, movie.getYear(), movie.getDuration()), movie.getImdb());
             x += 48;
             if (x > 578) {
                 x = 11.5f;

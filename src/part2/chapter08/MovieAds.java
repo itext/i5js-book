@@ -126,7 +126,8 @@ public class MovieAds {
      */
     public void createTemplate(String filename) throws IOException, DocumentException {
     	// step 1
-        Document document = new Document(new Rectangle(Utilities.millimetersToPoints(35), Utilities.millimetersToPoints(50)));
+        Document document = new Document(
+            new Rectangle(Utilities.millimetersToPoints(35), Utilities.millimetersToPoints(50)));
         // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
         writer.setViewerPreferences(PdfWriter.PageLayoutSinglePage);
@@ -205,9 +206,11 @@ public class MovieAds {
      * @return true if the paragraph didn't fit the rectangle
      * @throws DocumentException
      */
-    public boolean addParagraph(Paragraph p, PdfContentByte canvas, FieldPosition f, boolean simulate) throws DocumentException {
+    public boolean addParagraph(Paragraph p, PdfContentByte canvas, FieldPosition f, boolean simulate)
+        throws DocumentException {
         ColumnText ct = new ColumnText(canvas);
-        ct.setSimpleColumn(f.position.getLeft(2), f.position.getBottom(2), f.position.getRight(2), f.position.getTop());
+        ct.setSimpleColumn(
+            f.position.getLeft(2), f.position.getBottom(2), f.position.getRight(2), f.position.getTop());
         ct.addElement(p);
         return ColumnText.hasMoreText(ct.go(simulate));
     }

@@ -45,7 +45,8 @@ public class XfaMovies {
      * @throws IOException
      * @throws DocumentException
      */
-    public void manipulatePdf(String src, String xml, String dest) throws IOException, DocumentException {
+    public void manipulatePdf(String src, String xml, String dest)
+        throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader,
                 new FileOutputStream(dest));

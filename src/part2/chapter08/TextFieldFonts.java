@@ -55,7 +55,8 @@ public class TextFieldFonts {
      * @throws    DocumentException 
      * @throws    IOException
      */
-    public void createPdf(String filename, boolean appearances, boolean font) throws IOException, DocumentException {
+    public void createPdf(String filename, boolean appearances, boolean font)
+        throws IOException, DocumentException {
     	// step 1
         Document document = new Document();
         // step 2
@@ -67,7 +68,8 @@ public class TextFieldFonts {
         TextField text = new TextField(writer, new Rectangle(36, 806, 559, 780), "description");
         text.setOptions(TextField.MULTILINE);
         if (font) {
-            BaseFont unicode = BaseFont.createFont("c:/windows/fonts/arialuni.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont unicode =
+                BaseFont.createFont("c:/windows/fonts/arialuni.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             text.setExtensionFont(BaseFont.createFont());
             ArrayList<BaseFont> list = new ArrayList<BaseFont>();
             list.add(unicode);
@@ -105,7 +107,8 @@ public class TextFieldFonts {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         AcroFields form = stamper.getAcroFields();
-        BaseFont unicode = BaseFont.createFont("HYSMyeongJoStd-Medium", "UniKS-UCS2-H", BaseFont.NOT_EMBEDDED);
+        BaseFont unicode =
+            BaseFont.createFont("HYSMyeongJoStd-Medium", "UniKS-UCS2-H", BaseFont.NOT_EMBEDDED);
         form.setFieldProperty("description", "textfont", unicode, null);
         form.setField("description", BINJIP);
         stamper.close();
@@ -122,7 +125,8 @@ public class TextFieldFonts {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         AcroFields form = stamper.getAcroFields();
-        BaseFont unicode = BaseFont.createFont("c:/windows/fonts/arialuni.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        BaseFont unicode =
+            BaseFont.createFont("c:/windows/fonts/arialuni.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
         form.addSubstitutionFont(unicode);
         form.setField("description", BINJIP);
         stamper.close();

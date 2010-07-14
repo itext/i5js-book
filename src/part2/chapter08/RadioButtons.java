@@ -22,6 +22,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.RadioCheckField;
 
 public class RadioButtons {
+
 	/** The resulting PDF. */
     public static final String RESULT = "results/part2/chapter08/radiobuttons.pdf";
     /** Possible values of a Choice field. */

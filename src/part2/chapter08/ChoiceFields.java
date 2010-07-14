@@ -127,7 +127,8 @@ public class ChoiceFields implements PdfPCellEvent {
 
     /**
      * Creates a choice field and adds it to a cell.
-     * see com.itextpdf.text.pdf.PdfPCellEvent#cellLayout(com.itextpdf.text.pdf.PdfPCell, com.itextpdf.text.Rectangle, com.itextpdf.text.pdf.PdfContentByte[])
+     * see com.itextpdf.text.pdf.PdfPCellEvent#cellLayout(com.itextpdf.text.pdf.PdfPCell, 
+     *     com.itextpdf.text.Rectangle, com.itextpdf.text.pdf.PdfContentByte[])
      */
     public void cellLayout(PdfPCell cell, Rectangle rectangle,
             PdfContentByte[] canvases) {

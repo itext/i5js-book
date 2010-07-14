@@ -22,10 +22,10 @@ import part1.chapter02.MovieLinks1;
 
 public class ConcatenateNamedDestinations {
 
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static String RESULT1
         = "results/part2/chapter07/concatenated_links_1.pdf";
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static String RESULT2
          = "results/part2/chapter07/concatenated_links_2.pdf";
 

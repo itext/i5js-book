@@ -35,9 +35,10 @@ import com.itextpdf.text.pdf.PushbuttonField;
 import com.itextpdf.text.pdf.RadioCheckField;
 
 public class Buttons {
+
 	/** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/buttons.pdf";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/buttons_filled.pdf";
     /** Path to a JavaScript resource. */
     public static final String RESOURCE = "resources/js/buttons.js";
@@ -79,7 +80,8 @@ public class Buttons {
             radio.setCheckType(RadioCheckField.TYPE_CIRCLE);
             field = radio.getRadioField();
             radiogroup.addKid(field);
-            ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(LANGUAGES[i], font), 70, 790 - i * 40, 0);
+            ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT,
+                new Phrase(LANGUAGES[i], font), 70, 790 - i * 40, 0);
         }
         writer.addAnnotation(radiogroup);
         // Add the check boxes
@@ -105,8 +107,8 @@ public class Buttons {
             field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, "Off", onOff[0]);
             field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, "On", onOff[1]);
             writer.addAnnotation(field);
-            ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, new Phrase(LANGUAGES[i], font), 210,
-                    790 - i * 40, 0);
+            ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT,
+                new Phrase(LANGUAGES[i], font), 210, 790 - i * 40, 0);
         }
         // Add the push button
         rect = new Rectangle(300, 806, 370, 788);
