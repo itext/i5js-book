@@ -44,9 +44,9 @@ import com.itextpdf.text.pdf.AcroFields.FieldPosition;
 
 public class MovieAds {
 
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT = "results/part2/chapter08/festival.pdf";
-	/** The resulting PDF: a small template for an individual ad. */
+    /** The resulting PDF: a small template for an individual ad. */
     public static final String TEMPLATE = "results/part2/chapter08/template.pdf";
     /** The source PDF file: the template for the complete ad. */
     public static final String RESOURCE = "resources/pdfs/movie_overview.pdf";

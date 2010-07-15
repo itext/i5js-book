@@ -28,13 +28,13 @@ import com.lowagie.filmfestival.PojoFactory;
 
 public class XfaMovies {
 
-	/** The original PDF. */
+    /** The original PDF. */
     public static final String RESOURCE = "resources/pdfs/xfa_movies.pdf";
     /** Information about the form in xfa_movies.pdf */
     public static final String RESULTTXT = "results/part2/chapter08/movies_xfa.txt";
     /** The XML data that is going to be used to fill out the XFA form. */
     public static final String XMLDATA = "results/part2/chapter08/movies.xml";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT = "results/part2/chapter08/xfa_filled_in.pdf";
 
     /**

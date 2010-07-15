@@ -31,9 +31,9 @@ import com.itextpdf.text.pdf.TextField;
 
 public class ChoiceFields implements PdfPCellEvent {
 
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/choice_fields.pdf";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/choice_filled.pdf";
     /** A choice field index. */
     protected int cf;

@@ -23,13 +23,13 @@ import com.itextpdf.text.pdf.PdfStamper;
 
 public class ReaderEnabledForm {
 
-	/** The original PDF. */
+    /** The original PDF. */
     public static final String RESOURCE = "resources/pdfs/xfa_enabled.pdf";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/xfa_broken.pdf";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/xfa_removed.pdf";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT3 = "results/part2/chapter08/xfa_preserved.pdf";
 
     /**

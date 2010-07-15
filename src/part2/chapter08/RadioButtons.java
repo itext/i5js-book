@@ -23,7 +23,7 @@ import com.itextpdf.text.pdf.RadioCheckField;
 
 public class RadioButtons {
 
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT = "results/part2/chapter08/radiobuttons.pdf";
     /** Possible values of a Choice field. */
     public static final String[] LANGUAGES = { "English", "German", "French", "Spanish", "Dutch" };

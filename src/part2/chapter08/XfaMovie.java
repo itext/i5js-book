@@ -37,9 +37,9 @@ import com.itextpdf.text.pdf.XfaForm;
 
 public class XfaMovie {
 
-	/** The original PDF. */
+    /** The original PDF. */
     public static final String RESOURCE = "resources/pdfs/xfa_movie.pdf";
-	/** XML making up an XFA form we want to put inside an existing PDF. */
+    /** XML making up an XFA form we want to put inside an existing PDF. */
     public static final String RESOURCEXFA = "resources/xml/xfa.xml";
     /** Shows information about a form that has an AcroForm and an XFA stream. */
     public static final String RESULTTXT1 = "results/part2/chapter08/movie_xfa.txt";
@@ -51,11 +51,11 @@ public class XfaMovie {
     public static final String RESULTXMLFILLED = "results/part2/chapter08/movie_filled.xml";
     /** The XML data taken from an XFA form that was filled out using iText. */
     public static final String RESULTDATA = "results/part2/chapter08/movie.xml";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/xfa_filled_1.pdf";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/xfa_filled_2.pdf";
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT3 = "results/part2/chapter08/xfa_filled_3.pdf";
     
     /**

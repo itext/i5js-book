@@ -36,7 +36,7 @@ import com.itextpdf.text.pdf.RadioCheckField;
 
 public class Buttons {
 
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String RESULT1 = "results/part2/chapter08/buttons.pdf";
     /** The resulting PDF. */
     public static final String RESULT2 = "results/part2/chapter08/buttons_filled.pdf";

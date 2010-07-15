@@ -25,9 +25,9 @@ import com.itextpdf.text.pdf.TextField;
 
 public class Subscribe {
 
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static final String FORM = "results/part2/chapter08/subscribe.pdf";
-	/** The resulting PDFs. */
+    /** The resulting PDFs. */
     public static final String RESULT = "results/part2/chapter08/filled_form_%d.pdf";
 
     /**
