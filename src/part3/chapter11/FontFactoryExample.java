@@ -76,7 +76,8 @@ public class FontFactoryExample {
         document.add(Chunk.NEWLINE);
         Font garamond = FontFactory.getFont("garamond", BaseFont.WINANSI, BaseFont.EMBEDDED);
         document.add(new Paragraph("Garamond", garamond));
-        Font garamondItalic = FontFactory.getFont("Garamond", BaseFont.WINANSI, BaseFont.EMBEDDED, 12, Font.ITALIC);
+        Font garamondItalic
+            = FontFactory.getFont("Garamond", BaseFont.WINANSI, BaseFont.EMBEDDED, 12, Font.ITALIC);
         document.add(new Paragraph("Garamond-Italic", garamondItalic));
         // step 5
         document.close();

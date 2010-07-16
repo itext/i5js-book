@@ -58,7 +58,8 @@ public class SignatureExternalHash {
      * @throws DocumentException
      * @throws GeneralSecurityException 
      */
-    public void signPdfSelf(String src, String dest) throws IOException, DocumentException, GeneralSecurityException {
+    public void signPdfSelf(String src, String dest)
+        throws IOException, DocumentException, GeneralSecurityException {
     	// Private key and certificate
         String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
@@ -102,7 +103,8 @@ public class SignatureExternalHash {
      * @throws DocumentException
      * @throws GeneralSecurityException 
      */
-    public void signPdfWinCer(String src, String dest, boolean sign) throws IOException, DocumentException, GeneralSecurityException {
+    public void signPdfWinCer(String src, String dest, boolean sign)
+        throws IOException, DocumentException, GeneralSecurityException {
         // private key and certificate
     	String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
@@ -159,7 +161,8 @@ public class SignatureExternalHash {
      * @throws IOException
      * @throws GeneralSecurityException 
      */
-    public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, GeneralSecurityException {
         Security.addProvider(new BouncyCastleProvider());
         properties.load(new FileInputStream(PATH));
         new Signatures().createPdf(Signatures.ORIGINAL);

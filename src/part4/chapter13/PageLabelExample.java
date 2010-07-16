@@ -75,7 +75,8 @@ public class PageLabelExample {
         PdfPageLabels labels = new PdfPageLabels();
         labels.addPageLabel(start[0], PdfPageLabels.UPPERCASE_LETTERS);
         labels.addPageLabel(start[1], PdfPageLabels.DECIMAL_ARABIC_NUMERALS);
-        labels.addPageLabel(start[2], PdfPageLabels.DECIMAL_ARABIC_NUMERALS, "Movies-", start[2] - start[1] + 1);
+        labels.addPageLabel(start[2],
+            PdfPageLabels.DECIMAL_ARABIC_NUMERALS, "Movies-", start[2] - start[1] + 1);
         writer.setPageLabels(labels);
         // step 5
         document.close();
@@ -93,7 +94,8 @@ public class PageLabelExample {
      * @throws DocumentException
      * @throws IOException
      */
-    public void addParagraphs(Document document, DatabaseConnection connection, String sql, String field) throws SQLException, DocumentException, IOException {
+    public void addParagraphs(Document document, DatabaseConnection connection, String sql, String field)
+        throws SQLException, DocumentException, IOException {
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(sql);
         while (rs.next()) {

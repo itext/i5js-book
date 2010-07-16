@@ -44,7 +44,8 @@ public class RemoveLaunchActions {
                     action.remove(PdfName.F);
                     action.remove(PdfName.WIN);
                     action.put(PdfName.S, PdfName.JAVASCRIPT);
-                    action.put(PdfName.JS, new PdfString("app.alert('Launch Application Action removed by iText');\r"));
+                    action.put(PdfName.JS,
+                        new PdfString("app.alert('Launch Application Action removed by iText');\r"));
                 }
             }
         }

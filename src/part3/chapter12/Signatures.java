@@ -81,7 +81,8 @@ public class Signatures {
      * @throws DocumentException
      * @throws GeneralSecurityException 
      */
-    public void signPdfFirstTime(String src, String dest) throws IOException, DocumentException, GeneralSecurityException {
+    public void signPdfFirstTime(String src, String dest)
+        throws IOException, DocumentException, GeneralSecurityException {
         String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
         String key_password = properties.getProperty("PASSWORD");
@@ -112,7 +113,8 @@ public class Signatures {
      * @throws DocumentException
      * @throws GeneralSecurityException 
      */
-    public void signPdfSecondTime(String src, String dest) throws IOException, DocumentException, GeneralSecurityException {
+    public void signPdfSecondTime(String src, String dest)
+        throws IOException, DocumentException, GeneralSecurityException {
         String path = "resources/encryption/.keystore";
         String keystore_password = "f00b4r";
         String key_password = "f1lmf3st";
@@ -199,7 +201,8 @@ public class Signatures {
      * @throws IOException
      * @throws GeneralSecurityException 
      */
-    public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, GeneralSecurityException {
         Security.addProvider(new BouncyCastleProvider());
         properties.load(new FileInputStream(PATH));
         Signatures signatures = new Signatures();

@@ -93,7 +93,8 @@ public class SignatureField {
      * @throws DocumentException
      * @throws GeneralSecurityException 
      */
-    public void signPdf(String src, String dest, boolean certified, boolean graphic) throws IOException, DocumentException, GeneralSecurityException {
+    public void signPdf(String src, String dest, boolean certified, boolean graphic)
+        throws IOException, DocumentException, GeneralSecurityException {
         // private key and certificate
     	String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
@@ -129,7 +130,8 @@ public class SignatureField {
      * @throws IOException
      * @throws GeneralSecurityException 
      */
-    public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, GeneralSecurityException {
         Security.addProvider(new BouncyCastleProvider());
         properties.load(new FileInputStream(PATH));
         SignatureField signatures = new SignatureField();

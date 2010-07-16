@@ -52,14 +52,16 @@ public class EncryptWithCertificate {
      * @throws DocumentException
      * @throws GeneralSecurityException
      */
-    public void createPdf(String filename) throws IOException, DocumentException, GeneralSecurityException {
+    public void createPdf(String filename)
+        throws IOException, DocumentException, GeneralSecurityException {
         // step 1
         Document document = new Document();
         // step 2
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT1));
         Certificate cert1 = getPublicCertificate("resources/encryption/foobar.cer");
         Certificate cert2 = getPublicCertificate(properties.getProperty("PUBLIC"));
-        writer.setEncryption(new Certificate[]{cert1, cert2}, new int[]{PdfWriter.ALLOW_PRINTING, PdfWriter.ALLOW_COPY}, PdfWriter.ENCRYPTION_AES_128);
+        writer.setEncryption(new Certificate[]{cert1, cert2},
+            new int[]{PdfWriter.ALLOW_PRINTING, PdfWriter.ALLOW_COPY}, PdfWriter.ENCRYPTION_AES_128);
         // step 3
         document.open();
         // step 4
@@ -75,7 +77,8 @@ public class EncryptWithCertificate {
      * @throws IOException
      * @throws CertificateException
      */
-    public Certificate getPublicCertificate(String path) throws IOException, CertificateException {
+    public Certificate getPublicCertificate(String path)
+        throws IOException, CertificateException {
         FileInputStream is = new FileInputStream(path);
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         X509Certificate cert = (X509Certificate) cf.generateCertificate(is);
@@ -104,8 +107,10 @@ public class EncryptWithCertificate {
      * @throws DocumentException
      * @throws GeneralSecurityException
      */
-    public void decryptPdf(String src, String dest) throws IOException, DocumentException, GeneralSecurityException {
-        PdfReader reader = new PdfReader(src, getPublicCertificate("resources/encryption/foobar.cer"), getPrivateKey(), "BC");
+    public void decryptPdf(String src, String dest)
+        throws IOException, DocumentException, GeneralSecurityException {
+        PdfReader reader = new PdfReader(src,
+            getPublicCertificate("resources/encryption/foobar.cer"), getPrivateKey(), "BC");
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
     }
@@ -118,11 +123,13 @@ public class EncryptWithCertificate {
      * @throws DocumentException
      * @throws CertificateException
      */
-    public void encryptPdf(String src, String dest) throws IOException, DocumentException, CertificateException {
+    public void encryptPdf(String src, String dest)
+        throws IOException, DocumentException, CertificateException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         Certificate cert = getPublicCertificate("resources/encryption/foobar.cer");
-        stamper.setEncryption(new Certificate[]{cert}, new int[]{PdfWriter.ALLOW_PRINTING}, PdfWriter.ENCRYPTION_AES_128);
+        stamper.setEncryption(new Certificate[]{cert},
+            new int[]{PdfWriter.ALLOW_PRINTING}, PdfWriter.ENCRYPTION_AES_128);
         stamper.close();
     }
 
@@ -134,7 +141,8 @@ public class EncryptWithCertificate {
      * @throws IOException
      * @throws GeneralSecurityException 
      */
-    public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, GeneralSecurityException {
         Security.addProvider(new BouncyCastleProvider());
         properties.load(new FileInputStream(PATH));
         EncryptWithCertificate hello = new EncryptWithCertificate();

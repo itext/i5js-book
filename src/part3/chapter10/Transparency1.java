@@ -34,9 +34,7 @@ public class Transparency1 {
         Document document = new Document();
         try {
             // step 2
-            PdfWriter writer = PdfWriter.getInstance(
-                    document,
-                    new FileOutputStream(RESULT));
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
             // step 3
             document.open();
             // step 4
@@ -79,25 +77,23 @@ public class Transparency1 {
             cb.resetRGBColorFill();
             ColumnText ct = new ColumnText(cb);
             Phrase ph = new Phrase("Ungrouped objects\nObject opacity = 1.0");
-            ct.setSimpleColumn(ph, gap, 0, gap + 200, 500, 18,
-                    Element.ALIGN_CENTER);
+            ct.setSimpleColumn(ph, gap, 0, gap + 200, 500, 18, Element.ALIGN_CENTER);
             ct.go();
 
             ph = new Phrase("Ungrouped objects\nObject opacity = 0.5");
             ct.setSimpleColumn(ph, 200 + 2 * gap, 0, 200 + 2 * gap + 200, 500,
-                    18, Element.ALIGN_CENTER);
+                18, Element.ALIGN_CENTER);
             ct.go();
 
             ph = new Phrase(
-                    "Transparency group\nObject opacity = 1.0\nGroup opacity = 0.5\nBlend mode = Normal");
-            ct.setSimpleColumn(ph, gap, 0, gap + 200, 500 - 200 - gap, 18,
-                    Element.ALIGN_CENTER);
+                "Transparency group\nObject opacity = 1.0\nGroup opacity = 0.5\nBlend mode = Normal");
+            ct.setSimpleColumn(ph, gap, 0, gap + 200, 500 - 200 - gap, 18, Element.ALIGN_CENTER);
             ct.go();
 
             ph = new Phrase(
-                    "Transparency group\nObject opacity = 0.5\nGroup opacity = 1.0\nBlend mode = HardLight");
-            ct.setSimpleColumn(ph, 200 + 2 * gap, 0, 200 + 2 * gap + 200,
-                    500 - 200 - gap, 18, Element.ALIGN_CENTER);
+                "Transparency group\nObject opacity = 0.5\nGroup opacity = 1.0\nBlend mode = HardLight");
+            ct.setSimpleColumn(ph, 200 + 2 * gap, 0, 200 + 2 * gap + 200, 500 - 200 - gap,
+                18, Element.ALIGN_CENTER);
             ct.go();
         } catch (DocumentException de) {
             System.err.println(de.getMessage());

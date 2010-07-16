@@ -66,7 +66,8 @@ public class TimestampOCSP {
      * @throws DocumentException
      * @throws GeneralSecurityException 
      */
-    public void signPdf(String src, String dest, boolean withTS, boolean withOCSP) throws IOException, DocumentException, GeneralSecurityException {
+    public void signPdf(String src, String dest, boolean withTS, boolean withOCSP)
+        throws IOException, DocumentException, GeneralSecurityException {
         // Keystore and certificate chain
     	String keystore = properties.getProperty("PRIVATE");
         String password = properties.getProperty("PASSWORD");
@@ -147,7 +148,8 @@ public class TimestampOCSP {
      * @throws IOException
      * @throws GeneralSecurityException 
      */
-    public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, GeneralSecurityException {
         Security.addProvider(new BouncyCastleProvider());
         properties.load(new FileInputStream(PATH));
         new Signatures().createPdf(Signatures.ORIGINAL);

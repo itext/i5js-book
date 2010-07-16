@@ -44,11 +44,17 @@ public class ViewerPreferencesExample extends PageLayoutExample {
     public static void main(String[] args)
         throws IOException, DocumentException, SQLException {
         ViewerPreferencesExample example = new ViewerPreferencesExample();
-        example.createPdf(RESULT1, PdfWriter.PageModeFullScreen);
-        example.createPdf(RESULT2, PdfWriter.PageModeUseThumbs);
-        example.createPdf(RESULT3, PdfWriter.PageLayoutTwoColumnRight | PdfWriter.PageModeUseThumbs);
-        example.createPdf(RESULT4, PdfWriter.PageModeFullScreen | PdfWriter.NonFullScreenPageModeUseOutlines);
-        example.createPdf(RESULT5, PdfWriter.FitWindow | PdfWriter.HideToolbar);
-        example.createPdf(RESULT6, PdfWriter.HideWindowUI);
+        example.createPdf(RESULT1,
+            PdfWriter.PageModeFullScreen);
+        example.createPdf(RESULT2,
+            PdfWriter.PageModeUseThumbs);
+        example.createPdf(RESULT3,
+            PdfWriter.PageLayoutTwoColumnRight | PdfWriter.PageModeUseThumbs);
+        example.createPdf(RESULT4,
+            PdfWriter.PageModeFullScreen | PdfWriter.NonFullScreenPageModeUseOutlines);
+        example.createPdf(RESULT5,
+            PdfWriter.FitWindow | PdfWriter.HideToolbar);
+        example.createPdf(RESULT6,
+            PdfWriter.HideWindowUI);
     }
 }

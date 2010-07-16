@@ -69,7 +69,8 @@ public class SignWithBC {
      * @throws GeneralSecurityException
      * @throws CMSException
      */
-    public void signPdf(String src, String dest, boolean detached) throws IOException, DocumentException, GeneralSecurityException, CMSException {
+    public void signPdf(String src, String dest, boolean detached)
+        throws IOException, DocumentException, GeneralSecurityException, CMSException {
     	// private key and certificate
         String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
@@ -110,7 +111,8 @@ public class SignWithBC {
         for (int i = 0; i < chain.length; i++) {
             list.add(chain[i]);
         }
-        CertStore chainStore = CertStore.getInstance("Collection", new CollectionCertStoreParameters(list), "BC");
+        CertStore chainStore
+            = CertStore.getInstance("Collection", new CollectionCertStoreParameters(list), "BC");
         generator.addCertificatesAndCRLs(chainStore);
         CMSSignedData signedData;
 
@@ -171,7 +173,8 @@ public class SignWithBC {
      * @throws GeneralSecurityException 
      * @throws CMSException
      */
-    public static void main(String[] args) throws IOException, DocumentException, GeneralSecurityException, CMSException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, GeneralSecurityException, CMSException {
         Security.addProvider(new BouncyCastleProvider());
         properties.load(new FileInputStream(PATH));
         new Signatures().createPdf(Signatures.ORIGINAL);
