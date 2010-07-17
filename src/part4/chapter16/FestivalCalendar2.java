@@ -62,7 +62,8 @@ public class FestivalCalendar2 {
         // we prepare a RichMediaAnnotation
         RichMediaAnnotation richMedia = new RichMediaAnnotation(writer, new Rectangle(36, 560, 561, 760));
         // we embed the swf file
-        PdfFileSpecification fs = PdfFileSpecification.fileEmbedded(writer, RESOURCE, "FestivalCalendar2.swf", null);
+        PdfFileSpecification fs
+            = PdfFileSpecification.fileEmbedded(writer, RESOURCE, "FestivalCalendar2.swf", null);
         // we declare the swf file as an asset
         PdfIndirectReference asset = richMedia.addAsset("FestivalCalendar2.swf", fs);
         // we create a configuration

@@ -28,7 +28,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class Pdf3D {
 
-	/** The resulting PDF file. */
+    /** The resulting PDF file. */
     public static String RESULT = "results/part4/chapter16/pdf3d.pdf";
     /** The path to a 3D file. */
     public static String RESOURCE = "resources/img/teapot.u3d";
@@ -76,7 +76,8 @@ public class Pdf3D {
         dict3D.put(new PdfName("XN"), new PdfString("Default"));
         dict3D.put(new PdfName("IN"), new PdfString("Unnamed"));
         dict3D.put(new PdfName("MS"), PdfName.M);
-        dict3D.put(new PdfName("C2W"), new PdfArray(new float[] { 1, 0, 0, 0, 0, -1, 0, 1, 0, 3, -235, 28 } ));
+        dict3D.put(new PdfName("C2W"),
+            new PdfArray(new float[] { 1, 0, 0, 0, 0, -1, 0, 1, 0, 3, -235, 28 } ));
         dict3D.put(PdfName.CO, new PdfNumber(235));
 
         PdfIndirectObject dictObject = writer.addToBody(dict3D); 

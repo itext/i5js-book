@@ -18,7 +18,7 @@ import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
 public class ExtractPageContent {
 
-	/** The original PDF that will be parsed. */
+    /** The original PDF that will be parsed. */
     public static final String PREFACE = "resources/pdfs/preface.pdf";
     /** The resulting text file. */
     public static final String RESULT = "results/part4/chapter15/preface.txt";

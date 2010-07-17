@@ -43,7 +43,8 @@ public class StructuredContent {
      * @throws SAXException
      * @throws ParserConfigurationException
      */
-    public static void main(String[] args) throws IOException, DocumentException, SAXException, ParserConfigurationException {
+    public static void main(String[] args)
+        throws IOException, DocumentException, SAXException, ParserConfigurationException {
         Document document = new Document(PageSize.A5);
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(RESULT));
         writer.setTagged();
@@ -55,8 +56,12 @@ public class StructuredContent {
         PdfStructureElement top = new PdfStructureElement(root, new PdfName("chapter"));
         SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
         List<PdfStructureElement> elements = new ArrayList<PdfStructureElement>();
-        parser.parse(new InputSource(new FileInputStream(RESOURCE)), new StructureParser(top, elements));
-        parser.parse(new InputSource(new FileInputStream(RESOURCE)), new ContentParser(document, writer, elements));
+        parser.parse(
+            new InputSource(new FileInputStream(RESOURCE)),
+            new StructureParser(top, elements));
+        parser.parse(
+            new InputSource(new FileInputStream(RESOURCE)),
+            new ContentParser(document, writer, elements));
         document.close();
     }
 }

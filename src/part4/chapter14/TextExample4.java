@@ -20,7 +20,7 @@ import javax.swing.text.StyledDocument;
 
 public class TextExample4 {
 
-	/** A String that needs to be displayed in a PDF document */
+    /** A String that needs to be displayed in a PDF document */
     public static final String[] AKIRA = {
         "Akira Kurosawa", " (", "\u9ed2\u6fa4 \u660e", " or ",
         "\u9ed2\u6ca2 \u660e", ", Kurosawa Akira, 23 March 1910" +

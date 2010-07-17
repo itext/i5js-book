@@ -84,7 +84,8 @@ public class KubrickDvds {
                     fs = annot.getAsDict(PdfName.FS);
                     refs = fs.getAsDict(PdfName.EF);
                     for (PdfName name : refs.getKeys()) {
-                        FileOutputStream fos = new FileOutputStream(String.format(PATH, fs.getAsString(name).toString()));
+                        FileOutputStream fos
+                            = new FileOutputStream(String.format(PATH, fs.getAsString(name).toString()));
                         fos.write(PdfReader.getStreamBytes((PRStream)refs.getAsStream(name)));
                         fos.flush();
                         fos.close();

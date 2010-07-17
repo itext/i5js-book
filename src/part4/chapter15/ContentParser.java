@@ -53,14 +53,16 @@ public class ContentParser extends DefaultHandler {
      * @throws DocumentException
      * @throws IOException
      */
-    public ContentParser(Document document, PdfWriter writer, List<PdfStructureElement> elements) throws DocumentException, IOException {
+    public ContentParser(Document document, PdfWriter writer, List<PdfStructureElement> elements)
+        throws DocumentException, IOException {
         this.document = document;
         this.writer = writer;
         canvas = writer.getDirectContent();
         column = new ColumnText(canvas);
         column.setSimpleColumn(36, 36, 384, 569);
         this.elements = elements;
-        font = new Font(BaseFont.createFont("c:/windows/fonts/arial.ttf", BaseFont.WINANSI, BaseFont.EMBEDDED), 12);
+        font = new Font(
+            BaseFont.createFont("c:/windows/fonts/arial.ttf", BaseFont.WINANSI, BaseFont.EMBEDDED), 12);
     }
 
     /**

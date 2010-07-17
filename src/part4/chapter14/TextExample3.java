@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 
 public class TextExample3 extends JPanel {
 
-	/** A String that needs to be displayed in a PDF document */
+    /** A String that needs to be displayed in a PDF document */
     private static AttributedString akira;
 
     /**

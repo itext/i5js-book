@@ -41,12 +41,14 @@ public class FileAttachmentEvent implements PdfPCellEvent {
     
     /**
      * Implementation of the cellLayout method.
-     * @see com.itextpdf.text.pdf.PdfPCellEvent#cellLayout(com.itextpdf.text.pdf.PdfPCell, com.itextpdf.text.Rectangle, com.itextpdf.text.pdf.PdfContentByte[])
+     * @see com.itextpdf.text.pdf.PdfPCellEvent#cellLayout(
+     *     com.itextpdf.text.pdf.PdfPCell, com.itextpdf.text.Rectangle, com.itextpdf.text.pdf.PdfContentByte[])
      */
     public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
         try {
-            PdfAnnotation annotation = PdfAnnotation.createFileAttachment(
-                writer,    new Rectangle(position.getLeft() - 20, position.getTop() - 15, position.getLeft() - 5, position.getTop() - 5),
+            PdfAnnotation annotation = PdfAnnotation.createFileAttachment(writer,
+                new Rectangle(position.getLeft() - 20, position.getTop() - 15,
+                    position.getLeft() - 5, position.getTop() - 5),
                 description, fs);
             annotation.setName(description);
             writer.addAnnotation(annotation);

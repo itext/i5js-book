@@ -93,7 +93,8 @@ public class KubrickMovies {
         // step 3
         document.open();
         // step 4
-        document.add(new Paragraph("This document contains a collection of PDFs, one per Stanley Kubrick movie."));
+        document.add(new Paragraph(
+            "This document contains a collection of PDFs, one per Stanley Kubrick movie."));
         
         PdfCollection collection = new PdfCollection(PdfCollection.DETAILS);
         PdfCollectionSchema schema = getCollectionSchema(); 
@@ -111,8 +112,8 @@ public class KubrickMovies {
         connection.close();
         for (Movie movie : movies) {
             fs = PdfFileSpecification.fileEmbedded(writer, null,
-                    String.format("kubrick_%s.pdf", movie.getImdb()),
-                    createMoviePage(movie));
+                String.format("kubrick_%s.pdf", movie.getImdb()),
+                createMoviePage(movie));
             fs.addDescription(movie.getTitle(), false);
 
             item = new PdfCollectionItem(schema);
@@ -144,7 +145,7 @@ public class KubrickMovies {
         document.open();
         // step 4
         Paragraph p = new Paragraph(movie.getMovieTitle(),
-                FontFactory.getFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED, 16));
+            FontFactory.getFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED, 16));
         document.add(p);
         document.add(Chunk.NEWLINE);
         PdfPTable table = new PdfPTable(WIDTHS);

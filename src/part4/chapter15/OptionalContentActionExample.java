@@ -23,7 +23,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class OptionalContentActionExample {
 
-	/** The resulting PDF. */
+    /** The resulting PDF. */
     public static String RESULT = "results/part4/chapter15/layer_actions.pdf";
 
     /**

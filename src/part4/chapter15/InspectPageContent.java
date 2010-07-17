@@ -19,7 +19,7 @@ import com.itextpdf.text.pdf.parser.PdfContentReaderTool;
 
 public class InspectPageContent {
 
-	/** Text file containing information about a PDF file. */
+    /** Text file containing information about a PDF file. */
     public static final String RESULT = "results/part4/chapter15/calendar_info.txt";
     
     /**

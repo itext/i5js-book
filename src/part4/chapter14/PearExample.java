@@ -42,9 +42,9 @@ public class PearExample extends JPanel {
     /** A geometric area */
     Area st2;
 
-	/**
-	 * Initializes all the values needed to draw a Pear on a JPanel.
-	 */
+    /**
+     * Initializes all the values needed to draw a Pear on a JPanel.
+     */
     public PearExample() {
         circle = new Ellipse2D.Double();
         oval = new Ellipse2D.Double();

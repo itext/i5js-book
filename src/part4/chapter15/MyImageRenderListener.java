@@ -44,7 +44,8 @@ public class MyImageRenderListener implements RenderListener {
     }
 
     /**
-     * @see com.itextpdf.text.pdf.parser.RenderListener#renderImage(com.itextpdf.text.pdf.parser.ImageRenderInfo)
+     * @see com.itextpdf.text.pdf.parser.RenderListener#renderImage(
+     *     com.itextpdf.text.pdf.parser.ImageRenderInfo)
      */
     public void renderImage(ImageRenderInfo renderInfo) {
         try {
@@ -79,7 +80,8 @@ public class MyImageRenderListener implements RenderListener {
     }
 
     /**
-     * @see com.itextpdf.text.pdf.parser.RenderListener#renderText(com.itextpdf.text.pdf.parser.TextRenderInfo)
+     * @see com.itextpdf.text.pdf.parser.RenderListener#renderText(
+     *     com.itextpdf.text.pdf.parser.TextRenderInfo)
      */
     public void renderText(TextRenderInfo renderInfo) {
     }

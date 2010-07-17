@@ -58,7 +58,8 @@ public class KubrickDocumentary {
         // step 3
         document.open();
         // step 4
-        document.add(new Paragraph("'Stanley Kubrick: A Life in Pictures' is a documentary about Stanley Kubrick and his films:"));
+        document.add(new Paragraph(
+            "'Stanley Kubrick: A Life in Pictures' is a documentary about Stanley Kubrick and his films:"));
 
         ByteArrayOutputStream txt = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(txt);
@@ -67,7 +68,8 @@ public class KubrickDocumentary {
         ListItem item;
         for (Movie movie : movies) {
             out.println("<movie>");
-            out.println(String.format("<title>%s</title>", SimpleXMLParser.escapeXML(movie.getMovieTitle(), true)));
+            out.println(
+                String.format("<title>%s</title>", SimpleXMLParser.escapeXML(movie.getMovieTitle(), true)));
             out.println(String.format("<year>%s</year>", movie.getYear()));
             out.println(String.format("<duration>%s</duration>", movie.getDuration()));
             out.println("</movie>");

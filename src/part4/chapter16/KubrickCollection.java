@@ -110,7 +110,8 @@ public class KubrickCollection {
         connection.close();
         for (Movie movie : box) {
             if (movie.getYear() > 1960) {
-                out.println(String.format("%s;%s;%s", movie.getMovieTitle(), movie.getYear(), movie.getDuration()));
+                out.println(String.format(
+                    "%s;%s;%s", movie.getMovieTitle(), movie.getYear(), movie.getDuration()));
                 item = new ListItem(movie.getMovieTitle());
                 if (!"0278736".equals(movie.getImdb())) {
                     target = new PdfTargetDictionary(true);
@@ -140,7 +141,8 @@ public class KubrickCollection {
         table.setSpacingAfter(10);
         PdfPCell cell = new PdfPCell(new Phrase("All movies by Kubrick"));
         cell.setBorder(PdfPCell.NO_BORDER);
-        fs = PdfFileSpecification.fileEmbedded(writer, null, KubrickMovies.FILENAME, new KubrickMovies().createPdf());
+        fs = PdfFileSpecification.fileEmbedded(
+            writer, null, KubrickMovies.FILENAME, new KubrickMovies().createPdf());
         collectionitem.addItem(TYPE_FIELD, "PDF");
         fs.addCollectionItem(collectionitem);
         target = new PdfTargetDictionary(true);
@@ -154,7 +156,8 @@ public class KubrickCollection {
 
         cell = new PdfPCell(new Phrase("Kubrick DVDs"));
         cell.setBorder(PdfPCell.NO_BORDER);
-        fs = PdfFileSpecification.fileEmbedded(writer, null, KubrickDvds.FILENAME, new KubrickDvds().createPdf());
+        fs = PdfFileSpecification.fileEmbedded(
+            writer, null, KubrickDvds.FILENAME, new KubrickDvds().createPdf());
         collectionitem.addItem(TYPE_FIELD, "PDF");
         fs.addCollectionItem(collectionitem);
         cell.setCellEvent(new FileAttachmentEvent(writer, fs, "Kubrick DVDs"));
@@ -163,7 +166,8 @@ public class KubrickCollection {
         
         cell = new PdfPCell(new Phrase("Kubrick documentary"));
         cell.setBorder(PdfPCell.NO_BORDER);
-        fs = PdfFileSpecification.fileEmbedded(writer, null, KubrickDocumentary.FILENAME, new KubrickDocumentary().createPdf());
+        fs = PdfFileSpecification.fileEmbedded(
+            writer, null, KubrickDocumentary.FILENAME, new KubrickDocumentary().createPdf());
         collectionitem.addItem(TYPE_FIELD, "PDF");
         fs.addCollectionItem(collectionitem);
         cell.setCellEvent(new FileAttachmentEvent(writer, fs, "Kubrick Documentary"));

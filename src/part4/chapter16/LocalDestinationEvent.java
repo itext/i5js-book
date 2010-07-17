@@ -29,6 +29,7 @@ public class LocalDestinationEvent implements PdfPCellEvent {
     
     /** Implementation of the cellLayout method. */
     public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
-        writer.getDirectContent().localDestination(name, new PdfDestination(PdfDestination.FITH, position.getTop()));
+        writer.getDirectContent().localDestination(name,
+            new PdfDestination(PdfDestination.FITH, position.getTop()));
     }
 }

@@ -45,15 +45,18 @@ public class PathConstructionAndPainting {
         // draw squares
         createSquares(canvas, 50, 720, 80, 20);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT,
-            new Phrase("Methods moveTo(), lineTo(), stroke(), closePathStroke(), fill(), and closePathFill()"), 50, 700, 0);
+            new Phrase(
+                "Methods moveTo(), lineTo(), stroke(), closePathStroke(), fill(), and closePathFill()"),
+                50, 700, 0);
         // draw Bézier curves
         createBezierCurves(canvas, 70, 600, 80, 670, 140, 690, 160, 630, 160);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT,
-                new Phrase("Different curveTo() methods, followed by stroke()"), 50, 580, 0);
+            new Phrase("Different curveTo() methods, followed by stroke()"), 50, 580, 0);
         // draw stars and circles
         createStarsAndCircles(canvas, 50, 470, 40, 20);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT,
-                new Phrase("Methods fill(), eoFill(), newPath(), fillStroke(), and eoFillStroke()"), 50, 450, 0);
+            new Phrase("Methods fill(), eoFill(), newPath(), fillStroke(), and eoFillStroke()"),
+                50, 450, 0);
         // draw different shapes using convenience methods
         canvas.saveState();
         canvas.setColorStroke(new GrayColor(0.2f));
@@ -72,7 +75,7 @@ public class PathConstructionAndPainting {
         rect.setBackgroundColor(new GrayColor(0.4f));
         canvas.rectangle(rect);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT,
-                new Phrase("Convenience methods"), 50, 250, 0);
+            new Phrase("Convenience methods"), 50, 250, 0);
         // step 5
         document.close();
     }
@@ -86,7 +89,7 @@ public class PathConstructionAndPainting {
      * @param gutter the space between the squares
      */
     public void createSquares(PdfContentByte canvas,
-            float x, float y, float side, float gutter) {
+        float x, float y, float side, float gutter) {
         canvas.saveState();
         canvas.setColorStroke(new GrayColor(0.2f));
         canvas.setColorFill(new GrayColor(0.9f));
@@ -136,7 +139,7 @@ public class PathConstructionAndPainting {
      * @param distance the distance between the curves
      */
     public void createBezierCurves(PdfContentByte cb, float x0, float y0,
-            float x1, float y1, float x2, float y2, float x3, float y3, float distance) {
+        float x1, float y1, float x2, float y2, float x3, float y3, float distance) {
         cb.moveTo(x0, y0);
         cb.lineTo(x1, y1);
         cb.moveTo(x2, y2);
@@ -172,7 +175,7 @@ public class PathConstructionAndPainting {
      * @param gutter the space between the shapes
      */
     public static void createStarsAndCircles(PdfContentByte canvas,
-            float x, float y, float radius, float gutter) {
+        float x, float y, float radius, float gutter) {
         canvas.saveState();
         canvas.setColorStroke(new GrayColor(0.2f));
         canvas.setColorFill(new GrayColor(0.9f));
@@ -230,7 +233,7 @@ public class PathConstructionAndPainting {
      * @param clockwise true if the circle has to be constructed clockwise
      */
     public static void createCircle(PdfContentByte canvas, float x, float y,
-            float r, boolean clockwise) {
+        float r, boolean clockwise) {
         float b = 0.5523f;
         if (clockwise) {
             canvas.moveTo(x + r, y);
