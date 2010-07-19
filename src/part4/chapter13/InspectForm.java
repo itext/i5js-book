@@ -22,7 +22,7 @@ import part2.chapter08.Subscribe;
 
 public class InspectForm {
 
-	/** A text file containing information about a form. */
+    /** A text file containing information about a form. */
     public static final String RESULTTXT = "results/part4/chapter13/fieldflags.txt";
 
     /**
