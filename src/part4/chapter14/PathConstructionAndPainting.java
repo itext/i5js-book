@@ -48,7 +48,7 @@ public class PathConstructionAndPainting {
             new Phrase(
                 "Methods moveTo(), lineTo(), stroke(), closePathStroke(), fill(), and closePathFill()"),
                 50, 700, 0);
-        // draw Bézier curves
+        // draw Bezier curves
         createBezierCurves(canvas, 70, 600, 80, 670, 140, 690, 160, 630, 160);
         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT,
             new Phrase("Different curveTo() methods, followed by stroke()"), 50, 580, 0);
@@ -126,7 +126,7 @@ public class PathConstructionAndPainting {
     }
     
     /**
-     * Draws a series of Bézier curves
+     * Draws a series of Bezier curves
      * @param cb the canvas to which the curves have to be drawn
      * @param x0 X coordinate of the start point
      * @param y0 Y coordinate of the start point
@@ -223,7 +223,7 @@ public class PathConstructionAndPainting {
     }
  
     /**
-     * Creates a path for circle using Bézier curvers.
+     * Creates a path for circle using Bezier curvers.
      * The path can be constructed clockwise or counter-clockwise.
      * This method doesn't fill or stroke the circle!
      * @param canvas    the canvas for which the path is constructed 
