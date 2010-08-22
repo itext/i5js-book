@@ -67,6 +67,9 @@ public class MyImageRenderListener implements RenderListener {
                 os.flush();
                 os.close();
             }
+            else if (PdfName.JBIG2DECODE.equals(filter)) {
+            	// ignore: filter not supported.
+            }
             else {
                 BufferedImage awtimage = renderInfo.getImage().getBufferedImage();
                 if (awtimage != null) {
