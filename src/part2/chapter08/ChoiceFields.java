@@ -99,6 +99,11 @@ public class ChoiceFields implements PdfPCellEvent {
         document.open();
         // step 4
         PdfPCell cell;
+        PdfPCell space;
+        space = new PdfPCell();
+        space.setBorder(Rectangle.NO_BORDER);
+        space.setColspan(2);
+        space.setFixedHeight(8);
         PdfPTable table = new PdfPTable(2);
         table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -106,15 +111,18 @@ public class ChoiceFields implements PdfPCellEvent {
         cell = new PdfPCell();
         cell.setCellEvent(new ChoiceFields(1));
         table.addCell(cell);
+        table.addCell(space);
         table.addCell("Subtitle languages:");
         cell = new PdfPCell();
         cell.setCellEvent(new ChoiceFields(2));
         cell.setFixedHeight(70);
         table.addCell(cell);
+        table.addCell(space);
         table.addCell("Select preferred language:");
         cell = new PdfPCell();
         cell.setCellEvent(new ChoiceFields(3));
         table.addCell(cell);
+        table.addCell(space);
         table.addCell("Language of the director:");
         cell = new PdfPCell();
         cell.setCellEvent(new ChoiceFields(4));
