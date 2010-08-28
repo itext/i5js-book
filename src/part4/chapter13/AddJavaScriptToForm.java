@@ -69,13 +69,13 @@ public class AddJavaScriptToForm {
         // create a radio button field
         PdfFormField married = PdfFormField.createRadioButton(writer, true);
         married.setFieldName("married");
-        married.setValueAsName("yes");
+        married.setValueAsName("Yes");
         Rectangle rectYes = new Rectangle(40, 766, 56, 744);
-        RadioCheckField yes = new RadioCheckField(writer, rectYes, null, "yes");
+        RadioCheckField yes = new RadioCheckField(writer, rectYes, null, "Yes");
         yes.setChecked(true);
         married.addKid(yes.getRadioField());
         Rectangle rectNo = new Rectangle(84, 766, 100, 744);
-        RadioCheckField no = new RadioCheckField(writer, rectNo, null, "no");
+        RadioCheckField no = new RadioCheckField(writer, rectNo, null, "No");
         no.setChecked(false);
         married.addKid(no.getRadioField());
         writer.addAnnotation(married);
