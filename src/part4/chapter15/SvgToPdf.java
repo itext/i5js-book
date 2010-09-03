@@ -31,7 +31,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class SvgToPdf {
 
     /** The resulting PDF. */
-    public static final String RESULT = "results/part4/chapter14/foobar.pdf";
+    public static final String RESULT = "results/part4/chapter15/foobar.pdf";
     /** The map (shapes). */
     public static final String CITY = "resources/xml/foobarcity.svg";
     /** The map (text = street names in English). */
