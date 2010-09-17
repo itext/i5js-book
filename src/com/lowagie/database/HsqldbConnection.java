@@ -10,7 +10,6 @@ package com.lowagie.database;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 /**
  * This is a helper class to access an hsqldb database.
