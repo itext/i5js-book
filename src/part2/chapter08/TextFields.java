@@ -128,7 +128,6 @@ public class TextFields implements PdfPCellEvent {
         switch(tf) {
         case 1:
             text.setBorderStyle(PdfBorderDictionary.STYLE_BEVELED);
-            text.setAlignment(Element.ALIGN_RIGHT);
             text.setText("Enter your name here...");
             text.setFontSize(0);
             text.setAlignment(Element.ALIGN_CENTER);

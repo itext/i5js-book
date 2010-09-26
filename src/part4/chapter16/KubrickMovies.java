@@ -56,9 +56,9 @@ public class KubrickMovies {
     private static PdfCollectionSchema getCollectionSchema() {
         PdfCollectionSchema schema = new PdfCollectionSchema();
         
-        PdfCollectionField description = new PdfCollectionField("File size", PdfCollectionField.SIZE);
-        description.setOrder(4);
-        schema.addField("SIZE", description);
+        PdfCollectionField size = new PdfCollectionField("File size", PdfCollectionField.SIZE);
+        size.setOrder(4);
+        schema.addField("SIZE", size);
         
         PdfCollectionField filename = new PdfCollectionField("File name", PdfCollectionField.FILENAME);
         filename.setVisible(false);
