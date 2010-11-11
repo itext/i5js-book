@@ -63,6 +63,7 @@ public class ConcatenateBookmarks {
             for (int page = 0; page < n; ) {
                 copy.addPage(copy.getImportedPage(reader, ++page));
             }
+            copy.freeReader(reader);
         }
         // Add the merged bookmarks
         copy.setOutlines(bookmarks);
