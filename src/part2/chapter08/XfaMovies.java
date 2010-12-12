@@ -52,7 +52,7 @@ public class XfaMovies {
                 new FileOutputStream(dest));
         AcroFields form = stamper.getAcroFields();
         XfaForm xfa = form.getXfa();
-        xfa.fillXfaForm(new FileInputStream(XMLDATA));
+        xfa.fillXfaForm(new FileInputStream(xml));
         stamper.close();
     }
     
