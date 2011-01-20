@@ -60,7 +60,7 @@ public class KubrickDvds {
         os.write(kubrick.createPdf());
         os.flush();
         os.close();
-        kubrick.extractAttachments(RESULT, PATH);
+        kubrick.extractAttachments(RESULT);
     }
     
     /**
@@ -69,7 +69,7 @@ public class KubrickDvds {
      * @param dest  where to put the extracted attachments
      * @throws IOException
      */
-    public void extractAttachments(String src, String dest) throws IOException {
+    public void extractAttachments(String src) throws IOException {
         PdfReader reader = new PdfReader(src);
         PdfArray array;
         PdfDictionary annot;
