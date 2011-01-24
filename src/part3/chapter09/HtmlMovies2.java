@@ -101,8 +101,8 @@ public class HtmlMovies2 extends HtmlMovies1 {
         movies.setStyles(styles);
         // create extra properties
         HashMap<String,Object> map = new HashMap<String, Object>();
-        map.put("font_factory", new MyFontFactory());
-        map.put("img_provider", new MyImageFactory());
+        map.put(HTMLWorker.FONT_PROVIDER, new MyFontFactory());
+        map.put(HTMLWorker.IMG_PROVIDER, new MyImageFactory());
         movies.setProviders(map);
         // creates HTML and PDF (reusing a method from the super class)
         movies.createHtmlAndPdf(HTML, RESULT1);
