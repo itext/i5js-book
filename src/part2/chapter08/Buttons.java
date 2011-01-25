@@ -102,7 +102,6 @@ public class Buttons {
         for (int i = 0; i < LANGUAGES.length; i++) {
             rect = new Rectangle(180, 806 - i * 40, 200, 788 - i * 40);
             checkbox = new RadioCheckField(writer, rect, LANGUAGES[i], "on");
-            checkbox.setCheckType(RadioCheckField.TYPE_CHECK);
             field = checkbox.getCheckField();
             field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, "Off", onOff[0]);
             field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, "On", onOff[1]);
