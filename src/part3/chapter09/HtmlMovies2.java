@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.lowagie.filmfestival.Movie;
 import com.itextpdf.text.BaseColor;
@@ -37,8 +38,7 @@ public class HtmlMovies2 extends HtmlMovies1 {
      * This is needed if you want to resolve the paths to images.
      */
     public static class MyImageFactory implements ImageProvider {
-        @SuppressWarnings("unchecked")
-        public Image getImage(String src, HashMap h,
+        public Image getImage(String src, Map<String, String> h,
                 ChainedProperties cprops, DocListener doc) {
             try {
                 return Image.getInstance(
