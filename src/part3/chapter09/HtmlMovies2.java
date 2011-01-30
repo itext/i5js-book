@@ -25,7 +25,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontProvider;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.html.simpleparser.AttributeChain;
+import com.itextpdf.text.html.simpleparser.ChainedProperties;
 import com.itextpdf.text.html.simpleparser.HTMLWorker;
 import com.itextpdf.text.html.simpleparser.ImageProvider;
 import com.itextpdf.text.html.simpleparser.StyleSheet;
@@ -39,7 +39,7 @@ public class HtmlMovies2 extends HtmlMovies1 {
      */
     public static class MyImageFactory implements ImageProvider {
         public Image getImage(String src, Map<String, String> h,
-                AttributeChain cprops, DocListener doc) {
+                ChainedProperties cprops, DocListener doc) {
             try {
                 return Image.getInstance(
                     String.format("resources/posters/%s",
