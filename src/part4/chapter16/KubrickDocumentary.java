@@ -25,7 +25,7 @@ import com.itextpdf.text.pdf.PdfFileSpecification;
 import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.xml.simpleparser.SimpleXMLParser;
+import com.itextpdf.text.xml.XMLUtil;
 import com.lowagie.database.DatabaseConnection;
 import com.lowagie.database.HsqldbConnection;
 import com.lowagie.filmfestival.Movie;
@@ -69,7 +69,7 @@ public class KubrickDocumentary {
         for (Movie movie : movies) {
             out.println("<movie>");
             out.println(
-                String.format("<title>%s</title>", SimpleXMLParser.escapeXML(movie.getMovieTitle(), true)));
+                String.format("<title>%s</title>", XMLUtil.getInstance().escapeXML(movie.getMovieTitle(), true)));
             out.println(String.format("<year>%s</year>", movie.getYear()));
             out.println(String.format("<duration>%s</duration>", movie.getDuration()));
             out.println("</movie>");
