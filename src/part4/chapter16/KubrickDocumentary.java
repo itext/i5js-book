@@ -69,7 +69,7 @@ public class KubrickDocumentary {
         for (Movie movie : movies) {
             out.println("<movie>");
             out.println(
-                String.format("<title>%s</title>", XMLUtil.getInstance().escapeXML(movie.getMovieTitle(), true)));
+                String.format("<title>%s</title>", XMLUtil.escapeXML(movie.getMovieTitle(), true)));
             out.println(String.format("<year>%s</year>", movie.getYear()));
             out.println(String.format("<duration>%s</duration>", movie.getDuration()));
             out.println("</movie>");
