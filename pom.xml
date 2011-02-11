@@ -46,42 +46,56 @@
   		<scope>compile</scope>
   	</dependency>
   	<dependency>
-  		<groupId>batik</groupId>
+  		<groupId>org.apache.xmlgraphics</groupId>
   		<artifactId>batik-svg-dom</artifactId>
-  		<version>1.6</version>
+  		<version>1.7</version>
   		<scope>compile</scope>
   	</dependency>
   	<dependency>
-  		<groupId>batik</groupId>
+  		<groupId>org.apache.xmlgraphics</groupId>
   		<artifactId>batik-dom</artifactId>
-  		<version>1.6</version>
+  		<version>1.7</version>
   		<type>jar</type>
   		<scope>compile</scope>
   	</dependency>
   	<dependency>
-  		<groupId>batik</groupId>
+  		<groupId>org.apache.xmlgraphics</groupId>
   		<artifactId>batik-bridge</artifactId>
-  		<version>1.6</version>
+  		<version>1.7</version>
   		<type>jar</type>
   		<scope>compile</scope>
   	</dependency>
   	<dependency>
-  		<groupId>batik</groupId>
+  		<groupId>org.apache.xmlgraphics</groupId>
   		<artifactId>batik-util</artifactId>
-  		<version>1.6</version>
+  		<version>1.7</version>
   		<type>jar</type>
   		<scope>compile</scope>
   	</dependency>
   	<dependency>
-  		<groupId>batik</groupId>
+  		<groupId>org.apache.xmlgraphics</groupId>
   		<artifactId>batik-gvt</artifactId>
-  		<version>1.6</version>
+  		<version>1.7</version>
   		<scope>compile</scope>
   	</dependency>
   	<dependency>
   		<groupId>org.axsl.org.w3c.dom.svg</groupId>
   		<artifactId>svg-dom-java</artifactId>
   		<version>1.1</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.xmlgraphics</groupId>
+  		<artifactId>batik-script</artifactId>
+  		<version>1.7</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.xmlgraphics</groupId>
+  		<artifactId>batik-parser</artifactId>
+  		<version>1.7</version>
   		<type>jar</type>
   		<scope>compile</scope>
   	</dependency>
