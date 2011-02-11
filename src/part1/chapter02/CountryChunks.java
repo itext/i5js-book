@@ -27,29 +27,29 @@ import com.itextpdf.text.BaseColor;
  * Writes a list of countries to a PDF file.
  */
 public class CountryChunks {
-    
+
     /** The resulting PDF file. */
     public static final String RESULT
         = "results/part1/chapter02/country_chunks.pdf";
-    
+
     /**
      * Main method.
      *
      * @param    args    no arguments needed
-     * @throws DocumentException 
-     * @throws IOException 
+     * @throws DocumentException
+     * @throws IOException
      * @throws SQLException
      */
     public static void main(String[] args)
         throws IOException, DocumentException, SQLException {
         new CountryChunks().createPdf(RESULT);
     }
-    
+
     /**
      * Creates a PDF document.
      * @param filename the path to the new PDF document
-     * @throws    DocumentException 
-     * @throws    IOException 
+     * @throws    DocumentException
+     * @throws    IOException
      * @throws    SQLException
      */
     public void createPdf(String filename)
@@ -67,12 +67,12 @@ public class CountryChunks {
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(
             "SELECT country, id FROM film_country ORDER BY country");
+        // add the ID in another font
+        Font font = new Font(FontFamily.HELVETICA, 6, Font.BOLD, BaseColor.WHITE);
         while (rs.next()) {
         	// add a country to the document as a Chunk
             document.add(new Chunk(rs.getString("country")));
             document.add(new Chunk(" "));
-            // add the ID in another font
-            Font font = new Font(FontFamily.HELVETICA, 6, Font.BOLD, BaseColor.WHITE);
             Chunk id = new Chunk(rs.getString("id"), font);
             // with a background color
             id.setBackground(BaseColor.BLACK, 1f, 0.5f, 1f, 1.5f);
