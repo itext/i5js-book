@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.itextpdf</groupId>
 	<artifactId>book</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>5.0.7-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -37,6 +37,13 @@
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
+			<version>5.0.7-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itext-xtra</artifactId>
 			<version>5.0.7-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>
