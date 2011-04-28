@@ -2225,6 +2225,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iText-xtra.jar" />
             </classpath>
         </java>
         <echo message="FestivalCalendar2" />
@@ -2233,6 +2234,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iText-xtra.jar" />
             </classpath>
         </java>
     </target>
