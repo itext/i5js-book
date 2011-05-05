@@ -1218,7 +1218,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/iTextAsian.jar" />
+                <pathelement location="lib/itext-asian.jar" />
             </classpath>
         </java>
         <echo message="TextFieldActions" />
@@ -1469,7 +1469,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/iTextAsian.jar" />
+                <pathelement location="lib/itext-asian.jar" />
             </classpath>
         </java>
         <echo message="TTCExample" />
@@ -1526,7 +1526,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/iTextAsian.jar" />
+                <pathelement location="lib/itext-asian.jar" />
             </classpath>
         </java>
         <echo message="VerticalTextExample1" />
@@ -1535,7 +1535,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/iTextAsian.jar" />
+                <pathelement location="lib/itext-asian.jar" />
             </classpath>
         </java>
         <echo message="VerticalTextExample2" />
@@ -1544,7 +1544,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/iTextAsian.jar" />
+                <pathelement location="lib/itext-asian.jar" />
             </classpath>
         </java>
         <echo message="RightToLeftExample" />
@@ -1625,7 +1625,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/iTextAsian.jar" />
+                <pathelement location="lib/itext-asian.jar" />
             </classpath>
         </java>
         <echo message="Peace" />
@@ -1916,7 +1916,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/iTextAsian.jar" />
+                <pathelement location="lib/itext-asian.jar" />
             </classpath>
         </java>
         <echo message="Text2ToPdf3" />
@@ -2147,7 +2147,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/iTextAsian.jar" />
+                <pathelement location="lib/itext-asian.jar" />
             </classpath>
         </java>
         <echo message="EmbedFontPostFacto" />
