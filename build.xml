@@ -6,6 +6,7 @@
 	<path id="book.classpath">
 	    <pathelement path="lib/iText.jar"/>
 	    <pathelement path="lib/iText-xtra.jar"/>
+	    <pathelement path="lib/iText-xml.jar"/>
 		<pathelement path="lib/itext-asian.jar"/>
 	    <pathelement path="lib/itext-hyph-xml.jar"/>
 	    <pathelement path="lib/xerces_2_5_0.jar"/>
