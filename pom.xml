@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.itextpdf</groupId>
 	<artifactId>book</artifactId>
-	<version>5.0.7-SNAPSHOT</version>
+	<version>5.1.0</version>
 	<packaging>war</packaging>
 	<build>
 		<finalName>book</finalName>
