@@ -28,7 +28,7 @@ public class MySqlConnection extends DatabaseConnection {
      */
     public MySqlConnection(String database) throws SQLException {
         try {
-            Class.forName("org.hsqldb.jdbcDriver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             throw new SQLException("mySql database driver not found");
         }
