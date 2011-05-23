@@ -63,7 +63,6 @@ public class PressPreviews implements PdfPCellEvent, PdfPTableEvent {
         PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
         canvas.rectangle(x1, y1, x2 - x1, y2 - y1);
         canvas.stroke();
-        canvas.resetRGBColorStroke();
     }
 
     /**
