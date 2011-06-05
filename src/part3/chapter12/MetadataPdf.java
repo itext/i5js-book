@@ -9,7 +9,7 @@ package part3.chapter12;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -61,7 +61,7 @@ public class MetadataPdf {
     public void manipulatePdf(String src, String dest) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-        HashMap<String, String> info = reader.getInfo();
+        Map<String, String> info = reader.getInfo();
         info.put("Title", "Hello World stamped");
         info.put("Subject", "Hello World with changed metadata");
         info.put("Keywords", "iText in Action, PdfStamper");
