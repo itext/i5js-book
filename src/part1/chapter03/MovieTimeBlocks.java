@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import com.lowagie.database.DatabaseConnection;
@@ -101,7 +102,7 @@ public class MovieTimeBlocks extends MovieTimeTable {
     }
     
     /** The "offset time" for our calendar sheets. */
-    public static final long TIME930 = 30600000l;
+    public static final long TIME930 = Time.valueOf("09:30:00").getTime();
     
     /** The width of one minute. */
     public static final float MINUTE = WIDTH_TIMESLOT / 30f;
