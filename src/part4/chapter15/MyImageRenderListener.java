@@ -7,13 +7,9 @@
 
 package part4.chapter15;
 
-import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.parser.ImageRenderInfo;
 import com.itextpdf.text.pdf.parser.PdfImageObject;
 import com.itextpdf.text.pdf.parser.RenderListener;
@@ -52,31 +48,12 @@ public class MyImageRenderListener implements RenderListener {
             String filename;
             FileOutputStream os;
             PdfImageObject image = renderInfo.getImage();
-            PdfName filter = (PdfName)image.get(PdfName.FILTER);
-            if (PdfName.DCTDECODE.equals(filter)) {
-                filename = String.format(path, renderInfo.getRef().getNumber(), "jpg");
-                os = new FileOutputStream(filename);
-                os.write(image.getStreamBytes());
-                os.flush();
-                os.close();
-            }
-            else if (PdfName.JPXDECODE.equals(filter)) {
-                filename = String.format(path, renderInfo.getRef().getNumber(), "jp2");
-                os = new FileOutputStream(filename);
-                os.write(image.getStreamBytes());
-                os.flush();
-                os.close();
-            }
-            else if (PdfName.JBIG2DECODE.equals(filter)) {
-            	// ignore: filter not supported.
-            }
-            else {
-                BufferedImage awtimage = renderInfo.getImage().getBufferedImage();
-                if (awtimage != null) {
-                    filename = String.format(path, renderInfo.getRef().getNumber(), "png");
-                    ImageIO.write(awtimage, "png", new FileOutputStream(filename));
-                }
-            }
+            if (image == null) return;
+            filename = String.format(path, renderInfo.getRef().getNumber(), image.getFileType());
+            os = new FileOutputStream(filename);
+            os.write(image.getImageAsBytes());
+            os.flush();
+            os.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
