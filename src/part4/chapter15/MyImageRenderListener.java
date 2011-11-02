@@ -55,7 +55,7 @@ public class MyImageRenderListener implements RenderListener {
             os.flush();
             os.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
