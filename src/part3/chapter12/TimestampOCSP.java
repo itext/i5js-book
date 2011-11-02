@@ -120,7 +120,7 @@ public class TimestampOCSP {
             CertificateFactory cf = CertificateFactory.getInstance("X509");
             FileInputStream is = new FileInputStream(properties.getProperty("ROOTCERT"));
             X509Certificate root = (X509Certificate) cf.generateCertificate(is);
-            ocsp = new OcspClientBouncyCastle((X509Certificate)chain[0], root, url).getEncoded();
+            ocsp = new OcspClientBouncyCastle().getEncoded((X509Certificate)chain[0], root, url);
         }
         // Create the signature
         PdfPKCS7 sgn = new PdfPKCS7(pk, chain, null, "SHA1", null, false);
