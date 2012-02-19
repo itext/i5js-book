@@ -7,12 +7,12 @@
 
 package part4.chapter15;
 
-import com.itextpdf.text.geom.Rectangle;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.FilteredTextRenderListener;
 import com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy;
@@ -37,7 +37,7 @@ public class ExtractPageContentArea {
     public void parsePdf(String pdf, String txt) throws IOException {
         PdfReader reader = new PdfReader(pdf);
         PrintWriter out = new PrintWriter(new FileOutputStream(txt));
-        Rectangle rect = new Rectangle(70, 80, 420, 500);
+        Rectangle rect = new Rectangle(70, 80, 490, 580);
         RenderFilter filter = new RegionTextRenderFilter(rect);
         TextExtractionStrategy strategy;
         for (int i = 1; i <= reader.getNumberOfPages(); i++) {
