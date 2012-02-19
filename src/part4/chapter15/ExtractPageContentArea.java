@@ -7,7 +7,7 @@
 
 package part4.chapter15;
 
-import java.awt.Rectangle;
+import com.itextpdf.text.geom.Rectangle;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
