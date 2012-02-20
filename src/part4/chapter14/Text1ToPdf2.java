@@ -10,14 +10,14 @@ import java.awt.Graphics2D;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.itextpdf.awt.DefaultFontMapper;
+import com.itextpdf.awt.DefaultFontMapper.BaseFontParameters;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.DefaultFontMapper;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.DefaultFontMapper.BaseFontParameters;
 
 public class Text1ToPdf2 {
     /** The resulting PDF. */
