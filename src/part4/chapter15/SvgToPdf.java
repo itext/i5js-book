@@ -21,6 +21,7 @@ import org.apache.batik.gvt.GraphicsNode;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.svg.SVGDocument;
 
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
@@ -64,7 +65,7 @@ public class SvgToPdf {
      * @throws IOException
      */
     public void drawSvg(PdfTemplate map, String resource) throws IOException {
-        Graphics2D g2d = map.createGraphics(6000, 6000);
+        Graphics2D g2d = new PdfGraphics2D(map, 6000, 6000);
         SVGDocument city = factory.createSVGDocument(new File(resource).toURL()
                 .toString());
         GraphicsNode mapGraphics = builder.build(ctx, city);

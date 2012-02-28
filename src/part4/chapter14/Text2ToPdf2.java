@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.itextpdf.awt.AsianFontMapper;
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
@@ -37,7 +38,7 @@ public class Text2ToPdf2 {
         document.open();
         // step 4
         PdfContentByte canvas = writer.getDirectContent();
-        Graphics2D g2 = canvas.createGraphics(300, 150, new AsianFontMapper(
+        Graphics2D g2 = new PdfGraphics2D(canvas, 300, 150, new AsianFontMapper(
                 AsianFontMapper.JapaneseFont_Min, AsianFontMapper.JapaneseEncoding_H));
         TextExample2 text = new TextExample2();
         text.setSize(new Dimension(300, 150));

@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import com.itextpdf.awt.DefaultFontMapper;
 import com.itextpdf.awt.DefaultFontMapper.BaseFontParameters;
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
@@ -45,7 +46,7 @@ public class Text1ToPdf2 {
         parameters.encoding = BaseFont.IDENTITY_H;
         mapper.putName("MS PGothic", parameters );
         // Create a Graphics2D object
-        Graphics2D g2 = canvas.createGraphics(600, 60, mapper);
+        Graphics2D g2 = new PdfGraphics2D(canvas, 600, 60, mapper);
         // write the text to the Graphics2D
         TextExample1 text = new TextExample1();
         text.paint(g2);

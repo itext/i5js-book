@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.itextpdf.awt.DefaultFontMapper;
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
@@ -42,7 +43,7 @@ public class Text1ToPdf1 {
         DefaultFontMapper mapper = new DefaultFontMapper();
         mapper.insertDirectory("c:/windows/fonts/");
         // create the Graphics2D object
-        Graphics2D g2 = canvas.createGraphics(600, 60, mapper);
+        Graphics2D g2 = new PdfGraphics2D(canvas, 600, 60, mapper);
         // write the text to the Graphics2D (will NOT work as expected!)
         TextExample1 text = new TextExample1();
         text.paint(g2);

@@ -20,6 +20,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -67,14 +68,14 @@ public class DirectorCharts {
         float height = PageSize.A4.getHeight() / 2;
         // Pie chart
         PdfTemplate pie = cb.createTemplate(width, height);
-        Graphics2D g2d1 = pie.createGraphics(width, height);
+        Graphics2D g2d1 = new PdfGraphics2D(pie, width, height);
         Rectangle2D r2d1 = new Rectangle2D.Double(0, 0, width, height);
         getPieChart().draw(g2d1, r2d1);
         g2d1.dispose();
         cb.addTemplate(pie, 0, height);
         // Bar chart
         PdfTemplate bar = cb.createTemplate(width, height);
-        Graphics2D g2d2 = bar.createGraphics(width, height);
+        Graphics2D g2d2 = new PdfGraphics2D(bar, width, height);
         Rectangle2D r2d2 = new Rectangle2D.Double(0, 0, width, height);
         getBarChart().draw(g2d2, r2d2);
         g2d2.dispose();

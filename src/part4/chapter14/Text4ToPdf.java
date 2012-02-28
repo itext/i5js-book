@@ -16,6 +16,7 @@ import javax.swing.text.BadLocationException;
 
 import com.itextpdf.awt.DefaultFontMapper;
 import com.itextpdf.awt.DefaultFontMapper.BaseFontParameters;
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
@@ -50,7 +51,7 @@ public class Text4ToPdf {
         BaseFontParameters parameters = new BaseFontParameters("c:/windows/fonts/msgothic.ttc,1");
         parameters.encoding = BaseFont.IDENTITY_H;
         mapper.putName("MS PGothic", parameters );
-        Graphics2D g2 = canvas.createGraphics(300, 150, mapper);
+        Graphics2D g2 = new PdfGraphics2D(canvas, 300, 150, mapper);
         // create the text pane and print it.
         JTextPane text = TextExample4.createTextPane();
         text.setSize(new Dimension(300, 150));

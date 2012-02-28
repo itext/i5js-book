@@ -16,6 +16,7 @@ import java.util.Map.Entry;
 
 import com.itextpdf.awt.DefaultFontMapper;
 import com.itextpdf.awt.DefaultFontMapper.BaseFontParameters;
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
@@ -82,7 +83,7 @@ public class Graphics2DFonts {
         document.open();
         // step 4
         PdfContentByte cb = writer.getDirectContent();
-        Graphics2D g2d = cb.createGraphics(width, height, mapper);
+        Graphics2D g2d = new PdfGraphics2D(cb, width, height, mapper);
         for (int i = 0; i < FONTS.length; ) {
             g2d.setFont(FONTS[i++]);
             g2d.drawString("Hello world", 5, 24 * i);

@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
@@ -36,7 +37,7 @@ public class Text2ToPdf3 {
         document.open();
         // step 4
         PdfContentByte canvas = writer.getDirectContent();
-        Graphics2D g2 = canvas.createGraphicsShapes(300, 150);
+        Graphics2D g2 = new PdfGraphics2D(canvas, 300, 150, true);
         TextExample2 text = new TextExample2();
         text.setSize(new Dimension(300, 150));
         text.paint(g2);

@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.itextpdf.awt.FontMapper;
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
@@ -60,7 +61,7 @@ public class Text2ToPdf1 {
             
         };
         // Create a Graphics2D object
-        Graphics2D g2 = canvas.createGraphics(300, 150, arialuni);
+        Graphics2D g2 = new PdfGraphics2D(canvas, 300, 150, arialuni);
         // Draw text to the Graphics2D
         TextExample2 text = new TextExample2();
         text.setSize(new Dimension(300, 150));
