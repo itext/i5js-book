@@ -35,6 +35,8 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.security.CertificateInfo;
+import com.itextpdf.text.pdf.security.CertificateVerification;
 
 public class Signatures {
 
@@ -164,9 +166,9 @@ public class Signatures {
             PdfPKCS7 pk = af.verifySignature(name);
             Calendar cal = pk.getSignDate();
             Certificate[] pkc = pk.getCertificates();
-            out.println("Subject: " + PdfPKCS7.getSubjectFields(pk.getSigningCertificate()));
+            out.println("Subject: " + CertificateInfo.getSubjectFields(pk.getSigningCertificate()));
             out.println("Revision modified: " + !pk.verify());
-            Object fails[] = PdfPKCS7.verifyCertificates(pkc, ks, null, cal);
+            Object fails[] = CertificateVerification.verifyCertificates(pkc, ks, null, cal);
             if (fails == null)
                 out.println("Certificates verified against the KeyStore");
             else

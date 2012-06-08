@@ -38,6 +38,7 @@ import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfString;
 import com.itextpdf.text.pdf.TSAClient;
 import com.itextpdf.text.pdf.TSAClientBouncyCastle;
+import com.itextpdf.text.pdf.security.CertificateUtil;
 
 public class TimestampOCSP {
 
@@ -116,7 +117,7 @@ public class TimestampOCSP {
         // If we use OCSP:
         byte[] ocsp = null;
         if (withOCSP) {
-            String url = PdfPKCS7.getOCSPURL((X509Certificate)chain[0]);
+            String url = CertificateUtil.getOCSPURL((X509Certificate)chain[0]);
             CertificateFactory cf = CertificateFactory.getInstance("X509");
             FileInputStream is = new FileInputStream(properties.getProperty("ROOTCERT"));
             X509Certificate root = (X509Certificate) cf.generateCertificate(is);

@@ -37,12 +37,12 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfDate;
 import com.itextpdf.text.pdf.PdfDictionary;
 import com.itextpdf.text.pdf.PdfName;
-import com.itextpdf.text.pdf.PdfPKCS7;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignature;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfString;
+import com.itextpdf.text.pdf.security.CertificateInfo;
 
 public class SignWithBC {
 
@@ -95,7 +95,7 @@ public class SignWithBC {
         else
             dic = new PdfSignature(PdfName.ADOBE_PPKMS, PdfName.ADBE_PKCS7_SHA1);
         dic.setDate(new PdfDate(sap.getSignDate()));
-        dic.setName(PdfPKCS7.getSubjectFields((X509Certificate)chain[0]).getField("CN"));
+        dic.setName(CertificateInfo.getSubjectFields((X509Certificate)chain[0]).getField("CN"));
         dic.setReason("Signed with BC");
         dic.setLocation("Foobar");
         sap.setCryptoDictionary(dic);
