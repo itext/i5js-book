@@ -83,7 +83,7 @@ public class TimestampOCSP {
         PdfStamper stp = PdfStamper.createSignature(reader, fout, '\0');
         PdfSignatureAppearance sap = stp.getSignatureAppearance();
         sap.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1, "Signature");
-        sap.setCrypto(null, chain, null, PdfSignatureAppearance.SELF_SIGNED);
+        sap.setCrypto(chain[0], null);
         PdfSignature dic = new PdfSignature(PdfName.ADOBE_PPKLITE, new PdfName("adbe.pkcs7.detached"));
         dic.setReason(sap.getReason());
         dic.setLocation(sap.getLocation());

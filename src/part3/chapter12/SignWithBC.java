@@ -86,8 +86,7 @@ public class SignWithBC {
         PdfSignatureAppearance sap = stp.getSignatureAppearance();
         sap.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1, null);
         sap.setSignDate(new GregorianCalendar());
-        sap.setCrypto(null, chain, null, null);
-        sap.setAcro6Layers(true);
+        sap.setCrypto(chain[0], null);
         sap.setRenderingMode(PdfSignatureAppearance.RenderingMode.DESCRIPTION);
         PdfSignature dic;
         if (detached)
