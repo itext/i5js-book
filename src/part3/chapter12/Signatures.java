@@ -30,10 +30,8 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.AcroFields;
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfPKCS7;
 import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfSignature;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -98,20 +96,19 @@ public class Signatures {
         String alias = (String)ks.aliases().nextElement();
         PrivateKey pk = (PrivateKey) ks.getKey(alias, key_password.toCharArray());
         Certificate[] chain = ks.getCertificateChain(alias);
+        // reader and stamper
         PdfReader reader = new PdfReader(src);
         FileOutputStream os = new FileOutputStream(dest);
         PdfStamper stamper = PdfStamper.createSignature(reader, os, '\0');
+        // appearance
         PdfSignatureAppearance appearance = stamper .getSignatureAppearance();
-        appearance.setCrypto(chain[0], null);
         appearance.setImage(Image.getInstance(RESOURCE));
         appearance.setReason("I've written this.");
         appearance.setLocation("Foobar");
         appearance.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1,    "first");
         // digital signature
-        PdfSignature dic = new PdfSignature(PdfName.ADOBE_PPKLITE, PdfName.ADBE_PKCS7_DETACHED);
-        appearance.setCryptoDictionary(dic);
         ExternalSignature es = new ExternalSignaturePrivateKey(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0);
+        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, false);
     }
     
     /**
@@ -132,20 +129,19 @@ public class Signatures {
         ks.load(new FileInputStream(path), keystore_password.toCharArray());
         PrivateKey pk = (PrivateKey) ks.getKey(alias, key_password.toCharArray());
         Certificate[] chain = ks.getCertificateChain(alias);
+        // reader / stamper
         PdfReader reader = new PdfReader(src);
         FileOutputStream os = new FileOutputStream(dest);
         PdfStamper stamper = PdfStamper.createSignature(reader, os, '\0', null, true);
+        // appearance
         PdfSignatureAppearance appearance = stamper
                 .getSignatureAppearance();
-        appearance.setCrypto(chain[0], null);
         appearance.setReason("I'm approving this.");
         appearance.setLocation("Foobar");
         appearance.setVisibleSignature(new Rectangle(160, 732, 232, 780), 1, "second");
         // digital signature
-        PdfSignature dic = new PdfSignature(PdfName.ADOBE_PPKLITE, PdfName.ADBE_PKCS7_DETACHED);
-        appearance.setCryptoDictionary(dic);
         ExternalSignature es = new ExternalSignaturePrivateKey(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0);
+        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, false);
 
     }
     

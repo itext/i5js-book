@@ -30,9 +30,7 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfAnnotation;
 import com.itextpdf.text.pdf.PdfAppearance;
 import com.itextpdf.text.pdf.PdfFormField;
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfSignature;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -116,21 +114,20 @@ public class SignatureField {
         // reader and stamper
         PdfReader reader = new PdfReader(ORIGINAL);
         PdfStamper stamper = PdfStamper.createSignature(reader, new FileOutputStream(dest), '\0');
+        // appearance
         PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
         appearance.setVisibleSignature("mySig");
         appearance.setReason("It's personal.");
         appearance.setLocation("Foobar");
-        appearance.setCrypto(chain[0], null);
         if (certified)
             appearance.setCertificationLevel(PdfSignatureAppearance.CERTIFIED_NO_CHANGES_ALLOWED);
         if (graphic) {
             appearance.setSignatureGraphic(Image.getInstance(RESOURCE));
             appearance.setRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
         }
-        PdfSignature dic = new PdfSignature(PdfName.ADOBE_PPKLITE, PdfName.ADBE_PKCS7_DETACHED);
-        appearance.setCryptoDictionary(dic);
+        // signature
         ExternalSignature es = new ExternalSignaturePrivateKey(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0);
+        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, false);
     }
     
     /**

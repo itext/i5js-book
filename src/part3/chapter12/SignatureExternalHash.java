@@ -7,10 +7,12 @@
 package part3.chapter12;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.PrivateKey;
 import java.security.Security;
 import java.security.cert.Certificate;
@@ -20,9 +22,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfSignature;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.security.ExternalSignature;
@@ -50,12 +50,14 @@ public class SignatureExternalHash {
      * Manipulates a PDF file src with the file dest as result
      * @param src the original PDF
      * @param dest the resulting PDF
-     * @throws IOException
-     * @throws DocumentException
      * @throws GeneralSecurityException 
+     * @throws IOException 
+     * @throws DocumentException 
+     * @throws FileNotFoundException 
+     * @throws KeyStoreException 
+     * @throws Exception 
      */
-    public void signPdfDetached(String src, String dest)
-        throws IOException, DocumentException, GeneralSecurityException {
+    public void signPdfDetached(String src, String dest) throws GeneralSecurityException, IOException, DocumentException {
     	// Private key and certificate
         String path = properties.getProperty("PRIVATE");
         String keystore_password = properties.getProperty("PASSWORD");
@@ -65,20 +67,21 @@ public class SignatureExternalHash {
         String alias = (String)ks.aliases().nextElement();
         PrivateKey pk = (PrivateKey) ks.getKey(alias, key_password.toCharArray());
         Certificate[] chain = ks.getCertificateChain(alias);
+        
         // reader and stamper
         PdfReader reader = new PdfReader(src);
         FileOutputStream os = new FileOutputStream(dest);
         PdfStamper stamper = PdfStamper.createSignature(reader, os, '\0');
+        
+        // appearance
         PdfSignatureAppearance appearance = stamper.getSignatureAppearance();
-        appearance.setCrypto(chain[0], null);
         appearance.setReason("External hash example");
         appearance.setLocation("Foobar");
         appearance.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1, "sig");
+        
         // digital signature
-        PdfSignature dic = new PdfSignature(PdfName.ADOBE_PPKLITE, PdfName.ADBE_PKCS7_DETACHED);
-        appearance.setCryptoDictionary(dic);
         ExternalSignature es = new ExternalSignaturePrivateKey(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0);
+        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, false);
     }
     
     /**
