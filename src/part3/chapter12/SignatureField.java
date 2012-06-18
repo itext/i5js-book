@@ -127,7 +127,7 @@ public class SignatureField {
         }
         // signature
         ExternalSignature es = new ExternalSignaturePrivateKey(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, false);
+        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, MakeSignature.CMS);
     }
     
     /**

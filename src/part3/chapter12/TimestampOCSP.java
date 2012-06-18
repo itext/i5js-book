@@ -23,13 +23,13 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
-import com.itextpdf.text.pdf.TSAClient;
-import com.itextpdf.text.pdf.TSAClientBouncyCastle;
 import com.itextpdf.text.pdf.security.ExternalSignature;
 import com.itextpdf.text.pdf.security.ExternalSignaturePrivateKey;
 import com.itextpdf.text.pdf.security.MakeSignature;
 import com.itextpdf.text.pdf.security.OcspClient;
 import com.itextpdf.text.pdf.security.OcspClientBouncyCastle;
+import com.itextpdf.text.pdf.security.TSAClient;
+import com.itextpdf.text.pdf.security.TSAClientBouncyCastle;
 
 public class TimestampOCSP {
 
@@ -93,7 +93,7 @@ public class TimestampOCSP {
         if (withOCSP) {
             ocsp = new OcspClientBouncyCastle();
         }
-        MakeSignature.signDetached(sap, es, chain, null, ocsp, tsc, "BC", 0, false);
+        MakeSignature.signDetached(sap, es, chain, null, ocsp, tsc, "BC", 0, MakeSignature.CMS);
     }
     
     /**
