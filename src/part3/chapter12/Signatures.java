@@ -30,7 +30,6 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.AcroFields;
-import com.itextpdf.text.pdf.PdfPKCS7;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
@@ -40,6 +39,7 @@ import com.itextpdf.text.pdf.security.CertificateVerification;
 import com.itextpdf.text.pdf.security.ExternalSignature;
 import com.itextpdf.text.pdf.security.ExternalSignaturePrivateKey;
 import com.itextpdf.text.pdf.security.MakeSignature;
+import com.itextpdf.text.pdf.security.PdfPKCS7;
 
 public class Signatures {
 
