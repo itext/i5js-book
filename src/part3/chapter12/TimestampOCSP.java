@@ -24,7 +24,7 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.security.ExternalSignature;
-import com.itextpdf.text.pdf.security.ExternalSignaturePrivateKey;
+import com.itextpdf.text.pdf.security.PrivateKeySignature;
 import com.itextpdf.text.pdf.security.MakeSignature;
 import com.itextpdf.text.pdf.security.OcspClient;
 import com.itextpdf.text.pdf.security.OcspClientBouncyCastle;
@@ -79,7 +79,7 @@ public class TimestampOCSP {
         sap.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1, "Signature");
         // preserve some space for the contents
         // digital signature
-        ExternalSignature es = new ExternalSignaturePrivateKey(pk, "SHA-256", "BC");
+        ExternalSignature es = new PrivateKeySignature(pk, "SHA-256", "BC");
         // If we add a time stamp:
         TSAClient tsc = null;
         if (withTS) {

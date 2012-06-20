@@ -35,7 +35,7 @@ import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.security.ExternalSignature;
-import com.itextpdf.text.pdf.security.ExternalSignaturePrivateKey;
+import com.itextpdf.text.pdf.security.PrivateKeySignature;
 import com.itextpdf.text.pdf.security.MakeSignature;
 
 public class SignatureField {
@@ -126,7 +126,7 @@ public class SignatureField {
             appearance.setRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
         }
         // signature
-        ExternalSignature es = new ExternalSignaturePrivateKey(pk, "SHA-256", "BC");
+        ExternalSignature es = new PrivateKeySignature(pk, "SHA-256", "BC");
         MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, MakeSignature.CMS);
     }
     
