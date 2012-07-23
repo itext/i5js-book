@@ -14,6 +14,8 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.CMYKColor;
 import com.itextpdf.text.pdf.ICC_Profile;
+import com.itextpdf.text.pdf.PdfAConformanceLevel;
+import com.itextpdf.text.pdf.PdfAWriter;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class PdfXPdfA {
@@ -62,10 +64,8 @@ public class PdfXPdfA {
         // step 1
         Document document = new Document();
         // step 2
-        PdfWriter writer = PdfWriter.getInstance(document,
-            new FileOutputStream(filename));
-        writer.setPdfVersion(PdfWriter.PDF_VERSION_1_4);
-        writer.setPDFXConformance(PdfWriter.PDFA1B);
+        PdfAWriter writer = PdfAWriter.getInstance(document,
+            new FileOutputStream(filename), PdfAConformanceLevel.PDF_A_1B);
         writer.createXmpMetadata();
         // step 3
         document.open();

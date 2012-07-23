@@ -1681,6 +1681,7 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
+                <pathelement location="lib/iText-pdfa.jar" />
             </classpath>
         </java>
         <echo message="AppendMode" />
