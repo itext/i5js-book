@@ -65,7 +65,7 @@ public class PagedImages {
      * @throws IOException
      */
     public static void addTif(Document document, String path) throws DocumentException, IOException {
-        RandomAccessFileOrArray ra = new RandomAccessFileOrArray(RESOURCE1);
+        RandomAccessFileOrArray ra = new RandomAccessFileOrArray(path);
         int n = TiffImage.getNumberOfPages(ra);
         Image img;
         for (int i = 1; i <= n; i++) {
@@ -83,7 +83,7 @@ public class PagedImages {
      * @throws DocumentException
      */
     public static void addJBIG2(Document document, String path) throws IOException, DocumentException {
-        RandomAccessFileOrArray ra = new RandomAccessFileOrArray(RESOURCE2);
+        RandomAccessFileOrArray ra = new RandomAccessFileOrArray(path);
         int n = JBIG2Image.getNumberOfPages(ra);
         Image img;
         for (int i = 1; i <= n; i++) {
@@ -101,7 +101,7 @@ public class PagedImages {
      * @throws DocumentException
      */
     public static void addGif(Document document, String path) throws IOException, DocumentException {
-        GifImage img = new GifImage(RESOURCE3);
+        GifImage img = new GifImage(path);
         int n = img.getFrameCount();
         for (int i = 1; i <= n; i++) {
             document.add(img.getImage(i));
