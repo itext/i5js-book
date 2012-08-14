@@ -24,6 +24,7 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.security.ExternalSignature;
+import com.itextpdf.text.pdf.security.MakeSignature.CryptoStandard;
 import com.itextpdf.text.pdf.security.PrivateKeySignature;
 import com.itextpdf.text.pdf.security.MakeSignature;
 import com.itextpdf.text.pdf.security.OcspClient;
@@ -93,7 +94,7 @@ public class TimestampOCSP {
         if (withOCSP) {
             ocsp = new OcspClientBouncyCastle();
         }
-        MakeSignature.signDetached(sap, es, chain, null, ocsp, tsc, "BC", 0, MakeSignature.CMS);
+        MakeSignature.signDetached(sap, es, chain, null, ocsp, tsc, "BC", 0, CryptoStandard.CMS);
     }
     
     /**
