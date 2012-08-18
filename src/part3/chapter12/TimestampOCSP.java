@@ -94,7 +94,7 @@ public class TimestampOCSP {
         if (withOCSP) {
             ocsp = new OcspClientBouncyCastle();
         }
-        MakeSignature.signDetached(sap, es, chain, null, ocsp, tsc, "BC", 0, CryptoStandard.CMS);
+        MakeSignature.signDetached(sap, es, chain, null, ocsp, tsc, 0, CryptoStandard.CMS);
     }
     
     /**

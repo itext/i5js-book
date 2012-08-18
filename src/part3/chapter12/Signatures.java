@@ -109,7 +109,7 @@ public class Signatures {
         appearance.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1,    "first");
         // digital signature
         ExternalSignature es = new PrivateKeySignature(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, CryptoStandard.CMS);
+        MakeSignature.signDetached(appearance, es, chain, null, null, null, 0, CryptoStandard.CMS);
     }
     
     /**
@@ -142,7 +142,7 @@ public class Signatures {
         appearance.setVisibleSignature(new Rectangle(160, 732, 232, 780), 1, "second");
         // digital signature
         ExternalSignature es = new PrivateKeySignature(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, null, 0, CryptoStandard.CMS);
+        MakeSignature.signDetached(appearance, es, chain, null, null, null, 0, CryptoStandard.CMS);
 
     }
     
