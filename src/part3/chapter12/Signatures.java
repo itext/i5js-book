@@ -34,8 +34,10 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.security.BouncyCastleDigest;
 import com.itextpdf.text.pdf.security.CertificateInfo;
 import com.itextpdf.text.pdf.security.CertificateVerification;
+import com.itextpdf.text.pdf.security.ExternalDigest;
 import com.itextpdf.text.pdf.security.ExternalSignature;
 import com.itextpdf.text.pdf.security.MakeSignature.CryptoStandard;
 import com.itextpdf.text.pdf.security.PrivateKeySignature;
@@ -109,7 +111,8 @@ public class Signatures {
         appearance.setVisibleSignature(new Rectangle(72, 732, 144, 780), 1,    "first");
         // digital signature
         ExternalSignature es = new PrivateKeySignature(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, 0, CryptoStandard.CMS);
+        ExternalDigest digest = new BouncyCastleDigest();
+        MakeSignature.signDetached(appearance, digest, es, chain, null, null, null, 0, CryptoStandard.CMS);
     }
     
     /**
@@ -142,7 +145,8 @@ public class Signatures {
         appearance.setVisibleSignature(new Rectangle(160, 732, 232, 780), 1, "second");
         // digital signature
         ExternalSignature es = new PrivateKeySignature(pk, "SHA-256", "BC");
-        MakeSignature.signDetached(appearance, es, chain, null, null, null, 0, CryptoStandard.CMS);
+        ExternalDigest digest = new BouncyCastleDigest();
+        MakeSignature.signDetached(appearance, digest, es, chain, null, null, null, 0, CryptoStandard.CMS);
 
     }
     
