@@ -21,7 +21,7 @@ public class FormInformation {
     /** The original PDF file. */
     public static final String DATASHEET
         = "resources/pdfs/datasheet.pdf";
-    /** The resulting PDF file. */
+    /** The resulting text file with the field info. */
     public static final String RESULT
         = "results/part2/chapter06/form_info.txt";    
     
