@@ -20,6 +20,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Properties;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -43,6 +44,7 @@ import com.itextpdf.text.pdf.security.MakeSignature.CryptoStandard;
 import com.itextpdf.text.pdf.security.PrivateKeySignature;
 import com.itextpdf.text.pdf.security.MakeSignature;
 import com.itextpdf.text.pdf.security.PdfPKCS7;
+import com.itextpdf.text.pdf.security.VerificationError;
 
 public class Signatures {
 
@@ -179,11 +181,11 @@ public class Signatures {
             Certificate[] pkc = pk.getCertificates();
             out.println("Subject: " + CertificateInfo.getSubjectFields(pk.getSigningCertificate()));
             out.println("Revision modified: " + !pk.verify());
-            Object fails[] = CertificateVerification.verifyCertificates(pkc, ks, null, cal);
-            if (fails == null)
+            List<VerificationError> errors = CertificateVerification.verifyCertificates(pkc, ks, null, cal);
+            if (errors.size() == 0)
                 out.println("Certificates verified against the KeyStore");
             else
-                out.println("Certificate failed: " + fails[1]);    
+                out.println(errors);    
         }
         out.flush();
         out.close();
