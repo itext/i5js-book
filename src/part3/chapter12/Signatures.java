@@ -44,7 +44,7 @@ import com.itextpdf.text.pdf.security.MakeSignature.CryptoStandard;
 import com.itextpdf.text.pdf.security.PrivateKeySignature;
 import com.itextpdf.text.pdf.security.MakeSignature;
 import com.itextpdf.text.pdf.security.PdfPKCS7;
-import com.itextpdf.text.pdf.security.VerificationError;
+import com.itextpdf.text.pdf.security.VerificationException;
 
 public class Signatures {
 
@@ -181,7 +181,7 @@ public class Signatures {
             Certificate[] pkc = pk.getCertificates();
             out.println("Subject: " + CertificateInfo.getSubjectFields(pk.getSigningCertificate()));
             out.println("Revision modified: " + !pk.verify());
-            List<VerificationError> errors = CertificateVerification.verifyCertificates(pkc, ks, null, cal);
+            List<VerificationException> errors = CertificateVerification.verifyCertificates(pkc, ks, null, cal);
             if (errors.size() == 0)
                 out.println("Certificates verified against the KeyStore");
             else
