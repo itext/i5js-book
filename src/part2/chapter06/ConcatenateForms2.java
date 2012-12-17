@@ -42,13 +42,13 @@ public class ConcatenateForms2 {
         // add a document
         PdfReader reader1 = new PdfReader(renameFieldsIn(DATASHEET, 1));
         copy.addDocument(reader1);
-        reader1.close();
         // add a document
         PdfReader reader2 = new PdfReader(renameFieldsIn(DATASHEET, 2));
         copy.addDocument(reader2);
-        reader2.close();
         // Close the PdfCopyFields object
         copy.close();
+        reader1.close();
+        reader2.close();
     }
     
     /**
