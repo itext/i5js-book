@@ -91,6 +91,7 @@ public class DataSheets1 extends FillDataSheet {
             reader = new PdfReader(baos.toByteArray());
             copy.addPage(copy.getImportedPage(reader, 1));
             copy.freeReader(reader);
+            reader.close();
         }
         // Close the database connection
         connection.close();

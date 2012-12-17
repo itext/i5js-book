@@ -56,6 +56,7 @@ public class Concatenate {
                 copy.addPage(copy.getImportedPage(reader, ++page));
             }
             copy.freeReader(reader);
+            reader.close();
         }
         // step 5
         document.close();
