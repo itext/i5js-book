@@ -40,9 +40,13 @@ public class ConcatenateForms2 {
         PdfCopyFields copy
             = new PdfCopyFields(new FileOutputStream(RESULT));
         // add a document
-        copy.addDocument(new PdfReader(renameFieldsIn(DATASHEET, 1)));
+        PdfReader reader1 = new PdfReader(renameFieldsIn(DATASHEET, 1));
+        copy.addDocument(reader1);
+        reader1.close();
         // add a document
-        copy.addDocument(new PdfReader(renameFieldsIn(DATASHEET, 2)));
+        PdfReader reader2 = new PdfReader(renameFieldsIn(DATASHEET, 2));
+        copy.addDocument(reader2);
+        reader2.close();
         // Close the PdfCopyFields object
         copy.close();
     }

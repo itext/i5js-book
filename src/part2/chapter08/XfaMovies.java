@@ -54,6 +54,7 @@ public class XfaMovies {
         XfaForm xfa = form.getXfa();
         xfa.fillXfaForm(new FileInputStream(xml));
         stamper.close();
+        reader.close();
     }
     
     /**

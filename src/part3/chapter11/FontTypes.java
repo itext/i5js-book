@@ -32,7 +32,7 @@ public class FontTypes {
         {BaseFont.HELVETICA, BaseFont.WINANSI},
         {"resources/fonts/cmr10.afm", BaseFont.WINANSI},
         {"resources/fonts/cmr10.pfm", BaseFont.WINANSI},
-        {"c:/windows/fonts/ARBLI__.TTF", BaseFont.WINANSI},
+        //{"c:/windows/fonts/ARBLI__.TTF", BaseFont.WINANSI},
         {"c:/windows/fonts/arial.ttf", BaseFont.WINANSI},
         {"c:/windows/fonts/arial.ttf", BaseFont.IDENTITY_H},
         {"resources/fonts/Puritan2.otf", BaseFont.WINANSI},

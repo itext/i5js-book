@@ -49,6 +49,7 @@ public class InsertPages {
         reader.selectPages("3-41,1-2");
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT2));
         stamper.close();
+        reader.close();
     }
     
     /**
@@ -97,5 +98,7 @@ public class InsertPages {
         }
         // Close the stamper
         stamper.close();
+        reader.close();
+        stationery.close();
     }
 }

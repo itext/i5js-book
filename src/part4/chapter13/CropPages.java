@@ -44,6 +44,7 @@ public class CropPages {
         }
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
+        reader.close();
     }
     
     /**

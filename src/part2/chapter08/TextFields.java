@@ -68,6 +68,7 @@ public class TextFields implements PdfPCellEvent {
         form.setFieldProperty("text_4", "textsize", new Float(12), null);
         form.regenerateField("text_4");
         stamper.close();
+        reader.close();
     }
 
     /**

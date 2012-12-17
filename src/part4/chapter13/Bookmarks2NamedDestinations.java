@@ -147,6 +147,7 @@ public class Bookmarks2NamedDestinations {
         root.put(PdfName.NAMES, names);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
+        reader.close();
     }
     
     /**

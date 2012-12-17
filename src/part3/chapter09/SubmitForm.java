@@ -87,6 +87,7 @@ public class SubmitForm {
         stamper.addAnnotation(reset, 1);
         // close the stamper
         stamper.close();
+        reader.close();
     }
     
     /**

@@ -120,6 +120,7 @@ public class ReplaceURL {
         f.put(PdfName.F, new PdfString("http://itextpdf.com:8080/book/request"));
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
+        reader.close();
     }
     
     /**

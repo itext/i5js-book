@@ -72,6 +72,7 @@ public class TransformationMatrix1 {
         canvas.restoreState();
         // step 5
         document.close();
+        reader.close();
     }
     
     /**

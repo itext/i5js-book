@@ -78,6 +78,7 @@ public class XfaMovie {
         }
         out.flush();
         out.close();
+        reader.close();
     }
     
     /**
@@ -122,6 +123,7 @@ public class XfaMovie {
         form.setField("movies[0].movie[0].original[0]", "De helaasheid der dingen");
         form.setField("movies[0].movie[0].year[0]", "2009");
         stamper.close();
+        reader.close();
     }
     
     /**
@@ -147,6 +149,7 @@ public class XfaMovie {
         xfa.setChanged(true);
         XfaForm.setXfa(xfa, stamper.getReader(), stamper.getWriter());
         stamper.close();
+        reader.close();
     }
     
     /**
@@ -205,6 +208,7 @@ public class XfaMovie {
         form.setField("movies[0].movie[0].original[0]", "De helaasheid der dingen");
         form.setField("movies[0].movie[0].year[0]", "2009");
         stamper.close();
+        reader.close();
     }
 
     /**

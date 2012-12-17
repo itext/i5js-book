@@ -70,6 +70,7 @@ public class NamedActions {
         }
         // Close the stamper
         stamper.close();
+        reader.close();
     }
 
     /**

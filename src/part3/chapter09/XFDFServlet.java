@@ -57,6 +57,7 @@ public class XFDFServlet extends HttpServlet {
                 "/book/xfdf", null, PdfAction.SUBMIT_XFDF));
             stamper.addAnnotation(submit, 1);
             stamper.close();
+            reader.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);
@@ -89,6 +90,7 @@ public class XFDFServlet extends HttpServlet {
             fields.setFields(xfdf);
             // close the stamper
             stamper.close();
+            reader.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);

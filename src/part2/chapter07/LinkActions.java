@@ -122,6 +122,7 @@ public class LinkActions {
         HashMap<String,String> map = SimpleNamedDestination.getNamedDestination(reader, false);
         SimpleNamedDestination.exportToXML(map, new FileOutputStream(dest),
                 "ISO8859-1", true);
+        reader.close();
     }
 
     /**

@@ -36,6 +36,7 @@ public class ExtractImages {
         for (int i = 1; i <= reader.getNumberOfPages(); i++) {
             parser.processContent(i, listener);
         }
+        reader.close();
     }
 
     /**

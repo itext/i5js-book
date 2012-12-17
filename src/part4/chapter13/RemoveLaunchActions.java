@@ -51,7 +51,7 @@ public class RemoveLaunchActions {
         }
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
-
+        reader.close();
     }
     /**
      * Main method creating the PDF.

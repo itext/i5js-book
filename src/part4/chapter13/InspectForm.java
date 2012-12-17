@@ -54,6 +54,7 @@ public class InspectForm {
         }
         out.flush();
         out.close();
+        reader.close();
     }
     
     /**

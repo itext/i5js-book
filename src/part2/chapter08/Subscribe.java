@@ -56,6 +56,7 @@ public class Subscribe {
         stamper.setFormFlattening(true);
         stamper.partialFormFlattening("personal.name");
         stamper.close();
+        reader.close();
     }
 
     /**

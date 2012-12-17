@@ -58,6 +58,7 @@ public class FillDataSheet {
             if (movie.getYear() == 2007)
                 stamper.setFormFlattening(true);
             stamper.close();
+            reader.close();
         }
         // Close the database connection
         connection.close();

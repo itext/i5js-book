@@ -194,6 +194,7 @@ public class MovieAds {
         // flatten the form and close the stamper
         stamper.setFormFlattening(true);
         stamper.close();
+        reader.close();
         return baos.toByteArray();
     }
     

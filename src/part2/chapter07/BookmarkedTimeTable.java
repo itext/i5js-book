@@ -66,6 +66,7 @@ public class BookmarkedTimeTable {
         stamper.setOutlines(outlines);
         // Close the stamper
         stamper.close();
+        reader.close();
         // Close the database connection
         connection.close();
     }

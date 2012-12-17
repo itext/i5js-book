@@ -45,6 +45,7 @@ public class RotatePages {
         }
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
         stamper.close();
+        reader.close();
     }
     
     /**

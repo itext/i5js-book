@@ -91,6 +91,8 @@ public class FindDirectors {
         }
         // step 5
         document.close();
+        readers[0].close();
+        readers[1].close();
     }
     
     /**

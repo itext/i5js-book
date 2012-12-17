@@ -93,6 +93,7 @@ public class EmbedFontPostFacto {
             }
         }
         stamper.close();
+        reader.close();
     }
 
     /**

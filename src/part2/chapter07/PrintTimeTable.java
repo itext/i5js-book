@@ -67,6 +67,7 @@ public class PrintTimeTable {
         }
         // Close the stamper
         stamper.close();
+        reader.close();
     }
 
     /**

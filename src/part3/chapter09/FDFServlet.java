@@ -75,6 +75,7 @@ public class FDFServlet extends HttpServlet {
             stamper.addAnnotation(upload, 1);
             // Close the stamper
             stamper.close();
+            reader.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);
@@ -121,6 +122,7 @@ public class FDFServlet extends HttpServlet {
             }
             // close the stamper
             stamper.close();
+            reader.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);

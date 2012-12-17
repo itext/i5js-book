@@ -40,6 +40,7 @@ public class ExtractPageContent {
         }
         out.flush();
         out.close();
+        reader.close();
     }
 
     /**

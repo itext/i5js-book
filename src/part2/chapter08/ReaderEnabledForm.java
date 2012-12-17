@@ -62,6 +62,7 @@ public class ReaderEnabledForm {
         form.setField("movie[0].#subform[0].year[0]", "2009");
         // close the stamper
         stamper.close();
+        reader.close();
     }
 
     /**

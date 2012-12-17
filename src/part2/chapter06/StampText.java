@@ -63,6 +63,7 @@ public class StampText {
         ColumnText.showTextAligned(canvas,
                 Element.ALIGN_LEFT, new Phrase("Hello people!"), 36, 540, 0);
         stamper.close();
+        reader.close();
     }
 
     /**
@@ -81,5 +82,6 @@ public class StampText {
         ColumnText.showTextAligned(canvas,
                 Element.ALIGN_LEFT, new Phrase("Hello people!"), 36, 540, 0);
         stamper.close();
+        reader.close();
     }
 }

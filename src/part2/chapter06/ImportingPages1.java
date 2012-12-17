@@ -55,5 +55,6 @@ public class ImportingPages1 {
         document.add(table);
         // step 5
         document.close();
+        reader.close();
     }
 }

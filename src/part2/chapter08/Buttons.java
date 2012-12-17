@@ -150,6 +150,7 @@ public class Buttons {
             form.setField(LANGUAGES[i], checkboxstates[i % 2 == 0 ? 1 : 0]);
         }
         stamper.close();
+        reader.close();
     }
 
     /**

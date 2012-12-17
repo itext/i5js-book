@@ -83,5 +83,7 @@ public class ConcatenateStamp {
         }
         // step 5
         document.close();
+        reader1.close();
+        reader2.close();
     }
 }

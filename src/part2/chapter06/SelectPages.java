@@ -37,6 +37,7 @@ public class SelectPages {
         reader.selectPages("4-8");
         manipulateWithStamper(reader);
         manipulateWithCopy(reader);
+        reader.close();
     }
 
     /**

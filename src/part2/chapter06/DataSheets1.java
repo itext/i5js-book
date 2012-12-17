@@ -86,6 +86,7 @@ public class DataSheets1 extends FillDataSheet {
             fill(stamper.getAcroFields(), movie);
             stamper.setFormFlattening(true);
             stamper.close();
+            reader.close();
             
             reader = new PdfReader(baos.toByteArray());
             copy.addPage(copy.getImportedPage(reader, 1));

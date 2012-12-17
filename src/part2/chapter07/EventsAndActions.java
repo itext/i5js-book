@@ -62,6 +62,7 @@ public class EventsAndActions {
         stamper.setPageAction(PdfWriter.PAGE_CLOSE, action, 1);
         // Close the stamper
         stamper.close();
+        reader.close();
     }
     
     /**

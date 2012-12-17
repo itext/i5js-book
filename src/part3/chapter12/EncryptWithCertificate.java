@@ -113,6 +113,7 @@ public class EncryptWithCertificate {
             getPublicCertificate("resources/encryption/foobar.cer"), getPrivateKey(), "BC");
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
+        reader.close();
     }
     
     /**
@@ -131,6 +132,7 @@ public class EncryptWithCertificate {
         stamper.setEncryption(new Certificate[]{cert},
             new int[]{PdfWriter.ALLOW_PRINTING}, PdfWriter.ENCRYPTION_AES_128);
         stamper.close();
+        reader.close();
     }
 
     /**

@@ -71,6 +71,7 @@ public class Layers {
         }
         // step 5
         document.close();
+        reader.close();
     }
 
     /**

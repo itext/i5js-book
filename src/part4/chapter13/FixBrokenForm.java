@@ -55,6 +55,7 @@ public class FixBrokenForm {
         PdfStamper stamper = new PdfStamper(reader,
              new FileOutputStream(dest));
         stamper.close();
+        reader.close();
     }
     
     /**
@@ -72,6 +73,7 @@ public class FixBrokenForm {
         form.setField("year", "2009");
         form.setField("duration", "108");
         stamper.close();
+        reader.close();
     }
     
     /**

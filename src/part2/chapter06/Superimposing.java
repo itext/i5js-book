@@ -63,6 +63,7 @@ public class Superimposing {
         }
         // step 5
         document.close();
+        reader.close();
     }
 
     /**

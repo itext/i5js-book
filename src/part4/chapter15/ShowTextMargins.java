@@ -43,6 +43,7 @@ public class ShowTextMargins {
             cb.stroke();
         }
         stamper.close();
+        reader.close();
     }
 
     /**

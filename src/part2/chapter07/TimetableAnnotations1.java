@@ -74,6 +74,7 @@ public class TimetableAnnotations1 {
         }
         // Close the stamper
         stamper.close();
+        reader.close();
         // Close the database connection
         connection.close();
     }

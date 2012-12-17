@@ -94,6 +94,7 @@ public class TextFieldFonts {
         AcroFields form = stamper.getAcroFields();
         form.setField("description", BINJIP);
         stamper.close();
+        reader.close();
     }
 
     /**
@@ -112,6 +113,7 @@ public class TextFieldFonts {
         form.setFieldProperty("description", "textfont", unicode, null);
         form.setField("description", BINJIP);
         stamper.close();
+        reader.close();
     }
 
     /**
@@ -130,6 +132,7 @@ public class TextFieldFonts {
         form.addSubstitutionFont(unicode);
         form.setField("description", BINJIP);
         stamper.close();
+        reader.close();
     }
     
     /**

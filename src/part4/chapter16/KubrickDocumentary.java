@@ -116,6 +116,7 @@ public class KubrickDocumentary {
             fos.close();
           }
         }
+        reader.close();
     }
 
     /**

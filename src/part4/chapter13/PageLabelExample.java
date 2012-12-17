@@ -112,12 +112,14 @@ public class PageLabelExample {
     public void listPageLabels(String src, String dest) throws IOException {
         // no PDF, just a text file
         PrintStream out = new PrintStream(new FileOutputStream(dest));
-        String[] labels = PdfPageLabels.getPageLabels(new PdfReader(src));
+        PdfReader reader = new PdfReader(src);
+        String[] labels = PdfPageLabels.getPageLabels(reader);
         for (int i = 0; i < labels.length; i++) {
             out.println(labels[i]);
         }
         out.flush();
         out.close();
+        reader.close();
     }
     
     /**
@@ -145,6 +147,7 @@ public class PageLabelExample {
         }
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
+        reader.close();
     }
     
     /**

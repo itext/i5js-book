@@ -81,6 +81,8 @@ public class StampStationery {
         }
         // CLose the stamper
         stamper.close();
+        reader.close();
+        s_reader.close();
     }
 
     /**

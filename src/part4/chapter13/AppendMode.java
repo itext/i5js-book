@@ -41,6 +41,7 @@ public class AppendMode {
         cb.showTextAligned(Element.ALIGN_LEFT, "Hello People!", 36, 770, 0);
         cb.endText();
         stamper.close();
+        reader.close();
     }
     
     /**

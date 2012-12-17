@@ -36,6 +36,7 @@ public class GetContentStream {
         out.write(reader.getPageContent(1));
         out.flush();
         out.close();
+        reader.close();
     }
     
     /**

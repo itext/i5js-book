@@ -58,6 +58,7 @@ public class MemoryInfo {
         writer.println(String.format("Memory used by full read: %d",
                     getMemoryUse() - before));
         writer.flush();
+        reader.close();
     }
     
     /**
@@ -75,6 +76,7 @@ public class MemoryInfo {
         writer.println(String.format("Memory used by partial read: %d",
                     getMemoryUse() - before));
         writer.flush();
+        reader.close();
     }
 
     /**

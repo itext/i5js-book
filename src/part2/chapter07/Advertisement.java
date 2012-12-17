@@ -82,6 +82,7 @@ public class Advertisement {
         stamper.addAnnotation(advertisement, 1);
         // Close the stamper
         stamper.close();
+        reader.close();
     }
 
     /**

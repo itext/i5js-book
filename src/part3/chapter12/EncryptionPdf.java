@@ -66,6 +66,7 @@ public class EncryptionPdf {
         PdfReader reader = new PdfReader(src, OWNER);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
+        reader.close();
     }
 
     /**
@@ -81,6 +82,7 @@ public class EncryptionPdf {
         stamper.setEncryption(USER, OWNER,
             PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128 | PdfWriter.DO_NOT_ENCRYPT_METADATA);
         stamper.close();
+        reader.close();
     }
     
     /**

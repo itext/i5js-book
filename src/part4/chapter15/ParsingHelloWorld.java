@@ -99,6 +99,7 @@ public class ParsingHelloWorld {
         }
         out.flush();
         out.close();
+        reader.close();
     }
     
     /**
@@ -117,6 +118,7 @@ public class ParsingHelloWorld {
         processor.processContent(ContentByteUtils.getContentBytesForPage(reader, 1), resourcesDic);
         out.flush();
         out.close();
+        reader.close();
     }
 
     /**

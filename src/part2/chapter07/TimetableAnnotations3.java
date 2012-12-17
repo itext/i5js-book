@@ -97,6 +97,7 @@ public class TimetableAnnotations3 extends TimetableAnnotations1 {
         }
         // Close the stamper
         stamper.close();
+        reader.close();
         // Close the database connection
         connection.close();
     }

@@ -142,6 +142,7 @@ public class HelloWorldCompression {
         }
         stamper.setFullCompression();
         stamper.close();
+        reader.close();
     }
 
     /**
@@ -161,6 +162,7 @@ public class HelloWorldCompression {
             reader.setPageContent(i, reader.getPageContent(i));
         }
         stamper.close();
+        reader.close();
         Document.compress = true;
     }
     

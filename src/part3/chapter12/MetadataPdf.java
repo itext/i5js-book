@@ -69,6 +69,7 @@ public class MetadataPdf {
         info.put("Author", "Also Bruno Lowagie");
         stamper.setMoreInfo(info);
         stamper.close();
+        reader.close();
     }
     
     /**

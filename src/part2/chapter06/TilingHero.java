@@ -60,6 +60,7 @@ public class TilingHero {
         }
         // step 4
         document.close();
+        reader.close();
     }
 
     /**

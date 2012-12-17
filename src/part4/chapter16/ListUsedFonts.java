@@ -39,6 +39,7 @@ public class ListUsedFonts {
             resources = reader.getPageN(k).getAsDict(PdfName.RESOURCES);
             processResource(set, resources);
         }
+        reader.close();
         return set;
     }
     

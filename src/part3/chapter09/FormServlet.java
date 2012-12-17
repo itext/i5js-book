@@ -58,6 +58,7 @@ public class FormServlet extends HttpServlet {
                 "/book/form", null, PdfAction.SUBMIT_HTML_FORMAT));
             stamper.addAnnotation(submit, 1);
             stamper.close();
+            reader.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);
@@ -93,6 +94,7 @@ public class FormServlet extends HttpServlet {
             }
             stamper.setFormFlattening(true);
             stamper.close();
+            reader.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);

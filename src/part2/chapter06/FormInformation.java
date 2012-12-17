@@ -91,6 +91,7 @@ public class FormInformation {
         // flush and close the report file
         writer.flush();
         writer.close();
+        reader.close();
     }
 
 }

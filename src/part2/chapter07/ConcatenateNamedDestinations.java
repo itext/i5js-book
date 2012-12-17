@@ -69,6 +69,8 @@ public class ConcatenateNamedDestinations {
             readers[0].getNumberOfPages());
         // step 5
         document.close();
+        readers[0].close();
+        readers[1].close();
         
         // Create a reader
         PdfReader reader = new PdfReader(RESULT1);
@@ -78,5 +80,6 @@ public class ConcatenateNamedDestinations {
         PdfStamper stamper
             = new PdfStamper(reader, new FileOutputStream(RESULT2));
         stamper.close();
+        reader.close();
     }
 }

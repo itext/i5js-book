@@ -80,5 +80,6 @@ public class PageInformation {
         writer.println(reader.isEncrypted());
         writer.println();
         writer.flush();
+        reader.close();
     }
 }

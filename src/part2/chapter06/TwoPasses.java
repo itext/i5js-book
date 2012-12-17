@@ -105,6 +105,7 @@ public class TwoPasses {
         }
         // Close the stamper
         stamper.close();
+        reader.close();
     }
     
     /**

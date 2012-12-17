@@ -44,6 +44,7 @@ public class ReplaceIcon {
         ad.setImage(Image.getInstance(RESOURCE));
         form.replacePushbuttonField("advertisement", ad.getField());
         stamper.close();
+        reader.close();
     }
 
     /**

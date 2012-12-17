@@ -10,8 +10,10 @@ package part3.chapter11;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -57,9 +59,13 @@ public class FontSelectionExample {
         document.open();
         // step 4:
         FontSelector selector = new FontSelector();
-        selector.addFont(FontFactory.getFont(FontFactory.TIMES_ROMAN, 12));
-        selector.addFont(FontFactory.getFont("MSung-Light",
-            "UniCNS-UCS2-H", BaseFont.NOT_EMBEDDED));
+        Font f1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12);
+        f1.setColor(BaseColor.BLUE);
+        Font f2 = FontFactory.getFont("MSung-Light",
+                "UniCNS-UCS2-H", BaseFont.NOT_EMBEDDED);
+        f2.setColor(BaseColor.RED);
+        selector.addFont(f1);
+        selector.addFont(f2);
         Phrase ph = selector.process(TEXT);
         document.add(new Paragraph(ph));
         // step 5: we close the document

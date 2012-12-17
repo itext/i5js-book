@@ -48,5 +48,6 @@ public class AddVersionChecker {
         stamper.addJavaScript(Utilities.readFileToString(RESOURCE));
         // Close the stamper
         stamper.close();
+        reader.close();
     }
 }

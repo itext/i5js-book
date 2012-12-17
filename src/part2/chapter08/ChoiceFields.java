@@ -82,6 +82,7 @@ public class ChoiceFields implements PdfPCellEvent {
         form.setField("choice_3", "CN");
         form.setField("choice_4", "Japanese");
         stamper.close();
+        reader.close();
     }
 
     /**

@@ -108,6 +108,7 @@ public class CreateOutlineTree {
         List<HashMap<String, Object>> list = SimpleBookmark.getBookmark(reader);
         SimpleBookmark.exportToXML(list,
                 new FileOutputStream(dest), "ISO8859-1", true);
+        reader.close();
     }
     
     /**

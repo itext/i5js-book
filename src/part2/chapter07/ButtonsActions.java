@@ -73,6 +73,7 @@ public class ButtonsActions {
         }
         // Close the stamper
         stamper.close();
+        reader.close();
     }
     
     /**

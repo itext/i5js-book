@@ -80,6 +80,7 @@ public class NUpTool {
         }
         // step 5
         document.close();
+        reader.close();
     }
     
     /**

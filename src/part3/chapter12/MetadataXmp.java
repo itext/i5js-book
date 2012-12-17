@@ -112,6 +112,7 @@ public class MetadataXmp {
         xmp.close();
         stamper.setXmpMetadata(baos.toByteArray());
         stamper.close();
+        reader.close();
     }
     
     /**
@@ -127,6 +128,7 @@ public class MetadataXmp {
         fos.write(b, 0, b.length);
         fos.flush();
         fos.close();
+        reader.close();
     }
     
     /**

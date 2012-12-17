@@ -32,7 +32,9 @@ public class ParseTaggedPdf {
     public static void main(String[] args)
         throws IOException, DocumentException, SAXException, ParserConfigurationException {
         StructuredContent.main(args);
-        TaggedPdfReaderTool reader = new TaggedPdfReaderTool();
-        reader.convertToXml(new PdfReader(StructuredContent.RESULT), new FileOutputStream(RESULT));
+        TaggedPdfReaderTool readertool = new TaggedPdfReaderTool();
+        PdfReader reader = new PdfReader(StructuredContent.RESULT);
+        readertool.convertToXml(reader, new FileOutputStream(RESULT));
+        reader.close();
     }
 }

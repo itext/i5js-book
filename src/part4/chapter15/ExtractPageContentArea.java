@@ -46,6 +46,7 @@ public class ExtractPageContentArea {
         }
         out.flush();
         out.close();
+        reader.close();
     }
 
     /**

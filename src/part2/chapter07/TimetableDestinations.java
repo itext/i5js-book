@@ -66,6 +66,7 @@ public class TimetableDestinations {
         }
         // Close the stamper
         stamper.close();
+        reader.close();
     }
     
     /**

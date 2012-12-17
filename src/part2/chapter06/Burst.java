@@ -53,6 +53,7 @@ public class Burst {
             // step 5
             document.close();
         }
+        reader.close();
     }
     
     

@@ -60,6 +60,7 @@ public class TransformationMatrix2 {
         canvas.addTemplate(template, 0, -0.2f, -0.5f, 0, 350, 0);
         // step 5
         document.close();
+        reader.close();
     }
     
     /**

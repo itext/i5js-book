@@ -93,6 +93,7 @@ public class KubrickDvds {
                 }
             }
         }
+        reader.close();
     }
 
     /**

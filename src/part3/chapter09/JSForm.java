@@ -65,6 +65,7 @@ public class JSForm {
         stamper.addAnnotation(submit1, 1);
         // close the stamper
         stamper.close();
+        reader.close();
     }
     
     /**

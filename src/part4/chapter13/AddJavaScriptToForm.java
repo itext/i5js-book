@@ -134,6 +134,7 @@ public class AddJavaScriptToForm {
         stamper.addAnnotation(validateAndSubmit, 1);
         // close the stamper
         stamper.close();
+        reader.close();
     }
     
     /**

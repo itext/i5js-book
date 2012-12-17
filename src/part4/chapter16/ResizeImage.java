@@ -79,6 +79,7 @@ public class ResizeImage {
         // Save altered PDF
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT));
         stamper.close();
+        reader.close();
     }
 
     /**
