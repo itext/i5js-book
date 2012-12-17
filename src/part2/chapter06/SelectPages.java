@@ -36,8 +36,8 @@ public class SelectPages {
         PdfReader reader = new PdfReader(MovieTemplates.RESULT);
         reader.selectPages("4-8");
         manipulateWithStamper(reader);
-        reader = new PdfReader(MovieTemplates.RESULT);
-        reader.selectPages("4-8");
+        //reader = new PdfReader(MovieTemplates.RESULT);
+        //reader.selectPages("4-8");
         manipulateWithCopy(reader);
     }
 
