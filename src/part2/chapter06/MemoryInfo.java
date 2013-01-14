@@ -7,15 +7,14 @@
 
 package part2.chapter06;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import part1.chapter03.MovieTemplates;
-
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.RandomAccessFileOrArray;
+import part1.chapter03.MovieTemplates;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class MemoryInfo {
 
@@ -36,6 +35,7 @@ public class MemoryInfo {
         // Create a writer for a report file
         PrintWriter writer
             = new PrintWriter(new FileOutputStream(RESULT));
+        garbageCollect();
         // Do a full read
         fullRead(writer, MovieTemplates.RESULT);
         // Do a partial read
@@ -102,13 +102,13 @@ public class MemoryInfo {
     public static void garbageCollect() {
         try {
             System.gc();
-            Thread.sleep(100);
+            Thread.sleep(200);
             System.runFinalization();
-            Thread.sleep(100);
+            Thread.sleep(200);
             System.gc();
-            Thread.sleep(100);
+            Thread.sleep(200);
             System.runFinalization();
-            Thread.sleep(100);
+            Thread.sleep(200);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
