@@ -11,8 +11,8 @@
 		<pathelement path="lib/itext-asian.jar"/>
 	    <pathelement path="lib/itext-hyph-xml.jar"/>
 	    <pathelement path="lib/xerces_2_5_0.jar"/>
-        <pathelement path="lib/bcprov-jdk15on-1.47.jar" />
-        <pathelement path="lib/bcpkix-jdk15on-1.47.jar" />
+        <pathelement path="lib/bcprov-jdk15on-1.48.jar" />
+        <pathelement path="lib/bcpkix-jdk15on-1.48.jar" />
 	    <pathelement path="lib/hsqldb.jar"/>
 	    <pathelement path="lib/servlet.jar"/>
         <pathelement location="lib/jfreechart.jar" />

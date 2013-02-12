@@ -1669,8 +1669,8 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/bcprov-jdk15on-1.47.jar" />
-                <pathelement location="lib/bcpkix-jdk15on-1.47.jar" />
+                <pathelement location="lib/bcprov-jdk15on-1.48.jar" />
+                <pathelement location="lib/bcpkix-jdk15on-1.48.jar" />
             </classpath>
         </java>
     </target>
