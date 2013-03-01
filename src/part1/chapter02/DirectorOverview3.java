@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
+import com.itextpdf.text.*;
 import com.lowagie.database.DatabaseConnection;
 import com.lowagie.database.HsqldbConnection;
 import com.lowagie.filmfestival.Director;
@@ -21,13 +23,7 @@ import com.lowagie.filmfestival.Movie;
 import com.lowagie.filmfestival.MovieComparator;
 import com.lowagie.filmfestival.PojoFactory;
 import com.lowagie.filmfestival.PojoToElementFactory;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
@@ -68,9 +64,17 @@ public class DirectorOverview3 {
         LineSeparator UNDERLINE =
             new LineSeparator(1, 100, null, Element.ALIGN_CENTER, -2);
         // creates tabs
-        Chunk tab1 = new Chunk(new VerticalPositionMark(), 200, true);
-        Chunk tab2 = new Chunk(new VerticalPositionMark(), 350, true);
-        Chunk tab3 = new Chunk(new DottedLineSeparator(), 450, true);
+        java.util.List<TabStop> tabStops = new ArrayList<TabStop>();
+        tabStops.add(new TabStop(200, new VerticalPositionMark()));
+        Chunk tab1 = new Chunk(600, tabStops);
+
+        tabStops = new ArrayList<TabStop>();
+        tabStops.add(new TabStop(350, new VerticalPositionMark()));
+        Chunk tab2 = new Chunk(350, tabStops);
+
+        tabStops = new ArrayList<TabStop>();
+        tabStops.add(new TabStop(450, new DottedLineSeparator()));
+        Chunk tab3 = new Chunk(450, tabStops);
         // loops over the directors
         while (rs.next()) {
             // creates a paragraph with the director name
