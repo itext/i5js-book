@@ -75,11 +75,11 @@ public class EmbedFontPostFacto {
         stream.flateCompress();
         stream.put(PdfName.LENGTH1, new PdfNumber(fontfile.length));
         // create a reader object
-        PdfReader reader = new PdfReader(RESULT1);
+        PdfReader reader = new PdfReader(src);
         int n = reader.getXrefSize();
         PdfObject object;
         PdfDictionary font;
-        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(RESULT2));
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         PdfName fontname = new PdfName(FONTNAME);
         for (int i = 0; i < n; i++) {
             object = reader.getPdfObject(i);
