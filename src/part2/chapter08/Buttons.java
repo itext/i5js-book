@@ -101,10 +101,10 @@ public class Buttons {
         RadioCheckField checkbox;
         for (int i = 0; i < LANGUAGES.length; i++) {
             rect = new Rectangle(180, 806 - i * 40, 200, 788 - i * 40);
-            checkbox = new RadioCheckField(writer, rect, LANGUAGES[i], "on");
+            checkbox = new RadioCheckField(writer, rect, LANGUAGES[i], "Yes");
             field = checkbox.getCheckField();
             field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, "Off", onOff[0]);
-            field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, "On", onOff[1]);
+            field.setAppearance(PdfAnnotation.APPEARANCE_NORMAL, "Yes", onOff[1]);
             writer.addAnnotation(field);
             ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT,
                 new Phrase(LANGUAGES[i], font), 210, 790 - i * 40, 0);
