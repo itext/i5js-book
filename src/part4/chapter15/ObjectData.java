@@ -66,6 +66,13 @@ public class ObjectData {
         // step 3
         document.open();
         // step 4
+
+        PdfStructureTreeRoot root = writer.getStructureTreeRoot();
+        root.mapRole(new PdfName("Directors"), PdfName.H);
+        for (int i = 1; i < 8; i++) {
+        	root.mapRole(new PdfName("director" + i), PdfName.P);
+        }
+        
         DatabaseConnection connection = new HsqldbConnection("filmfestival");
 
         PdfStructureTreeRoot tree = writer.getStructureTreeRoot();
