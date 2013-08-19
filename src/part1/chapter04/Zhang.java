@@ -58,10 +58,10 @@ public class Zhang {
         // set the total width of the table
         table.setTotalWidth(600);
         PdfContentByte canvas = writer.getDirectContent();
-        // draw the first three columns on one page
+        // draw the first two columns on one page
         table.writeSelectedRows(0, 2, 0, -1, 236, 806, canvas);
         document.newPage();
-        // draw the next three columns on the next page
+        // draw the remaining two columns on the next page
         table.writeSelectedRows(2, -1, 0, -1, 36, 806, canvas);
         // step 5
         document.close();
