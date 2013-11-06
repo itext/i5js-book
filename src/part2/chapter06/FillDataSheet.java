@@ -54,7 +54,9 @@ public class FillDataSheet {
             reader = new PdfReader(DATASHEET);
             stamper = new PdfStamper(reader,
                     new FileOutputStream(String.format(RESULT, movie.getImdb())));
-            fill(stamper.getAcroFields(), movie);
+            AcroFields fields = stamper.getAcroFields();
+            fields.setGenerateAppearances(true);
+            fill(fields, movie);
             if (movie.getYear() == 2007)
                 stamper.setFormFlattening(true);
             stamper.close();
