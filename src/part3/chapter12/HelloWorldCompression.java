@@ -140,6 +140,7 @@ public class HelloWorldCompression {
         for (int i = 1; i < total; i++) {
             reader.setPageContent(i, reader.getPageContent(i));
         }
+        stamper.setFullCompression();
         stamper.close();
         reader.close();
     }
