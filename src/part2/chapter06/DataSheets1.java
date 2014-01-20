@@ -19,6 +19,7 @@ import com.lowagie.filmfestival.Movie;
 import com.lowagie.filmfestival.PojoFactory;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.PdfCopy;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
@@ -83,7 +84,9 @@ public class DataSheets1 extends FillDataSheet {
             reader = new PdfReader(DATASHEET);
             baos = new ByteArrayOutputStream();
             stamper = new PdfStamper(reader, baos);
-            fill(stamper.getAcroFields(), movie);
+            AcroFields fields = stamper.getAcroFields();
+            fields.setGenerateAppearances(true);
+            fill(fields, movie);
             stamper.setFormFlattening(true);
             stamper.close();
             reader.close();
