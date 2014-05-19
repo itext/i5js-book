@@ -123,6 +123,7 @@ public class FDFServlet extends HttpServlet {
             // close the stamper
             stamper.close();
             reader.close();
+            fdf.close();
             // We write the PDF bytes to the OutputStream
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);
