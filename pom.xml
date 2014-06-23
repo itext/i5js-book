@@ -4,8 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.itextpdf</groupId>
 	<artifactId>book</artifactId>
+    <name>iText Examples (book)</name>
+    <description>Examples for the book iText in Action</description>
 	<version>5.5.2-SNAPSHOT</version>
 	<packaging>war</packaging>
+    <url>http://itextpdf.com/book</url>
+    <scm>
+		<connection>scm:svn:http://svn.code.sf.net/p/itext/code/book</connection>
+		<url>http://sourceforge.net/p/itext/code</url>
+	</scm>
 	<build>
 		<finalName>book</finalName>
 		<sourceDirectory>src</sourceDirectory>
@@ -155,4 +162,8 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.language>java</sonar.language>
+	</properties>
 </project>
