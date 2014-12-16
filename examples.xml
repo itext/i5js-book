@@ -601,15 +601,6 @@
                 <pathelement location="lib/hsqldb.jar" />
             </classpath>
         </java>
-        <echo message="MemoryTests" />
-        <java fork="yes" classname="part1.chapter04.MemoryTests">
-			<jvmarg value="-Dfile.encoding=windows-1252"/>
-            <classpath>
-                <pathelement path="bin/" />
-                <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/hsqldb.jar" />
-            </classpath>
-        </java>
         <echo message="PdfCalendar" />
         <java fork="yes" classname="part1.chapter04.PdfCalendar">
 			<jvmarg value="-Dfile.encoding=windows-1252"/>
@@ -1669,8 +1660,8 @@
             <classpath>
                 <pathelement path="bin/" />
                 <pathelement location="lib/iText.jar" />
-                <pathelement location="lib/bcprov-jdk15on-1.48.jar" />
-                <pathelement location="lib/bcpkix-jdk15on-1.48.jar" />
+                <pathelement location="lib/bcprov-jdk15on-149.jar" />
+                <pathelement location="lib/bcpkix-jdk15on-149.jar" />
             </classpath>
         </java>
     </target>
