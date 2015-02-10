@@ -115,7 +115,6 @@ public class Barcodes {
         // CODE 128
         document.add(new Paragraph("Barcode 128"));
         Barcode128 code128 = new Barcode128();
-        code128.setCodeSet(Barcode128.Barcode128CodeSet.B);
         code128.setCode("0123456789 hello");
         document.add(code128.createImageWithBarcode(cb, null, null));
         code128.setCode("0123456789\uffffMy Raw Barcode (0 - 9)");
@@ -139,14 +138,12 @@ public class Barcodes {
         shipBarCode.setBaseline(10f);
         shipBarCode.setBarHeight(50f);
         shipBarCode.setCode(data.toString());
-        shipBarCode.setCodeSet(Barcode128.Barcode128CodeSet.B);
         document.add(shipBarCode.createImageWithBarcode(cb, BaseColor.BLACK,
                 BaseColor.BLUE));
 
         // it is composed of 3 blocks whith AI 01, 3101 and 10
         Barcode128 uccEan128 = new Barcode128();
         uccEan128.setCodeType(Barcode.CODE128_UCC);
-        uccEan128.setCodeSet(Barcode128.Barcode128CodeSet.B);
         uccEan128.setCode("(01)00000090311314(10)ABC123(15)060916");
         document.add(uccEan128.createImageWithBarcode(cb, BaseColor.BLUE,
                 BaseColor.BLACK));
