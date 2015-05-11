@@ -6,7 +6,7 @@
 	<artifactId>book</artifactId>
     <name>iText Examples (book)</name>
     <description>Examples for the book iText in Action</description>
-	<version>5.5.6-SNAPSHOT</version>
+	<version>5.5.6</version>
 	<packaging>war</packaging>
     <url>http://itextpdf.com/book</url>
     <scm>
@@ -45,21 +45,21 @@
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
-			<version>5.5.6-SNAPSHOT</version>
+			<version>5.5.6</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itext-xtra</artifactId>
-			<version>5.5.6-SNAPSHOT</version>
+			<version>5.5.6</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itext-pdfa</artifactId>
-			<version>5.5.6-SNAPSHOT</version>
+			<version>5.5.6</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
