@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.TimeZone;
 
 import com.lowagie.database.DatabaseConnection;
 import com.lowagie.database.HsqldbConnection;
@@ -35,6 +36,10 @@ public class TimetableAnnotations1 {
     /** A pattern for an info string. */
     public static final String INFO
         = "Movie produced in %s; run length: %s";
+
+    static {
+        TimeZone.setDefault(TimeZone.getTimeZone("Europe/Brussels"));
+    }
 
     /**
      * Manipulates a PDF file src with the file dest as result
