@@ -4,7 +4,7 @@
 
   <groupId>com.itextpdf</groupId>
   <artifactId>book</artifactId>
-  <version>5.5.11-SNAPSHOT</version>
+  <version>5.5.11</version>
   <packaging>war</packaging>
 
   <name>iText Examples (book)</name>
